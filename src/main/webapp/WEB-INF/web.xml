@@ -17,8 +17,12 @@
 		<param-value>true</param-value>
 	</context-param>
 	<context-param>
+		<param-name>facelets.SKIP_COMMENTS</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
 		<param-name>org.richfaces.SKIN</param-name>
-		<param-value>blueSky</param-value>
+		<param-value>wine</param-value>
 	</context-param>
 	<listener>
 		<listener-class>org.jboss.seam.servlet.SeamListener</listener-class>

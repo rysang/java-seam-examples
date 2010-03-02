@@ -4,15 +4,28 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:rich="http://richfaces.org/rich">
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Insert title here</title>
+<title>Index</title>
 </head>
 <body>
-<rich:panel>
-	<f:facet name="header">Products</f:facet>
-	<div style="clear: both" />
-</rich:panel>
+<h:form>
+	<legend>Form Data</legend>
+	<a4j:region>
+		<rich:panel style="width: 500px">
+			<f:facet name="header">Test</f:facet>
+			<h:outputText id="date_id" value="#{test.dateString}" />
+			<br />
+			<a4j:commandLink value="Begin" action="#{test.begin}"
+				reRender="date_id" />
+			<br />
+			<a4j:commandLink value="End" action="#{test.end}" reRender="date_id" />
+			<br />
+			<rich:calendar id="myCalendar" value="#{test.date}" />
+		</rich:panel>
+	</a4j:region>
+</h:form>
 </body>
 </html>
