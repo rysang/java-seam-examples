@@ -1,6 +1,9 @@
 package org.test;
 
+import java.io.Serializable;
 import java.util.Date;
+
+import javax.persistence.EntityManager;
 
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.Begin;
@@ -14,11 +17,15 @@ import org.jboss.seam.log.Log;
 
 @Scope(ScopeType.CONVERSATION)
 @Name("test")
-public class Test {
+public class Test implements Serializable {
 
 	@Logger
-	private Log log;
+	private transient Log log;
 	private Date date;
+
+	// @PersistenceContext(type = PersistenceContextType.EXTENDED, unitName =
+	// "test-persistence")
+	private transient EntityManager em;
 
 	public Test() {
 
@@ -27,6 +34,7 @@ public class Test {
 	@Create
 	public void create() {
 		log.info(" Bean Created.");
+		em = EntityManagerCreator.createManager();
 	}
 
 	@Destroy

@@ -16,7 +16,6 @@
 
 	<core:manager concurrent-request-timeout="500"
 		conversation-timeout="120000" conversation-id-parameter="cid" />
-
 	<core:init transaction-management-enabled="false" />
 	<transaction:no-transaction />
 </components>
