@@ -1,0 +1,32 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+	<h:form>
+		<legend>#{displayLegend}</legend>
+		<a4j:region>
+			<rich:panel style="width: 500px">
+				<f:facet name="header">User Details</f:facet>
+				<h:panelGrid id="panel" columns="2">
+					<h:outputLabel for="username" value="First Name" />
+					<h:inputText id="username"
+						value="#{usersManagement.selectedUser.firstName}" />
+					<h:outputLabel for="password" value="Second Name" />
+					<h:inputText id="password"
+						value="#{usersManagement.selectedUser.secondName}" />
+
+					<h:commandButton id="submit_create" value="Create"
+						action="#{usersManagement.persist(usersManagement.selectedUser)}"
+						rendered="#{type == 'create'}" />
+
+					<h:commandButton id="submit_update" value="Update"
+						rendered="#{type != 'create'}"
+						action="#{usersManagement.persist(usersManagement.selectedUser)}" />
+				</h:panelGrid>
+			</rich:panel>
+		</a4j:region>
+	</h:form>
+</ui:composition>

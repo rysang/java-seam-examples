@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Index</title>
+</head>
+<body>
+<h:panelGrid id="exampleContainer" columns="1">
+	<rich:dataTable id="exampleListDT"
+		value="#{exampleListModel.exampleList}" var="item" rows="25"
+		style="width:100%">
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Column1" />
+			</f:facet>
+			<h:outputText value="#{item['column1']}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Column2" />
+			</f:facet>
+			<h:outputText value="#{item['column2']}" />
+		</h:column>
+	</rich:dataTable>
+	<rich:spacer height="5" />
+	<rich:datascroller align="left" for="exampleListDT" maxPages="10"
+		ajaxSingle="false" />
+</h:panelGrid>
+</body>
+</html>

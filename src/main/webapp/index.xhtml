@@ -16,14 +16,12 @@
 	<a4j:region>
 		<rich:panel style="width: 500px">
 			<f:facet name="header">Test</f:facet>
-			<h:outputText id="date_id" value="#{test.dateString}" />
-			<br />
-			<a4j:commandLink value="Begin" action="#{test.begin}"
-				reRender="date_id" />
-			<br />
-			<a4j:commandLink value="End" action="#{test.end}" reRender="date_id" />
-			<br />
-			<rich:calendar id="myCalendar" value="#{test.date}" />
+			<h:panelGrid id="panel" columns="1">
+				<h:commandLink id="create_user" value="Create User"
+					action="#{usersManagement.createUser}" />
+				<h:commandLink id="list_users" value="List Users"
+					action="#{usersManagement.listUsers}" />
+			</h:panelGrid>
 		</rich:panel>
 	</a4j:region>
 </h:form>

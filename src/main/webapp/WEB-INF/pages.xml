@@ -1,15 +1,27 @@
 <pages xmlns="http://jboss.com/progucts/seam/pages" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.1.xsd"
-	no-conversation-view-id="/main.xhtml" login-view-id="/home.xhtml">
-	<page view-id="/main.xhtml" login-required="true">
-		<navigation from-action="#{hotelBooking.selectHotel(hotel.id)}">
-			<begin-conversation />
-			<redirect view-id="/hotel.xhtml" />
+	no-conversation-view-id="/index.xhtml">
+
+
+	<page view-id="/index.xhtml">
+		<navigation>
+			<rule if-outcome="CREATE_USER">
+				<redirect view-id="/createUser.xhtml" />
+			</rule>
+			<rule if-outcome="LIST_USERS">
+				<redirect view-id="/listUsers.xhtml" />
+			</rule>
 		</navigation>
 	</page>
-	<page view-id="/rewards.xhtml">
-		<restrict>#{s:hasRole(‘REWARDS’)}</restrict>
+
+	<page view-id="/createUser.xhtml">
+		<navigation>
+			<rule if-outcome="INDEX">
+				<redirect view-id="/index.xhtml" />
+			</rule>
+		</navigation>
 	</page>
+
 	<exception class="org.jboss.seam.security.AuthorizationException">
 		<end-conversation />
 		<redirect view-id="/generalError.xhtml">
