@@ -5,9 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.test.datalists.Idable;
+
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements Idable<String> {
 
 	@Id
 	@Column(name = "id")

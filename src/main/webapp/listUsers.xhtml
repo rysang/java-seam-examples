@@ -14,7 +14,7 @@
 <h:form>
 	<h:panelGrid id="exampleContainer" columns="1">
 		<rich:dataTable id="exampleListDT"
-			value="#{lazyListModel.exampleList}" var="user" rows="5"
+			value="#{accessExtendedDataModel}" var="user" rows="2"
 			style="width:100%">
 			<h:column>
 				<f:facet name="header">
@@ -30,7 +30,7 @@
 			</h:column>
 		</rich:dataTable>
 		<rich:spacer height="1" />
-		<rich:datascroller align="left" for="exampleListDT" maxPages="5"
+		<rich:datascroller align="left" for="exampleListDT" maxPages="1"
 			ajaxSingle="false" />
 	</h:panelGrid>
 </h:form>

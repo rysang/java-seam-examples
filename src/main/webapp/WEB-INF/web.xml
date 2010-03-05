@@ -22,7 +22,7 @@
 	</context-param>
 	<context-param>
 		<param-name>org.richfaces.SKIN</param-name>
-		<param-value>wine</param-value>
+		<param-value>blueSky</param-value>
 	</context-param>
 	<listener>
 		<listener-class>org.jboss.seam.servlet.SeamListener</listener-class>
