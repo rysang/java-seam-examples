@@ -1,7 +1,6 @@
 package org.test.datalists;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,12 +13,12 @@ import org.ajax4jsf.model.Range;
 import org.ajax4jsf.model.SequenceRange;
 import org.ajax4jsf.model.SerializableDataModel;
 
-public class ExtendedListDataModel extends SerializableDataModel {
+public class ExtendedListDataModel<T> extends SerializableDataModel {
 	private boolean detached = false;
-	private BigDecimal currentPk;
-	private Map<BigDecimal, Object> wrappedData = new HashMap<BigDecimal, Object>();
-	private List<BigDecimal> wrappedKeys = null;
-	private ExtendedFetchList fetchList = null;
+	private String currentPk;
+	private Map<String, Object> wrappedData = new HashMap<String, Object>();
+	private List<String> wrappedKeys = null;
+	private ExtendedFetchList<T> fetchList = null;
 	private int rowIndex;
 	private static final long serialVersionUID = 1L;
 
@@ -49,7 +48,8 @@ public class ExtendedListDataModel extends SerializableDataModel {
 	 */
 	@Override
 	public void setRowKey(Object key) {
-		this.currentPk = (BigDecimal) key;
+		if (key != null)
+			this.currentPk = key.toString();
 	}
 
 	/*
@@ -74,12 +74,12 @@ public class ExtendedListDataModel extends SerializableDataModel {
 			// data from data provider by range.
 			// We are using wrappedKeys list only to preserve actual order of
 			// items.
-			for (BigDecimal key : wrappedKeys) {
+			for (String key : wrappedKeys) {
 				setRowKey(key);
 				visitor.process(context, key, argument);
 			}
 		} else { // if not serialized, than we request data from data provider
-			wrappedKeys = new ArrayList<BigDecimal>();
+			wrappedKeys = new ArrayList<String>();
 			for (Object obj : fetchList.fetchList(firstRow, numberOfRows)) {
 				wrappedKeys.add(fetchList.getPk(obj));
 				wrappedData.put(fetchList.getPk(obj), obj);
@@ -106,7 +106,6 @@ public class ExtendedListDataModel extends SerializableDataModel {
 	 */
 	@Override
 	public Object getRowData() {
-		// TODO Auto-generated method stub
 		if (currentPk == null) {
 			return null;
 		} else {
@@ -188,7 +187,7 @@ public class ExtendedListDataModel extends SerializableDataModel {
 	/**
 	 * @return the fetchList
 	 */
-	public ExtendedFetchList getFetchList() {
+	public ExtendedFetchList<T> getFetchList() {
 		return fetchList;
 	}
 
@@ -196,7 +195,7 @@ public class ExtendedListDataModel extends SerializableDataModel {
 	 * @param fetchList
 	 *            the fetchList to set
 	 */
-	public void setFetchList(ExtendedFetchList fetchList) {
+	public void setFetchList(ExtendedFetchList<T> fetchList) {
 		this.fetchList = fetchList;
 	}
 

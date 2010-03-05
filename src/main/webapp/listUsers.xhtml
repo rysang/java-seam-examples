@@ -12,6 +12,27 @@
 </head>
 <body>
 <h:form>
+	<h:panelGrid id="exampleContainer" columns="1">
+		<rich:dataTable id="exampleListDT"
+			value="#{lazyListModel.exampleList}" var="user" rows="5"
+			style="width:100%">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="First Name" />
+				</f:facet>
+				<h:outputText value="#{user.firstName}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Second Name" />
+				</f:facet>
+				<h:outputText value="#{user.secondName}" />
+			</h:column>
+		</rich:dataTable>
+		<rich:spacer height="1" />
+		<rich:datascroller align="left" for="exampleListDT" maxPages="5"
+			ajaxSingle="false" />
+	</h:panelGrid>
 </h:form>
 </body>
 </html>

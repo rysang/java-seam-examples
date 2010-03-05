@@ -46,4 +46,17 @@ public class User {
 	public String getSecondName() {
 		return secondName;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder('[');
+		sb.append(getId());
+		sb.append(',');
+		sb.append(getFirstName());
+		sb.append(',');
+		sb.append(getSecondName());
+		sb.append(']');
+
+		return sb.toString();
+	}
 }
