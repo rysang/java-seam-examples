@@ -22,9 +22,29 @@
 		</navigation>
 	</page>
 
-	<exception class="org.jboss.seam.security.AuthorizationException">
+	<page view-id="/editUser.xhtml">
+		<navigation>
+			<rule if-outcome="INDEX">
+				<redirect view-id="/index.xhtml" />
+			</rule>
+		</navigation>
+	</page>
+
+
+	<page view-id="/listUsers.xhtml">
+		<navigation>
+			<rule if-outcome="EDIT_USER">
+				<redirect view-id="/editUser.xhtml" />
+			</rule>
+			<rule if-outcome="CREATE_USER">
+				<redirect view-id="/createUser.xhtml" />
+			</rule>
+		</navigation>
+	</page>
+
+	<exception class="java.lang.Exception">
 		<end-conversation />
-		<redirect view-id="/generalError.xhtml">
+		<redirect view-id="/index.jsp">
 			<message>You are not authorized</message>
 		</redirect>
 	</exception>

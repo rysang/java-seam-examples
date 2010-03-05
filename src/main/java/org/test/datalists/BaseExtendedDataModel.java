@@ -62,6 +62,10 @@ public abstract class BaseExtendedDataModel<T, ID extends Serializable> extends
 		return currentId;
 	}
 
+	public void setRowCount(Long rowCount) {
+		this.rowCount = rowCount;
+	}
+
 	@Override
 	public int getRowCount() {
 		if (rowCount == null)

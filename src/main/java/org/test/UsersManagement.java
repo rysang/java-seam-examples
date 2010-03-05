@@ -10,6 +10,7 @@ import org.jboss.seam.annotations.Begin;
 import org.jboss.seam.annotations.Create;
 import org.jboss.seam.annotations.Destroy;
 import org.jboss.seam.annotations.End;
+import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
@@ -22,10 +23,14 @@ public class UsersManagement implements Serializable {
 	private static final long serialVersionUID = -1470908246493192947L;
 	public static final String INDEX = "INDEX";
 	public static final String CREATE_USER = "CREATE_USER";
+	public static final String EDIT_USER = "EDIT_USER";
 	public static final String LIST_USERS = "LIST_USERS";
 
 	@Logger
 	private transient Log log;
+
+	@In(value = "accessExtendedDataModel", required = true, create = true)
+	private AccessExtendedDataModel accessExtendedDataModel;
 
 	private User selectedUser;
 
@@ -59,6 +64,13 @@ public class UsersManagement implements Serializable {
 		return LIST_USERS;
 	}
 
+	@Begin(nested = true)
+	public String editUser(User user) {
+		log.info(" Edit User called.");
+		setSelectedUser(user);
+		return EDIT_USER;
+	}
+
 	@End
 	public String persist(User user) {
 		if (user.getId() == null) {
@@ -69,6 +81,9 @@ public class UsersManagement implements Serializable {
 		em.persist(user);
 		em.getTransaction().commit();
 
+		accessExtendedDataModel.reset();
+		setSelectedUser(null);
+
 		return INDEX;
 	}
 
@@ -78,14 +93,21 @@ public class UsersManagement implements Serializable {
 		em.merge(user);
 		em.getTransaction().commit();
 
+		accessExtendedDataModel.reset();
+		setSelectedUser(null);
+
 		return INDEX;
 	}
 
 	@End
 	public String delete(User user) {
+		User usr = em.find(User.class, user.getId());
 		em.getTransaction().begin();
-		em.remove(user);
+		em.remove(usr);
 		em.getTransaction().commit();
+
+		accessExtendedDataModel.reset();
+		setSelectedUser(null);
 
 		return INDEX;
 	}

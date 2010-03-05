@@ -24,7 +24,7 @@
 
 					<h:commandButton id="submit_update" value="Update"
 						rendered="#{type != 'create'}"
-						action="#{usersManagement.persist(usersManagement.selectedUser)}" />
+						action="#{usersManagement.update(usersManagement.selectedUser)}" />
 				</h:panelGrid>
 			</rich:panel>
 		</a4j:region>

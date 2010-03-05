@@ -26,18 +26,18 @@ public class AccessExtendedDataModel extends
 
 	}
 
-	@Override
-	public Long getCount() {
-		if (count == -1) {
-			Query q = getEntityManager().createQuery(
-					"select count(u) from User u");
-			count = (Long) q.getSingleResult();
-		}
-		return count;
+	public void reset() {
+		setRowCount(null);
+		firstRow = null;
+		maxResults = null;
 	}
 
-	public void setCount(Long count) {
-		this.count = count;
+	@Override
+	public Long getCount() {
+		Query q = getEntityManager().createQuery("select count(u) from User u");
+		count = (Long) q.getSingleResult();
+
+		return count;
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class AccessExtendedDataModel extends
 			q.setMaxResults(maxResults);
 
 			returnList = q.getResultList();
-			setCount(-1L);
+			setRowCount(null);
 			this.firstRow = firstRow;
 			this.maxResults = maxResults;
 		}
