@@ -18,4 +18,15 @@
 		conversation-timeout="120000" conversation-id-parameter="cid" />
 	<core:init transaction-management-enabled="false" />
 	<transaction:no-transaction />
+
+	<security:identity authenticate-method="#{authenticator.authenticate}"
+		remember-me="true" />
+
+	<!--	<event type="org.jboss.seam.security.notLoggedIn">-->
+	<!--		<action execute="#{test.captureCurrentView}" />-->
+	<!--	</event>-->
+	<event type="org.jboss.seam.security.loginSuccessful">
+		<action execute="#{test.goToIndex}" />
+		<!--		<action execute="#{test.goToIndex}" />-->
+	</event>
 </components>

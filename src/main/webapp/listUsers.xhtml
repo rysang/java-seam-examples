@@ -15,7 +15,7 @@
 	<h:form>
 		<h:panelGrid id="exampleContainer" columns="1">
 			<h:commandLink id="create_user" value="Create User"
-				action="#{usersManagement.createUser}" />
+				action="#{usersManagement.createUser}" rendered="#{s:hasRole('ADMINISTRATOR')}"/>
 			<rich:dataTable id="exampleListDT" value="#{accessExtendedDataModel}"
 				var="user" rows="5" style="width:100%">
 				<h:column>
@@ -30,13 +30,13 @@
 					</f:facet>
 					<h:outputText value="#{user.secondName}" />
 				</h:column>
-				<h:column>
+				<h:column rendered="#{s:hasRole('ADMINISTRATOR')}">
 					<a4j:commandLink
 						onclick="if (! window.confirm('Are you sure?') ) {return false}"
 						value="Edit" action="#{usersManagement.editUser(user)}"
 						reRender="exampleContainer" />
 				</h:column>
-				<h:column>
+				<h:column rendered="#{s:hasRole('ADMINISTRATOR')}">
 					<a4j:commandLink
 						onclick="if (! window.confirm('Are you sure?') ) {return false}"
 						value="Delete" action="#{usersManagement.delete(user)}"

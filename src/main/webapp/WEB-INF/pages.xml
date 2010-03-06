@@ -1,9 +1,9 @@
 <pages xmlns="http://jboss.com/progucts/seam/pages" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.1.xsd"
-	no-conversation-view-id="/index.xhtml">
+	no-conversation-view-id="/index.xhtml" login-view-id="/login.xhtml">
 
 
-	<page view-id="/index.xhtml">
+	<page view-id="/index.xhtml" login-required="true">
 		<navigation>
 			<rule if-outcome="CREATE_USER">
 				<redirect view-id="/createUser.xhtml" />
@@ -14,7 +14,7 @@
 		</navigation>
 	</page>
 
-	<page view-id="/createUser.xhtml">
+	<page view-id="/createUser.xhtml" login-required="true">
 		<navigation>
 			<rule if-outcome="INDEX">
 				<redirect view-id="/index.xhtml" />
@@ -22,7 +22,15 @@
 		</navigation>
 	</page>
 
-	<page view-id="/editUser.xhtml">
+	<page view-id="/login.xhtml">
+		<navigation>
+			<rule if-outcome="INDEX">
+				<redirect view-id="/index.xhtml" />
+			</rule>
+		</navigation>
+	</page>
+
+	<page view-id="/editUser.xhtml" login-required="true">
 		<navigation>
 			<rule if-outcome="INDEX">
 				<redirect view-id="/index.xhtml" />
@@ -31,7 +39,7 @@
 	</page>
 
 
-	<page view-id="/listUsers.xhtml">
+	<page view-id="/listUsers.xhtml" login-required="true">
 		<navigation>
 			<rule if-outcome="EDIT_USER">
 				<redirect view-id="/editUser.xhtml" />

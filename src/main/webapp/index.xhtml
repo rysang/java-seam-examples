@@ -18,7 +18,8 @@
 			<f:facet name="header">Test</f:facet>
 			<h:panelGrid id="panel" columns="1">
 				<h:commandLink id="create_user" value="Create User"
-					action="#{usersManagement.createUser}" />
+					action="#{usersManagement.createUser}"
+					rendered="#{s:hasRole('ADMINISTRATOR')}" />
 				<h:commandLink id="list_users" value="List Users"
 					action="#{usersManagement.listUsers}" />
 			</h:panelGrid>
