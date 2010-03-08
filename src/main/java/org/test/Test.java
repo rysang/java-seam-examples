@@ -1,15 +1,12 @@
 package org.test;
 
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.xml.XmlBeanFactory;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Test {
-	public static void main(String[] args) {
-		BeanFactory factory = new XmlBeanFactory(new ClassPathResource(
-				"hello.xml"));
-		GreetingService greetingService = (GreetingService) factory
-				.getBean("greetingService");
-		greetingService.sayGreeting();
+	public static void main(String[] args) throws QuestFailedException {
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("hello.xml");
+		Knight knight = (Knight) ctx.getBean("knight");
+		knight.embarkOnQuest();
 	}
 }
