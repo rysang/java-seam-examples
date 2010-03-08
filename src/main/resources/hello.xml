@@ -5,8 +5,8 @@
 						http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 
 
-	<bean id="quest" class="org.test.HolyGrailQuest" />
-	<bean id="knight" class="org.test.KnightOfTheRoundTable">
+	<bean id="quest" class="org.test.HolyGrailQuest" scope="prototype" />
+	<bean id="knight" class="org.test.KnightOfTheRoundTable" scope="prototype">
 		<constructor-arg value="Bedivere" />
 		<property name="quest" ref="quest" />
 	</bean>
