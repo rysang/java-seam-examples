@@ -16,6 +16,12 @@
 		</property>
 	</bean>
 
+	<bean id="GET" scope="singleton" class="org.gmoss.impl.methods.GETService">
+		<property name="defaultHeaders">
+			<map></map>
+		</property>
+	</bean>
+
 	<bean id="OPTIONS" scope="singleton" class="org.gmoss.impl.methods.OPTIONSService">
 		<property name="defaultHeaders">
 			<map>
