@@ -1,0 +1,86 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+						http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+	<bean id="version" scope="singleton" class="org.gmoss.api.service.Version">
+		<property name="major">
+			<value>6</value>
+		</property>
+		<property name="minor">
+			<value>0</value>
+		</property>
+		<property name="phase">
+			<value>0</value>
+		</property>
+		<property name="increment">
+			<value>6219</value>
+		</property>
+	</bean>
+
+	<bean id="OPTIONS" scope="singleton" class="org.gmoss.impl.methods.OPTIONSService">
+		<property name="defaultHeaders">
+			<map>
+				<entry>
+					<key>
+						<value>MicrosoftSharePointTeamServices</value>
+					</key>
+					<ref bean="version" />
+				</entry>
+				<entry>
+					<key>
+						<value>MS-Author-Via</value>
+					</key>
+					<value>MS-FP/4.0,DAV</value>
+				</entry>
+				<entry>
+					<key>
+						<value>MicrosoftOfficeWebServer</value>
+					</key>
+					<value>5.0_Collab</value>
+				</entry>
+				<entry>
+					<key>
+						<value>X-MSDAVEXT</value>
+					</key>
+					<value>1</value>
+				</entry>
+				<entry>
+					<key>
+						<value>DocumentManagementServer</value>
+					</key>
+					<value>Properties Schema;Source Control;Version History;</value>
+				</entry>
+				<entry>
+					<key>
+						<value>DAV</value>
+					</key>
+					<value>1,2</value>
+				</entry>
+				<entry>
+					<key>
+						<value>Accept-Ranges</value>
+					</key>
+					<value>none</value>
+				</entry>
+				<entry>
+					<key>
+						<value>Allow</value>
+					</key>
+					<value>GET, POST, OPTIONS, HEAD, MKCOL, PUT, PROPFIND, PROPPATCH, DELETE, MOVE, COPY, GETLIB, LOCK, UNLOCK</value>
+				</entry>
+				<entry>
+					<key>
+						<value>Cache-Control</value>
+					</key>
+					<value>private,max-age=0</value>
+				</entry>
+				<entry>
+					<key>
+						<value>Set-Cookie</value>
+					</key>
+					<value>WSS_KeepSessionAuthenticated=80; path=/</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+</beans>

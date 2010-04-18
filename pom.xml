@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>test-seam</groupId>
-	<artifactId>test-seam</artifactId>
+	<groupId>gmoss</groupId>
+	<artifactId>gmoss</artifactId>
 	<packaging>war</packaging>
-	<version>1.0</version>
-	<name>test-seam Maven Webapp</name>
+	<version>1.0-SNAPSHOT</version>
+	<name>gmoss Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 
 	<repositories>
@@ -39,8 +39,27 @@
 		<jetty.port>8080</jetty.port>
 	</properties>
 
-
 	<dependencies>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<!--			 Web Services -->
+		<dependency>
+			<groupId>com.sun.xml.ws</groupId>
+			<artifactId>webservices</artifactId>
+			<version>1.4</version>
+		</dependency>
 		<dependency>
 			<groupId>xerces</groupId>
 			<artifactId>xercesImpl</artifactId>
@@ -70,100 +89,16 @@
 			<artifactId>spring</artifactId>
 			<version>2.0</version>
 		</dependency>
-
-		<!--		 Web Services -->
-		<!--		<dependency>-->
-		<!--			<groupId>com.sun.xml.ws</groupId>-->
-		<!--			<artifactId>webservices</artifactId>-->
-		<!--			<version>1.4</version>-->
-		<!--		</dependency>-->
-<!---->
-		<!--		 Bug workaround -->
-		<!--		<dependency>-->
-		<!--			<groupId>javax.persistence</groupId>-->
-		<!--			<artifactId>persistence-api</artifactId>-->
-		<!--			<version>1.0</version>-->
-		<!--						<scope>provided</scope>-->
-		<!--		</dependency>-->
-<!---->
-		<!--		 Hibernate Validators -->
-		<!--		<dependency>-->
-		<!--			<groupId>org.hibernate</groupId>-->
-		<!--			<artifactId>hibernate-validator</artifactId>-->
-		<!--			<version>3.1.0.GA</version>-->
-		<!--						<scope>provided</scope>-->
-		<!--		</dependency>-->
-		<!--		<dependency>-->
-		<!--			<groupId>org.hibernate</groupId>-->
-		<!--			<artifactId>hibernate</artifactId>-->
-		<!--			<version>3.2.2.ga</version>-->
-		<!--						<scope>provided</scope>-->
-		<!--		</dependency>-->
-		<!--		<dependency>-->
-		<!--			<groupId>org.hibernate</groupId>-->
-		<!--			<artifactId>hibernate-annotations</artifactId>-->
-		<!--			<version>3.2.1.ga</version>-->
-		<!--						<scope>provided</scope>-->
-		<!--			<exclusions>-->
-		<!--				<exclusion>-->
-		<!--					<groupId>commons-collections</groupId>-->
-		<!--					<artifactId>commons-collections</artifactId>-->
-		<!--				</exclusion>-->
-		<!--			</exclusions>-->
-		<!--		</dependency>-->
-		<!--		<dependency>-->
-		<!--			<groupId>org.hibernate</groupId>-->
-		<!--			<artifactId>hibernate-entitymanager</artifactId>-->
-		<!--			<version>3.2.1.ga</version>-->
-		<!--						<scope>provided</scope>-->
-		<!--		</dependency>-->
-		<!--		<dependency>-->
-		<!--			<groupId>org.hibernate</groupId>-->
-		<!--			<artifactId>hibernate-tools</artifactId>-->
-		<!--			<version>3.2.0.beta9a</version>-->
-		<!--						<scope>provided</scope>-->
-		<!--		</dependency>-->
-		<!--		<dependency>-->
-		<!--			<groupId>c3p0</groupId>-->
-		<!--			<artifactId>c3p0</artifactId>-->
-		<!--			<version>0.9.1</version>-->
-		<!--						<scope>provided</scope>-->
-		<!--		</dependency>-->
-<!---->
-		<!--		<dependency>-->
-		<!--			<groupId>javax.servlet</groupId>-->
-		<!--			<artifactId>jstl</artifactId>-->
-		<!--			<version>1.2</version>-->
-		<!--			<scope>provided</scope>-->
-		<!--		</dependency>-->
-		<!--		<dependency>-->
-		<!--			<groupId>javax.faces</groupId>-->
-		<!--			<artifactId>jsf-api</artifactId>-->
-		<!--			<version>1.2_12</version>-->
-		<!--						<scope>provided</scope>-->
-		<!--		</dependency>-->
-		<!--		<dependency>-->
-		<!--			<groupId>javax.faces</groupId>-->
-		<!--			<artifactId>jsf-impl</artifactId>-->
-		<!--			<version>1.2_12</version>-->
-		<!--						<scope>provided</scope>-->
-		<!--		</dependency>-->
-		<!--		<dependency>-->
-		<!--			<groupId>javax.servlet.jsp</groupId>-->
-		<!--			<artifactId>jsp-api</artifactId>-->
-		<!--			<version>2.1</version>-->
-		<!--			<scope>provided</scope>-->
-		<!--		</dependency>-->
-		<!--		<dependency>-->
-		<!--			<groupId>javax.servlet</groupId>-->
-		<!--			<artifactId>servlet-api</artifactId>-->
-		<!--			<version>2.5</version>-->
-		<!--			<scope>provided</scope>-->
-		<!--		</dependency>-->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
-
 	<build>
+		<finalName>gigi</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
@@ -177,6 +112,12 @@
 							<maxIdleTime>60000</maxIdleTime>
 						</connector>
 					</connectors>
+					<contextHandlers>
+						<contextHandler implementation="org.mortbay.jetty.webapp.WebAppContext">
+							<war>${basedir}/target/gigi</war>
+							<contextPath>/</contextPath>
+						</contextHandler>
+					</contextHandlers>
 				</configuration>
 			</plugin>
 
@@ -212,5 +153,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
