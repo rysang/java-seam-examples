@@ -6,6 +6,7 @@
 		<aop:aspect ref="httpRequestLogger">
 			<aop:pointcut id="httpRequestPointcut" expression="execution(* *.handleService(..)) and target(bean) and args(req,resp)" />
 			<aop:before method="log" pointcut-ref="httpRequestPointcut" arg-names="bean,req,resp" />
+			<aop:after-returning method="log" pointcut-ref="httpRequestPointcut" arg-names="bean,req,resp" />
 		</aop:aspect>
 	</aop:config>
 

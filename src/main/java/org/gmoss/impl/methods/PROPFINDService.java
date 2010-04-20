@@ -61,7 +61,8 @@ public class PROPFINDService implements GMOSSService {
 		try {
 			if (doc.isFolder()) {
 				HashMap<String, Object> rootMap = new HashMap<String, Object>();
-				rootMap.put("href", "path");
+				rootMap.put("href", "http://" + req.getHeader("Host")
+						+ req.getRequestURI());
 				SimpleDateFormat format = new SimpleDateFormat(
 						"yyyy-MM-dd'T'hh:mm:ss'Z'");
 				rootMap.put("lastModified", format
