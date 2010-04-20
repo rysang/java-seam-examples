@@ -9,6 +9,8 @@
 		</aop:aspect>
 	</aop:config>
 
+	<bean id="documentManager" scope="singleton" class="org.gmoss.api.document.impl.filesystem.FileSystemDocumentManager" />
+
 	<bean id="httpRequestLogger" scope="singleton" class="org.gmoss.api.logging.HttpRequestLogger" />
 
 	<bean id="version" scope="singleton" class="org.gmoss.api.service.Version">
@@ -27,12 +29,53 @@
 	</bean>
 
 	<bean id="GET" scope="singleton" class="org.gmoss.impl.methods.GETService">
+		<property name="documentManager">
+			<ref bean="documentManager" />
+		</property>
 		<property name="defaultHeaders">
-			<map></map>
+			<map>
+				<entry>
+					<key>
+						<value>Public-Extension</value>
+					</key>
+					<value>http://schemas.microsoft.com/repl-2</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="PROPFIND" scope="singleton" class="org.gmoss.impl.methods.PROPFINDService">
+		<property name="documentManager">
+			<ref bean="documentManager" />
+		</property>
+		<property name="defaultHeaders">
+			<map>
+				<entry>
+					<key>
+						<value>Public-Extension</value>
+					</key>
+					<value>http://schemas.microsoft.com/repl-2</value>
+				</entry>
+				<entry>
+					<key>
+						<value>Content-Type</value>
+					</key>
+					<value>text/xml</value>
+				</entry>
+				<entry>
+					<key>
+						<value>Cache-Control</value>
+					</key>
+					<value>no-cache</value>
+				</entry>
+			</map>
 		</property>
 	</bean>
 
 	<bean id="OPTIONS" scope="singleton" class="org.gmoss.impl.methods.OPTIONSService">
+		<property name="documentManager">
+			<ref bean="documentManager" />
+		</property>
 		<property name="defaultHeaders">
 			<map>
 				<entry>
@@ -46,6 +89,12 @@
 						<value>MS-Author-Via</value>
 					</key>
 					<value>MS-FP/4.0,DAV</value>
+				</entry>
+				<entry>
+					<key>
+						<value>Public-Extension</value>
+					</key>
+					<value>http://schemas.microsoft.com/repl-2</value>
 				</entry>
 				<entry>
 					<key>

@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.gmoss.api.document.DocumentManager;
 import org.gmoss.api.service.GMOSSService;
 import org.gmoss.api.service.Version;
 
@@ -15,6 +16,8 @@ public class GETService implements GMOSSService {
 
 	private Version version;
 	private Map<String, Object> defaultHeaders;
+
+	private DocumentManager documentManager;
 
 	public Version getVersion() {
 		return version;
@@ -46,6 +49,15 @@ public class GETService implements GMOSSService {
 	@Override
 	public String toString() {
 		return getDefaultHeaders().toString();
+	}
+
+	public DocumentManager getDocumentManager() {
+
+		return documentManager;
+	}
+
+	public void setDocumentManager(DocumentManager documentManager) {
+		this.documentManager = documentManager;
 	}
 
 }
