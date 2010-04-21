@@ -6,13 +6,13 @@
 		<aop:aspect ref="httpRequestLogger">
 			<aop:pointcut id="httpRequestPointcut" expression="execution(* *.handleService(..)) and target(bean) and args(req,resp)" />
 			<aop:before method="log" pointcut-ref="httpRequestPointcut" arg-names="bean,req,resp" />
-			<aop:after-returning method="log" pointcut-ref="httpRequestPointcut" arg-names="bean,req,resp" />
+			<aop:after-returning method="logAfter" pointcut-ref="httpRequestPointcut" arg-names="bean,req,resp" />
 		</aop:aspect>
 	</aop:config>
 
 	<bean id="documentManager" scope="singleton" class="org.gmoss.api.document.impl.filesystem.FileSystemDocumentManager" />
 
-	<bean id="httpRequestLogger" scope="singleton" class="org.gmoss.api.logging.HttpRequestLogger" />
+	<bean id="httpRequestLogger" scope="singleton" class="org.gmoss.api.logging.http.HttpRequestLogger" />
 
 	<bean id="version" scope="singleton" class="org.gmoss.api.service.Version">
 		<property name="major">
@@ -29,9 +29,44 @@
 		</property>
 	</bean>
 
+	<bean id="POST" scope="singleton" class="org.gmoss.impl.methods.POSTService">
+		<property name="documentManager">
+			<ref bean="documentManager" />
+		</property>
+		<property name="defaultHeaders">
+			<map>
+				<entry>
+					<key>
+						<value>Public-Extension</value>
+					</key>
+					<value>http://schemas.microsoft.com/repl-2</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="HEAD" scope="singleton" class="org.gmoss.impl.methods.HEADService">
+		<property name="documentManager">
+			<ref bean="documentManager" />
+		</property>
+		<property name="defaultHeaders">
+			<map>
+				<entry>
+					<key>
+						<value>Public-Extension</value>
+					</key>
+					<value>http://schemas.microsoft.com/repl-2</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
 	<bean id="GET" scope="singleton" class="org.gmoss.impl.methods.GETService">
 		<property name="documentManager">
 			<ref bean="documentManager" />
+		</property>
+		<property name="index">
+			<value>/_vti_inf.html</value>
 		</property>
 		<property name="defaultHeaders">
 			<map>

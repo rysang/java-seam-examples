@@ -8,7 +8,6 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,9 +17,8 @@ import org.gmoss.api.document.Document;
 import org.gmoss.api.document.DocumentManager;
 import org.gmoss.api.service.GMOSSService;
 import org.gmoss.api.service.Version;
+import org.gmoss.utils.templates.TemplateFactory;
 
-import freemarker.cache.ClassTemplateLoader;
-import freemarker.template.Configuration;
 import freemarker.template.Template;
 
 public class PROPFINDService implements GMOSSService {
@@ -37,14 +35,7 @@ public class PROPFINDService implements GMOSSService {
 	}
 
 	public PROPFINDService() throws IOException {
-
-		Configuration cfg = new Configuration();
-		ClassTemplateLoader ctl = new ClassTemplateLoader(getClass(),
-				"/org/gmoss/service/templates");
-		cfg.setTemplateLoader(ctl);
-		folderTemplate = cfg.getTemplate("PROPFIND_directory.ftl");
-		// 2010-04-07T09:26:03Z
-		// folderTemplate.setDateFormat("yyyy-MM-ddThh:mm:ssZ");
+		folderTemplate = TemplateFactory.getTemplate("PROPFIND_directory.ftl");
 	}
 
 	public void handleService(HttpServletRequest req, HttpServletResponse resp)
@@ -61,13 +52,12 @@ public class PROPFINDService implements GMOSSService {
 		try {
 			if (doc.isFolder()) {
 				HashMap<String, Object> rootMap = new HashMap<String, Object>();
-				rootMap.put("href", "http://" + req.getHeader("Host")
-						+ req.getRequestURI());
+				rootMap.put("href", req.getRequestURL());
 				SimpleDateFormat format = new SimpleDateFormat(
 						"yyyy-MM-dd'T'hh:mm:ss'Z'");
 				rootMap.put("lastModified", format
 						.format(doc.getLastModified()));
-				rootMap.put("uid", UUID.randomUUID().toString());
+				rootMap.put("uid", doc.getProperty("uid"));
 
 				ByteArrayOutputStream bos = new ByteArrayOutputStream();
 				PrintWriter pw = new PrintWriter(bos);

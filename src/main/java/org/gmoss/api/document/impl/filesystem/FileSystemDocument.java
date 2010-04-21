@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Date;
+import java.util.UUID;
 
 import org.gmoss.api.document.Document;
 
@@ -75,6 +76,9 @@ public class FileSystemDocument implements Document {
 	}
 
 	public String getProperty(String name) {
+		if ("uid".equals(name)) {
+			return UUID.randomUUID().toString();
+		}
 		return null;
 	}
 
