@@ -16,7 +16,7 @@
 
 	<bean id="version" scope="singleton" class="org.gmoss.api.service.Version">
 		<property name="major">
-			<value>6</value>
+			<value>12</value>
 		</property>
 		<property name="minor">
 			<value>0</value>
@@ -29,9 +29,116 @@
 		</property>
 	</bean>
 
+
+	<bean id="vtiRpcService" scope="singleton" class="org.gmoss.impl.methods.post.services.VtiRpcService">
+		<property name="documentManager">
+			<ref bean="documentManager" />
+		</property>
+		<property name="version">
+			<ref bean="version" />
+		</property>
+		<property name="defaultHeaders">
+			<map>
+				<entry>
+					<key>
+						<value>MicrosoftSharePointTeamServices</value>
+					</key>
+					<ref bean="version" />
+				</entry>
+				<entry>
+					<key>
+						<value>Content-Type</value>
+					</key>
+					<value>application/x-vermeer-rpc</value>
+				</entry>
+				<entry>
+					<key>
+						<value>Connection</value>
+					</key>
+					<value>close</value>
+				</entry>
+				<entry>
+					<key>
+						<value>Set-Cookie</value>
+					</key>
+					<value>WSS_KeepSessionAuthenticated=80; path=/</value>
+				</entry>
+				<entry>
+					<key>
+						<value>Cache-Control</value>
+					</key>
+					<value>no-cache</value>
+				</entry>
+				<entry>
+					<key>
+						<value>MicrosoftOfficeWebServer</value>
+					</key>
+					<value>GMOSS</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+
+	<bean id="authoringService" scope="singleton" class="org.gmoss.impl.methods.post.services.AuthoringService">
+		<property name="documentManager">
+			<ref bean="documentManager" />
+		</property>
+		<property name="version">
+			<ref bean="version" />
+		</property>
+		<property name="defaultHeaders">
+			<map>
+				<entry>
+					<key>
+						<value>MicrosoftSharePointTeamServices</value>
+					</key>
+					<ref bean="version" />
+				</entry>
+				<entry>
+					<key>
+						<value>Content-Type</value>
+					</key>
+					<value>application/x-vermeer-rpc</value>
+				</entry>
+				<entry>
+					<key>
+						<value>Connection</value>
+					</key>
+					<value>close</value>
+				</entry>
+				<entry>
+					<key>
+						<value>Set-Cookie</value>
+					</key>
+					<value>WSS_KeepSessionAuthenticated=80; path=/</value>
+				</entry>
+				<entry>
+					<key>
+						<value>Cache-Control</value>
+					</key>
+					<value>no-cache</value>
+				</entry>
+				<entry>
+					<key>
+						<value>MicrosoftOfficeWebServer</value>
+					</key>
+					<value>GMOSS</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+
 	<bean id="POST" scope="singleton" class="org.gmoss.impl.methods.POSTService">
 		<property name="documentManager">
 			<ref bean="documentManager" />
+		</property>
+		<property name="vtiRpcService">
+			<ref bean="vtiRpcService" />
+		</property>
+		<property name="authoringService">
+			<ref bean="authoringService" />
 		</property>
 		<property name="defaultHeaders">
 			<map>

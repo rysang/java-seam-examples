@@ -20,4 +20,8 @@ public interface DocumentManager {
 	public void deleteDocument(Document doc) throws IOException;
 
 	public void moveDocument(String oldPath, String newPath) throws IOException;
+
+	public void lockDocument(Document document) throws IOException;
+
+	public void unlockDocument(Document document) throws IOException;
 }

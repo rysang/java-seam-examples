@@ -111,4 +111,12 @@ public class FileSystemDocumentManager implements DocumentManager {
 			throw new IOException("Failed to delete document " + doc.getPath());
 		}
 	}
+
+	public void lockDocument(Document document) throws IOException {
+
+	}
+
+	public void unlockDocument(Document document) throws IOException {
+
+	}
 }

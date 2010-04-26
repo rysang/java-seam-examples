@@ -1,6 +1,9 @@
 package org.gmoss.impl.methods;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.Map;
 import java.util.Set;
 
@@ -8,14 +11,19 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.gmoss.api.document.DocumentManager;
 import org.gmoss.api.service.GMOSSService;
 import org.gmoss.api.service.Version;
+
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
 
 public class DefaultService implements GMOSSService {
 
 	private Version version;
 	private Map<String, Object> defaultHeaders;
+	private static final Logger LOG = Logger.getLogger(DefaultService.class);
 
 	private DocumentManager documentManager;
 
@@ -34,6 +42,31 @@ public class DefaultService implements GMOSSService {
 			throws IOException, ServletException {
 		addDefaultHeaders(resp);
 		resp.setContentLength(0);
+	}
+
+	protected String getClientVersion(Map<String, Object> params)
+			throws IOException {
+		String version = (String) params.get("method");
+		int index = version.indexOf(':');
+		if (index == -1) {
+			throw new IOException("Unknown client version.");
+		}
+		return version.substring(index + 1);
+	}
+
+	public void flushTemplate(Template templ, Map<String, Object> map,
+			HttpServletResponse resp) throws TemplateException, IOException {
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		PrintWriter pw = new PrintWriter(bos);
+		templ.process(map, pw);
+		pw.close();
+
+		LOG.info(bos);
+
+		resp.setContentLength(bos.size());
+		OutputStream os = resp.getOutputStream();
+		os.write(bos.toByteArray());
+		os.close();
 	}
 
 	public void setVersion(Version version) {

@@ -28,6 +28,13 @@ public class PROPFINDService extends DefaultService {
 	public void handleService(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {
 
+		// TODO Remove this
+		if (true) {
+			resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+			return;
+		}
+		// TODO Remove this
+
 		Document doc = null;
 		try {
 			doc = getDocumentManager().getDocument(req.getRequestURI());
@@ -51,7 +58,7 @@ public class PROPFINDService extends DefaultService {
 				folderTemplate.process(rootMap, pw);
 				pw.close();
 
-				resp.sendError(207);
+				resp.setStatus(207);
 				addDefaultHeaders(resp);
 				resp.setContentLength(bos.size());
 				OutputStream os = resp.getOutputStream();
