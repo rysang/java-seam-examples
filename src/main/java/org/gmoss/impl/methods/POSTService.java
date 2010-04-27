@@ -22,7 +22,9 @@ public class POSTService extends DefaultService {
 			throws IOException, ServletException {
 		addDefaultHeaders(resp);
 
-		if (req.getContentType().equals("application/x-www-form-urlencoded")) {
+		if (req.getContentType().equals("application/x-www-form-urlencoded")
+				|| req.getContentType().equals(
+						"application/x-vermeer-urlencoded")) {
 
 			if (req.getRequestURI().endsWith("/_vti_bin/shtml.dll/_vti_rpc")) {
 				vtiRpcService.handleService(req, resp);

@@ -15,6 +15,9 @@ public interface DocumentManager {
 
 	public Document getDocument(String path) throws IOException;
 
+	public Document getDocument(Document parent, String name)
+			throws IOException;
+
 	public void deleteDocument(String path) throws IOException;
 
 	public void deleteDocument(Document doc) throws IOException;

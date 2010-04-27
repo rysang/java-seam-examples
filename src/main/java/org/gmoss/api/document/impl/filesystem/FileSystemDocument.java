@@ -86,4 +86,9 @@ public class FileSystemDocument implements Document {
 
 	}
 
+	@Override
+	public String toString() {
+		return "File: " + getPath();
+	}
+
 }

@@ -119,4 +119,16 @@ public class FileSystemDocumentManager implements DocumentManager {
 	public void unlockDocument(Document document) throws IOException {
 
 	}
+
+	public Document getDocument(Document parent, String name)
+			throws IOException {
+		FileSystemDocument parentDoc = (FileSystemDocument) parent;
+		File f = new File(parentDoc.getFile(), name);
+
+		if (!f.exists()) {
+			throw new FileNotFoundException();
+		}
+
+		return new FileSystemDocument(f);
+	}
 }
