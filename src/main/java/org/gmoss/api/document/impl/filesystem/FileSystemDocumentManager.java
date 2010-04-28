@@ -3,10 +3,12 @@ package org.gmoss.api.document.impl.filesystem;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.gmoss.api.document.Document;
 import org.gmoss.api.document.DocumentManager;
+import org.gmoss.api.document.security.Credentials;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -26,7 +28,7 @@ public class FileSystemDocumentManager implements DocumentManager {
 			}
 		}
 
-		rootDoc = new FileSystemDocument();
+		rootDoc = new RootFileSystemDocument();
 		rootDoc.setFile(rootFile);
 	}
 
@@ -39,6 +41,24 @@ public class FileSystemDocumentManager implements DocumentManager {
 		}
 
 		if (!newDoc.createNewFile()) {
+			LOG.error("Failed to create document " + newDoc.getPath());
+		}
+
+		FileSystemDocument doc = new FileSystemDocument();
+		doc.setFile(newDoc);
+
+		return doc;
+	}
+
+	public Document createFolderDocument(Document parent, String name)
+			throws IOException {
+		FileSystemDocument pDoc = (FileSystemDocument) parent;
+		File newDoc = new File(pDoc.getFile(), name);
+		if (newDoc.exists()) {
+			throw new IOException("File already exists.");
+		}
+
+		if (!newDoc.mkdirs()) {
 			LOG.error("Failed to create document " + newDoc.getPath());
 		}
 
@@ -72,6 +92,9 @@ public class FileSystemDocumentManager implements DocumentManager {
 			for (int i = 0; i < pathSegments.length; i++) {
 				pathBuilder.append(pathSegments[i].equals("") ? rootDoc
 						.getFile().getPath() : pathSegments[i]);
+				pathBuilder
+						.append(i != (pathBuilder.length() - 1) ? File.separatorChar
+								: "");
 			}
 		} else {
 			pathBuilder.append(rootDoc.getFile().getPath());
@@ -131,4 +154,13 @@ public class FileSystemDocumentManager implements DocumentManager {
 
 		return new FileSystemDocument(f);
 	}
+
+	public void login(Credentials credentials) throws SecurityException {
+		throw new NotImplementedException();
+	}
+
+	public Map<String, String> isDocumentLocked(Document document) {
+		return null;
+	}
+
 }

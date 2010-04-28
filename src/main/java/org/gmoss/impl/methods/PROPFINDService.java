@@ -30,7 +30,7 @@ public class PROPFINDService extends DefaultService {
 
 		// TODO Remove this
 		if (true) {
-			resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+			// resp.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return;
 		}
 		// TODO Remove this

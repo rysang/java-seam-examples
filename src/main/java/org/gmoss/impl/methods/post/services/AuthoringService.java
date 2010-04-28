@@ -3,9 +3,10 @@ package org.gmoss.impl.methods.post.services;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -108,11 +109,9 @@ public class AuthoringService extends DefaultService {
 		is.close();
 		os.close();
 
-		LOG.info(finalMap);
-
 		finalMap.put("clientDoc", doc.getName());
 		finalMap.put("serverDoc", doc.getName());
-		finalMap.put("etag", UUID.randomUUID().toString());
+		finalMap.put("etag", doc.getProperty("uid"));
 		finalMap.put("docSize", fileLength);
 		finalMap.put("serverVersion", getVersion());
 		finalMap.put("clientVersion", getClientVersion(params));
@@ -144,8 +143,58 @@ public class AuthoringService extends DefaultService {
 	}
 
 	private void handleGetDocsMetaInfo(HttpServletRequest req,
-			HttpServletResponse resp, Map<String, Object> params) {
+			HttpServletResponse resp, Map<String, Object> params)
+			throws IOException, ServletException {
 
+		String[] documents = PathUtils.getUrlList((String) params
+				.get("url_list"), req);
+
+		Map<String, Object> finalMap = new HashMap<String, Object>();
+		List<Map<String, String>> docMap = new ArrayList<Map<String, String>>();
+		List<Map<String, String>> docFolderMap = new ArrayList<Map<String, String>>();
+		try {
+			for (String d : documents) {
+				Document doc = getDocumentManager().getDocument(d);
+
+				Map<String, String> docProps = new HashMap<String, String>();
+				docProps.put("path", doc.getPath().substring(1));
+				docProps.put("etag", doc.getProperty("uid"));
+
+				if (!doc.isFolder()) {
+					docProps.put("title", doc.getName());
+					docProps.put("fileSize", doc.getProperty("fileSize"));
+
+					Map<String, String> lockInfo = getDocumentManager()
+							.isDocumentLocked(doc);
+					docProps.put("user", lockInfo != null ? lockInfo
+							.get("user") : "");
+					docFolderMap.add(docProps);
+					continue;
+				}
+
+				docMap.add(docProps);
+
+			}
+		} catch (Exception e) {
+			finalMap.put("failedUrls", true);
+			finalMap.put("furl", PathUtils.getUrlList((String) params
+					.get("url_list"), req)[0]);
+		}
+
+		finalMap.put("clientVersion", getClientVersion(params));
+		finalMap.put("folderishDocs", docFolderMap);
+		finalMap.put("docs", docMap);
+		finalMap.put("serverVersion", getVersion());
+		finalMap.put("author", "gigi");
+		finalMap.put("serverName", "GMOSS");
+
+		Template templ = TemplateFactory
+				.getTemplate("POST_Authoring_getDocsMetaInfo.ftl");
+		try {
+			flushTemplate(templ, finalMap, resp);
+		} catch (TemplateException e) {
+			throw new ServletException("Error", e);
+		}
 	}
 
 	private void handleOpenService(HttpServletRequest req,
@@ -165,7 +214,7 @@ public class AuthoringService extends DefaultService {
 		try {
 			flushTemplate(templ, finalMap, resp);
 		} catch (TemplateException e) {
-			throw new ServletException(e);
+			throw new ServletException("Error", e);
 		}
 	}
 

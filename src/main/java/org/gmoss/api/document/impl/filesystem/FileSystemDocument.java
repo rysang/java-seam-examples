@@ -78,7 +78,10 @@ public class FileSystemDocument implements Document {
 	public String getProperty(String name) {
 		if ("uid".equals(name)) {
 			return UUID.randomUUID().toString();
+		} else if ("fileSize".equals(name)) {
+			return String.valueOf(getFile().length());
 		}
+
 		return null;
 	}
 
