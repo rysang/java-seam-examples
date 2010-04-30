@@ -102,7 +102,7 @@ public class AuthoringService extends DefaultService {
 		finalMap.put("etag", doc.getProperty("uid"));
 		finalMap.put("docPath", path);
 		finalMap.put("docTitle", doc.getName());
-		finalMap.put("docSize", doc.getProperty("fileLength"));
+		finalMap.put("docSize", doc.getProperty("fileSize"));
 
 		finalMap.put("contentType", doc.getProperty("contentType"));
 
@@ -112,12 +112,14 @@ public class AuthoringService extends DefaultService {
 		InputStream source = doc.getInputStream();
 		try {
 			flushTemplate(templ, finalMap, resp, source, Integer.valueOf(doc
-					.getProperty("fileLength")));
+					.getProperty("fileSize")));
+
 		} catch (Exception e) {
 			throw new ServletException(e.getMessage(), e);
 		}
 
-		source.close();
+		if (source != null)
+			source.close();
 	}
 
 	private void handlePutDocument(HttpServletRequest req,

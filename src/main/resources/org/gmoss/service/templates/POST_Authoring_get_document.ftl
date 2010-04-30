@@ -22,7 +22,7 @@
 <li>vti_title
 <li>SW|${docTitle}
 <li>_Author
-<li>SW|nuxeo
+<li>SW|GMOSS
 <li>_Category
 <li>EW|
 <li>ContentType
