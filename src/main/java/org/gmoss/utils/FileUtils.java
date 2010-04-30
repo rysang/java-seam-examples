@@ -16,6 +16,10 @@ public class FileUtils {
 		while (total != count) {
 			bRead = count - total;
 			bRead = src.read(b, 0, (bRead > b.length) ? b.length : bRead);
+			if (bRead == -1) {
+				return;
+			}
+
 			dest.write(b, 0, bRead);
 			total += bRead;
 		}

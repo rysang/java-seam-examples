@@ -80,6 +80,8 @@ public class FileSystemDocument implements Document {
 			return UUID.randomUUID().toString();
 		} else if ("fileSize".equals(name)) {
 			return String.valueOf(getFile().length());
+		} else if ("contentType".equals(name)) {
+			return "application/octet-stream";
 		}
 
 		return null;

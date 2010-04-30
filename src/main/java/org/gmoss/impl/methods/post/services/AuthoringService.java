@@ -59,21 +59,65 @@ public class AuthoringService extends DefaultService {
 			} else if (method.startsWith("checkout document")) {
 				handleCheckoutDocument(req, resp, params);
 			} else if (method.startsWith("uncheckout document")) {
-				handleCheckoutDocument(req, resp, params);
+				handleUncheckoutDocument(req, resp, params);
 			} else if (method.startsWith("get document")) {
-				handleCheckoutDocument(req, resp, params);
+				handleGetDocument(req, resp, params);
 			} else if (method.startsWith("put document")) {
 				handlePutDocument(req, resp, params);
 			} else if (method.startsWith("remove documents")) {
 				handleListDocuments(req, resp, params);
 			} else if (method.startsWith("move document")) {
-				handleCheckoutDocument(req, resp, params);
+				handleMoveDocument(req, resp, params);
 			} else if (method.startsWith("create url-directories")) {
 				handleCreateUrlDirectories(req, resp, params);
 			}
 		} catch (Exception e) {
 			throw new ServletException("Error", e);
 		}
+	}
+
+	private void handleUncheckoutDocument(HttpServletRequest req,
+			HttpServletResponse resp, Map<String, Object> params) {
+
+	}
+
+	private void handleMoveDocument(HttpServletRequest req,
+			HttpServletResponse resp, Map<String, Object> params) {
+
+	}
+
+	private void handleGetDocument(HttpServletRequest req,
+			HttpServletResponse resp, Map<String, Object> params)
+			throws IOException, ServletException {
+
+		String path = params.get("service_name")
+				+ (String) params.get("document_name");
+		Document doc = getDocumentManager().getDocument(path);
+
+		HashMap<String, Object> finalMap = new HashMap<String, Object>();
+		String clientVersion = getClientVersion(params);
+
+		finalMap.put("serverVersion", getVersion());
+		finalMap.put("clientVersion", clientVersion);
+		finalMap.put("etag", doc.getProperty("uid"));
+		finalMap.put("docPath", path);
+		finalMap.put("docTitle", doc.getName());
+		finalMap.put("docSize", doc.getProperty("fileLength"));
+
+		finalMap.put("contentType", doc.getProperty("contentType"));
+
+		Template templ = TemplateFactory
+				.getTemplate("POST_Authoring_get_document.ftl");
+
+		InputStream source = doc.getInputStream();
+		try {
+			flushTemplate(templ, finalMap, resp, source, Integer.valueOf(doc
+					.getProperty("fileLength")));
+		} catch (Exception e) {
+			throw new ServletException(e.getMessage(), e);
+		}
+
+		source.close();
 	}
 
 	private void handlePutDocument(HttpServletRequest req,
@@ -122,7 +166,7 @@ public class AuthoringService extends DefaultService {
 		try {
 			flushTemplate(templ, finalMap, resp);
 		} catch (TemplateException e) {
-			throw new ServletException(e);
+			throw new ServletException(e.getMessage(), e);
 		}
 
 	}
@@ -193,7 +237,7 @@ public class AuthoringService extends DefaultService {
 		try {
 			flushTemplate(templ, finalMap, resp);
 		} catch (TemplateException e) {
-			throw new ServletException("Error", e);
+			throw new ServletException(e.getMessage(), e);
 		}
 	}
 
@@ -214,7 +258,7 @@ public class AuthoringService extends DefaultService {
 		try {
 			flushTemplate(templ, finalMap, resp);
 		} catch (TemplateException e) {
-			throw new ServletException("Error", e);
+			throw new ServletException(e.getMessage(), e);
 		}
 	}
 
