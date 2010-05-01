@@ -81,7 +81,7 @@ public class FileSystemDocument implements Document {
 		} else if ("fileSize".equals(name)) {
 			return String.valueOf(getFile().length());
 		} else if ("contentType".equals(name)) {
-			return "application/octet-stream";
+			return getMimeType(getFile());
 		}
 
 		return null;
@@ -89,6 +89,22 @@ public class FileSystemDocument implements Document {
 
 	public void setProperty(String name, String value) {
 
+	}
+
+	protected String getMimeType(File path) {
+		return getMimeType(path.getPath());
+	}
+
+	protected String getMimeType(String path) {
+		if (path.endsWith(".xlsx")) {
+			return "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+		}
+
+		else if (path.endsWith(".docx")) {
+			return "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+		}
+
+		return "application/octet-stream";
 	}
 
 	@Override

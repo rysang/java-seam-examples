@@ -27,6 +27,8 @@ public class DefaultService implements GMOSSService {
 	private Map<String, Object> defaultHeaders;
 	private static final Logger LOG = Logger.getLogger(DefaultService.class);
 
+	public static final byte[] NEW_LINE = new byte[] { '\n' };
+
 	private DocumentManager documentManager;
 
 	public Version getVersion() {
@@ -62,6 +64,7 @@ public class DefaultService implements GMOSSService {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		PrintWriter pw = new PrintWriter(bos);
 		templ.process(map, pw);
+		bos.write(NEW_LINE);
 		pw.close();
 
 		resp.setContentLength((int) (bos.size() + length));

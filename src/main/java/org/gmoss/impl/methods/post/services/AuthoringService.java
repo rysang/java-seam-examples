@@ -100,6 +100,7 @@ public class AuthoringService extends DefaultService {
 		finalMap.put("serverVersion", getVersion());
 		finalMap.put("clientVersion", clientVersion);
 		finalMap.put("etag", doc.getProperty("uid"));
+		finalMap.put("docName", doc.getName());
 		finalMap.put("docPath", path);
 		finalMap.put("docTitle", doc.getName());
 		finalMap.put("docSize", doc.getProperty("fileSize"));

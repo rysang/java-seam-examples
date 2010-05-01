@@ -4,7 +4,7 @@
 <p>message=successfully retrieved document '${docPath}' from '${docPath}'
 <p>document=
 <ul>
-<li>document_name=${docPath}
+<li>document_name=${docName}
 <li>meta_info=
 <ul>
 <li>Subject
