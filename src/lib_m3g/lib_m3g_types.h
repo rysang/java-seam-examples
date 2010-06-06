@@ -2,7 +2,7 @@
  * lib_m3g_types.h
  *
  *  Created on: 3 Jun 2010
- *      Author: id821436
+ *      Author: cpriceputu
  */
 
 #ifndef LIB_M3G_TYPES_H_

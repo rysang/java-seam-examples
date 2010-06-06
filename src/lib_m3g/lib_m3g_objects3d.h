@@ -2,7 +2,7 @@
  * lib_m3g_objects3d.h
  *
  *  Created on: 3 Jun 2010
- *      Author: id821436
+ *      Author: cpriceputu
  */
 
 #ifndef LIB_M3G_OBJECTS3D_H_

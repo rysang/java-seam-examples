@@ -2,7 +2,7 @@
  * lib_m3g_protos.h
  *
  *  Created on: 3 Jun 2010
- *      Author: id821436
+ *      Author: cpriceputu
  */
 
 #ifndef LIB_M3G_PROTOS_H_

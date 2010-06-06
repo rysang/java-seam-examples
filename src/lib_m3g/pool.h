@@ -2,7 +2,7 @@
  * pool.h
  *
  *  Created on: 2 Jun 2010
- *      Author: id821436
+ *      Author: cpriceputu
  */
 
 #include "lib_m3g_types.h"

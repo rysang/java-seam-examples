@@ -2,7 +2,7 @@
  * pool.h
  *
  *  Created on: 2 Jun 2010
- *      Author: id821436
+ *      Author: cpriceputu
  */
 
 #ifndef POOL_H_

@@ -2,7 +2,7 @@
  * lib_m3g.h
  *
  *  Created on: 1 Jun 2010
- *      Author: id821436
+ *      Author: cpriceputu
  */
 
 #include <stdio.h>

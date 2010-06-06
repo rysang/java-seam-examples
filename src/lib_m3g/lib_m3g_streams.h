@@ -2,7 +2,7 @@
  * lib_m3g_streams.h
  *
  *  Created on: 3 Jun 2010
- *      Author: id821436
+ *      Author: cpriceputu
  */
 #include  "lib_m3g_protos.h"
 

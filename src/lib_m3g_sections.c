@@ -2,7 +2,7 @@
  * lib_m3g_section_reader.c
  *
  *  Created on: 1 Jun 2010
- *      Author: id821436
+ *      Author: cpriceputu
  */
 
 #include "lib_m3g.h"
