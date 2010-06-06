@@ -69,3 +69,13 @@ UInt32 readUInt32FromArray(Byte* b) {
 
 	return retVal;
 }
+
+Float32 readFloat32FromArray(Byte* b) {
+	Byte bLocal[4];
+	Byte i;
+	for (i = 0; i < 4; i++) {
+		bLocal[i] = b[3 - i];
+	}
+
+	return *((Float32*) &bLocal);
+}

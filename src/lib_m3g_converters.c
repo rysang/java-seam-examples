@@ -93,6 +93,56 @@ Boolean objectToMesh(struct m3g_object* obj, struct m3g_mesh* mesh) {
 
 Boolean objectToTransformable(struct m3g_object* obj,
 		struct m3g_transformable* transfObj) {
+	if ((obj == 0 || transfObj == 0) || obj->ObjectType != Type_Mesh) {
+		return 0;
+	}
 
+	if (!objectToObject3D(obj, &transfObj->obj3d)) {
+		return 0;
+	}
+
+	transfObj->hasComponentTransform = (Boolean) *(obj->Data);
+	obj->Data += sizeof(Boolean);
+
+	if (transfObj->hasComponentTransform) {
+		transfObj->translation.x = readFloat32FromArray(obj->Data);
+		obj->Data += sizeof(Float32);
+		transfObj->translation.y = readFloat32FromArray(obj->Data);
+		obj->Data += sizeof(Float32);
+		transfObj->translation.z = readFloat32FromArray(obj->Data);
+		obj->Data += sizeof(Float32);
+
+		transfObj->scale.x = readFloat32FromArray(obj->Data);
+		obj->Data += sizeof(Float32);
+		transfObj->scale.y = readFloat32FromArray(obj->Data);
+		obj->Data += sizeof(Float32);
+		transfObj->scale.z = readFloat32FromArray(obj->Data);
+		obj->Data += sizeof(Float32);
+
+		transfObj->orientationAngle = readFloat32FromArray(obj->Data);
+		obj->Data += sizeof(Float32);
+
+		transfObj->orientationAxis.x = readFloat32FromArray(obj->Data);
+		obj->Data += sizeof(Float32);
+		transfObj->orientationAxis.y = readFloat32FromArray(obj->Data);
+		obj->Data += sizeof(Float32);
+		transfObj->orientationAxis.z = readFloat32FromArray(obj->Data);
+		obj->Data += sizeof(Float32);
+	}
+
+	transfObj->hasGeneralTransform = (Boolean) *(obj->Data);
+	obj->Data += sizeof(Boolean);
+
+	if (transfObj->hasGeneralTransform) {
+		UInt16 i;
+
+		for (i = 0; i < 16; i++) {
+			transfObj->transform.elements[i] = readFloat32FromArray(obj->Data);
+			obj->Data += sizeof(Float32);
+		}
+
+	}
+
+	return 1;
 }
 

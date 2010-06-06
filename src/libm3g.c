@@ -39,6 +39,7 @@ int main(void) {
 				struct m3g_header m3g_h;
 				struct m3g_external_ref m3g_ref;
 				struct m3g_object_3d m3g_obj3d;
+				struct m3g_transformable m3g_transf;
 
 				if (objReader->readNextObject(objReader, &m3g_o)) {
 					printf("Object Type: %i\n", m3g_o.ObjectType);
@@ -61,17 +62,17 @@ int main(void) {
 						printf("External Ref URI: %s\n", m3g_ref.URI);
 						printf("-------End External Reference --------\n");
 
-					} else if (converter->toObject3D(&m3g_o, &m3g_obj3d)) {
+					} else if (converter->toTransformable(&m3g_o, &m3g_transf)) {
 						printf("---------OBJECT 3D ----------\n");
-						printf("OBJ3D User ID: %i\n", m3g_obj3d.userID);
+						printf("OBJ3D User ID: %i\n", m3g_transf.obj3d.userID);
 						printf("Animation Tracks Length: %i\n",
-								m3g_obj3d.animationTracksLength);
+								m3g_transf.obj3d.animationTracksLength);
 						printf("userParameterCount: %i\n",
-								m3g_obj3d.userParameterCount);
-						if (m3g_obj3d.userParameterCount) {
+								m3g_transf.obj3d.userParameterCount);
+						if (m3g_transf.obj3d.userParameterCount) {
 							struct m3g_map_parameter_reader* preader =
-									m3g_createMapParameterReader(&m3g_obj3d,
-											pool);
+									m3g_createMapParameterReader(
+											&m3g_transf.obj3d, pool);
 
 							struct m3g_map_parameter param;
 							while (preader->readNextMapParameter(preader,
