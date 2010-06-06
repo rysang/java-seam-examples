@@ -72,7 +72,7 @@ UInt32 readUInt32FromArray(Byte* b) {
 
 Float32 readFloat32FromArray(Byte* b) {
 	Byte bLocal[4];
-	Byte i;
+	UInt32 i;
 	for (i = 0; i < 4; i++) {
 		bLocal[i] = b[3 - i];
 	}

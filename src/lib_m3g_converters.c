@@ -62,8 +62,10 @@ Boolean objectToObject3D(struct m3g_object* obj, struct m3g_object_3d* obj3d) {
 		obj->Data += sizeof(UInt32);
 		obj3d->animationTracksLength = readUInt32FromArray(obj->Data);
 		obj->Data += sizeof(UInt32);
-		obj3d->animationTracks = (m3g_object_index*) obj->Data;
-		obj->Data += sizeof(UInt32) * obj3d->animationTracksLength;
+		if (obj3d->animationTracksLength > 0) {
+			obj3d->animationTracks = (m3g_object_index*) obj->Data;
+			obj->Data += sizeof(UInt32) * obj3d->animationTracksLength;
+		}
 		obj3d->userParameterCount = readUInt32FromArray(obj->Data);
 		obj->Data += sizeof(UInt32);
 
@@ -74,6 +76,7 @@ Boolean objectToObject3D(struct m3g_object* obj, struct m3g_object_3d* obj3d) {
 				//readId
 				obj->Data += sizeof(UInt32);
 				UInt32 len = readUInt32FromArray(obj->Data);
+				obj->Data += sizeof(UInt32);
 				obj->Data += len;
 			}
 		}
@@ -93,56 +96,62 @@ Boolean objectToMesh(struct m3g_object* obj, struct m3g_mesh* mesh) {
 
 Boolean objectToTransformable(struct m3g_object* obj,
 		struct m3g_transformable* transfObj) {
-	if ((obj == 0 || transfObj == 0) || obj->ObjectType != Type_Mesh) {
+	if ((obj == 0 || transfObj == 0)) {
 		return 0;
 	}
 
-	if (!objectToObject3D(obj, &transfObj->obj3d)) {
-		return 0;
-	}
+	if ((obj->ObjectType == Type_Mesh || obj->ObjectType == Type_Image2D)) {
+		if (!objectToObject3D(obj, &transfObj->obj3d)) {
+			return 0;
+		}
 
-	transfObj->hasComponentTransform = (Boolean) *(obj->Data);
-	obj->Data += sizeof(Boolean);
+		transfObj->hasComponentTransform = *(obj->Data);
+		obj->Data += sizeof(Boolean);
 
-	if (transfObj->hasComponentTransform) {
-		transfObj->translation.x = readFloat32FromArray(obj->Data);
-		obj->Data += sizeof(Float32);
-		transfObj->translation.y = readFloat32FromArray(obj->Data);
-		obj->Data += sizeof(Float32);
-		transfObj->translation.z = readFloat32FromArray(obj->Data);
-		obj->Data += sizeof(Float32);
+		if (transfObj->hasComponentTransform) {
+			transfObj->translation.x = readFloat32FromArray(obj->Data);
+			obj->Data += sizeof(Float32);
+			transfObj->translation.y = readFloat32FromArray(obj->Data);
+			obj->Data += sizeof(Float32);
+			transfObj->translation.z = readFloat32FromArray(obj->Data);
+			obj->Data += sizeof(Float32);
 
-		transfObj->scale.x = readFloat32FromArray(obj->Data);
-		obj->Data += sizeof(Float32);
-		transfObj->scale.y = readFloat32FromArray(obj->Data);
-		obj->Data += sizeof(Float32);
-		transfObj->scale.z = readFloat32FromArray(obj->Data);
-		obj->Data += sizeof(Float32);
+			transfObj->scale.x = readFloat32FromArray(obj->Data);
+			obj->Data += sizeof(Float32);
+			transfObj->scale.y = readFloat32FromArray(obj->Data);
+			obj->Data += sizeof(Float32);
+			transfObj->scale.z = readFloat32FromArray(obj->Data);
+			obj->Data += sizeof(Float32);
 
-		transfObj->orientationAngle = readFloat32FromArray(obj->Data);
-		obj->Data += sizeof(Float32);
+			transfObj->orientationAngle = readFloat32FromArray(obj->Data);
+			obj->Data += sizeof(Float32);
 
-		transfObj->orientationAxis.x = readFloat32FromArray(obj->Data);
-		obj->Data += sizeof(Float32);
-		transfObj->orientationAxis.y = readFloat32FromArray(obj->Data);
-		obj->Data += sizeof(Float32);
-		transfObj->orientationAxis.z = readFloat32FromArray(obj->Data);
-		obj->Data += sizeof(Float32);
-	}
-
-	transfObj->hasGeneralTransform = (Boolean) *(obj->Data);
-	obj->Data += sizeof(Boolean);
-
-	if (transfObj->hasGeneralTransform) {
-		UInt16 i;
-
-		for (i = 0; i < 16; i++) {
-			transfObj->transform.elements[i] = readFloat32FromArray(obj->Data);
+			transfObj->orientationAxis.x = readFloat32FromArray(obj->Data);
+			obj->Data += sizeof(Float32);
+			transfObj->orientationAxis.y = readFloat32FromArray(obj->Data);
+			obj->Data += sizeof(Float32);
+			transfObj->orientationAxis.z = readFloat32FromArray(obj->Data);
 			obj->Data += sizeof(Float32);
 		}
 
+		transfObj->hasGeneralTransform = (Boolean) *(obj->Data);
+		obj->Data += sizeof(Boolean);
+
+		if (transfObj->hasGeneralTransform) {
+			UInt16 i;
+
+			for (i = 0; i < 16; i++) {
+				transfObj->transform.elements[i] = readFloat32FromArray(
+						obj->Data);
+				printf("FLOAT VALUE %f\n", transfObj->transform.elements[i]);
+				obj->Data += sizeof(Float32);
+			}
+
+		}
+
+		return 1;
 	}
 
-	return 1;
+	return 0;
 }
 
