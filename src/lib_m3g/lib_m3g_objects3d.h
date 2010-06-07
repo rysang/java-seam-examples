@@ -11,17 +11,19 @@
 
 typedef void* hash_map_t;
 typedef void* mutable_t;
+typedef void* data_ptr_t;
 
 //Explicit objects
 typedef Boolean (*m3g_toHeader)(struct m3g_object* obj,
 		struct m3g_header* objHeader);
 typedef Boolean (*m3g_toExternalRef)(struct m3g_object* obj,
 		struct m3g_external_ref* extRef);
-typedef Boolean (*m3g_toMesh)(struct m3g_object* obj, struct m3g_mesh* mesh);
 typedef Boolean (*m3g_toObject3D)(struct m3g_object* obj,
 		struct m3g_object_3d* obj3d);
 typedef Boolean (*m3g_toTransformable)(struct m3g_object* obj,
 		struct m3g_transformable* transfObj);
+typedef Boolean (*m3g_toNode)(struct m3g_object* obj, struct m3g_node* nodeObj);
+typedef Boolean (*m3g_toMesh)(struct m3g_object* obj, struct m3g_mesh* meshObj);
 
 struct m3g_object_converter {
 	m3g_toHeader toHeader;
@@ -29,6 +31,7 @@ struct m3g_object_converter {
 	m3g_toMesh toMesh;
 	m3g_toObject3D toObject3D;
 	m3g_toTransformable toTransformable;
+	m3g_toNode toNode;
 };
 
 struct m3g_object_converter* m3g_createConverter(pool_t pool);
@@ -153,7 +156,10 @@ struct m3g_node {
 };
 
 struct m3g_mesh {
-
+	struct m3g_node nodeObj;
+	m3g_object_index vertexBuffer;
+	UInt32 submeshCount;
+	data_ptr_t submeshData;
 };
 
 #endif /* LIB_M3G_OBJECTS3D_H_ */

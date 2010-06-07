@@ -24,5 +24,6 @@ struct m3g_header;
 struct m3g_external_ref;
 struct m3g_mesh;
 struct m3g_transformable;
+struct m3g_node;
 
 #endif /* LIB_M3G_PROTOS_H_ */

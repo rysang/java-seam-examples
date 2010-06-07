@@ -38,14 +38,14 @@ int main(void) {
 				struct m3g_object m3g_o;
 				struct m3g_header m3g_h;
 				struct m3g_external_ref m3g_ref;
-				struct m3g_object_3d m3g_obj3d;
-				struct m3g_transformable m3g_transf;
+				struct m3g_mesh m3g_m;
 
 				if (objReader->readNextObject(objReader, &m3g_o)) {
 					printf("Object Type: %i\n", m3g_o.ObjectType);
 					printf("Length of Object: %i\n", m3g_o.Length);
 					printf("------------------------------\n");
 
+					memset(&m3g_m, '\0', sizeof(m3g_m));
 					if (converter->toHeader(&m3g_o, &m3g_h)) {
 						printf("----------Header------------\n");
 						printf("Version: %x\n", (UInt16) *(m3g_h.VersionNumber));
@@ -62,27 +62,9 @@ int main(void) {
 						printf("External Ref URI: %s\n", m3g_ref.URI);
 						printf("-------End External Reference --------\n");
 
-					} else if (converter->toTransformable(&m3g_o, &m3g_transf)) {
+					} else if (converter->toMesh(&m3g_o, &m3g_m)) {
 						printf("---------OBJECT 3D ----------\n");
-						printf("OBJ3D User ID: %i\n", m3g_transf.obj3d.userID);
-						printf("Animation Tracks Length: %i\n",
-								m3g_transf.obj3d.animationTracksLength);
-						printf("userParameterCount: %i\n",
-								m3g_transf.obj3d.userParameterCount);
-						if (m3g_transf.obj3d.userParameterCount) {
-							struct m3g_map_parameter_reader* preader =
-									m3g_createMapParameterReader(
-											&m3g_transf.obj3d, pool);
-
-							struct m3g_map_parameter param;
-							while (preader->readNextMapParameter(preader,
-									&param)) {
-								printf("PARAM KEY: %i\n", param.parameterID);
-								printf("PARAM VAL LEN: %i\n",
-										param.parameterValueLength);
-								printf("PARAM VAL : %s\n", param.parameterValue);
-							}
-						}
+						printf("%x\n", &m3g_m);
 						printf("-------End OBJECT 3D --------\n");
 					}
 
