@@ -33,6 +33,7 @@ int main(void) {
 		if (section != 0) {
 			struct m3g_object_reader* objReader = m3g_createObjectReader(
 					section, pool);
+			UInt32 object_count = 0;
 			while (1) {
 
 				struct m3g_object m3g_o;
@@ -41,6 +42,8 @@ int main(void) {
 				struct m3g_mesh m3g_m;
 
 				if (objReader->readNextObject(objReader, &m3g_o)) {
+					printf("Object Index: %i\n", object_count);
+					object_count++;
 					printf("Object Type: %i\n", m3g_o.ObjectType);
 					printf("Length of Object: %i\n", m3g_o.Length);
 					printf("------------------------------\n");
@@ -64,7 +67,12 @@ int main(void) {
 
 					} else if (converter->toMesh(&m3g_o, &m3g_m)) {
 						printf("---------OBJECT 3D ----------\n");
-						printf("%x\n", &m3g_m);
+						struct m3g_submesh_reader *sb_reader =
+								m3g_createSubMeshReader(&m3g_m, pool);
+						struct m3g_submesh_data sb_data;
+						sb_reader->readNextSubMesh(sb_reader, &sb_data);
+						printf("%i %i\n", sb_data.indexBuffer,
+								sb_data.appearance);
 						printf("-------End OBJECT 3D --------\n");
 					}
 

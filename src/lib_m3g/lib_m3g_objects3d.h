@@ -162,4 +162,22 @@ struct m3g_mesh {
 	data_ptr_t submeshData;
 };
 
+typedef Boolean (*m3g_readNextSubMesh)(struct m3g_submesh_reader* reader,
+		struct m3g_submesh_data* subMData);
+
+struct m3g_submesh_data {
+	m3g_object_index indexBuffer;
+	m3g_object_index appearance;
+};
+
+struct m3g_submesh_reader {
+	data_ptr_t submeshData;
+	UInt32 currentIndex;
+	UInt32 count;
+	m3g_readNextSubMesh readNextSubMesh;
+};
+
+struct m3g_submesh_reader* m3g_createSubMeshReader(struct m3g_mesh* mesh,
+		pool_t pool);
+
 #endif /* LIB_M3G_OBJECTS3D_H_ */

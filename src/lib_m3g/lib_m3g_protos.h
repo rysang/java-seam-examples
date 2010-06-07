@@ -25,5 +25,7 @@ struct m3g_external_ref;
 struct m3g_mesh;
 struct m3g_transformable;
 struct m3g_node;
+struct m3g_submesh_reader;
+struct m3g_submesh_data;
 
 #endif /* LIB_M3G_PROTOS_H_ */

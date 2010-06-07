@@ -9,6 +9,8 @@
 
 Boolean readNextMapParameter(struct m3g_map_parameter_reader* reader,
 		struct m3g_map_parameter* parameter);
+Boolean readNextSubMesh(struct m3g_submesh_reader* reader,
+		struct m3g_submesh_data* subMData);
 
 struct m3g_map_parameter_reader* m3g_createMapParameterReader(
 		struct m3g_object_3d* object3d, pool_t pool) {
@@ -32,6 +34,33 @@ Boolean readNextMapParameter(struct m3g_map_parameter_reader* reader,
 		reader->parameterMap += sizeof(UInt32);
 		parameter->parameterValue = reader->parameterMap;
 		reader->parameterMap += parameter->parameterValueLength;
+		reader->currentIndex++;
+		return 1;
+	}
+
+	return 0;
+}
+
+struct m3g_submesh_reader* m3g_createSubMeshReader(struct m3g_mesh* mesh,
+		pool_t pool) {
+	struct m3g_submesh_reader* reader = p_alloc(pool,
+			sizeof(struct m3g_submesh_reader));
+	reader->count = mesh->submeshCount;
+	reader->currentIndex = 0;
+	reader->submeshData = mesh->submeshData;
+	reader->readNextSubMesh = readNextSubMesh;
+
+	return reader;
+}
+
+Boolean readNextSubMesh(struct m3g_submesh_reader* reader,
+		struct m3g_submesh_data* subMData) {
+
+	if (reader->currentIndex < reader->count) {
+		subMData->indexBuffer = readUInt32FromArray(reader->submeshData);
+		reader->submeshData += sizeof(UInt32);
+		subMData->appearance = readUInt32FromArray(reader->submeshData);
+		reader->submeshData += sizeof(UInt32);
 		reader->currentIndex++;
 		return 1;
 	}
