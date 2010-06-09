@@ -15,6 +15,8 @@ Boolean readNextMorphTarget(struct m3g_morph_target_reader* reader,
 		struct m3g_morph_target_data* morphTargetData);
 Boolean readNextTransfRef(struct m3g_transf_ref_reader* reader,
 		struct m3g_transf_ref_data* transfRefData);
+Boolean readNextVertex(struct m3g_vertex_reader* reader,
+		struct m3g_vertex_data* vertexData);
 
 struct m3g_map_parameter_reader* m3g_createMapParameterReader(
 		struct m3g_object_3d* object3d, pool_t pool) {
@@ -138,4 +140,42 @@ Boolean readNextTransfRef(struct m3g_transf_ref_reader* reader,
 	}
 
 	return 0;
+}
+
+Boolean readNextVertex(struct m3g_vertex_reader* reader,
+		struct m3g_vertex_data* vertexData) {
+
+	if (reader->currentIndex < reader->count) {
+		vertexData->size = reader->size;
+
+		if (reader->size == 1) {
+			if (reader->encoding == 0) {
+				vertexData->count = readUInt32FromArray(reader->vertexData);
+				reader->vertexData += sizeof(UInt32);
+				vertexData->components = reader->vertexData;
+				vertexData->componentDeltas = 0;
+			}
+
+		}
+
+		reader->currentIndex++;
+		return 1;
+	}
+
+	return 0;
+}
+
+struct m3g_vertex_reader* m3g_createVertexArrayDataReader(
+		struct m3g_vertex_array* vArray, pool_t pool) {
+
+	struct m3g_vertex_reader* reader = p_alloc(pool,
+			sizeof(struct m3g_vertex_reader));
+	reader->count = vArray->componentCount;
+	reader->currentIndex = 0;
+	reader->vertexData = vArray->vertexData;
+	reader->readNextVertex = readNextVertex;
+	reader->size = vArray->componentSize;
+	reader->encoding = vArray->encoding;
+
+	return reader;
 }

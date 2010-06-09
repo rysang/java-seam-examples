@@ -36,5 +36,7 @@ struct m3g_transf_ref_reader;
 struct m3g_transf_ref_data;
 struct m3g_light;
 struct m3g_material;
+struct m3g_vertex_reader;
+struct m3g_vertex_data;
 
 #endif /* LIB_M3G_PROTOS_H_ */

@@ -34,6 +34,8 @@ typedef Boolean (*m3g_toLight)(struct m3g_object* obj,
 		struct m3g_light* lightObj);
 typedef Boolean (*m3g_toMaterial)(struct m3g_object* obj,
 		struct m3g_material* materialObj);
+typedef Boolean (*m3g_toVertexArray)(struct m3g_object* obj,
+		struct m3g_vertex_data* materialObj);
 
 struct m3g_object_converter {
 	m3g_toHeader toHeader;
@@ -47,6 +49,7 @@ struct m3g_object_converter {
 	m3g_toSkinnedMesh toSkinnedMesh;
 	m3g_toLight toLight;
 	m3g_toMaterial toMaterial;
+	m3g_toVertexArray toVertexArray;
 };
 
 struct m3g_object_converter* m3g_createConverter(pool_t pool);
@@ -290,6 +293,9 @@ struct m3g_material {
 };
 
 //Vertex Arrray.
+typedef Boolean (*m3g_readNextVertex)(struct m3g_vertex_reader* reader,
+		struct m3g_vertex_data* vertexData);
+
 struct m3g_vertex_array {
 	Byte componentSize;
 	Byte componentCount;
@@ -303,11 +309,22 @@ struct m3g_vertex_reader {
 	data_ptr_t vertexData;
 	UInt32 currentIndex;
 	UInt32 count;
+	Byte size;
+	Byte encoding;
 	m3g_readNextVertex readNextVertex;
 };
 
 struct m3g_vertex_data {
-
+	UInt32 count;
+	UInt32 size;
+	//IF encoding==0, THEN
+	Byte* components;
+	//ELSE IF encoding==1, THEN
+	Byte* componentDeltas;
+//END
 };
+
+struct m3g_vertex_reader* m3g_createVertexArrayDataReader(
+		struct m3g_vertex_array* vArray, pool_t pool);
 
 #endif /* LIB_M3G_OBJECTS3D_H_ */
