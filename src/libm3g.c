@@ -13,7 +13,7 @@
 int main(void) {
 
 	struct m3g_input_stream* is = m3g_createFileInputStream(
-			"E:\\libm3g\\m3g_models\\memory.m3g");
+			"f:\\libm3g\\m3g_models\\monkey_step1.m3g");
 
 	pool_t pool = p_create_pool_size(1000000);
 	printf("Created input stream \n");
@@ -40,6 +40,8 @@ int main(void) {
 				struct m3g_header m3g_h;
 				struct m3g_external_ref m3g_ref;
 				struct m3g_mesh m3g_m;
+				struct m3g_camera m3g_cam;
+				struct m3g_morphing_mesh m3g_mm;
 
 				if (objReader->readNextObject(objReader, &m3g_o)) {
 					printf("Object Index: %i\n", object_count);
@@ -66,13 +68,31 @@ int main(void) {
 						printf("-------End External Reference --------\n");
 
 					} else if (converter->toMesh(&m3g_o, &m3g_m)) {
-						printf("---------OBJECT 3D ----------\n");
+						printf("---------MESH 3D ----------\n");
+						printf("Submeshes Count: %i\n", m3g_m.submeshCount);
 						struct m3g_submesh_reader *sb_reader =
 								m3g_createSubMeshReader(&m3g_m, pool);
 						struct m3g_submesh_data sb_data;
 						sb_reader->readNextSubMesh(sb_reader, &sb_data);
 						printf("%i %i\n", sb_data.indexBuffer,
 								sb_data.appearance);
+						printf("-------End OBJECT 3D --------\n");
+					}
+
+					else if (converter->toCamera(&m3g_o, &m3g_cam)) {
+						printf("---------CAMERA 3D ----------\n");
+						printf("Camera Ptr: %x\n", &m3g_cam);
+						printf("Camera Far: %.02f\n", m3g_cam.far);
+						printf("Camera AspectRatio: %.02f\n",
+								m3g_cam.AspectRatio);
+						printf("Camera fovy: %.02f\n", m3g_cam.fovy);
+						printf("Camera near: %.02f\n", m3g_cam.near);
+						printf("-------End OBJECT 3D --------\n");
+					}
+
+					else if (converter->toMorphMesh(&m3g_o, &m3g_mm)) {
+						printf("---------Morph Mesh 3D ----------\n");
+						printf("Morph Count: %i\n", m3g_mm.morphTargetCount);
 						printf("-------End OBJECT 3D --------\n");
 					}
 

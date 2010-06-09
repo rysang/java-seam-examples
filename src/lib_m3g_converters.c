@@ -15,6 +15,9 @@ Boolean objectToMesh(struct m3g_object* obj, struct m3g_mesh* mesh);
 Boolean objectToTransformable(struct m3g_object* obj,
 		struct m3g_transformable* transfObj);
 Boolean objectToNode(struct m3g_object* obj, struct m3g_node* nodeObj);
+Boolean objectToCamera(struct m3g_object* obj, struct m3g_camera* cameraObj);
+Boolean objectToMorphMesh(struct m3g_object* obj,
+		struct m3g_morphing_mesh* morphMeshObj);
 
 struct m3g_object_converter* m3g_createConverter(pool_t pool) {
 	struct m3g_object_converter* conv = p_alloc(pool,
@@ -25,6 +28,8 @@ struct m3g_object_converter* m3g_createConverter(pool_t pool) {
 	conv->toTransformable = objectToTransformable;
 	conv->toNode = objectToNode;
 	conv->toMesh = objectToMesh;
+	conv->toCamera = objectToCamera;
+	conv->toMorphMesh = objectToMorphMesh;
 	return conv;
 }
 
@@ -139,8 +144,10 @@ Boolean objectToTransformable(struct m3g_object* obj,
 		obj->Data += sizeof(Boolean);
 
 		if (transfObj->hasGeneralTransform) {
-			UInt16 i;
-			for (i = 0; i < 16; i++) {
+			UInt32 i;
+			UInt32 len = (sizeof(transfObj->transform.elements)
+					/ sizeof(transfObj->transform.elements[0]));
+			for (i = 0; i < len; i++) {
 				transfObj->transform.elements[i] = readFloat32FromArray(
 						obj->Data);
 				obj->Data += sizeof(Float32);
@@ -215,5 +222,60 @@ Boolean objectToMesh(struct m3g_object* obj, struct m3g_mesh* meshObj) {
 
 	meshObj->submeshData = obj->Data;
 
+	return 1;
+}
+
+Boolean objectToCamera(struct m3g_object* obj, struct m3g_camera* cameraObj) {
+	if (obj == 0 || cameraObj == 0 || obj->ObjectType != Type_Camera) {
+		return 0;
+	}
+
+	if (!objectToNode(obj, &cameraObj->nodeObj)) {
+		return 0;
+	}
+
+	cameraObj->projectionType = *obj->Data;
+	obj->Data += sizeof(Byte);
+
+	if (cameraObj->projectionType == ProjectionType_GENERIC) {
+		UInt32 i;
+		UInt32 len = (sizeof(cameraObj->nodeObj.transfObj.transform.elements)
+				/ sizeof(cameraObj->nodeObj.transfObj.transform.elements[0]));
+
+		for (i = 0; i < len; i++) {
+			cameraObj->nodeObj.transfObj.transform.elements[i]
+					= readFloat32FromArray(obj->Data);
+			obj->Data += sizeof(Float32);
+			//printf("FLOAT VALUE: %.02f\n",
+			//		cameraObj->nodeObj.transfObj.transform.elements[i]);
+		}
+	} else {
+		cameraObj->fovy = readFloat32FromArray(obj->Data);
+		obj->Data += sizeof(Float32);
+		cameraObj->AspectRatio = readFloat32FromArray(obj->Data);
+		obj->Data += sizeof(Float32);
+		cameraObj->near = readFloat32FromArray(obj->Data);
+		obj->Data += sizeof(Float32);
+		cameraObj->far = readFloat32FromArray(obj->Data);
+		obj->Data += sizeof(Float32);
+	}
+
+	return 1;
+}
+
+Boolean objectToMorphMesh(struct m3g_object* obj,
+		struct m3g_morphing_mesh* morphMeshObj) {
+	if (obj == 0 || morphMeshObj == 0 || obj->ObjectType != Type_MorphingMesh) {
+		return 0;
+	}
+
+	if (!objectToMesh(obj, &morphMeshObj->meshObj)) {
+		return 0;
+	}
+
+	morphMeshObj->morphTargetCount = readUInt32FromArray(obj->Data);
+	obj->Data += sizeof(UInt32);
+
+	morphMeshObj->morphTargetData = obj->Data;
 	return 1;
 }

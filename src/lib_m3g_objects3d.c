@@ -11,6 +11,8 @@ Boolean readNextMapParameter(struct m3g_map_parameter_reader* reader,
 		struct m3g_map_parameter* parameter);
 Boolean readNextSubMesh(struct m3g_submesh_reader* reader,
 		struct m3g_submesh_data* subMData);
+Boolean readNextMorphTarget(struct m3g_morph_target_reader* reader,
+		struct m3g_morph_target_data* morphTargetData);
 
 struct m3g_map_parameter_reader* m3g_createMapParameterReader(
 		struct m3g_object_3d* object3d, pool_t pool) {
@@ -61,6 +63,36 @@ Boolean readNextSubMesh(struct m3g_submesh_reader* reader,
 		reader->submeshData += sizeof(UInt32);
 		subMData->appearance = readUInt32FromArray(reader->submeshData);
 		reader->submeshData += sizeof(UInt32);
+		reader->currentIndex++;
+		return 1;
+	}
+
+	return 0;
+}
+
+struct m3g_morph_target_reader* m3g_createMorphTargetReader(
+		struct m3g_morphing_mesh* mesh, pool_t pool) {
+
+	struct m3g_morph_target_reader* reader = p_alloc(pool,
+			sizeof(struct m3g_morph_target_reader));
+	reader->count = mesh->morphTargetCount;
+	reader->currentIndex = 0;
+	reader->morphTargetData = mesh->morphTargetData;
+	reader->readNextMorphTarget = readNextMorphTarget;
+
+	return reader;
+}
+
+Boolean readNextMorphTarget(struct m3g_morph_target_reader* reader,
+		struct m3g_morph_target_data* morphTargetData) {
+
+	if (reader->currentIndex < reader->count) {
+		morphTargetData->morphTarget = readUInt32FromArray(
+				reader->morphTargetData);
+		reader->morphTargetData += sizeof(m3g_object_index);
+		morphTargetData->initialWeight = readFloat32FromArray(
+				reader->morphTargetData);
+		reader->morphTargetData += sizeof(Float32);
 		reader->currentIndex++;
 		return 1;
 	}

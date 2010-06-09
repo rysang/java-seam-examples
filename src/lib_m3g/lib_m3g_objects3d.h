@@ -24,6 +24,10 @@ typedef Boolean (*m3g_toTransformable)(struct m3g_object* obj,
 		struct m3g_transformable* transfObj);
 typedef Boolean (*m3g_toNode)(struct m3g_object* obj, struct m3g_node* nodeObj);
 typedef Boolean (*m3g_toMesh)(struct m3g_object* obj, struct m3g_mesh* meshObj);
+typedef Boolean (*m3g_toCamera)(struct m3g_object* obj,
+		struct m3g_camera* cameraObj);
+typedef Boolean (*m3g_toMorphMesh)(struct m3g_object* obj,
+		struct m3g_morphing_mesh* meshObj);
 
 struct m3g_object_converter {
 	m3g_toHeader toHeader;
@@ -32,6 +36,8 @@ struct m3g_object_converter {
 	m3g_toObject3D toObject3D;
 	m3g_toTransformable toTransformable;
 	m3g_toNode toNode;
+	m3g_toCamera toCamera;
+	m3g_toMorphMesh toMorphMesh;
 };
 
 struct m3g_object_converter* m3g_createConverter(pool_t pool);
@@ -179,5 +185,49 @@ struct m3g_submesh_reader {
 
 struct m3g_submesh_reader* m3g_createSubMeshReader(struct m3g_mesh* mesh,
 		pool_t pool);
+
+struct m3g_camera {
+	struct m3g_node nodeObj;
+	Byte projectionType;
+
+	//IF projectionType==GENERIC, THEN
+
+	struct m3g_matrix projectionMatrix;
+
+	//ELSE
+
+	Float32 fovy;
+	Float32 AspectRatio;
+	Float32 near;
+	Float32 far;
+
+//END
+};
+
+typedef Boolean (*m3g_readNextMorphTarget)(
+		struct m3g_morph_target_reader* reader,
+		struct m3g_morph_target_data* morphTargetData);
+
+struct m3g_morphing_mesh {
+	struct m3g_mesh meshObj;
+
+	UInt32 morphTargetCount;
+	data_ptr_t morphTargetData;
+};
+
+struct m3g_morph_target_reader {
+	data_ptr_t morphTargetData;
+	UInt32 currentIndex;
+	UInt32 count;
+	m3g_readNextMorphTarget readNextMorphTarget;
+};
+
+struct m3g_morph_target_data {
+	m3g_object_index morphTarget;
+	Float32 initialWeight;
+};
+
+struct m3g_morph_target_reader* m3g_createMorphTargetReader(
+		struct m3g_morphing_mesh* mesh, pool_t pool);
 
 #endif /* LIB_M3G_OBJECTS3D_H_ */
