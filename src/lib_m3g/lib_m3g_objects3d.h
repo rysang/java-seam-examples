@@ -28,6 +28,12 @@ typedef Boolean (*m3g_toCamera)(struct m3g_object* obj,
 		struct m3g_camera* cameraObj);
 typedef Boolean (*m3g_toMorphMesh)(struct m3g_object* obj,
 		struct m3g_morphing_mesh* meshObj);
+typedef Boolean (*m3g_toSkinnedMesh)(struct m3g_object* obj,
+		struct m3g_skinned_mesh* meshObj);
+typedef Boolean (*m3g_toLight)(struct m3g_object* obj,
+		struct m3g_light* lightObj);
+typedef Boolean (*m3g_toMaterial)(struct m3g_object* obj,
+		struct m3g_material* materialObj);
 
 struct m3g_object_converter {
 	m3g_toHeader toHeader;
@@ -38,6 +44,9 @@ struct m3g_object_converter {
 	m3g_toNode toNode;
 	m3g_toCamera toCamera;
 	m3g_toMorphMesh toMorphMesh;
+	m3g_toSkinnedMesh toSkinnedMesh;
+	m3g_toLight toLight;
+	m3g_toMaterial toMaterial;
 };
 
 struct m3g_object_converter* m3g_createConverter(pool_t pool);
@@ -229,5 +238,76 @@ struct m3g_morph_target_data {
 
 struct m3g_morph_target_reader* m3g_createMorphTargetReader(
 		struct m3g_morphing_mesh* mesh, pool_t pool);
+
+typedef Boolean (*m3g_readNextTransfRef)(struct m3g_transf_ref_reader* reader,
+		struct m3g_transf_ref_data* transfRefData);
+
+struct m3g_skinned_mesh {
+	struct m3g_mesh meshObj;
+
+	m3g_object_index skeleton;
+	UInt32 transformReferenceCount;
+	data_ptr_t transfRefData;
+};
+
+struct m3g_transf_ref_reader {
+	data_ptr_t transfRefData;
+	UInt32 currentIndex;
+	UInt32 count;
+	m3g_readNextTransfRef readNextTransfRef;
+};
+
+struct m3g_transf_ref_data {
+	m3g_object_index transformNode;
+	UInt32 firstVertex;
+	UInt32 vertexCount;
+	Int32 weight;
+};
+
+struct m3g_transf_ref_reader* m3g_createTransfRefReader(
+		struct m3g_skinned_mesh* mesh, pool_t pool);
+
+struct m3g_light {
+	struct m3g_node nodeObj;
+	Float32 attenuationConstant;
+	Float32 attenuationLinear;
+	Float32 attenuationQuadratic;
+	struct m3g_color_rgb color;
+	Byte mode;
+	Float32 intensity;
+	Float32 spotAngle;
+	Float32 spotExponent;
+};
+
+struct m3g_material {
+	struct m3g_object_3d obj3d;
+	struct m3g_color_rgb ambientColor;
+	struct m3g_color_rgba diffuseColor;
+	struct m3g_color_rgb emissiveColor;
+	struct m3g_color_rgb specularColor;
+	Float32 shininess;
+	Boolean vertexColorTrackingEnabled;
+};
+
+//Vertex Arrray.
+struct m3g_vertex_array {
+	Byte componentSize;
+	Byte componentCount;
+	Byte encoding;
+
+	UInt16 vertexCount;
+	data_ptr_t vertexData;
+};
+
+struct m3g_vertex_reader {
+	data_ptr_t vertexData;
+	UInt32 currentIndex;
+	UInt32 count;
+	m3g_readNextVertex readNextVertex;
+};
+
+struct m3g_vertex_data {
+
+};
 
 #endif /* LIB_M3G_OBJECTS3D_H_ */

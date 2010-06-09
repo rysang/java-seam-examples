@@ -18,6 +18,11 @@ Boolean objectToNode(struct m3g_object* obj, struct m3g_node* nodeObj);
 Boolean objectToCamera(struct m3g_object* obj, struct m3g_camera* cameraObj);
 Boolean objectToMorphMesh(struct m3g_object* obj,
 		struct m3g_morphing_mesh* morphMeshObj);
+Boolean objectToSkinnedMesh(struct m3g_object* obj,
+		struct m3g_skinned_mesh* skinnedMeshObj);
+Boolean objectToLight(struct m3g_object* obj, struct m3g_light* lightObj);
+Boolean objectToMaterial(struct m3g_object* obj,
+		struct m3g_material* materialObj);
 
 struct m3g_object_converter* m3g_createConverter(pool_t pool) {
 	struct m3g_object_converter* conv = p_alloc(pool,
@@ -30,6 +35,9 @@ struct m3g_object_converter* m3g_createConverter(pool_t pool) {
 	conv->toMesh = objectToMesh;
 	conv->toCamera = objectToCamera;
 	conv->toMorphMesh = objectToMorphMesh;
+	conv->toSkinnedMesh = objectToSkinnedMesh;
+	conv->toLight = objectToLight;
+	conv->toMaterial = objectToMaterial;
 	return conv;
 }
 
@@ -277,5 +285,116 @@ Boolean objectToMorphMesh(struct m3g_object* obj,
 	obj->Data += sizeof(UInt32);
 
 	morphMeshObj->morphTargetData = obj->Data;
+	return 1;
+}
+
+Boolean objectToSkinnedMesh(struct m3g_object* obj,
+		struct m3g_skinned_mesh* skinnedMeshObj) {
+
+	if (obj == 0 || skinnedMeshObj == 0 || obj->ObjectType != Type_SkinnedMesh) {
+		return 0;
+	}
+
+	if (!objectToMesh(obj, &skinnedMeshObj->meshObj)) {
+		return 0;
+	}
+
+	skinnedMeshObj->skeleton = readUInt32FromArray(obj->Data);
+	obj->Data += sizeof(UInt32);
+
+	skinnedMeshObj->transformReferenceCount = readUInt32FromArray(obj->Data);
+	obj->Data += sizeof(UInt32);
+
+	skinnedMeshObj->transfRefData = obj->Data;
+
+	return 1;
+}
+
+Boolean objectToLight(struct m3g_object* obj, struct m3g_light* lightObj) {
+	if (obj == 0 || lightObj == 0 || obj->ObjectType != Type_Light) {
+		return 0;
+	}
+
+	if (!objectToNode(obj, &lightObj->nodeObj)) {
+		return 0;
+	}
+
+	lightObj->attenuationConstant = readFloat32FromArray(obj->Data);
+	obj->Data += sizeof(Float32);
+
+	lightObj->attenuationLinear = readFloat32FromArray(obj->Data);
+	obj->Data += sizeof(Float32);
+
+	lightObj->attenuationQuadratic = readFloat32FromArray(obj->Data);
+	obj->Data += sizeof(Float32);
+
+	lightObj->color.red = *obj->Data;
+	obj->Data += sizeof(Byte);
+	lightObj->color.green = *obj->Data;
+	obj->Data += sizeof(Byte);
+	lightObj->color.blue = *obj->Data;
+	obj->Data += sizeof(Byte);
+
+	lightObj->mode = *obj->Data;
+	obj->Data += sizeof(Byte);
+
+	lightObj->intensity = readFloat32FromArray(obj->Data);
+	obj->Data += sizeof(Float32);
+
+	lightObj->spotAngle = readFloat32FromArray(obj->Data);
+	obj->Data += sizeof(Float32);
+
+	lightObj->spotExponent = readFloat32FromArray(obj->Data);
+	obj->Data += sizeof(Float32);
+
+	return 1;
+}
+
+Boolean objectToMaterial(struct m3g_object* obj,
+		struct m3g_material* materialObj) {
+	if (obj == 0 || materialObj == 0 || obj->ObjectType != Type_Material) {
+		return 0;
+	}
+
+	if (!objectToObject3D(obj, &materialObj->obj3d)) {
+		return 0;
+	}
+
+	materialObj->ambientColor.red = *obj->Data;
+	obj->Data += sizeof(Byte);
+	materialObj->ambientColor.green = *obj->Data;
+	obj->Data += sizeof(Byte);
+	materialObj->ambientColor.blue = *obj->Data;
+	obj->Data += sizeof(Byte);
+
+	materialObj->diffuseColor.rgb.red = *obj->Data;
+	obj->Data += sizeof(Byte);
+	materialObj->diffuseColor.rgb.green = *obj->Data;
+	obj->Data += sizeof(Byte);
+	materialObj->diffuseColor.rgb.blue = *obj->Data;
+	obj->Data += sizeof(Byte);
+	materialObj->diffuseColor.alpha = *obj->Data;
+	obj->Data += sizeof(Byte);
+
+	materialObj->emissiveColor.red = *obj->Data;
+	obj->Data += sizeof(Byte);
+	materialObj->emissiveColor.green = *obj->Data;
+	obj->Data += sizeof(Byte);
+	materialObj->emissiveColor.blue = *obj->Data;
+	obj->Data += sizeof(Byte);
+
+	materialObj->specularColor.red = *obj->Data;
+	obj->Data += sizeof(Byte);
+	materialObj->specularColor.green = *obj->Data;
+	obj->Data += sizeof(Byte);
+	materialObj->specularColor.blue = *obj->Data;
+	obj->Data += sizeof(Byte);
+
+	materialObj->shininess = readFloat32FromArray(obj->Data);
+	obj->Data += sizeof(Float32);
+
+	materialObj->vertexColorTrackingEnabled = *obj->Data;
+	obj->Data += sizeof(Boolean);
+
 	return 1;
 }

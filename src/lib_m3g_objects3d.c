@@ -13,6 +13,8 @@ Boolean readNextSubMesh(struct m3g_submesh_reader* reader,
 		struct m3g_submesh_data* subMData);
 Boolean readNextMorphTarget(struct m3g_morph_target_reader* reader,
 		struct m3g_morph_target_data* morphTargetData);
+Boolean readNextTransfRef(struct m3g_transf_ref_reader* reader,
+		struct m3g_transf_ref_data* transfRefData);
 
 struct m3g_map_parameter_reader* m3g_createMapParameterReader(
 		struct m3g_object_3d* object3d, pool_t pool) {
@@ -100,3 +102,40 @@ Boolean readNextMorphTarget(struct m3g_morph_target_reader* reader,
 	return 0;
 }
 
+struct m3g_transf_ref_reader* m3g_createTransfRefReader(
+		struct m3g_skinned_mesh* mesh, pool_t pool) {
+
+	struct m3g_transf_ref_reader* reader = p_alloc(pool,
+			sizeof(struct m3g_transf_ref_reader));
+	reader->count = mesh->transformReferenceCount;
+	reader->currentIndex = 0;
+	reader->transfRefData = mesh->transfRefData;
+	reader->readNextTransfRef = readNextTransfRef;
+
+	return reader;
+}
+
+Boolean readNextTransfRef(struct m3g_transf_ref_reader* reader,
+		struct m3g_transf_ref_data* transfRefData) {
+
+	if (reader->currentIndex < reader->count) {
+		transfRefData->transformNode = readUInt32FromArray(
+				reader->transfRefData);
+		reader->transfRefData += sizeof(m3g_object_index);
+
+		transfRefData->firstVertex = readUInt32FromArray(reader->transfRefData);
+		reader->transfRefData += sizeof(UInt32);
+
+		transfRefData->vertexCount = readUInt32FromArray(reader->transfRefData);
+		reader->transfRefData += sizeof(UInt32);
+
+		transfRefData->weight = (Int32) readUInt32FromArray(
+				reader->transfRefData);
+		reader->transfRefData += sizeof(UInt32);
+
+		reader->currentIndex++;
+		return 1;
+	}
+
+	return 0;
+}

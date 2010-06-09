@@ -42,6 +42,8 @@ int main(void) {
 				struct m3g_mesh m3g_m;
 				struct m3g_camera m3g_cam;
 				struct m3g_morphing_mesh m3g_mm;
+				struct m3g_light m3g_l;
+				struct m3g_material m3g_mat;
 
 				if (objReader->readNextObject(objReader, &m3g_o)) {
 					printf("Object Index: %i\n", object_count);
@@ -93,6 +95,61 @@ int main(void) {
 					else if (converter->toMorphMesh(&m3g_o, &m3g_mm)) {
 						printf("---------Morph Mesh 3D ----------\n");
 						printf("Morph Count: %i\n", m3g_mm.morphTargetCount);
+						printf("-------End OBJECT 3D --------\n");
+					}
+
+					else if (converter->toLight(&m3g_o, &m3g_l)) {
+						printf("---------Light 3D ----------\n");
+						printf("Color: %i %i %i\n", m3g_l.color.red,
+								m3g_l.color.green, m3g_l.color.blue);
+						printf("Intensity: %.02f\n", m3g_l.intensity);
+						printf("Spot Angle: %.02f\n", m3g_l.spotAngle);
+						printf("Spot Exponent: %.02f\n", m3g_l.spotExponent);
+						printf("attenuationQuadratic: %.02f\n",
+								m3g_l.attenuationQuadratic);
+						printf("attenuationLinear: %.02f\n",
+								m3g_l.attenuationLinear);
+						printf("attenuationConstant: %.02f\n",
+								m3g_l.attenuationConstant);
+						if (m3g_l.nodeObj.transfObj.hasComponentTransform) {
+							printf("X: %.02f\n",
+									m3g_l.nodeObj.transfObj.orientationAxis.x);
+							printf("Y: %.02f\n",
+									m3g_l.nodeObj.transfObj.orientationAxis.y);
+							printf("Z: %.02f\n",
+									m3g_l.nodeObj.transfObj.orientationAxis.z);
+						} else {
+							UInt32 i;
+							for (i = 0; i < 16; i++) {
+								printf(
+										"Matrix %i: %.02f\n",
+										i,
+										m3g_l.nodeObj.transfObj.transform.elements[i]);
+							}
+						}
+						printf("-------End OBJECT 3D --------\n");
+					} else if (converter->toMaterial(&m3g_o, &m3g_mat)) {
+						printf("---------Material 3D ----------\n");
+						printf("shininess: %.02f\n", m3g_mat.shininess);
+						printf("vertexColorTrackingEnabled: %.02f\n",
+								m3g_mat.vertexColorTrackingEnabled);
+						printf("ambientColor: %i %i %i\n",
+								m3g_mat.ambientColor.red,
+								m3g_mat.ambientColor.green,
+								m3g_mat.ambientColor.blue);
+						printf("diffuseColor: %i %i %i %i\n",
+								m3g_mat.diffuseColor.rgb.red,
+								m3g_mat.diffuseColor.rgb.green,
+								m3g_mat.diffuseColor.rgb.blue,
+								m3g_mat.diffuseColor.alpha);
+						printf("emissiveColor: %i %i %i\n",
+								m3g_mat.emissiveColor.red,
+								m3g_mat.emissiveColor.green,
+								m3g_mat.emissiveColor.blue);
+						printf("specularColor: %i %i %i\n",
+								m3g_mat.specularColor.red,
+								m3g_mat.specularColor.green,
+								m3g_mat.specularColor.blue);
 						printf("-------End OBJECT 3D --------\n");
 					}
 
