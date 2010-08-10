@@ -32,5 +32,6 @@ struct m3g_object_reader;
 //utils
 UInt32 readUInt32(struct m3g_input_stream* is);
 UInt32 readUInt32FromArray(Byte* b);
+UInt16 readUInt16FromArray(Byte* b);
 Float32 readFloat32FromArray(Byte* b);
 #endif /* LIB_M3G_H_ */

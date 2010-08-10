@@ -35,7 +35,7 @@ typedef Boolean (*m3g_toLight)(struct m3g_object* obj,
 typedef Boolean (*m3g_toMaterial)(struct m3g_object* obj,
 		struct m3g_material* materialObj);
 typedef Boolean (*m3g_toVertexArray)(struct m3g_object* obj,
-		struct m3g_vertex_data* materialObj);
+		struct m3g_vertex_array* vertexArray);
 
 struct m3g_object_converter {
 	m3g_toHeader toHeader;
@@ -297,6 +297,8 @@ typedef Boolean (*m3g_readNextVertex)(struct m3g_vertex_reader* reader,
 		struct m3g_vertex_data* vertexData);
 
 struct m3g_vertex_array {
+	struct m3g_object_3d obj3d;
+
 	Byte componentSize;
 	Byte componentCount;
 	Byte encoding;
@@ -311,6 +313,7 @@ struct m3g_vertex_reader {
 	UInt32 count;
 	Byte size;
 	Byte encoding;
+	Byte componentCount;
 	m3g_readNextVertex readNextVertex;
 };
 

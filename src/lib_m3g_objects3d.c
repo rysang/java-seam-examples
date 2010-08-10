@@ -15,7 +15,7 @@ Boolean readNextMorphTarget(struct m3g_morph_target_reader* reader,
 		struct m3g_morph_target_data* morphTargetData);
 Boolean readNextTransfRef(struct m3g_transf_ref_reader* reader,
 		struct m3g_transf_ref_data* transfRefData);
-Boolean readNextVertex(struct m3g_vertex_reader* reader,
+Boolean readNextVertexData(struct m3g_vertex_reader* reader,
 		struct m3g_vertex_data* vertexData);
 
 struct m3g_map_parameter_reader* m3g_createMapParameterReader(
@@ -142,21 +142,22 @@ Boolean readNextTransfRef(struct m3g_transf_ref_reader* reader,
 	return 0;
 }
 
-Boolean readNextVertex(struct m3g_vertex_reader* reader,
+Boolean readNextVertexData(struct m3g_vertex_reader* reader,
 		struct m3g_vertex_data* vertexData) {
 
 	if (reader->currentIndex < reader->count) {
 		vertexData->size = reader->size;
+		if (reader->encoding == 0) {
+			vertexData->components = reader->vertexData;
+			vertexData->componentDeltas = 0;
 
-		if (reader->size == 1) {
-			if (reader->encoding == 0) {
-				vertexData->count = readUInt32FromArray(reader->vertexData);
-				reader->vertexData += sizeof(UInt32);
-				vertexData->components = reader->vertexData;
-				vertexData->componentDeltas = 0;
-			}
-
+		} else if (reader->encoding == 1) {
+			vertexData->componentDeltas = reader->vertexData;
+			vertexData->components = 0;
 		}
+
+		vertexData->count = reader->componentCount;
+		reader->vertexData += (vertexData->count * vertexData->size);
 
 		reader->currentIndex++;
 		return 1;
@@ -170,11 +171,12 @@ struct m3g_vertex_reader* m3g_createVertexArrayDataReader(
 
 	struct m3g_vertex_reader* reader = p_alloc(pool,
 			sizeof(struct m3g_vertex_reader));
-	reader->count = vArray->componentCount;
+	reader->count = vArray->vertexCount;
 	reader->currentIndex = 0;
 	reader->vertexData = vArray->vertexData;
-	reader->readNextVertex = readNextVertex;
+	reader->readNextVertex = readNextVertexData;
 	reader->size = vArray->componentSize;
+	reader->componentCount = vArray->componentCount;
 	reader->encoding = vArray->encoding;
 
 	return reader;

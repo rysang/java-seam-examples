@@ -38,5 +38,6 @@ struct m3g_light;
 struct m3g_material;
 struct m3g_vertex_reader;
 struct m3g_vertex_data;
+struct m3g_vertex_array;
 
 #endif /* LIB_M3G_PROTOS_H_ */

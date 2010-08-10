@@ -70,6 +70,14 @@ UInt32 readUInt32FromArray(Byte* b) {
 	return retVal;
 }
 
+UInt16 readUInt16FromArray(Byte* b) {
+	UInt16 retVal;
+	retVal = ((UInt16) b[0]);
+	retVal |= ((UInt16) b[1]) << 8;
+
+	return retVal;
+}
+
 Float32 readFloat32FromArray(Byte* b) {
 	/*
 	 Byte bLocal[4];

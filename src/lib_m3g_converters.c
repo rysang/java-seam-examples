@@ -23,6 +23,8 @@ Boolean objectToSkinnedMesh(struct m3g_object* obj,
 Boolean objectToLight(struct m3g_object* obj, struct m3g_light* lightObj);
 Boolean objectToMaterial(struct m3g_object* obj,
 		struct m3g_material* materialObj);
+Boolean objectToVertexArray(struct m3g_object* obj,
+		struct m3g_vertex_array* vertexArray);
 
 struct m3g_object_converter* m3g_createConverter(pool_t pool) {
 	struct m3g_object_converter* conv = p_alloc(pool,
@@ -38,6 +40,7 @@ struct m3g_object_converter* m3g_createConverter(pool_t pool) {
 	conv->toSkinnedMesh = objectToSkinnedMesh;
 	conv->toLight = objectToLight;
 	conv->toMaterial = objectToMaterial;
+	conv->toVertexArray = objectToVertexArray;
 	return conv;
 }
 
@@ -395,6 +398,32 @@ Boolean objectToMaterial(struct m3g_object* obj,
 
 	materialObj->vertexColorTrackingEnabled = *obj->Data;
 	obj->Data += sizeof(Boolean);
+
+	return 1;
+}
+
+Boolean objectToVertexArray(struct m3g_object* obj,
+		struct m3g_vertex_array* vertexArray) {
+
+	if (obj == 0 || vertexArray == 0 || obj->ObjectType != Type_VertexArray) {
+		return 0;
+	}
+
+	if (!objectToObject3D(obj, &vertexArray->obj3d)) {
+		return 0;
+	}
+
+	vertexArray->componentSize = *obj->Data;
+	obj->Data += sizeof(Byte);
+	vertexArray->componentCount = *obj->Data;
+	obj->Data += sizeof(Byte);
+	vertexArray->encoding = *obj->Data;
+	obj->Data += sizeof(Byte);
+
+	vertexArray->vertexCount = readUInt16FromArray(obj->Data);
+	obj->Data += sizeof(UInt16);
+
+	vertexArray->vertexData = obj->Data;
 
 	return 1;
 }
