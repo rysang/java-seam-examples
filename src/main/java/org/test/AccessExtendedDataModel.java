@@ -54,7 +54,7 @@ public class AccessExtendedDataModel extends
 
 	@Override
 	public List<User> getList(Integer firstRow, Integer maxResults) {
-		if (this.firstRow != firstRow || this.maxResults != maxResults) {
+		if ((this.firstRow != firstRow) || (this.maxResults != maxResults)) {
 			Query q = getEntityManager().createQuery("select u from User u");
 			q.setFirstResult(firstRow);
 			q.setMaxResults(maxResults);

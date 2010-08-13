@@ -68,10 +68,11 @@ public abstract class BaseExtendedDataModel<T, ID extends Serializable> extends
 
 	@Override
 	public int getRowCount() {
-		if (rowCount == null)
-			return (rowCount = this.getCount()).intValue();
-		else
-			return rowCount.intValue();
+		if (rowCount == null) {
+            return (rowCount = this.getCount()).intValue();
+        } else {
+            return rowCount.intValue();
+        }
 	}
 
 	@Override

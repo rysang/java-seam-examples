@@ -15,33 +15,35 @@
 	<h:form>
 		<h:panelGrid id="exampleContainer" columns="1">
 			<h:commandLink id="create_user" value="Create User"
-				action="#{usersManagement.createUser}" rendered="#{s:hasRole('ADMINISTRATOR')}"/>
-			<rich:dataTable id="exampleListDT" value="#{accessExtendedDataModel}"
-				var="user" rows="5" style="width:100%">
-				<h:column>
+				action="#{usersManagement.createUser}"
+				rendered="#{s:hasRole('ADMINISTRATOR')}" />
+			<rich:dataTable id="exampleListDT"
+				value="#{pagAccessExtendedDataModel}" var="user" rows="5"
+				style="width:100%">
+				<rich:column sortBy="#{user.firstName}">
 					<f:facet name="header">
 						<h:outputText value="First Name" />
 					</f:facet>
 					<h:outputText value="#{user.firstName}" />
-				</h:column>
-				<h:column>
+				</rich:column>
+				<rich:column sortBy="#{user.secondName}">
 					<f:facet name="header">
 						<h:outputText value="Second Name" />
 					</f:facet>
 					<h:outputText value="#{user.secondName}" />
-				</h:column>
-				<h:column rendered="#{s:hasRole('ADMINISTRATOR')}">
+				</rich:column>
+				<rich:column rendered="#{s:hasRole('ADMINISTRATOR')}">
 					<a4j:commandLink
 						onclick="if (! window.confirm('Are you sure?') ) {return false}"
 						value="Edit" action="#{usersManagement.editUser(user)}"
 						reRender="exampleContainer" />
-				</h:column>
-				<h:column rendered="#{s:hasRole('ADMINISTRATOR')}">
+				</rich:column>
+				<rich:column rendered="#{s:hasRole('ADMINISTRATOR')}">
 					<a4j:commandLink
 						onclick="if (! window.confirm('Are you sure?') ) {return false}"
 						value="Delete" action="#{usersManagement.delete(user)}"
 						reRender="exampleContainer" />
-				</h:column>
+				</rich:column>
 			</rich:dataTable>
 			<rich:spacer height="1" />
 			<rich:datascroller align="left" for="exampleListDT" maxPages="5"
