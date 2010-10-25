@@ -20,12 +20,12 @@ int main() {
 
 	utf8_source source;
 	utf8_decode_init(text, size, &source);
-	tpl_int32_t c = utf8_decode_next(&source);
-	fprintf(stdout, "%c", c);
-	c = utf8_decode_next(&source);
-	fprintf(stdout, "%c", c);
-	c = utf8_decode_next(&source);
-	fprintf(stdout, "%c", c);
+	tpl_int32_t c, i;
+
+	for (i = 0; i < size; i++) {
+		c = utf8_decode_next(&source);
+		fprintf(stdout, "%c", c);
+	}
 
 	fflush(stdout);
 	return 0;
