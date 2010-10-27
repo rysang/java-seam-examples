@@ -10,7 +10,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "buffer/tpl_buffer.h"
+#include "tpl_buffer.h"
 
 int main(void) {
 	tpl_buffer_t * buffer = tpl_buffer_create(100);

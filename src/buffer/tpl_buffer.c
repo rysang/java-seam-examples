@@ -33,7 +33,7 @@ tpl_int32_t tpl_buffer_write(tpl_buffer_t* buffer, tpl_ptr ptr,
 
 	tpl_ptr tmp = buffer->ptr;
 	buffer->ptr = tpl_alloc(buffer->size + MEMORY_AVAILABILITY * size);
-	if (unlikely(buffer->ptr != 0)) {
+	if (unlikely(buffer->ptr == 0)) {
 		buffer->ptr = tmp;
 		return -1;
 	}

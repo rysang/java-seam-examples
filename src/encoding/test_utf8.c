@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include "utf8_decode.h"
 
-int main() {
+int main12() {
 	FILE *f = fopen("/home/price/Desktop/decode", "rb");
 	fseek(f, 0, SEEK_END);
 	long size = ftell(f);
