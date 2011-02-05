@@ -30,12 +30,12 @@ int main() {
 
 	gotpl_create_std_output_stream(&os, "test.txt");
 	os.write(&os, "mine", strlen("mine"));
-	os.write(&os, str, sizeof(str));
+	os.write(&os, str, sizeof(str) - 1);
 	os.write(&os, "mine !!!!", strlen("mine !!!!"));
-	os.write(&os, str1, sizeof(str1));
+	os.write(&os, str1, sizeof(str1) - 1);
 	os.write(&os, "mine !!!!", strlen("mine !!!!"));
-	os.write(&os, str2, sizeof(str2));
-	os.write(&os, str3, sizeof(str3));
+	os.write(&os, str2, sizeof(str2) - 1);
+	os.write(&os, str3, sizeof(str3) - 1);
 	os.write(&os, "mine !!!!", strlen("mine !!!!"));
 	os.close(&os);
 
