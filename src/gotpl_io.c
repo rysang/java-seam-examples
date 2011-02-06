@@ -117,7 +117,7 @@ static gotpl_i is_read_utf8(gotpl_input_stream* is) {
 		return 0;
 	}
 
-	gotpl_i c;
+	gotpl_i c = 0;
 	FILE* f = (FILE*) is->_private;
 	fread(&c, sizeof(gotpl_i8), 1, f);
 
@@ -129,7 +129,7 @@ static gotpl_i is_read_utf8(gotpl_input_stream* is) {
 	}
 
 	if ((c & 0xE0) == 0xC0) {
-		gotpl_i c1;
+		gotpl_i c1 = 0;
 		fread(&c1, sizeof(gotpl_i8), 1, f);
 
 		if (c1 < 0) {
@@ -143,7 +143,7 @@ static gotpl_i is_read_utf8(gotpl_input_stream* is) {
 	}
 
 	if ((c & 0xF0) == 0xE0) {
-		gotpl_i c1, c2;
+		gotpl_i c1 = 0, c2 = 0;
 		fread(&c1, sizeof(gotpl_i8), 1, f);
 		fread(&c2, sizeof(gotpl_i8), 1, f);
 
@@ -159,7 +159,7 @@ static gotpl_i is_read_utf8(gotpl_input_stream* is) {
 	}
 
 	if ((c & 0xF8) == 0xF0) {
-		gotpl_i c1, c2, c3;
+		gotpl_i c1 = 0, c2 = 0, c3 = 0;
 		fread(&c1, sizeof(gotpl_i8), 1, f);
 		fread(&c2, sizeof(gotpl_i8), 1, f);
 		fread(&c3, sizeof(gotpl_i8), 1, f);

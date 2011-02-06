@@ -38,7 +38,8 @@ static gotpl_void gopl_pool_destroy_unit(gotpl_pool_unit* unit) {
 }
 
 gotpl_bool gotpl_pool_create(gotpl_pool** pool, gotpl_ui chunk_size) {
-	if (*pool == 0) {
+	if (pool == 0) {
+		GOTPL_ERROR("Null pointer provided.");
 		return gotpl_false;
 	}
 
@@ -72,7 +73,7 @@ gotpl_i gotpl_pool_set_chunk_size(gotpl_pool * pool, gotpl_ui chunk_size) {
 gotpl_ui8* gotpl_pool_alloc(gotpl_pool * pool, gotpl_ui size) {
 	if (pool->current) {
 
-		if ((pool->current->size - pool->current->allocated) > size) {
+		if ((pool->current->size - pool->current->allocated) >= size) {
 			gotpl_ui8* ret = pool->current->address + pool->current->allocated;
 			pool->current->allocated += size;
 			return ret;
@@ -118,4 +119,26 @@ gotpl_ui8* gotpl_pool_alloc(gotpl_pool * pool, gotpl_ui size) {
 	}
 
 	return 0;
+}
+
+gotpl_void gotpl_pool_clear(gotpl_pool * pool) {
+	gotpl_pool_unit* currentUnit = pool->first;
+	while (currentUnit) {
+		currentUnit->allocated = 0;
+		currentUnit = currentUnit->next;
+	}
+
+	pool->current = pool->first;
+}
+
+gotpl_void gotpl_pool_destroy(gotpl_pool** pool) {
+	gotpl_pool_unit* currentUnit = (*pool)->last;
+	while (currentUnit) {
+		gotpl_pool_unit* prev = currentUnit->prev;
+		gopl_pool_destroy_unit(currentUnit);
+		currentUnit = prev;
+	}
+
+	free(*pool);
+	*pool = 0;
 }

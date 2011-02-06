@@ -1,4 +1,9 @@
 //Defining the types
+
+
+#ifndef __GOTPL__H
+#define __GOTPL__H
+
 #define _GOTPL_DEBUG 1
 
 #ifdef _GOTPL_DEBUG
@@ -76,3 +81,5 @@ typedef gotpl_ci32 gotpl_ci;
 typedef gotpl_ui gotpl_bool;
 #define gotpl_true 1
 #define gotpl_false 0
+
+#endif

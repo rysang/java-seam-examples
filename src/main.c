@@ -1,4 +1,5 @@
 #include "gotpl/gotpl_io.h"
+#include "gotpl/gotpl_pool.h"
 #include <stdio.h>
 
 int main() {
@@ -11,5 +12,18 @@ int main() {
 		count = is.read(&is);
 		printf("%i", count);
 	}
+	printf("\r\n");
+	is.close(&is);
+
+	gotpl_pool* pool = 0;
+	gotpl_pool_create(&pool, 100);
+	gotpl_pool_alloc(pool, 50);
+	gotpl_pool_alloc(pool, 50);
+	gotpl_pool_alloc(pool, 150);
+	gotpl_pool_alloc(pool, 50);
+	gotpl_pool_alloc(pool, 5);
+	gotpl_pool_clear(pool);
+	gotpl_pool_destroy(&pool);
+
 	return 0;
 }

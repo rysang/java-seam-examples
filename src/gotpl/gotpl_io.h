@@ -1,5 +1,8 @@
 #include "gotpl.h"
 
+#ifndef __GOTPL_IO__H
+#define __GOTPL_IO__H
+
 typedef struct gotpl_input_stream gotpl_input_stream;
 typedef struct gotpl_output_stream gotpl_output_stream;
 
@@ -38,3 +41,5 @@ gotpl_bool gotpl_create_std_output_stream(gotpl_output_stream* os,
 		gotpl_i8 * path);
 gotpl_bool gotpl_create_std_input_stream(gotpl_input_stream* is,
 		gotpl_i8 * path, gotpl_encoding encoding);
+
+#endif
