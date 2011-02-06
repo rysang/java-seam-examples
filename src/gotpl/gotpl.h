@@ -1,4 +1,15 @@
 //Defining the types
+#define _GOTPL_DEBUG 1
+
+#ifdef _GOTPL_DEBUG
+#include <stdio.h>
+#define GOTPL_DEBUG(msg) fprintf(stdin,"DEBUG: %s line: %i file: %s", msg, __LINE__ ,__FILE__)
+#define GOTPL_ERROR(msg) fprintf(stderr,"ERROR: %s line: %i file: %s", msg, __LINE__ ,__FILE__)
+#else
+#define GOTPL_DEBUG(msg)
+#define GOTPL_ERROR(msg)
+#endif
+
 typedef unsigned char gotpl_ui8;
 typedef signed char gotpl_i8;
 
