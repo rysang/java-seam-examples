@@ -82,4 +82,37 @@ typedef gotpl_ui gotpl_bool;
 #define gotpl_true 1
 #define gotpl_false 0
 
+//define complex types
+typedef struct gotpl_object_array gotpl_object_array;
+typedef struct gotpl_object_array gotpl_object_list;
+typedef struct gotpl_object_map gotpl_object_map;
+
+typedef enum {
+	gotpl_type_int,
+	gotpl_type_uint,
+	gotpl_type_float,
+	gotpl_type_bool,
+	gotpl_type_string,
+	gotpl_type_array,
+	gotpl_type_list,
+	gotpl_type_map
+
+} gotpl_type;
+
+typedef union {
+	gotpl_i v_i;
+	gotpl_ui v_ui;
+	gotpl_f32 v_f32;
+	gotpl_bool v_bool;
+	gotpl_i8* v_str;
+	gotpl_object_array* v_array;
+	gotpl_object_list* v_list;
+	gotpl_object_map* v_map;
+} gotpl_value;
+
+typedef struct {
+	gotpl_type o_type;
+	gotpl_value o_value;
+} gotpl_object;
+
 #endif

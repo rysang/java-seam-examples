@@ -1,5 +1,6 @@
 #include "gotpl/gotpl_io.h"
 #include "gotpl/gotpl_pool.h"
+#include "gotpl/gotpl_object_array.h"
 #include <stdio.h>
 
 int main() {
