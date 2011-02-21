@@ -84,7 +84,8 @@ typedef gotpl_ui gotpl_bool;
 
 //define complex types
 typedef struct gotpl_object_array gotpl_object_array;
-typedef struct gotpl_object_array gotpl_object_list;
+typedef struct gotpl_object_list gotpl_object_list;
+typedef struct gotpl_object_list_iterator gotpl_object_list_iterator;
 typedef struct gotpl_object_map gotpl_object_map;
 
 typedef enum {
