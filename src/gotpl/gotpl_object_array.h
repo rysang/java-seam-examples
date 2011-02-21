@@ -3,6 +3,6 @@
 #ifndef __GOTPL_OBJECT_ARRAY__H
 #define __GOTPL_OBJECT_ARRAY__H
 
-DEFINE_ARRAY(object, gotpl_object*)
+DEFINE_ARRAY(object, gotpl_object)
 
 #endif
