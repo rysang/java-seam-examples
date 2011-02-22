@@ -4,14 +4,14 @@
 #ifndef __GOTPL_OBJECT_MAP__H
 #define __GOTPL_OBJECT_MAP__H
 
-//TODO: fix this
-gotpl_object_array* gotpl_object_map_create(gotpl_i initial_size,
-		gotpl_pool* pool);
-gotpl_i gotpl_object_array_add(gotpl_object_array* owner, gotpl_object* obj);
-gotpl_i gotpl_object_array_remove(gotpl_object_array* owner, gotpl_ui index);
-gotpl_object* gotpl_object_array_get(gotpl_object_array* owner, gotpl_ui index);
-gotpl_i gotpl_object_array_insert(gotpl_object_array* owner, gotpl_ui index,
+gotpl_object_map
+		* gotpl_object_map_create(gotpl_ui array_size, gotpl_pool* pool);
+gotpl_ui gotpl_object_map_put(gotpl_object_map* owner, gotpl_i8* name,
 		gotpl_object* obj);
-gotpl_ui gotpl_object_array_length(gotpl_object_array* owner);
+gotpl_i gotpl_object_map_remove(gotpl_object_map* owner, gotpl_i8* name);
+gotpl_object* gotpl_object_map_get(gotpl_object_map* owner, gotpl_i8* name);
+gotpl_i gotpl_object__insert(gotpl_object_map* owner, gotpl_ui index,
+		gotpl_object* obj);
+gotpl_ui gotpl_object_map_element_count(gotpl_object_map* owner);
 
 #endif

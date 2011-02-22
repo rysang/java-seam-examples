@@ -2,10 +2,10 @@
 #include "gotpl/gotpl_pool.h"
 #include "gotpl/gotpl_object_array.h"
 #include "gotpl/gotpl_object_list.h"
+#include "3rd_party/super_fast_hash.h"
 #include <stdio.h>
 
 int main() {
-
 	gotpl_input_stream is;
 	gotpl_create_std_input_stream(&is, "test.txt", gotpl_enc_utf8);
 
