@@ -8,16 +8,17 @@
 
 int main() {
 	gotpl_input_stream is;
-	gotpl_create_std_input_stream(&is, "test.txt", gotpl_enc_utf8);
+	if (!gotpl_create_std_input_stream(&is, "test.txt", gotpl_enc_utf8)) {
+		GOTPL_ERROR("Failed to create stream.");
+		return -1;
+	}
 
-	/*
-	 gotpl_i count;
-	 while (is.has_more(&is)) {
-	 count = is.read(&is);
-	 printf("%i", count);
-	 }
-	 printf("\r\n");
-	 */
+	gotpl_i count;
+	while (is.has_more(&is)) {
+		count = is.read(&is);
+		printf("%i", count);
+	}
+	printf("\r\n");
 	is.close(&is);
 
 	gotpl_pool* pool = 0;
@@ -43,6 +44,10 @@ int main() {
 
 	gotpl_object_map* map = gotpl_object_map_create(1024, pool);
 	gotpl_object_map_put(map, "test", &obj);
+	gotpl_object_map_put(map, "test1", &obj);
+	gotpl_object_map_put(map, "test12", &obj);
+	gotpl_object_map_put(map, "test123", &obj);
+	gotpl_object_map_put(map, "test123sdkjfhjksdfhsdkfhsdjfhsdjkfdjsfhsjkdfsdjkf", &obj);
 	gotpl_object_map_remove(map, "test");
 	gotpl_object_map_remove(map, "test");
 
