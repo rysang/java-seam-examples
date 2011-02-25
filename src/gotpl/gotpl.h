@@ -95,6 +95,9 @@ typedef struct gotpl_tag_array gotpl_tag_array;
 typedef struct gotpl_tag_map gotpl_tag_list;
 typedef struct gotpl_tag_map gotpl_tag_map;
 
+//template stuff
+typedef struct gotpl_template gotpl_template;
+
 typedef enum {
 	gotpl_type_int,
 	gotpl_type_uint,

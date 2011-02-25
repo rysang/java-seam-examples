@@ -14,8 +14,8 @@ typedef gotpl_bool (*gotpl_tag_destroy_t)(gotpl_tag* owner);
 struct gotpl_tag {
 	gotpl_i8* name;
 	gotpl_ui8* _private;
-	gotpl_ui uuid;
 	gotpl_tag_list* children;
+	gotpl_tag_init_t init;
 	gotpl_tag_execute_t execute;
 	gotpl_tag_destroy_t destroy;
 };
