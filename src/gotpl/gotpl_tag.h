@@ -17,6 +17,7 @@ struct gotpl_tag {
 	gotpl_tag_list* children;
 	gotpl_tag_init_t init;
 	gotpl_tag_execute_t execute;
+	gotpl_tag_execute_t end_execute;
 	gotpl_tag_destroy_t destroy;
 };
 

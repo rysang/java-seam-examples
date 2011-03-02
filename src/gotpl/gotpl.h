@@ -88,6 +88,10 @@ typedef struct gotpl_object_list gotpl_object_list;
 typedef struct gotpl_object_list_iterator gotpl_object_list_iterator;
 typedef struct gotpl_object_map gotpl_object_map;
 
+//generic stack
+
+typedef struct gotpl_stack gotpl_stack;
+
 //define tag stuff.
 typedef struct gotpl_tag gotpl_tag;
 typedef struct gotpl_tag_context gotpl_tag_context;
