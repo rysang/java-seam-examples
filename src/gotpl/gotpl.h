@@ -89,14 +89,17 @@ typedef struct gotpl_object_list_iterator gotpl_object_list_iterator;
 typedef struct gotpl_object_map gotpl_object_map;
 
 //generic stack
-
 typedef struct gotpl_stack gotpl_stack;
+
+//parser
+typedef struct gotpl_parser gotpl_parser;
 
 //define tag stuff.
 typedef struct gotpl_tag gotpl_tag;
 typedef struct gotpl_tag_context gotpl_tag_context;
 typedef struct gotpl_tag_array gotpl_tag_array;
-typedef struct gotpl_tag_map gotpl_tag_list;
+typedef struct gotpl_tag_list gotpl_tag_list;
+typedef struct gotpl_tag_list_iterator gotpl_tag_list_iterator;
 typedef struct gotpl_tag_map gotpl_tag_map;
 
 //template stuff
@@ -128,6 +131,9 @@ typedef union {
 typedef struct {
 	gotpl_type o_type;
 	gotpl_value o_value;
+	gotpl_ui o_string_length;
 } gotpl_object;
+
+#define gotpl_default_map_size 1024
 
 #endif
