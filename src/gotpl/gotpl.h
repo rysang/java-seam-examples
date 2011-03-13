@@ -83,10 +83,14 @@ typedef gotpl_ui gotpl_bool;
 #define gotpl_false 0
 
 //define complex types
+typedef struct gotpl_object gotpl_object;
 typedef struct gotpl_object_array gotpl_object_array;
 typedef struct gotpl_object_list gotpl_object_list;
 typedef struct gotpl_object_list_iterator gotpl_object_list_iterator;
 typedef struct gotpl_object_map gotpl_object_map;
+
+//allocation pool
+typedef struct gotpl_pool gotpl_pool;
 
 //generic stack
 typedef struct gotpl_stack gotpl_stack;
@@ -105,6 +109,10 @@ typedef struct gotpl_tag_map gotpl_tag_map;
 //template stuff
 typedef struct gotpl_template gotpl_template;
 
+//Typedef for the function prototype
+typedef gotpl_object* (*gotpl_function_t)(gotpl_object_array* params,
+		gotpl_pool* pool);
+
 typedef enum {
 	gotpl_type_int,
 	gotpl_type_uint,
@@ -113,7 +121,8 @@ typedef enum {
 	gotpl_type_string,
 	gotpl_type_array,
 	gotpl_type_list,
-	gotpl_type_map
+	gotpl_type_map,
+	gotpl_type_function
 
 } gotpl_type;
 
@@ -126,13 +135,14 @@ typedef union {
 	gotpl_object_array* v_array;
 	gotpl_object_list* v_list;
 	gotpl_object_map* v_map;
+	gotpl_function_t v_func;
 } gotpl_value;
 
-typedef struct {
+struct gotpl_object {
 	gotpl_type o_type;
 	gotpl_value o_value;
 	gotpl_ui o_string_length;
-} gotpl_object;
+};
 
 #define gotpl_default_map_size 1024
 

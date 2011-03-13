@@ -4,6 +4,7 @@
 #include "gotpl/gotpl_object_list.h"
 #include "3rd_party/super_fast_hash.h"
 #include "gotpl/gotpl_object_map.h"
+#include "gotpl/gotpl_util.h"
 #include <stdio.h>
 
 int main() {
@@ -31,9 +32,8 @@ int main() {
 	gotpl_pool_clear(pool);
 
 	gotpl_object_list* list = gotpl_object_list_create(pool);
-	gotpl_object obj;
-	obj.o_type = gotpl_type_int;
-	obj.o_value.v_i = 1000;
+	gotpl_define_int(obj,100);
+	gotpl_define_float(obj1,100000);
 
 	gotpl_object_list_add(list, &obj);
 	gotpl_object_list_add(list, &obj);
@@ -47,7 +47,8 @@ int main() {
 	gotpl_object_map_put(map, "test1", &obj);
 	gotpl_object_map_put(map, "test12", &obj);
 	gotpl_object_map_put(map, "test123", &obj);
-	gotpl_object_map_put(map, "test123sdkjfhjksdfhsdkfhsdjfhsdjkfdjsfhsjkdfsdjkf", &obj);
+	gotpl_object_map_put(map,
+			"test123sdkjfhjksdfhsdkfhsdjfhsdjkfdjsfhsjkdfsdjkf", &obj);
 	gotpl_object_map_remove(map, "test");
 	gotpl_object_map_remove(map, "test");
 
