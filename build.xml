@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="flex-part" default="main">
+	<description>
+            The flex part compilation of this project.
+    </description>
+
+	<property name="FLEX_HOME" value="/opt/flex" />
+	<taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar" />
+
+	<target name="main">
+		<mxmlc file="${basedir}/src/main/flex/Main.mxml" output="${basedir}/src/main/webapp/flash/Main.swf">
+			<load-config filename="${FLEX_HOME}/frameworks/flex-config.xml" />
+			<source-path path-element="${FLEX_HOME}/frameworks" />
+		</mxmlc>
+	</target>
+
+</project>

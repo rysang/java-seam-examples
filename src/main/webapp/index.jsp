@@ -13,10 +13,10 @@
 
 <html>
 <body>
-<object width="550" height="400">
-	<param name="movie" value="flash/flex-part-1.0-SNAPSHOT.swf">
-	<embed src="flash/flex-part-1.0-SNAPSHOT.swf" width="100%"
-		height="100%">
-	</embed> </object>
+	<object width="550" height="400">
+		<param name="movie" value="flash/flex-part-1.0-SNAPSHOT.swf">
+		<embed src="flash/Main.swf" width="100%" height="100%">
+		</embed>
+	</object>
 </body>
 </html>

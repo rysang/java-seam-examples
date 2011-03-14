@@ -14,6 +14,10 @@
 	<packaging>war</packaging>
 	<name>web-part Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+	
+	<properties>
+		<current.dir>${basedir}</current.dir>
+	</properties>
 
 	<repositories>
 		<repository>
@@ -35,6 +39,27 @@
 	<build>
 		<finalName>web-part</finalName>
 		<plugins>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<configuration>
+							<target>
+								<echo message="Calling flex ant build script." />
+								<subant inheritall="true">
+									<fileset dir="${basedir}" includes="build.xml" />
+								</subant>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
