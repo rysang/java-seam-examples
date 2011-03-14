@@ -5,14 +5,22 @@
     </description>
 
 	<property name="FLEX_HOME" value="/opt/flex" />
+	<property name="flex.basedir" value="${basedir}/src/main/flex" />
+	<property name="flex.outputdir" value="${basedir}/src/main/webapp/flash" />
+	<property name="locales" value="en_US,ro_RO" />
+
 	<taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar" />
 
 	<target name="main">
-		<mxmlc  file="${basedir}/src/main/flex/Main.mxml" 
-				output="${basedir}/src/main/webapp/flash/Main.swf" 
-				incremental="true"
-				allow-source-path-overlap="true"
-				locale="en_US,ro_RO">
+		<mxmlc file="${flex.basedir}/Main.mxml" output="${flex.outputdir}/Main.swf" 
+			incremental="true" allow-source-path-overlap="true" locale="${locales}">
+			<load-config filename="${FLEX_HOME}/frameworks/flex-config.xml" />
+			<source-path path-element="${FLEX_HOME}/frameworks" />
+			<source-path path-element="${basedir}/src/main/flex/locale/{locale}" />
+		</mxmlc>
+
+		<mxmlc file="${flex.basedir}/Login.mxml" output="${flex.outputdir}/Login.swf" 
+			incremental="true" allow-source-path-overlap="true" locale="${locales}">
 			<load-config filename="${FLEX_HOME}/frameworks/flex-config.xml" />
 			<source-path path-element="${FLEX_HOME}/frameworks" />
 			<source-path path-element="${basedir}/src/main/flex/locale/{locale}" />
