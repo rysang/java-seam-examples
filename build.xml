@@ -8,7 +8,7 @@
 	<taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar" />
 
 	<target name="main">
-		<mxmlc file="${basedir}/src/main/flex/Main.mxml" output="${basedir}/src/main/webapp/flash/Main.swf">
+		<mxmlc file="${basedir}/src/main/flex/Main.mxml" output="${basedir}/src/main/webapp/flash/Main.swf" incremental="true">
 			<load-config filename="${FLEX_HOME}/frameworks/flex-config.xml" />
 			<source-path path-element="${FLEX_HOME}/frameworks" />
 		</mxmlc>

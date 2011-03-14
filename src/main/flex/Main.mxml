@@ -1,16 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
-	xmlns="*" layout="vertical" creationComplete="initApp()">
+<?xml version="1.0"?>
+
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+
+	<mx:Panel title="Created by the flex maven archetype (1.0)"
+		height="75%" width="75%" paddingTop="10" paddingLeft="10">
+		<mx:VBox horizontalAlign="center" width="100%">
+			<mx:Button label="Press Ok" click="send_data()" />
+		</mx:VBox>
+
+
+	</mx:Panel>
+
+	<mx:HTTPService id="userRequest" url="/web-part/rest/status"
+		method="GET" fault="onFail(event)" result="onSuccess(event)" />
+
 	<mx:Script>
         <![CDATA[
-            private var myGreeter:Greeter = new Greeter();
-            
-            public function initApp():void 
-            {
-                // says hello at the start, and asks for the user's name
-                mainTxt.text = myGreeter.sayHello();
+        	import mx.controls.Alert;
+            import mx.rpc.http.HTTPService;
+            import mx.rpc.events.ResultEvent;
+            import mx.rpc.events.FaultEvent;
+            import org.test.Greeter;
+        	
+        
+        	private function onSuccess(event:ResultEvent): void {
+        		var greeter:Greeter = new Greeter();
+        		
+        		Alert.show("".concat(event.result.statusInfoBean.status , "\n" ,
+        		event.result.statusInfoBean.tonerRemaining , "\n" ,
+        		event.result.statusInfoBean.jobs.name , "\n" ,
+        		event.result.statusInfoBean.jobs.status , "\n" ,
+        		event.result.statusInfoBean.jobs.pages));
+        	}
+        
+        	private function onFail(event:FaultEvent): void {
+                Alert.show(event.fault.toString());
+        	}
+        
+            private function send_data():void {
+                userRequest.send();
             }
         ]]>
 	</mx:Script>
-	<mx:TextArea id="mainTxt" width="400" />
+
+
+	<mx:Array id="dataArray">
+		<mx:int>1020</mx:int>
+		<mx:String>Hey man! !!!!!</mx:String>
+	</mx:Array>
 </mx:Application>
