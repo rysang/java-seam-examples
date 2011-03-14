@@ -1,13 +1,19 @@
 <?xml version="1.0"?>
 
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" initialize="init()">
 
-	<mx:Panel title="Created by the flex maven archetype (1.0)"
+
+	<mx:Metadata>
+		[ResourceBundle("labels")]
+	</mx:Metadata>
+
+
+	<mx:Panel title="{resourceManager.getString('labels','org.flex.test.app.name')}"
 		height="75%" width="75%" paddingTop="10" paddingLeft="10">
+		
 		<mx:VBox horizontalAlign="center" width="100%">
 			<mx:Button label="Press Ok" click="send_data()" />
 		</mx:VBox>
-
 
 	</mx:Panel>
 
@@ -22,7 +28,10 @@
             import mx.rpc.events.FaultEvent;
             import org.test.Greeter;
         	
-        
+        	private function init(): void {
+        	   resourceManager.localeChain = [ "ro_RO" ];
+        	}
+        	
         	private function onSuccess(event:ResultEvent): void {
         		var greeter:Greeter = new Greeter();
         		

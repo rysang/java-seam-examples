@@ -8,9 +8,14 @@
 	<taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar" />
 
 	<target name="main">
-		<mxmlc file="${basedir}/src/main/flex/Main.mxml" output="${basedir}/src/main/webapp/flash/Main.swf" incremental="true">
+		<mxmlc  file="${basedir}/src/main/flex/Main.mxml" 
+				output="${basedir}/src/main/webapp/flash/Main.swf" 
+				incremental="true"
+				allow-source-path-overlap="true"
+				locale="en_US,ro_RO">
 			<load-config filename="${FLEX_HOME}/frameworks/flex-config.xml" />
 			<source-path path-element="${FLEX_HOME}/frameworks" />
+			<source-path path-element="${basedir}/src/main/flex/locale/{locale}" />
 		</mxmlc>
 	</target>
 
