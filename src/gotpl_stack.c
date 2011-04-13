@@ -81,6 +81,16 @@ gotpl_i8* gotpl_stack_pop(gotpl_stack* stack) {
 	return unit->value;
 }
 
+gotpl_i8* gotpl_stack_peek(gotpl_stack* stack) {
+
+	gotpl_stack_unit* unit = stack->last;
+	if (!unit->prev) {
+		return 0;
+	}
+
+	return stack->last;
+}
+
 gotpl_ui gotpl_stack_size(gotpl_stack* stack) {
 	return stack->stack_size;
 }

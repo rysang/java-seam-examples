@@ -187,16 +187,23 @@ gotpl_tag_list_iterator* gotpl_tag_list_iterator_create(gotpl_tag_list* list) {
 }
 
 gotpl_tag* gotpl_tag_list_iterator_next(gotpl_tag_list_iterator* iterator) {
-	if (iterator->current->next) {
-		iterator->current = iterator->current->next;
-		return &iterator->current->tag;
+	gotpl_tag* current = 0;
+
+	if (iterator->current) {
+		current = &iterator->current->tag;
+
+		if (iterator->current->next) {
+			iterator->current = iterator->current->next;
+		} else {
+			iterator->current = 0;
+		}
 	}
 
-	return 0;
+	return current;
 }
 
 gotpl_bool gotpl_tag_list_iterator_has_more(gotpl_tag_list_iterator* iterator) {
-	return iterator->current->next != 0;
+	return iterator->current != 0;
 }
 
 gotpl_void gotpl_tag_list_iterator_reset(gotpl_tag_list_iterator* iterator) {

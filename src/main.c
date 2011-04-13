@@ -5,54 +5,54 @@
 #include "3rd_party/super_fast_hash.h"
 #include "gotpl/gotpl_object_map.h"
 #include "gotpl/gotpl_util.h"
+#include "gotpl/gotpl_parsers.h"
+#include "gotpl/gotpl_tag.h"
 #include <stdio.h>
 
-int main() {
+gotpl_pool* pool = 0;
+
+static gotpl_bool testParser() {
+
 	gotpl_input_stream is;
 	if (!gotpl_create_std_input_stream(&is, "test.txt", gotpl_enc_utf8)) {
 		GOTPL_ERROR("Failed to create stream.");
-		return -1;
+		return gotpl_false;
 	}
 
-	gotpl_i count;
-	while (is.has_more(&is)) {
-		count = is.read(&is);
-		printf("%i", count);
+	gotpl_tag_map* dummy_map = gotpl_tag_map_create(2, pool);
+	gotpl_parser* parser = gotpl_utf8parser_create(pool);
+
+	if (parser && dummy_map) {
+		GOTPL_DEBUG("Created parser and empty map.");
+
+		gotpl_tag_list* list = gotpl_utf8parser_parse(parser, &is, dummy_map);
+		GOTPL_DEBUG_I4("List length: ",gotpl_tag_list_length(list));
+
+		gotpl_output_stream os;
+		if (!gotpl_create_std_output_stream(&os, "output.txt")) {
+			GOTPL_ERROR("Failed to create stream.");
+			return gotpl_false;
+		}
+
+		gotpl_tag_list_iterator* iterator =
+				gotpl_tag_list_iterator_create(list);
+		while (gotpl_tag_list_iterator_has_more(iterator)) {
+			gotpl_tag* tag = gotpl_tag_list_iterator_next(iterator);
+			tag->execute(tag, 0, 0, &os);
+		}
+
+		os.close(&os);
 	}
-	printf("\r\n");
-	is.close(&is);
 
-	gotpl_pool* pool = 0;
-	gotpl_pool_create(&pool, 1024);
-	gotpl_pool_alloc(pool, 50);
-	gotpl_pool_alloc(pool, 50);
-	gotpl_pool_alloc(pool, 150);
-	gotpl_pool_alloc(pool, 50);
-	gotpl_pool_alloc(pool, 5);
-	gotpl_pool_clear(pool);
+	return gotpl_false;
+}
 
-	gotpl_object_list* list = gotpl_object_list_create(pool);
-	gotpl_define_int(obj,100);
-	gotpl_define_float(obj1,100000);
+int main() {
 
-	gotpl_object_list_add(list, &obj);
-	gotpl_object_list_add(list, &obj);
-	gotpl_object_list_add(list, &obj);
-	gotpl_object_list_add(list, &obj);
-	printf("List size: %i \n", gotpl_object_list_length(list));
-	gotpl_object_list_remove(list, 0);
-
-	gotpl_object_map* map = gotpl_object_map_create(1024, pool);
-	gotpl_object_map_put(map, "test", &obj);
-	gotpl_object_map_put(map, "test1", &obj);
-	gotpl_object_map_put(map, "test12", &obj);
-	gotpl_object_map_put(map, "test123", &obj);
-	gotpl_object_map_put(map,
-			"test123sdkjfhjksdfhsdkfhsdjfhsdjkfdjsfhsjkdfsdjkf", &obj);
-	gotpl_object_map_remove(map, "test");
-	gotpl_object_map_remove(map, "test");
-
-	gotpl_pool_destroy(&pool);
+	if (gotpl_pool_create(&pool, 1024 * 1024 * 5)) {
+		testParser();
+		gotpl_pool_destroy(&pool);
+	}
 
 	return 0;
 }

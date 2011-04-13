@@ -8,9 +8,11 @@
 
 #ifdef _GOTPL_DEBUG
 #include <stdio.h>
+#define GOTPL_DEBUG_I4(msg,i) printf("DEBUG: %s  %i line: %i file: %s\n", msg, i, __LINE__ ,__FILE__);fflush(stdin)
 #define GOTPL_DEBUG(msg) printf("DEBUG: %s line: %i file: %s\n", msg, __LINE__ ,__FILE__);fflush(stdin)
 #define GOTPL_ERROR(msg) fprintf(stderr,"ERROR: %s line: %i file: %s\n", msg, __LINE__ ,__FILE__);fflush(stderr)
 #else
+#define GOTPL_DEBUG_I4(msg,i)
 #define GOTPL_DEBUG(msg)
 #define GOTPL_ERROR(msg)
 #endif
@@ -141,9 +143,12 @@ typedef union {
 struct gotpl_object {
 	gotpl_type o_type;
 	gotpl_value o_value;
+
+	//only if string otherwise 0
 	gotpl_ui o_string_length;
 };
 
 #define gotpl_default_map_size 1024
+#define gotpl_default_parser_buffer_size 1024
 
 #endif
