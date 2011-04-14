@@ -148,7 +148,11 @@ struct gotpl_object {
 	gotpl_ui o_string_length;
 };
 
+//Hash maps array size
 #define gotpl_default_map_size 1024
+//parser buffer size for text chunks, they will be segmented to this max value of bytes.
 #define gotpl_default_parser_buffer_size 1024
+//Maximum size of an indirection it's allocated on the stack so be careful.
+#define gotpl_default_indirection_size 64
 
 #endif

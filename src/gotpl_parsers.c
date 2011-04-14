@@ -69,10 +69,6 @@ gotpl_parser* gotpl_utf8parser_create(gotpl_pool* pool) {
 	return 0;
 }
 
-static gotpl_bool gotpl_buffer_req_unload(gotpl_ui count) {
-	return gotpl_false;
-}
-
 gotpl_tag_list* gotpl_utf8parser_parse(gotpl_parser* parser,
 		gotpl_input_stream* in, gotpl_tag_map* tags) {
 
@@ -86,6 +82,7 @@ gotpl_tag_list* gotpl_utf8parser_parse(gotpl_parser* parser,
 	gotpl_i ch_byte_count = 0;
 	gotpl_bool in_tag = gotpl_false;
 	gotpl_bool in_expr = gotpl_false;
+	gotpl_bool in_expr_deep = gotpl_false;
 
 	while (in->has_more(in)) {
 		ch_byte_count = in->read(in);

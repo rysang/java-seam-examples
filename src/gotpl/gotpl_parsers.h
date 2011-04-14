@@ -7,7 +7,9 @@
 
 gotpl_bool gotpl_parser_is_cwhitespace(gotpl_ci utf8Char);
 gotpl_bool gotpl_parser_tag_begins(gotpl_ci utf8Char);
+gotpl_bool gotpl_parser_tag_ends(gotpl_ci utf8Char);
 gotpl_bool gotpl_parser_expression_begins(gotpl_ci utf8Char);
+gotpl_bool gotpl_parser_expression_ends(gotpl_ci utf8Char);
 
 gotpl_parser* gotpl_utf8parser_create(gotpl_pool* pool);
 gotpl_tag_list* gotpl_utf8parser_parse(gotpl_parser* parser,
