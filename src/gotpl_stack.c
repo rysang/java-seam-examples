@@ -2,6 +2,7 @@
 
 typedef struct gotpl_stack_unit gotpl_stack_unit;
 
+//TODO REVIEW CODE AND CLEAN IT UP
 struct gotpl_stack_unit {
 
 	gotpl_stack_unit* prev;
@@ -42,14 +43,22 @@ gotpl_stack* gotpl_stack_create(gotpl_pool* pool) {
 	}
 
 	GOTPL_DEBUG("Allocated stack");
-	stack->stack_size = 1;
-	stack->first = stack->last = gotpl_stack_create_unit(pool);
+	stack->stack_size = 0;
+	stack->first = stack->last = 0;
 	stack->pool = pool;
 
 	return stack;
 }
 
 gotpl_void gotpl_stack_push(gotpl_stack* stack, gotpl_i8* gvalue) {
+	stack->stack_size++;
+
+	if (stack->first == stack->last && stack->last == 0) {
+		stack->first = stack->last = gotpl_stack_create_unit(stack->pool);
+		stack->last->value = gvalue;
+		return;
+	}
+
 	gotpl_stack_unit* unit = stack->last;
 
 	if (!unit->next) {
@@ -59,15 +68,12 @@ gotpl_void gotpl_stack_push(gotpl_stack* stack, gotpl_i8* gvalue) {
 			GOTPL_ERROR("Unable to allocate next chunk.");
 			return;
 		}
-
-		stack->stack_size++;
 	}
 
 	GOTPL_DEBUG("Change last value.");
 	unit->next->value = gvalue;
 	unit->next->prev = unit;
 	stack->last = unit->next;
-
 }
 
 gotpl_i8* gotpl_stack_pop(gotpl_stack* stack) {
@@ -88,7 +94,7 @@ gotpl_i8* gotpl_stack_peek(gotpl_stack* stack) {
 		return 0;
 	}
 
-	return stack->last;
+	return stack->last->value;
 }
 
 gotpl_ui gotpl_stack_size(gotpl_stack* stack) {

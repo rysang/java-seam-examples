@@ -7,6 +7,7 @@
 #include "gotpl/gotpl_util.h"
 #include "gotpl/gotpl_parsers.h"
 #include "gotpl/gotpl_tag.h"
+#include "gotpl/gotpl_tag_list.h"
 #include <stdio.h>
 
 gotpl_pool* pool = 0;

@@ -102,7 +102,7 @@ typedef struct gotpl_parser gotpl_parser;
 
 //define tag stuff.
 typedef struct gotpl_tag gotpl_tag;
-typedef struct gotpl_tag_context gotpl_tag_context;
+typedef struct gotpl_context gotpl_context;
 typedef struct gotpl_tag_array gotpl_tag_array;
 typedef struct gotpl_tag_list gotpl_tag_list;
 typedef struct gotpl_tag_list_iterator gotpl_tag_list_iterator;

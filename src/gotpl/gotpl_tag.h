@@ -1,11 +1,12 @@
 #include "gotpl.h"
 #include "gotpl_io.h"
+#include "gotpl_object_map.h"
 
 #ifndef __GOTPL_TAG__H
 #define __GOTPL_TAG__H
 
 typedef gotpl_bool (*gotpl_tag_execute_t)(gotpl_tag* owner, gotpl_tag* parent,
-		gotpl_tag_context* context, gotpl_output_stream* out);
+		gotpl_object_map* context, gotpl_output_stream* out);
 
 //Used on template create to initialize struct.
 typedef gotpl_bool (*gotpl_tag_init_t)(gotpl_tag* owner, gotpl_i8* cmd_line);

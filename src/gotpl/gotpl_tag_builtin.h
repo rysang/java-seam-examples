@@ -11,4 +11,9 @@
 gotpl_tag* gotpl_tag_create_plaintext(gotpl_i8* str, gotpl_ui length,
 		gotpl_pool* pool);
 
+//Expression tag
+#define EXPRESSION_NAME "$$expression$$"
+gotpl_tag* gotpl_tag_create_expression(gotpl_i8* expr, gotpl_ui length,
+		gotpl_pool* pool);
+
 #endif
