@@ -9,6 +9,7 @@
 #include "gotpl/gotpl_tag.h"
 #include "gotpl/gotpl_tag_list.h"
 #include <stdio.h>
+#include <string.h>
 
 gotpl_pool* pool = 0;
 
@@ -48,10 +49,19 @@ static gotpl_bool testParser() {
 	return gotpl_false;
 }
 
+static gotpl_void gotpl_test_expressions() {
+	gotpl_i8* str = "mine.price.sasas. sasa";
+	gotpl_tag* expr_tag = gotpl_tag_create_expression(str, strlen(str), pool);
+
+	GOTPL_DEBUG(expr_tag->name)
+	;
+}
+
 int main() {
 
 	if (gotpl_pool_create(&pool, 1024 * 1024 * 5)) {
-		testParser();
+		//testParser();
+		gotpl_test_expressions();
 		gotpl_pool_destroy(&pool);
 	}
 
