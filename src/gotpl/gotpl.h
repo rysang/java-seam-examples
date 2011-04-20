@@ -11,7 +11,7 @@
 #define GOTPL_DEBUG_I4(msg,i) printf("DEBUG: %s  %i line: %i file: %s\n", msg, i, __LINE__ ,__FILE__);fflush(stdin)
 #define GOTPL_DEBUG(msg) printf("DEBUG: %s line: %i file: %s\n", msg, __LINE__ ,__FILE__);fflush(stdin)
 #define GOTPL_ERROR(msg) fprintf(stderr,"ERROR: %s line: %i file: %s\n", msg, __LINE__ ,__FILE__);fflush(stderr)
-#define GOTPL_ERROR_I4(msg,i) fprintf(stderr,"ERROR: %s  %i line: %i file: %s\n", msg, __LINE__ ,__FILE__);fflush(stderr)
+#define GOTPL_ERROR_I4(msg,i) fprintf(stderr,"ERROR: %s  %i line: %i file: %s\n", msg,i, __LINE__ ,__FILE__);fflush(stderr)
 #else
 #define GOTPL_DEBUG_I4(msg,i)
 #define GOTPL_DEBUG(msg)

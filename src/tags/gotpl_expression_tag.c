@@ -93,7 +93,7 @@ static gotpl_i expr_find_next_indirection(gotpl_object* str, gotpl_i8* expr,
 
 		} else if (expr_is_cwhitespace(expr[i])) {
 
-			//ignore and decrease ,so that increasing index would do noting.
+			//ignore and decrease
 			l_index--;
 
 		} else {

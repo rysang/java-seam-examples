@@ -8,7 +8,7 @@ ARCH=-m32
 all: clean compile link
 
 compile:
-	$(CC) $(CFLAGS) $(ARCH) -c src/*.c src/tags/*.c src/expressions/*.c
+	$(CC) $(CFLAGS) $(ARCH) -c src/*.c src/tags/*.c 
 link:
 	$(CC) $(ARCH) *.o -o $(APP_NAME)
 clean:

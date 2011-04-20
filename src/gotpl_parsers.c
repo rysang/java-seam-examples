@@ -100,6 +100,11 @@ gotpl_tag_list* gotpl_utf8parser_parse(gotpl_parser* parser,
 				return 0;
 			}
 
+			while (in->has_more(in)) {
+				ch_byte_count = in->read(in);
+				count += ch_byte_count;
+			}
+
 		} else {
 
 			//check if utf8 sequence + current bytes count greater than max buffer
