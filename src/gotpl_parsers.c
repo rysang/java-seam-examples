@@ -80,56 +80,29 @@ gotpl_tag_list* gotpl_utf8parser_parse(gotpl_parser* parser,
 
 	gotpl_ui count = 0;
 	gotpl_i ch_byte_count = 0;
+
+	//State machine
+	gotpl_bool in_tag_begin = gotpl_false;
 	gotpl_bool in_tag = gotpl_false;
+	gotpl_bool in_tag_arg_phase = gotpl_false;
+	gotpl_bool in_expr_begin = gotpl_false;
 	gotpl_bool in_expr = gotpl_false;
-	gotpl_bool in_expr_deep = gotpl_false;
 
 	while (in->has_more(in)) {
 		ch_byte_count = in->read(in);
 
-		if (gotpl_parser_tag_begins(in->current_char)) {
-			if (in_tag) {
-				GOTPL_ERROR("Error < and > are not allowed in the definition of a tag.");
-				return 0;
-			}
+		if (in_tag_begin) {
 
-		} else if (gotpl_parser_expression_begins(in->current_char)) {
+		} else if (in_tag) {
 
-			if (in_expr) {
-				GOTPL_ERROR("Error $ is not allowed in the definition of an expression.");
-				return 0;
-			}
+		} else if (in_tag_arg_phase) {
 
-			while (in->has_more(in)) {
-				ch_byte_count = in->read(in);
-				count += ch_byte_count;
-			}
+		} else if (in_expr_begin) {
+
+		} else if (in_expr) {
 
 		} else {
 
-			//check if utf8 sequence + current bytes count greater than max buffer
-			if ((count + ch_byte_count) >= gotpl_default_parser_buffer_size) {
-
-				//if so we must create a plain text tag and put it in the array.
-
-				//check first if we have a parent available.
-				gotpl_tag* parent = (gotpl_tag*) gotpl_stack_peek(
-						parser->parser_tag_stack);
-				gotpl_tag* plain_text = gotpl_tag_create_plaintext(tmp_buffer,
-						count, parser->pool);
-
-				if (parent) {
-					gotpl_tag_list_add(parent->children, plain_text);
-				} else {
-					gotpl_tag_list_add(ret_list, plain_text);
-				}
-
-				count = 0;
-
-			} else {
-				memcpy(tmp_buffer + count, &in->current_char, ch_byte_count);
-				count += ch_byte_count;
-			}
 		}
 	}
 
