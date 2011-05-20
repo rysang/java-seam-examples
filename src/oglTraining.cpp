@@ -7,9 +7,11 @@
 //============================================================================
 
 #include <iostream>
+#include "pools/oglPool.h"
 using namespace std;
 
 int main() {
-	cout << "!!!Hello World!!!" << endl; // prints !!!Hello World!!!
+	oglPool pool;
+
 	return 0;
 }
