@@ -1,17 +1,11 @@
-//============================================================================
-// Name        : oglTraining.cpp
-// Author      : Test
-// Version     :
-// Copyright   : Your copyright notice
-// Description : Hello World in C++, Ansi-style
-//============================================================================
-
-#include <iostream>
 #include "pools/oglPool.h"
-using namespace std;
+#include "init/oglInit.h"
 
-int main() {
-	oglPool pool;
+int main(int argc, char** argv) {
+	oglPool pool(1024 * 1024);
+
+	oglInit init(argc, argv);
+	init.goMain();
 
 	return 0;
 }
