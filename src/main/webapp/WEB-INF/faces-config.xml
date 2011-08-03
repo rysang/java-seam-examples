@@ -2,18 +2,12 @@
 <faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
-	<name>app</name>
-	<managed-bean>
-		<managed-bean-name>userBean</managed-bean-name>
-		<managed-bean-class>com.hascode.tutorial.jsf2_tutorial.bean.UserBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
 
-	<navigation-rule>
-		<from-view-id>/registration.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>success</from-outcome>
-			<to-view-id>/registration_success.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
+	<application>
+		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+	</application>
+
+	<lifecycle>
+		<phase-listener>org.spring.jsf.app.authentication.LoginErrorPhaseListener</phase-listener>
+	</lifecycle>
 </faces-config>

@@ -9,35 +9,38 @@
 	<ui:define name="body">
 		<h:form>
 			<div id="registration">
-				<p:themeSwitcher initialText="Change Theme" buttonPreText="Theme: "/><br/>
-			
-			<p:accordionPanel autoHeight="false">
-				<p:tab title="Nickname">
-					<h:panelGrid columns="2" cellpadding="10">
-						<label>Nickname</label>
-						<h:inputText label="Nickname" id="nname"
-							value="#{userBean.nickname}" required="true" />
-						<h:message for="nname" />
-					</h:panelGrid>
-				</p:tab>
-				<p:tab title="E-Mail">
-					<h:panelGrid columns="2" cellpadding="10">
-						<label>E-Mail</label>
-						<p:autoComplete id="acSimple" value="#{userBean.email}"
-							required="true" validator="#{userBean.validateEmail}"
-							completeMethod="#{userBean.suggestEmail}" />
-						<h:message for="email" />
-					</h:panelGrid>
-				</p:tab>
-				<p:tab title="Birthday">
-					<h:panelGrid columns="2" cellpadding="10">
-						<label>Birthday</label>
-						<p:calendar value="#{userBean.birthday}" required="true" />
-						<h:message for="birthday" />
-					</h:panelGrid>
-				</p:tab>
-			</p:accordionPanel> 
-			<h:commandButton action="success" value="Register" /></div>
+				<p:themeSwitcher initialText="Change Theme" buttonPreText="Theme: " />
+				<br />
+
+				<p:accordionPanel autoHeight="true"
+					style="width: 600px; height: 400px">
+					<p:tab title="Nickname">
+						<h:panelGrid columns="2" cellpadding="10">
+							<label>Nickname</label>
+							<h:inputText label="Nickname" id="nname"
+								value="#{userBean.nickname}" required="true" />
+							<h:message for="nname" />
+						</h:panelGrid>
+					</p:tab>
+					<p:tab title="E-Mail">
+						<h:panelGrid columns="2" cellpadding="10">
+							<label>E-Mail</label>
+							<p:autoComplete id="acSimple" value="#{userBean.email}"
+								required="true" validator="#{userBean.validateEmail}"
+								completeMethod="#{userBean.suggestEmail}" />
+							<h:message for="email" />
+						</h:panelGrid>
+					</p:tab>
+					<p:tab title="Birthday">
+						<h:panelGrid columns="2" cellpadding="10">
+							<label>Birthday</label>
+							<p:calendar value="#{userBean.birthday}" required="true" />
+							<h:message for="birthday" />
+						</h:panelGrid>
+					</p:tab>
+				</p:accordionPanel>
+				<h:commandButton action="success" value="Register" />
+			</div>
 			<h:messages />
 		</h:form>
 		<p:idleMonitor timeout="5000" onidle="idleWatcher.show();"
