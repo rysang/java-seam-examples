@@ -60,25 +60,18 @@ static gotpl_void gotpl_test_expressions() {
 
 int main() {
 
-	if (gotpl_pool_create(&pool, 1024 * 1024 * 5)) {
-		//testParser();
-		gotpl_test_expressions();
+	if (!gotpl_pool_create(&pool, 1024 * 1024 * 5)) {
+		GOTPL_ERROR("Failed to alloc pool.");
+		return 0;
 	}
 
-	gotpl_ui* val1 = malloc(sizeof(gotpl_ui));
-	gotpl_ui* val2 = malloc(sizeof(gotpl_ui));
+	gotpl_input_stream is;
+	gotpl_create_std_input_stream(&is, "template.txt", gotpl_enc_utf8);
 
-	*val1 = 12120;
-	*val2 = 12121;
+	gotpl_parser* parser = gotpl_utf8parser_create(pool);
+	gotpl_utf8parser_parse(parser, &is, gotpl_tag_map_create(10, pool));
 
-	gotpl_stack* stack = gotpl_stack_create(pool);
-	gotpl_stack_push(stack, val1);
-	gotpl_stack_push(stack, val2);
-
-	val1 = gotpl_stack_pop(stack);
-	val2 = gotpl_stack_pop(stack);
-	val2 = gotpl_stack_pop(stack);
-
+	is.close(&is);
 	gotpl_pool_destroy(&pool);
 
 	return 0;

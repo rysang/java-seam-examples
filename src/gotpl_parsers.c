@@ -8,7 +8,7 @@
 struct gotpl_parser {
 	gotpl_pool* pool;
 	gotpl_stack* parser_tag_stack;
-	gotpl_stack* char_stack;
+	gotpl_stack* char_index_stack;
 	gotpl_tag_map* available_tags_map;
 };
 
@@ -18,7 +18,7 @@ typedef struct {
 	gotpl_bool in_tag;
 	gotpl_bool in_start_tag_end;
 	gotpl_bool in_end_tag_end;
-	gotpl_bool in_tag_arg_phase;
+	gotpl_bool in_tag_params;
 	gotpl_bool in_expr_begin;
 	gotpl_bool in_expr;
 	gotpl_bool in_expr_end;
@@ -30,7 +30,7 @@ typedef struct {
 	gotpl_ui index;
 
 	//A small stack for previous elements.
-	gotpl_stack* char_stack;
+	gotpl_stack* char_index_stack;
 
 	//reusable tag stack
 	gotpl_stack* parser_tag_stack;
@@ -42,7 +42,7 @@ typedef struct {
 	gotpl_tag_map* available_tags;
 
 	//return list
-	gotpl_tag_list* ret_list
+	gotpl_tag_list* ret_list;
 
 } gotpl_state;
 
@@ -56,6 +56,9 @@ static gotpl_bool gotpl_parser_handle_slash(gotpl_state* state);
 static gotpl_bool gotpl_parser_handle_open_accolade(gotpl_state* state);
 static gotpl_bool gotpl_parser_handle_close_accolade(gotpl_state* state);
 static gotpl_bool gotpl_parser_handle_plain_text(gotpl_state* state);
+static gotpl_bool gotpl_parser_handle_tag_name_text(gotpl_state* state);
+static gotpl_bool gotpl_parser_handle_tag_params_text(gotpl_state* state);
+static gotpl_bool gotpl_parser_handle_expr_text(gotpl_state* state);
 
 static gotpl_bool gotpl_parser_handle_next_char(gotpl_state* state);
 static gotpl_void gotpl_parser_reset_state(gotpl_state* state);
@@ -87,8 +90,8 @@ gotpl_parser* gotpl_utf8parser_create(gotpl_pool* pool) {
 			return 0;
 		}
 
-		parser->char_stack = gotpl_stack_create(pool);
-		if (!parser->char_stack) {
+		parser->char_index_stack = gotpl_stack_create(pool);
+		if (!parser->char_index_stack) {
 			GOTPL_ERROR("Failed to create a char stack.");
 			return 0;
 		}
@@ -122,17 +125,17 @@ gotpl_tag_list* gotpl_utf8parser_parse(gotpl_parser* parser,
 	memset(state, '\0', sizeof(gotpl_state));
 	state->tags = tags;
 	state->available_tags = parser->available_tags_map;
-	state->char_stack = parser->char_stack;
+	state->char_index_stack = parser->char_index_stack;
 	state->parser_tag_stack = parser->parser_tag_stack;
-
-	//gotpl_stack_create()
+	state->tags = tags;
 
 	while (in->has_more(in)) {
 		state->current_value_size = in->read(in);
 		state->current_value = in->current_char;
 
 		if (!gotpl_parser_handle_next_char(state)) {
-			//Report error
+			GOTPL_ERROR("Error occured.");
+			break;
 		}
 	}
 
@@ -142,11 +145,13 @@ gotpl_tag_list* gotpl_utf8parser_parse(gotpl_parser* parser,
 static gotpl_void gotpl_parser_reset_state(gotpl_state* state) {
 	state->in_start_tag_begin = state->in_end_tag_begin = state->in_tag
 			= state->in_start_tag_end = state->in_end_tag_end
-					= state->in_tag_arg_phase = state->in_expr_begin
+					= state->in_tag_params = state->in_expr_begin
 							= state->in_expr = state->in_expr_end = gotpl_false;
 }
 
 static gotpl_bool gotpl_parser_handle_next_char(gotpl_state* state) {
+	gotpl_stack_push(state->char_index_stack,
+			(gotpl_i8*) state->current_value_size);
 
 	switch (state->current_value.m8[0]) {
 	case '<':
@@ -174,7 +179,7 @@ static gotpl_bool gotpl_parser_handle_next_char(gotpl_state* state) {
 		if (gotpl_parser_is_cwhitespace(state->current_value)) {
 
 		} else {
-			//handle plain text.
+			return gotpl_parser_handle_plain_text(state);
 		}
 		break;
 	}
@@ -183,34 +188,397 @@ static gotpl_bool gotpl_parser_handle_next_char(gotpl_state* state) {
 }
 
 static gotpl_bool gotpl_parser_handle_lt(gotpl_state* state) {
+	if (state->in_start_tag_begin) {
+		return gotpl_parser_handle_plain_text(state);
 
-	return gotpl_false;
+	} else if (state->in_start_tag_end) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_tag) {
+		return gotpl_parser_handle_tag_name_text(state);
+
+	} else if (state->in_tag_params) {
+		return gotpl_parser_handle_tag_params_text(state);
+
+	} else if (state->in_expr_begin) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_expr) {
+		return gotpl_parser_handle_expr_text(state);
+
+	} else if (state->in_expr_end) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_end_tag_begin) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_end_tag_end) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+	}
+
+	else {
+
+		gotpl_parser_reset_state(state);
+		state->in_start_tag_begin = gotpl_true;
+		gotpl_stack_push(state->char_index_stack, state->index);
+		state->index += state->current_value_size;
+	}
+
+	return gotpl_true;
 }
 
 static gotpl_bool gotpl_parser_handle_gt(gotpl_state* state) {
+
+	if (state->in_start_tag_begin) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_start_tag_end) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_tag) {
+		return gotpl_parser_handle_tag_name_text(state);
+
+	} else if (state->in_tag_params) {
+		return gotpl_parser_handle_tag_params_text(state);
+
+	} else if (state->in_expr_begin) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_expr) {
+		return gotpl_parser_handle_expr_text(state);
+
+	} else if (state->in_expr_end) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_end_tag_begin) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_end_tag_end) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+	}
+
 	return gotpl_false;
 }
 
 static gotpl_bool gotpl_parser_handle_diez(gotpl_state* state) {
+	if (state->in_start_tag_begin) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_start_tag_end) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_tag) {
+		return gotpl_parser_handle_tag_name_text(state);
+
+	} else if (state->in_tag_params) {
+		return gotpl_parser_handle_tag_params_text(state);
+
+	} else if (state->in_expr_begin) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_expr) {
+		return gotpl_parser_handle_expr_text(state);
+
+	} else if (state->in_expr_end) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_end_tag_begin) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_end_tag_end) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+	}
+
 	return gotpl_false;
 }
 
 static gotpl_bool gotpl_parser_handle_dollar(gotpl_state* state) {
+	if (state->in_start_tag_begin) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_start_tag_end) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_tag) {
+		return gotpl_parser_handle_tag_name_text(state);
+
+	} else if (state->in_tag_params) {
+		return gotpl_parser_handle_tag_params_text(state);
+
+	} else if (state->in_expr_begin) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_expr) {
+		return gotpl_parser_handle_expr_text(state);
+
+	} else if (state->in_expr_end) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_end_tag_begin) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_end_tag_end) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+	}
+
 	return gotpl_false;
 }
 
 static gotpl_bool gotpl_parser_handle_slash(gotpl_state* state) {
+	if (state->in_start_tag_begin) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_start_tag_end) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_tag) {
+		return gotpl_parser_handle_tag_name_text(state);
+
+	} else if (state->in_tag_params) {
+		return gotpl_parser_handle_tag_params_text(state);
+
+	} else if (state->in_expr_begin) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_expr) {
+		return gotpl_parser_handle_expr_text(state);
+
+	} else if (state->in_expr_end) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_end_tag_begin) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_end_tag_end) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+	}
+
 	return gotpl_false;
 }
 
 static gotpl_bool gotpl_parser_handle_open_accolade(gotpl_state* state) {
+	if (state->in_start_tag_begin) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_start_tag_end) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_tag) {
+		return gotpl_parser_handle_tag_name_text(state);
+
+	} else if (state->in_tag_params) {
+		return gotpl_parser_handle_tag_params_text(state);
+
+	} else if (state->in_expr_begin) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_expr) {
+		return gotpl_parser_handle_expr_text(state);
+
+	} else if (state->in_expr_end) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_end_tag_begin) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_end_tag_end) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+	}
+
 	return gotpl_false;
 }
 
 static gotpl_bool gotpl_parser_handle_close_accolade(gotpl_state* state) {
+	if (state->in_start_tag_begin) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_start_tag_end) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_tag) {
+		return gotpl_parser_handle_tag_name_text(state);
+
+	} else if (state->in_tag_params) {
+		return gotpl_parser_handle_tag_params_text(state);
+
+	} else if (state->in_expr_begin) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_expr) {
+		return gotpl_parser_handle_expr_text(state);
+
+	} else if (state->in_expr_end) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_end_tag_begin) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_end_tag_end) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+	}
+
 	return gotpl_false;
 }
 
 static gotpl_bool gotpl_parser_handle_plain_text(gotpl_state* state) {
+	if (state->in_start_tag_begin) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_start_tag_end) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_tag) {
+		return gotpl_parser_handle_tag_name_text(state);
+
+	} else if (state->in_tag_params) {
+		return gotpl_parser_handle_tag_params_text(state);
+
+	} else if (state->in_expr_begin) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_expr) {
+		return gotpl_parser_handle_expr_text(state);
+
+	} else if (state->in_expr_end) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_end_tag_begin) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_end_tag_end) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+	}
+
+	return gotpl_false;
+}
+
+static gotpl_bool gotpl_parser_handle_tag_name_text(gotpl_state* state) {
+	if (state->in_start_tag_begin) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_start_tag_end) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_tag) {
+		return gotpl_parser_handle_tag_name_text(state);
+
+	} else if (state->in_tag_params) {
+		return gotpl_parser_handle_tag_params_text(state);
+
+	} else if (state->in_expr_begin) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_expr) {
+		return gotpl_parser_handle_expr_text(state);
+
+	} else if (state->in_expr_end) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_end_tag_begin) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_end_tag_end) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+	}
+
+	return gotpl_false;
+}
+
+static gotpl_bool gotpl_parser_handle_tag_params_text(gotpl_state* state) {
+	if (state->in_start_tag_begin) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_start_tag_end) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_tag) {
+		return gotpl_parser_handle_tag_name_text(state);
+
+	} else if (state->in_tag_params) {
+		return gotpl_parser_handle_tag_params_text(state);
+
+	} else if (state->in_expr_begin) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_expr) {
+		return gotpl_parser_handle_expr_text(state);
+
+	} else if (state->in_expr_end) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_end_tag_begin) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_end_tag_end) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+	}
+
+	return gotpl_false;
+}
+
+static gotpl_bool gotpl_parser_handle_expr_text(gotpl_state* state) {
+	if (state->in_start_tag_begin) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_start_tag_end) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_tag) {
+		return gotpl_parser_handle_tag_name_text(state);
+
+	} else if (state->in_tag_params) {
+		return gotpl_parser_handle_tag_params_text(state);
+
+	} else if (state->in_expr_begin) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_expr) {
+		return gotpl_parser_handle_expr_text(state);
+
+	} else if (state->in_expr_end) {
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_end_tag_begin) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+
+	} else if (state->in_end_tag_end) {
+		gotpl_parser_reset_state(state);
+		return gotpl_parser_handle_plain_text(state);
+	}
+
 	return gotpl_false;
 }
