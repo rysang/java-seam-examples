@@ -11,6 +11,42 @@ struct gotpl_parser {
 	gotpl_tag_map* available_tags_map;
 };
 
+typedef struct {
+	gotpl_bool in_start_tag_begin;
+	gotpl_bool in_end_tag_begin;
+	gotpl_bool in_tag;
+	gotpl_bool in_start_tag_end;
+	gotpl_bool in_end_tag_end;
+	gotpl_bool in_tag_arg_phase;
+	gotpl_bool in_expr_begin;
+	gotpl_bool in_expr;
+	gotpl_bool in_expr_end;
+
+	//current value
+	gotpl_ui current_value_size;
+	gotpl_ci current_value;
+	gotpl_i8 text_buffer[gotpl_default_parser_buffer_size];
+	gotpl_ui index;
+
+	//custom tags
+	gotpl_tag_map* tags;
+
+	//Default tags
+	gotpl_tag_map* available_tags;
+
+} gotpl_state;
+
+gotpl_bool gotpl_parser_handle_lt(gotpl_state* state);
+gotpl_bool gotpl_parser_handle_gt(gotpl_state* state);
+gotpl_bool gotpl_parser_handle_diez(gotpl_state* state);
+gotpl_bool gotpl_parser_handle_dollar(gotpl_state* state);
+gotpl_bool gotpl_parser_handle_slash(gotpl_state* state);
+gotpl_bool gotpl_parser_handle_open_accolade(gotpl_state* state);
+gotpl_bool gotpl_parser_handle_close_accolade(gotpl_state* state);
+gotpl_bool gotpl_parser_handle_plain_text(gotpl_state* state);
+
+gotpl_bool gotpl_parser_handle_next_char(gotpl_state* state);
+
 gotpl_bool gotpl_parser_is_cwhitespace(gotpl_ci utf8Char) {
 
 	switch (utf8Char.m8[0]) {
@@ -23,21 +59,6 @@ gotpl_bool gotpl_parser_is_cwhitespace(gotpl_ci utf8Char) {
 	case 0x20:
 		return gotpl_true;
 
-	}
-
-	return gotpl_false;
-}
-
-gotpl_bool gotpl_parser_tag_begins(gotpl_ci utf8Char) {
-	if (utf8Char.m8[0] == '<') {
-		return gotpl_true;
-	}
-
-	return gotpl_false;
-}
-gotpl_bool gotpl_parser_expression_begins(gotpl_ci utf8Char) {
-	if (utf8Char.m8[0] == '$') {
-		return gotpl_true;
 	}
 
 	return gotpl_false;
@@ -75,36 +96,46 @@ gotpl_tag_list* gotpl_utf8parser_parse(gotpl_parser* parser,
 	gotpl_tag_list* ret_list = (gotpl_tag_list*) gotpl_tag_list_create(
 			parser->pool);
 
-	gotpl_i8* tmp_buffer = (gotpl_i8*) gotpl_pool_alloc(parser->pool,
-			gotpl_default_parser_buffer_size);
-
-	gotpl_ui count = 0;
-	gotpl_i ch_byte_count = 0;
-
 	//State machine
-	gotpl_bool in_tag_begin = gotpl_false;
-	gotpl_bool in_tag = gotpl_false;
-	gotpl_bool in_tag_arg_phase = gotpl_false;
-	gotpl_bool in_expr_begin = gotpl_false;
-	gotpl_bool in_expr = gotpl_false;
+	gotpl_state* state = (gotpl_state*) gotpl_pool_alloc(parser->pool,
+			sizeof(gotpl_state));
+	memset(state, '\0', sizeof(gotpl_state));
+	state->tags = tags;
+	state->available_tags = parser->available_tags_map;
 
 	while (in->has_more(in)) {
-		ch_byte_count = in->read(in);
+		state->current_value_size = in->read(in);
+		state->current_value = in->current_char;
 
-		if (in_tag_begin) {
-
-		} else if (in_tag) {
-
-		} else if (in_tag_arg_phase) {
-
-		} else if (in_expr_begin) {
-
-		} else if (in_expr) {
-
-		} else {
-
-		}
+		gotpl_parser_handle_next_char(state);
 	}
 
 	return ret_list;
+}
+
+gotpl_bool gotpl_parser_handle_next_char(gotpl_state* state) {
+
+	switch (state->current_value.m8[0]) {
+	case '<':
+		break;
+	case '#':
+		break;
+	case '/':
+		break;
+	case '$':
+		break;
+	case '{':
+		break;
+	case '}':
+		break;
+	case '>':
+		break;
+	default:
+		if (gotpl_parser_is_cwhitespace(in->current_char)) {
+
+		}
+		break;
+	}
+
+	return gotpl_true;
 }
