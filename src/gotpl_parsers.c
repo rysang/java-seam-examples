@@ -8,6 +8,7 @@
 struct gotpl_parser {
 	gotpl_pool* pool;
 	gotpl_stack* parser_tag_stack;
+	gotpl_stack* char_stack;
 	gotpl_tag_map* available_tags_map;
 };
 
@@ -28,6 +29,12 @@ typedef struct {
 	gotpl_i8 text_buffer[gotpl_default_parser_buffer_size];
 	gotpl_ui index;
 
+	//A small stack for previous elements.
+	gotpl_stack* char_stack;
+
+	//reusable tag stack
+	gotpl_stack* parser_tag_stack;
+
 	//custom tags
 	gotpl_tag_map* tags;
 
@@ -39,21 +46,21 @@ typedef struct {
 
 } gotpl_state;
 
-gotpl_bool gotpl_parser_is_cwhitespace(gotpl_ci utf8Char);
+static gotpl_bool gotpl_parser_is_cwhitespace(gotpl_ci utf8Char);
 
-gotpl_bool gotpl_parser_handle_lt(gotpl_state* state);
-gotpl_bool gotpl_parser_handle_gt(gotpl_state* state);
-gotpl_bool gotpl_parser_handle_diez(gotpl_state* state);
-gotpl_bool gotpl_parser_handle_dollar(gotpl_state* state);
-gotpl_bool gotpl_parser_handle_slash(gotpl_state* state);
-gotpl_bool gotpl_parser_handle_open_accolade(gotpl_state* state);
-gotpl_bool gotpl_parser_handle_close_accolade(gotpl_state* state);
-gotpl_bool gotpl_parser_handle_plain_text(gotpl_state* state);
+static gotpl_bool gotpl_parser_handle_lt(gotpl_state* state);
+static gotpl_bool gotpl_parser_handle_gt(gotpl_state* state);
+static gotpl_bool gotpl_parser_handle_diez(gotpl_state* state);
+static gotpl_bool gotpl_parser_handle_dollar(gotpl_state* state);
+static gotpl_bool gotpl_parser_handle_slash(gotpl_state* state);
+static gotpl_bool gotpl_parser_handle_open_accolade(gotpl_state* state);
+static gotpl_bool gotpl_parser_handle_close_accolade(gotpl_state* state);
+static gotpl_bool gotpl_parser_handle_plain_text(gotpl_state* state);
 
-gotpl_bool gotpl_parser_handle_next_char(gotpl_state* state);
-gotpl_void gotpl_parser_reset_state(gotpl_state* state);
+static gotpl_bool gotpl_parser_handle_next_char(gotpl_state* state);
+static gotpl_void gotpl_parser_reset_state(gotpl_state* state);
 
-gotpl_bool gotpl_parser_is_cwhitespace(gotpl_ci utf8Char) {
+static gotpl_bool gotpl_parser_is_cwhitespace(gotpl_ci utf8Char) {
 
 	switch (utf8Char.m8[0]) {
 
@@ -80,8 +87,16 @@ gotpl_parser* gotpl_utf8parser_create(gotpl_pool* pool) {
 			return 0;
 		}
 
+		parser->char_stack = gotpl_stack_create(pool);
+		if (!parser->char_stack) {
+			GOTPL_ERROR("Failed to create a char stack.");
+			return 0;
+		}
+
 		parser->available_tags_map = gotpl_tag_map_create(
 				gotpl_default_map_size, pool);
+
+		//Add available tags here.
 		if (!parser->available_tags_map) {
 			GOTPL_ERROR("Failed to create a tag map.");
 			return 0;
@@ -107,25 +122,31 @@ gotpl_tag_list* gotpl_utf8parser_parse(gotpl_parser* parser,
 	memset(state, '\0', sizeof(gotpl_state));
 	state->tags = tags;
 	state->available_tags = parser->available_tags_map;
+	state->char_stack = parser->char_stack;
+	state->parser_tag_stack = parser->parser_tag_stack;
+
+	//gotpl_stack_create()
 
 	while (in->has_more(in)) {
 		state->current_value_size = in->read(in);
 		state->current_value = in->current_char;
 
-		gotpl_parser_handle_next_char(state);
+		if (!gotpl_parser_handle_next_char(state)) {
+			//Report error
+		}
 	}
 
 	return state->ret_list;
 }
 
-gotpl_void gotpl_parser_reset_state(gotpl_state* state) {
+static gotpl_void gotpl_parser_reset_state(gotpl_state* state) {
 	state->in_start_tag_begin = state->in_end_tag_begin = state->in_tag
 			= state->in_start_tag_end = state->in_end_tag_end
 					= state->in_tag_arg_phase = state->in_expr_begin
 							= state->in_expr = state->in_expr_end = gotpl_false;
 }
 
-gotpl_bool gotpl_parser_handle_next_char(gotpl_state* state) {
+static gotpl_bool gotpl_parser_handle_next_char(gotpl_state* state) {
 
 	switch (state->current_value.m8[0]) {
 	case '<':
@@ -161,34 +182,35 @@ gotpl_bool gotpl_parser_handle_next_char(gotpl_state* state) {
 	return gotpl_true;
 }
 
-gotpl_bool gotpl_parser_handle_lt(gotpl_state* state) {
+static gotpl_bool gotpl_parser_handle_lt(gotpl_state* state) {
+
 	return gotpl_false;
 }
 
-gotpl_bool gotpl_parser_handle_gt(gotpl_state* state) {
+static gotpl_bool gotpl_parser_handle_gt(gotpl_state* state) {
 	return gotpl_false;
 }
 
-gotpl_bool gotpl_parser_handle_diez(gotpl_state* state) {
+static gotpl_bool gotpl_parser_handle_diez(gotpl_state* state) {
 	return gotpl_false;
 }
 
-gotpl_bool gotpl_parser_handle_dollar(gotpl_state* state) {
+static gotpl_bool gotpl_parser_handle_dollar(gotpl_state* state) {
 	return gotpl_false;
 }
 
-gotpl_bool gotpl_parser_handle_slash(gotpl_state* state) {
+static gotpl_bool gotpl_parser_handle_slash(gotpl_state* state) {
 	return gotpl_false;
 }
 
-gotpl_bool gotpl_parser_handle_open_accolade(gotpl_state* state) {
+static gotpl_bool gotpl_parser_handle_open_accolade(gotpl_state* state) {
 	return gotpl_false;
 }
 
-gotpl_bool gotpl_parser_handle_close_accolade(gotpl_state* state) {
+static gotpl_bool gotpl_parser_handle_close_accolade(gotpl_state* state) {
 	return gotpl_false;
 }
 
-gotpl_bool gotpl_parser_handle_plain_text(gotpl_state* state) {
+static gotpl_bool gotpl_parser_handle_plain_text(gotpl_state* state) {
 	return gotpl_false;
 }

@@ -17,6 +17,7 @@ struct gotpl_stack {
 	gotpl_stack_unit* first;
 	gotpl_ui stack_size;
 	gotpl_pool* pool;
+	gotpl_bool reached_bottom;
 };
 
 static gotpl_stack_unit* gotpl_stack_create_unit(gotpl_pool* pool);
@@ -45,13 +46,13 @@ gotpl_stack* gotpl_stack_create(gotpl_pool* pool) {
 	GOTPL_DEBUG("Allocated stack");
 	stack->stack_size = 0;
 	stack->first = stack->last = 0;
+	stack->reached_bottom = gotpl_true;
 	stack->pool = pool;
 
 	return stack;
 }
 
 gotpl_void gotpl_stack_push(gotpl_stack* stack, gotpl_i8* gvalue) {
-	stack->stack_size++;
 
 	if (stack->first == stack->last && stack->last == 0) {
 		stack->first = stack->last = gotpl_stack_create_unit(stack->pool);
@@ -70,6 +71,9 @@ gotpl_void gotpl_stack_push(gotpl_stack* stack, gotpl_i8* gvalue) {
 		}
 	}
 
+	stack->stack_size++;
+	stack->reached_bottom = gotpl_false;
+
 	GOTPL_DEBUG("Change last value.");
 	unit->next->value = gvalue;
 	unit->next->prev = unit;
@@ -79,8 +83,13 @@ gotpl_void gotpl_stack_push(gotpl_stack* stack, gotpl_i8* gvalue) {
 gotpl_i8* gotpl_stack_pop(gotpl_stack* stack) {
 
 	gotpl_stack_unit* unit = stack->last;
-	if (!unit->prev) {
-		return 0;
+	if (unit == stack->first) {
+		if (!stack->reached_bottom) {
+			stack->reached_bottom = gotpl_true;
+			return unit->value;
+		} else if (stack->reached_bottom) {
+			return 0;
+		}
 	}
 
 	stack->last = stack->last->prev;
@@ -99,4 +108,9 @@ gotpl_i8* gotpl_stack_peek(gotpl_stack* stack) {
 
 gotpl_ui gotpl_stack_size(gotpl_stack* stack) {
 	return stack->stack_size;
+}
+
+gotpl_void gotpl_stack_clear(gotpl_stack* stack) {
+	stack->last = stack->first;
+	stack->reached_bottom = gotpl_true;
 }

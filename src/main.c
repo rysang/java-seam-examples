@@ -8,6 +8,7 @@
 #include "gotpl/gotpl_parsers.h"
 #include "gotpl/gotpl_tag.h"
 #include "gotpl/gotpl_tag_list.h"
+#include "gotpl/gotpl_stack.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -62,8 +63,23 @@ int main() {
 	if (gotpl_pool_create(&pool, 1024 * 1024 * 5)) {
 		//testParser();
 		gotpl_test_expressions();
-		gotpl_pool_destroy(&pool);
 	}
+
+	gotpl_ui* val1 = malloc(sizeof(gotpl_ui));
+	gotpl_ui* val2 = malloc(sizeof(gotpl_ui));
+
+	*val1 = 12120;
+	*val2 = 12121;
+
+	gotpl_stack* stack = gotpl_stack_create(pool);
+	gotpl_stack_push(stack, val1);
+	gotpl_stack_push(stack, val2);
+
+	val1 = gotpl_stack_pop(stack);
+	val2 = gotpl_stack_pop(stack);
+	val2 = gotpl_stack_pop(stack);
+
+	gotpl_pool_destroy(&pool);
 
 	return 0;
 }
