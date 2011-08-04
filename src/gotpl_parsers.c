@@ -34,7 +34,12 @@ typedef struct {
 	//Default tags
 	gotpl_tag_map* available_tags;
 
+	//return list
+	gotpl_tag_list* ret_list
+
 } gotpl_state;
+
+gotpl_bool gotpl_parser_is_cwhitespace(gotpl_ci utf8Char);
 
 gotpl_bool gotpl_parser_handle_lt(gotpl_state* state);
 gotpl_bool gotpl_parser_handle_gt(gotpl_state* state);
@@ -46,6 +51,7 @@ gotpl_bool gotpl_parser_handle_close_accolade(gotpl_state* state);
 gotpl_bool gotpl_parser_handle_plain_text(gotpl_state* state);
 
 gotpl_bool gotpl_parser_handle_next_char(gotpl_state* state);
+gotpl_void gotpl_parser_reset_state(gotpl_state* state);
 
 gotpl_bool gotpl_parser_is_cwhitespace(gotpl_ci utf8Char) {
 
@@ -92,13 +98,12 @@ gotpl_parser* gotpl_utf8parser_create(gotpl_pool* pool) {
 
 gotpl_tag_list* gotpl_utf8parser_parse(gotpl_parser* parser,
 		gotpl_input_stream* in, gotpl_tag_map* tags) {
-
-	gotpl_tag_list* ret_list = (gotpl_tag_list*) gotpl_tag_list_create(
-			parser->pool);
-
 	//State machine
 	gotpl_state* state = (gotpl_state*) gotpl_pool_alloc(parser->pool,
 			sizeof(gotpl_state));
+
+	state->ret_list = (gotpl_tag_list*) gotpl_tag_list_create(parser->pool);
+
 	memset(state, '\0', sizeof(gotpl_state));
 	state->tags = tags;
 	state->available_tags = parser->available_tags_map;
@@ -110,32 +115,80 @@ gotpl_tag_list* gotpl_utf8parser_parse(gotpl_parser* parser,
 		gotpl_parser_handle_next_char(state);
 	}
 
-	return ret_list;
+	return state->ret_list;
+}
+
+gotpl_void gotpl_parser_reset_state(gotpl_state* state) {
+	state->in_start_tag_begin = state->in_end_tag_begin = state->in_tag
+			= state->in_start_tag_end = state->in_end_tag_end
+					= state->in_tag_arg_phase = state->in_expr_begin
+							= state->in_expr = state->in_expr_end = gotpl_false;
 }
 
 gotpl_bool gotpl_parser_handle_next_char(gotpl_state* state) {
 
 	switch (state->current_value.m8[0]) {
 	case '<':
+		return gotpl_parser_handle_lt(state);
 		break;
 	case '#':
+		return gotpl_parser_handle_diez(state);
 		break;
 	case '/':
+		return gotpl_parser_handle_slash(state);
 		break;
 	case '$':
+		return gotpl_parser_handle_dollar(state);
 		break;
 	case '{':
+		return gotpl_parser_handle_open_accolade(state);
 		break;
 	case '}':
+		return gotpl_parser_handle_close_accolade(state);
 		break;
 	case '>':
+		return gotpl_parser_handle_gt(state);
 		break;
 	default:
-		if (gotpl_parser_is_cwhitespace(in->current_char)) {
+		if (gotpl_parser_is_cwhitespace(state->current_value)) {
 
+		} else {
+			//handle plain text.
 		}
 		break;
 	}
 
 	return gotpl_true;
+}
+
+gotpl_bool gotpl_parser_handle_lt(gotpl_state* state) {
+	return gotpl_false;
+}
+
+gotpl_bool gotpl_parser_handle_gt(gotpl_state* state) {
+	return gotpl_false;
+}
+
+gotpl_bool gotpl_parser_handle_diez(gotpl_state* state) {
+	return gotpl_false;
+}
+
+gotpl_bool gotpl_parser_handle_dollar(gotpl_state* state) {
+	return gotpl_false;
+}
+
+gotpl_bool gotpl_parser_handle_slash(gotpl_state* state) {
+	return gotpl_false;
+}
+
+gotpl_bool gotpl_parser_handle_open_accolade(gotpl_state* state) {
+	return gotpl_false;
+}
+
+gotpl_bool gotpl_parser_handle_close_accolade(gotpl_state* state) {
+	return gotpl_false;
+}
+
+gotpl_bool gotpl_parser_handle_plain_text(gotpl_state* state) {
+	return gotpl_false;
 }
