@@ -224,7 +224,7 @@ static gotpl_bool gotpl_parser_handle_lt(gotpl_state* state) {
 		gotpl_parser_reset_state(state);
 		state->in_start_tag_begin = gotpl_true;
 		gotpl_stack_push(state->char_index_stack, state->index);
-		state->index += state->current_value_size;
+
 	}
 
 	return gotpl_true;
@@ -444,38 +444,19 @@ static gotpl_bool gotpl_parser_handle_close_accolade(gotpl_state* state) {
 }
 
 static gotpl_bool gotpl_parser_handle_plain_text(gotpl_state* state) {
-	if (state->in_start_tag_begin) {
-		return gotpl_parser_handle_plain_text(state);
+	gotpl_ui i;
 
-	} else if (state->in_start_tag_end) {
-		return gotpl_parser_handle_plain_text(state);
+	if ((state->index + state->current_value_size)
+			< gotpl_default_parser_buffer_size) {
 
-	} else if (state->in_tag) {
-		return gotpl_parser_handle_tag_name_text(state);
+		for (i = 0; i < state->current_value_size; i++) {
+			state->text_buffer[state->index + i] = state->current_value.m8[i];
+		}
 
-	} else if (state->in_tag_params) {
-		return gotpl_parser_handle_tag_params_text(state);
-
-	} else if (state->in_expr_begin) {
-		gotpl_parser_reset_state(state);
-		return gotpl_parser_handle_plain_text(state);
-
-	} else if (state->in_expr) {
-		return gotpl_parser_handle_expr_text(state);
-
-	} else if (state->in_expr_end) {
-		return gotpl_parser_handle_plain_text(state);
-
-	} else if (state->in_end_tag_begin) {
-		gotpl_parser_reset_state(state);
-		return gotpl_parser_handle_plain_text(state);
-
-	} else if (state->in_end_tag_end) {
-		gotpl_parser_reset_state(state);
-		return gotpl_parser_handle_plain_text(state);
+		state->index += state->current_value_size;
 	}
 
-	return gotpl_false;
+	return gotpl_true;
 }
 
 static gotpl_bool gotpl_parser_handle_tag_name_text(gotpl_state* state) {
