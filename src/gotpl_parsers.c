@@ -265,11 +265,13 @@ static gotpl_bool gotpl_parser_handle_gt(gotpl_state* state) {
 		return gotpl_parser_handle_plain_text(state);
 	}
 
-	return gotpl_false;
+	return gotpl_true;
 }
 
 static gotpl_bool gotpl_parser_handle_diez(gotpl_state* state) {
 	if (state->in_start_tag_begin) {
+		gotpl_parser_reset_state(state);
+		state->in_tag = gotpl_true;
 		return gotpl_parser_handle_plain_text(state);
 
 	} else if (state->in_start_tag_end) {
@@ -300,7 +302,7 @@ static gotpl_bool gotpl_parser_handle_diez(gotpl_state* state) {
 		return gotpl_parser_handle_plain_text(state);
 	}
 
-	return gotpl_false;
+	return gotpl_true;
 }
 
 static gotpl_bool gotpl_parser_handle_dollar(gotpl_state* state) {
@@ -335,7 +337,7 @@ static gotpl_bool gotpl_parser_handle_dollar(gotpl_state* state) {
 		return gotpl_parser_handle_plain_text(state);
 	}
 
-	return gotpl_false;
+	return gotpl_true;
 }
 
 static gotpl_bool gotpl_parser_handle_slash(gotpl_state* state) {
@@ -370,7 +372,7 @@ static gotpl_bool gotpl_parser_handle_slash(gotpl_state* state) {
 		return gotpl_parser_handle_plain_text(state);
 	}
 
-	return gotpl_false;
+	return gotpl_true;
 }
 
 static gotpl_bool gotpl_parser_handle_open_accolade(gotpl_state* state) {
@@ -405,7 +407,7 @@ static gotpl_bool gotpl_parser_handle_open_accolade(gotpl_state* state) {
 		return gotpl_parser_handle_plain_text(state);
 	}
 
-	return gotpl_false;
+	return gotpl_true;
 }
 
 static gotpl_bool gotpl_parser_handle_close_accolade(gotpl_state* state) {
@@ -440,7 +442,7 @@ static gotpl_bool gotpl_parser_handle_close_accolade(gotpl_state* state) {
 		return gotpl_parser_handle_plain_text(state);
 	}
 
-	return gotpl_false;
+	return gotpl_true;
 }
 
 static gotpl_bool gotpl_parser_handle_plain_text(gotpl_state* state) {
@@ -491,7 +493,7 @@ static gotpl_bool gotpl_parser_handle_tag_name_text(gotpl_state* state) {
 		return gotpl_parser_handle_plain_text(state);
 	}
 
-	return gotpl_false;
+	return gotpl_true;
 }
 
 static gotpl_bool gotpl_parser_handle_tag_params_text(gotpl_state* state) {
@@ -526,7 +528,7 @@ static gotpl_bool gotpl_parser_handle_tag_params_text(gotpl_state* state) {
 		return gotpl_parser_handle_plain_text(state);
 	}
 
-	return gotpl_false;
+	return gotpl_true;
 }
 
 static gotpl_bool gotpl_parser_handle_expr_text(gotpl_state* state) {
@@ -561,5 +563,5 @@ static gotpl_bool gotpl_parser_handle_expr_text(gotpl_state* state) {
 		return gotpl_parser_handle_plain_text(state);
 	}
 
-	return gotpl_false;
+	return gotpl_true;
 }
