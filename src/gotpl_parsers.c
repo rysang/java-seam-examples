@@ -65,9 +65,11 @@ static gotpl_bool gotpl_parser_handle_plain_text(gotpl_state* state);
 static gotpl_bool gotpl_parser_handle_tag_name_text(gotpl_state* state);
 static gotpl_bool gotpl_parser_handle_tag_params_text(gotpl_state* state);
 static gotpl_bool gotpl_parser_handle_expr_text(gotpl_state* state);
+static gotpl_bool gotpl_parser_handle_white_space(gotpl_state* state);
 
 static gotpl_bool gotpl_parser_handle_next_char(gotpl_state* state);
 static gotpl_void gotpl_parser_reset_state(gotpl_state* state);
+static gotpl_bool gotpl_parser_pack_and_reset_buffer(gotpl_state* state);
 
 static gotpl_bool gotpl_parser_is_cwhitespace(gotpl_ci utf8Char) {
 
@@ -134,6 +136,7 @@ gotpl_tag_list* gotpl_utf8parser_parse(gotpl_parser* parser,
 	state->char_index_stack = parser->char_index_stack;
 	state->parser_tag_stack = parser->parser_tag_stack;
 	state->tags = tags;
+	state->parser_state = gotpl_state_plain_text;
 
 	while (in->has_more(in)) {
 		state->current_value_size = in->read(in);
@@ -150,6 +153,7 @@ gotpl_tag_list* gotpl_utf8parser_parse(gotpl_parser* parser,
 
 static gotpl_void gotpl_parser_reset_state(gotpl_state* state) {
 	state->parser_state = gotpl_state_plain_text;
+	state->index = 0;
 	memset(state->text_buffer, '\0', gotpl_default_parser_buffer_size);
 }
 
@@ -179,8 +183,12 @@ static gotpl_bool gotpl_parser_handle_next_char(gotpl_state* state) {
 	case '>':
 		return gotpl_parser_handle_gt(state);
 		break;
+	case '\\':
+		//Handle char escape.
+		break;
 	default:
 		if (gotpl_parser_is_cwhitespace(state->current_value)) {
+			return gotpl_parser_handle_white_space(state);
 
 		} else {
 			return gotpl_parser_handle_plain_text(state);
@@ -195,7 +203,7 @@ static gotpl_bool gotpl_parser_handle_lt(gotpl_state* state) {
 
 	switch (state->parser_state) {
 	case gotpl_state_in_start_tag:
-		return gotpl_parser_handle_plain_text(state);
+		return gotpl_true;
 		break;
 	case gotpl_state_in_end_tag:
 		return gotpl_parser_handle_tag_name_text(state);
@@ -217,20 +225,93 @@ static gotpl_bool gotpl_parser_handle_lt(gotpl_state* state) {
 		break;
 
 	default:
-		gotpl_parser_reset_state(state);
 		state->parser_state = gotpl_state_in_start_tag;
-		gotpl_stack_push(state->char_index_stack, state->index);
 	}
 
 	return gotpl_true;
 }
 
 static gotpl_bool gotpl_parser_handle_gt(gotpl_state* state) {
+	gotpl_ui tmp_val_size;
+	gotpl_ci tmp_val;
+
+	switch (state->parser_state) {
+	case gotpl_state_in_start_tag:
+		state->parser_state = gotpl_state_plain_text;
+		//Save current values.
+		tmp_val_size = state->current_value_size;
+		tmp_val = state->current_value;
+
+		//Must add also the lt missed.
+		state->current_value.m8[0] = '<';
+		state->current_value_size = 1;
+
+		if (!gotpl_parser_handle_plain_text(state)) {
+			GOTPL_ERROR("Failed to add char to the buffer.");
+			return gotpl_false;
+		}
+
+		state->current_value = tmp_val;
+		state->current_value_size = tmp_val_size;
+
+		return gotpl_parser_handle_plain_text(state);
+
+		break;
+	case gotpl_state_in_end_tag:
+		return gotpl_parser_handle_tag_name_text(state);
+		break;
+	case gotpl_state_in_tag:
+		return gotpl_parser_handle_tag_name_text(state);
+		break;
+	case gotpl_state_in_tag_params:
+		return gotpl_parser_handle_tag_params_text(state);
+		break;
+	case gotpl_state_in_expr_begin:
+		return gotpl_parser_handle_plain_text(state);
+		break;
+	case gotpl_state_in_expr:
+		return gotpl_parser_handle_expr_text(state);
+		break;
+	case gotpl_state_in_expr_end:
+		return gotpl_parser_handle_plain_text(state);
+		break;
+
+	default:
+		return gotpl_parser_handle_plain_text(state);
+	}
 
 	return gotpl_true;
 }
 
 static gotpl_bool gotpl_parser_handle_diez(gotpl_state* state) {
+
+	switch (state->parser_state) {
+	case gotpl_state_in_start_tag:
+		state->parser_state = gotpl_state_in_tag;
+		return gotpl_true;
+		break;
+	case gotpl_state_in_end_tag:
+		return gotpl_parser_handle_tag_name_text(state);
+		break;
+	case gotpl_state_in_tag:
+		return gotpl_parser_handle_tag_name_text(state);
+		break;
+	case gotpl_state_in_tag_params:
+		return gotpl_parser_handle_tag_params_text(state);
+		break;
+	case gotpl_state_in_expr_begin:
+		return gotpl_parser_handle_plain_text(state);
+		break;
+	case gotpl_state_in_expr:
+		return gotpl_parser_handle_expr_text(state);
+		break;
+	case gotpl_state_in_expr_end:
+		return gotpl_parser_handle_plain_text(state);
+		break;
+
+	default:
+		state->parser_state = gotpl_state_in_start_tag;
+	}
 
 	return gotpl_true;
 }
@@ -256,16 +337,65 @@ static gotpl_bool gotpl_parser_handle_close_accolade(gotpl_state* state) {
 }
 
 static gotpl_bool gotpl_parser_handle_plain_text(gotpl_state* state) {
-	gotpl_ui i;
+	gotpl_ui i, tmp_val_size;
+	gotpl_ci tmp_val;
 
-	if ((state->index + state->current_value_size)
-			< gotpl_default_parser_buffer_size) {
+	switch (state->parser_state) {
+	case gotpl_state_in_start_tag:
+		state->parser_state = gotpl_state_plain_text;
+		//Save current values.
+		tmp_val_size = state->current_value_size;
+		tmp_val = state->current_value;
 
-		for (i = 0; i < state->current_value_size; i++) {
-			state->text_buffer[state->index + i] = state->current_value.m8[i];
+		//Must add also the lt missed.
+		state->current_value.m8[0] = '<';
+		state->current_value_size = 1;
+
+		if (!gotpl_parser_handle_plain_text(state)) {
+			GOTPL_ERROR("Failed to add char to the buffer.");
+			return gotpl_false;
 		}
 
-		state->index += state->current_value_size;
+		state->current_value = tmp_val;
+		state->current_value_size = tmp_val_size;
+
+		return gotpl_parser_handle_plain_text(state);
+		break;
+	case gotpl_state_in_end_tag:
+		return gotpl_parser_handle_tag_name_text(state);
+		break;
+	case gotpl_state_in_tag:
+		return gotpl_parser_handle_tag_name_text(state);
+		break;
+	case gotpl_state_in_tag_params:
+		return gotpl_parser_handle_tag_params_text(state);
+		break;
+	case gotpl_state_in_expr_begin:
+		return gotpl_parser_handle_plain_text(state);
+		break;
+	case gotpl_state_in_expr:
+		return gotpl_parser_handle_expr_text(state);
+		break;
+	case gotpl_state_in_expr_end:
+		return gotpl_parser_handle_plain_text(state);
+		break;
+
+	default:
+
+		if ((state->index + state->current_value_size)
+				< gotpl_default_parser_buffer_size) {
+
+			for (i = 0; i < state->current_value_size; i++) {
+				state->text_buffer[state->index + i]
+						= state->current_value.m8[i];
+			}
+
+			state->index += state->current_value_size;
+		}
+
+		else {
+
+		}
 	}
 
 	return gotpl_true;
@@ -283,5 +413,43 @@ static gotpl_bool gotpl_parser_handle_tag_params_text(gotpl_state* state) {
 
 static gotpl_bool gotpl_parser_handle_expr_text(gotpl_state* state) {
 
+	return gotpl_true;
+}
+
+static gotpl_bool gotpl_parser_handle_white_space(gotpl_state* state) {
+	switch (state->parser_state) {
+	case gotpl_state_in_start_tag:
+		return gotpl_parser_handle_plain_text(state);
+		break;
+	case gotpl_state_in_end_tag:
+		GOTPL_ERROR("Unexpected white space in end tag.")
+		;
+		return gotpl_false;
+		break;
+	case gotpl_state_in_tag:
+		state->parser_state = gotpl_state_in_tag_params;
+		return gotpl_false;
+		break;
+	case gotpl_state_in_tag_params:
+		return gotpl_parser_handle_tag_params_text(state);
+		break;
+	case gotpl_state_in_expr_begin:
+		return gotpl_parser_handle_plain_text(state);
+		break;
+	case gotpl_state_in_expr:
+		return gotpl_parser_handle_expr_text(state);
+		break;
+	case gotpl_state_in_expr_end:
+		return gotpl_parser_handle_plain_text(state);
+		break;
+
+	default:
+		return gotpl_parser_handle_plain_text(state);
+	}
+
+	return gotpl_true;
+}
+
+static gotpl_bool gotpl_parser_pack_and_reset_buffer(gotpl_state* state) {
 	return gotpl_true;
 }
