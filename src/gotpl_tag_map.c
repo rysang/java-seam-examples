@@ -41,8 +41,7 @@ gotpl_tag_map* gotpl_tag_map_create(gotpl_ui array_size, gotpl_pool* pool) {
 	return 0;
 }
 
-gotpl_ui gotpl_tag_map_put(gotpl_tag_map* owner, gotpl_i8* name,
-		gotpl_tag* obj) {
+gotpl_ui gotpl_tag_map_put(gotpl_tag_map* owner, gotpl_i8* name, gotpl_tag* obj) {
 
 	gotpl_ui hash = super_fast_hash(name, strlen(name));
 	gotpl_map_chunk* chunk = &owner->array[hash % owner->array_length];
@@ -136,9 +135,12 @@ gotpl_tag* gotpl_tag_map_get(gotpl_tag_map* owner, gotpl_i8* name) {
 	while (gotpl_true) {
 
 		if (chunk != 0) {
-			if (chunk->hash != hash) {
+			if (chunk->hash == hash) {
+				gotpl_tag* ret = gotpl_pool_alloc(owner->pool,
+						sizeof(gotpl_tag));
+				memcpy(ret, &chunk->tag, sizeof(gotpl_tag));
 				GOTPL_DEBUG("Returning value.");
-				return &chunk->tag;
+				return ret;
 			}
 		} else {
 			GOTPL_DEBUG("Value not found.");
