@@ -32,8 +32,12 @@ typedef struct {
 	//current value
 	gotpl_ui current_value_size;
 	gotpl_ci current_value;
+
 	gotpl_i8 text_buffer[gotpl_default_parser_buffer_size];
-	gotpl_ui index;
+	gotpl_ui text_index;
+
+	gotpl_i8 args_buffer[2 * gotpl_default_parser_buffer_size];
+	gotpl_ui args_index;
 
 	//A small stack for previous elements.
 	gotpl_stack* char_index_stack;
@@ -42,7 +46,7 @@ typedef struct {
 	gotpl_stack* parser_tag_stack;
 
 	//custom tags
-	gotpl_tag_map* tags;
+	gotpl_tag_map* custom_tags;
 
 	//Default tags
 	gotpl_tag_map* available_tags;
@@ -70,6 +74,8 @@ static gotpl_bool gotpl_parser_handle_white_space(gotpl_state* state);
 static gotpl_bool gotpl_parser_handle_next_char(gotpl_state* state);
 static gotpl_void gotpl_parser_reset_state(gotpl_state* state);
 static gotpl_bool gotpl_parser_pack_and_reset_buffer(gotpl_state* state);
+
+static gotpl_tag* gotpl_parser_get_tag(gotpl_state* state);
 
 static gotpl_bool gotpl_parser_is_cwhitespace(gotpl_ci utf8Char) {
 
@@ -131,11 +137,11 @@ gotpl_tag_list* gotpl_utf8parser_parse(gotpl_parser* parser,
 	state->ret_list = (gotpl_tag_list*) gotpl_tag_list_create(parser->pool);
 
 	memset(state, '\0', sizeof(gotpl_state));
-	state->tags = tags;
+	state->custom_tags = tags;
 	state->available_tags = parser->available_tags_map;
 	state->char_index_stack = parser->char_index_stack;
 	state->parser_tag_stack = parser->parser_tag_stack;
-	state->tags = tags;
+	state->custom_tags = tags;
 	state->parser_state = gotpl_state_plain_text;
 
 	while (in->has_more(in)) {
@@ -153,7 +159,7 @@ gotpl_tag_list* gotpl_utf8parser_parse(gotpl_parser* parser,
 
 static gotpl_void gotpl_parser_reset_state(gotpl_state* state) {
 	state->parser_state = gotpl_state_plain_text;
-	state->index = 0;
+	state->text_index = 0;
 	memset(state->text_buffer, '\0', gotpl_default_parser_buffer_size);
 }
 
@@ -382,15 +388,15 @@ static gotpl_bool gotpl_parser_handle_plain_text(gotpl_state* state) {
 
 	default:
 
-		if ((state->index + state->current_value_size)
+		if ((state->text_index + state->current_value_size)
 				< gotpl_default_parser_buffer_size) {
 
 			for (i = 0; i < state->current_value_size; i++) {
-				state->text_buffer[state->index + i]
+				state->text_buffer[state->text_index + i]
 						= state->current_value.m8[i];
 			}
 
-			state->index += state->current_value_size;
+			state->text_index += state->current_value_size;
 		}
 
 		else {
@@ -402,6 +408,23 @@ static gotpl_bool gotpl_parser_handle_plain_text(gotpl_state* state) {
 }
 
 static gotpl_bool gotpl_parser_handle_tag_name_text(gotpl_state* state) {
+	gotpl_ui i;
+
+	if ((state->args_index + state->current_value_size)
+			< (gotpl_default_parser_buffer_size - 1)) {
+
+		for (i = 0; i < state->current_value_size; i++) {
+			state->args_buffer[state->args_index + i]
+					= state->current_value.m8[i];
+		}
+
+		state->args_index += state->current_value_size;
+	}
+
+	else {
+		GOTPL_ERROR("Tag arguments buffer exceeded. When you compile the library please supply a greater value.");
+		return gotpl_false;
+	}
 
 	return gotpl_true;
 }
@@ -428,7 +451,25 @@ static gotpl_bool gotpl_parser_handle_white_space(gotpl_state* state) {
 		break;
 	case gotpl_state_in_tag:
 		state->parser_state = gotpl_state_in_tag_params;
-		return gotpl_false;
+		gotpl_tag* current_tag = gotpl_parser_get_tag(state);
+
+		if (!current_tag) {
+			GOTPL_ERROR("Tag not found. If this was not meant to be a tag escape one of < or #.");
+			return gotpl_false;
+		}
+
+		gotpl_tag* parent_tag = (gotpl_tag*) gotpl_stack_peek(
+				state->parser_tag_stack);
+		if (parent_tag != 0) {
+			gotpl_tag_list_add(parent_tag->children, current_tag);
+
+		} else {
+			gotpl_tag_list_add(state->ret_list, current_tag);
+		}
+
+		gotpl_stack_push(state->parser_tag_stack, current_tag);
+
+		return gotpl_true;
 		break;
 	case gotpl_state_in_tag_params:
 		return gotpl_parser_handle_tag_params_text(state);
@@ -452,4 +493,15 @@ static gotpl_bool gotpl_parser_handle_white_space(gotpl_state* state) {
 
 static gotpl_bool gotpl_parser_pack_and_reset_buffer(gotpl_state* state) {
 	return gotpl_true;
+}
+
+static gotpl_tag* gotpl_parser_get_tag(gotpl_state* state) {
+	state->args_buffer[state->args_index + 1] = '\0';
+	gotpl_tag* ret = gotpl_tag_map_get(state->custom_tags, state->args_buffer);
+
+	if (!ret) {
+		ret = gotpl_tag_map_get(state->available_tags, state->args_buffer);
+	}
+
+	return ret;
 }

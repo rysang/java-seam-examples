@@ -16,4 +16,9 @@ gotpl_tag* gotpl_tag_create_plaintext(gotpl_i8* str, gotpl_ui length,
 gotpl_tag* gotpl_tag_create_expression(gotpl_i8* expr, gotpl_ui length,
 		gotpl_pool* pool);
 
+//If tag
+#define TAG_IF_NAME "if"
+gotpl_tag* gotpl_tag_create_if(gotpl_i8* expr, gotpl_ui length,
+		gotpl_pool* pool);
+
 #endif

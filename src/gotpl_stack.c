@@ -99,11 +99,16 @@ gotpl_i8* gotpl_stack_pop(gotpl_stack* stack) {
 gotpl_i8* gotpl_stack_peek(gotpl_stack* stack) {
 
 	gotpl_stack_unit* unit = stack->last;
-	if (!unit->prev) {
-		return 0;
+	if (unit == stack->first) {
+		if (!stack->reached_bottom) {
+			stack->reached_bottom = gotpl_true;
+			return unit->value;
+		} else if (stack->reached_bottom) {
+			return 0;
+		}
 	}
 
-	return stack->last->value;
+	return unit->value;
 }
 
 gotpl_ui gotpl_stack_size(gotpl_stack* stack) {
