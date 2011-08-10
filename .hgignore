@@ -2,3 +2,5 @@ glob:.cproject
 glob:.project
 glob:Debug/*
 glob:.settings/*
+syntax: glob
+*.stackdump
