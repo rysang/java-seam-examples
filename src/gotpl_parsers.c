@@ -6,6 +6,8 @@
 #include "gotpl/gotpl_tag_list.h"
 #include "gotpl/gotpl_util.h"
 
+#define gotpl_parser_args_buffer (2 * gotpl_default_parser_buffer_size)
+
 struct gotpl_parser {
 	gotpl_pool* pool;
 	gotpl_stack* parser_tag_stack;
@@ -37,7 +39,7 @@ typedef struct {
 	gotpl_i8 text_buffer[gotpl_default_parser_buffer_size];
 	gotpl_ui text_index;
 
-	gotpl_i8 args_buffer[2 * gotpl_default_parser_buffer_size];
+	gotpl_i8 args_buffer[gotpl_parser_args_buffer];
 	gotpl_ui args_index;
 
 	//A small stack for previous elements.
@@ -76,8 +78,10 @@ static gotpl_bool gotpl_parser_handle_expr_text(gotpl_state* state);
 static gotpl_bool gotpl_parser_handle_white_space(gotpl_state* state);
 
 static gotpl_bool gotpl_parser_handle_next_char(gotpl_state* state);
-static gotpl_void gotpl_parser_reset_text(gotpl_state* state);
 static gotpl_bool gotpl_parser_pack_text_buffer(gotpl_state* state);
+
+static gotpl_void gotpl_parser_reset_text(gotpl_state* state);
+static gotpl_void gotpl_parser_reset_args(gotpl_state* state);
 
 static gotpl_tag* gotpl_parser_get_tag(gotpl_state* state);
 
@@ -165,6 +169,11 @@ gotpl_tag_list* gotpl_utf8parser_parse(gotpl_parser* parser,
 static gotpl_void gotpl_parser_reset_text(gotpl_state* state) {
 	state->text_index = 0;
 	memset(state->text_buffer, '\0', gotpl_default_parser_buffer_size);
+}
+
+static gotpl_void gotpl_parser_reset_args(gotpl_state* state) {
+	state->args_index = 0;
+	memset(state->args_buffer, '\0', gotpl_parser_args_buffer);
 }
 
 static gotpl_bool gotpl_parser_handle_next_char(gotpl_state* state) {
@@ -482,6 +491,24 @@ static gotpl_bool gotpl_parser_handle_tag_name_text(gotpl_state* state) {
 
 static gotpl_bool gotpl_parser_handle_tag_params_text(gotpl_state* state) {
 
+	gotpl_ui i;
+
+	if ((state->args_index + state->current_value_size)
+			< (gotpl_default_parser_buffer_size - 1)) {
+
+		for (i = 0; i < state->current_value_size; i++) {
+			state->args_buffer[state->args_index + i]
+					= state->current_value.m8[i];
+		}
+
+		state->args_index += state->current_value_size;
+	}
+
+	else {
+		GOTPL_ERROR("Tag arguments buffer exceeded. When you compile the library please supply a greater value.");
+		return gotpl_false;
+	}
+
 	return gotpl_true;
 }
 
@@ -519,9 +546,10 @@ static gotpl_bool gotpl_parser_handle_white_space(gotpl_state* state) {
 		}
 
 		gotpl_stack_push(state->parser_tag_stack, (gotpl_i8*) current_tag);
+		gotpl_parser_reset_args(state);
 
 		return gotpl_parser_pack_text_buffer(state);
-		;
+
 		break;
 	case gotpl_state_in_tag_params:
 		return gotpl_parser_handle_tag_params_text(state);
