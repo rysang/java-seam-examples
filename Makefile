@@ -12,5 +12,5 @@ compile:
 link:
 	$(CC) $(ARCH) *.o -o $(APP_NAME)
 clean:
-	$(RM) -rfv *.o $(APP_NAME) $(APP_NAME).exe
+	$(RM) -rfv *.o $(APP_NAME) $(APP_NAME).exe *.stackdump
 	

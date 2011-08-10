@@ -4,6 +4,7 @@
 #include "gotpl/gotpl_tag_map.h"
 #include "gotpl/gotpl_tag_builtin.h"
 #include "gotpl/gotpl_tag_list.h"
+#include "gotpl/gotpl_util.h"
 
 struct gotpl_parser {
 	gotpl_pool* pool;
@@ -54,6 +55,9 @@ typedef struct {
 	//return list
 	gotpl_tag_list* ret_list;
 
+	//pool for misc allocations.
+	gotpl_pool* pool;
+
 } gotpl_state;
 
 static gotpl_bool gotpl_parser_is_cwhitespace(gotpl_ci utf8Char);
@@ -72,8 +76,8 @@ static gotpl_bool gotpl_parser_handle_expr_text(gotpl_state* state);
 static gotpl_bool gotpl_parser_handle_white_space(gotpl_state* state);
 
 static gotpl_bool gotpl_parser_handle_next_char(gotpl_state* state);
-static gotpl_void gotpl_parser_reset_state(gotpl_state* state);
-static gotpl_bool gotpl_parser_pack_and_reset_buffer(gotpl_state* state);
+static gotpl_void gotpl_parser_reset_text(gotpl_state* state);
+static gotpl_bool gotpl_parser_pack_text_buffer(gotpl_state* state);
 
 static gotpl_tag* gotpl_parser_get_tag(gotpl_state* state);
 
@@ -143,6 +147,7 @@ gotpl_tag_list* gotpl_utf8parser_parse(gotpl_parser* parser,
 	state->parser_tag_stack = parser->parser_tag_stack;
 	state->custom_tags = tags;
 	state->parser_state = gotpl_state_plain_text;
+	state->pool = parser->pool;
 
 	while (in->has_more(in)) {
 		state->current_value_size = in->read(in);
@@ -157,11 +162,9 @@ gotpl_tag_list* gotpl_utf8parser_parse(gotpl_parser* parser,
 	return state->ret_list;
 }
 
-static gotpl_void gotpl_parser_reset_state(gotpl_state* state) {
-	state->parser_state = gotpl_state_plain_text;
+static gotpl_void gotpl_parser_reset_text(gotpl_state* state) {
 	state->text_index = 0;
 	memset(state->text_buffer, '\0', gotpl_default_parser_buffer_size);
-	memset(state->args_buffer, '\0', 2 * gotpl_default_parser_buffer_size);
 }
 
 static gotpl_bool gotpl_parser_handle_next_char(gotpl_state* state) {
@@ -515,9 +518,10 @@ static gotpl_bool gotpl_parser_handle_white_space(gotpl_state* state) {
 			gotpl_tag_list_add(state->ret_list, current_tag);
 		}
 
-		gotpl_stack_push(state->parser_tag_stack, current_tag);
+		gotpl_stack_push(state->parser_tag_stack, (gotpl_i8*) current_tag);
 
-		return gotpl_true;
+		return gotpl_parser_pack_text_buffer(state);
+		;
 		break;
 	case gotpl_state_in_tag_params:
 		return gotpl_parser_handle_tag_params_text(state);
@@ -539,7 +543,21 @@ static gotpl_bool gotpl_parser_handle_white_space(gotpl_state* state) {
 	return gotpl_true;
 }
 
-static gotpl_bool gotpl_parser_pack_and_reset_buffer(gotpl_state* state) {
+static gotpl_bool gotpl_parser_pack_text_buffer(gotpl_state* state) {
+
+	gotpl_tag* current_tag = gotpl_tag_create_plaintext(state->text_buffer,
+			state->text_index, state->pool);
+
+	gotpl_tag* parent_tag = (gotpl_tag*) gotpl_stack_peek(
+			state->parser_tag_stack);
+	if (parent_tag != 0) {
+		gotpl_tag_list_add(parent_tag->children, current_tag);
+
+	} else {
+		gotpl_tag_list_add(state->ret_list, current_tag);
+	}
+
+	gotpl_parser_reset_text(state);
 	return gotpl_true;
 }
 
