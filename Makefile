@@ -1,5 +1,5 @@
 #VERBOSE=-v -Q -Wall 
-CFLAGS=$(VERBOSE) -O3 -fomit-frame-pointer -march=native -mtune=native -pipe 
+CFLAGS=$(VERBOSE) -O2 -fomit-frame-pointer -march=native -mtune=native -pipe 
 CC=gcc
 APP_NAME=test
 RM=rm
