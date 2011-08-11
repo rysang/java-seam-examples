@@ -281,7 +281,29 @@ static gotpl_bool gotpl_parser_handle_gt(gotpl_state* state) {
 		return gotpl_parser_handle_tag_name_text(state);
 		break;
 	case gotpl_state_in_tag:
-		return gotpl_parser_handle_tag_name_text(state);
+		state->parser_state = gotpl_state_plain_text;
+		gotpl_tag* current_tag = gotpl_parser_get_tag(state);
+
+		if (!current_tag) {
+			GOTPL_ERROR("Tag not found. If this was not meant to be a tag escape one of < or #.");
+			return gotpl_false;
+		}
+
+		gotpl_tag* parent_tag = (gotpl_tag*) gotpl_stack_peek(
+				state->parser_tag_stack);
+		if (parent_tag != 0) {
+			gotpl_tag_list_add(parent_tag->children, current_tag);
+
+		} else {
+			gotpl_tag_list_add(state->ret_list, current_tag);
+		}
+
+		gotpl_parser_pack_text_buffer(state);
+		gotpl_stack_push(state->parser_tag_stack, (gotpl_i8*) current_tag);
+		gotpl_parser_reset_args(state);
+
+		return gotpl_true;
+
 		break;
 	case gotpl_state_in_tag_params:
 		current_tag = (gotpl_tag*) gotpl_stack_peek(state->parser_tag_stack);
