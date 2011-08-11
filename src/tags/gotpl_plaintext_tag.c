@@ -11,7 +11,8 @@ typedef struct {
 	gotpl_ui length;
 } tag_text_private;
 
-static gotpl_bool plaintext_init(gotpl_tag* owner, gotpl_i8* cmd_line) {
+static gotpl_bool plaintext_init(gotpl_tag* owner, gotpl_i8* cmd_line,
+		gotpl_ui cmd_line_len) {
 	return gotpl_true;
 }
 

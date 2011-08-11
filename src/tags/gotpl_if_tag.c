@@ -11,7 +11,10 @@ typedef struct {
 	gotpl_ui length;
 } tag_text_private;
 
-static gotpl_bool if_init(gotpl_tag* owner, gotpl_i8* cmd_line) {
+static gotpl_bool if_init(gotpl_tag* owner, gotpl_i8* cmd_line,
+		gotpl_ui cmd_line_len) {
+
+	GOTPL_DEBUG("In init function.");
 	return gotpl_true;
 }
 
@@ -55,7 +58,6 @@ gotpl_tag* gotpl_tag_create_if(gotpl_i8* str, gotpl_ui length, gotpl_pool* pool)
 	text_tag->name = TAG_IF_NAME;
 	text_tag->_private = text_tag_priv;
 	text_tag->init = if_init;
-	text_tag->children = gotpl_tag_list_create(pool);
 	text_tag->execute = if_execute;
 	text_tag->end_execute = if_end_execute;
 	text_tag->destroy = if_destroy;

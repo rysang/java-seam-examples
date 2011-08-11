@@ -53,6 +53,7 @@ gotpl_stack* gotpl_stack_create(gotpl_pool* pool) {
 }
 
 gotpl_void gotpl_stack_push(gotpl_stack* stack, gotpl_i8* gvalue) {
+	stack->reached_bottom = gotpl_false;
 
 	if (stack->first == stack->last && stack->last == 0) {
 		stack->first = stack->last = gotpl_stack_create_unit(stack->pool);
@@ -72,7 +73,6 @@ gotpl_void gotpl_stack_push(gotpl_stack* stack, gotpl_i8* gvalue) {
 	}
 
 	stack->stack_size++;
-	stack->reached_bottom = gotpl_false;
 
 	GOTPL_DEBUG("Change last value.");
 	unit->next->value = gvalue;
@@ -101,7 +101,6 @@ gotpl_i8* gotpl_stack_peek(gotpl_stack* stack) {
 	gotpl_stack_unit* unit = stack->last;
 	if (unit == stack->first) {
 		if (!stack->reached_bottom) {
-			stack->reached_bottom = gotpl_true;
 			return unit->value;
 		} else if (stack->reached_bottom) {
 			return 0;
