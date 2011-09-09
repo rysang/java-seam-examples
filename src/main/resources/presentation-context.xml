@@ -17,11 +17,6 @@
 		<property name="ignoreUnresolvablePlaceholders" value="true" />
 	</bean>
 
-	<import resource="classpath:db-context.xml" />
-	<import resource="classpath:ehcache-context.xml" />
-	<import resource="classpath:task-context.xml" />
-	<import resource="classpath:security-context.xml" />
-
 	<context:component-scan base-package="org.spring.jsf.app" />
 	<tx:annotation-driven />
 

@@ -31,8 +31,8 @@
 			error-page="/access_denied.xhtml" />
 
 		<security:form-login login-page="/login.xhtml"
-			authentication-failure-url="/access_denied.xhtml" default-target-url="/secure/index.xhtml"
-			always-use-default-target="true" />
+			login-processing-url="/j_spring_security_check"
+			authentication-failure-url="/login.xhtml" default-target-url="/secure/index.xhtml" />
 		<security:intercept-url pattern="/secure/**"
 			access="ROLE_ADMIN" />
 	</security:http>

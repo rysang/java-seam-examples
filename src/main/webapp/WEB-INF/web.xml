@@ -7,9 +7,19 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	<listener>
+		<listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+	</listener>
+	
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/presentation-context.xml</param-value>
+		<param-value>
+			classpath:presentation-context.xml
+			classpath:db-context.xml
+			classpath:ehcache-context.xml
+			classpath:security-context.xml
+			classpath:task-context.xml
+		</param-value>
 	</context-param>
 
 	<listener>
@@ -24,8 +34,6 @@
 	<filter-mapping>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
-		<dispatcher>FORWARD</dispatcher>
-		<dispatcher>REQUEST</dispatcher>
 	</filter-mapping>
 
 	<error-page>
@@ -34,7 +42,7 @@
 	</error-page>
 	<error-page>
 		<error-code>404</error-code>
-		<location>/notfound.jsp</location>
+		<location>/not_found.xhtml</location>
 	</error-page>
 
 
@@ -50,7 +58,7 @@
 	</context-param>
 	<context-param>
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
-		<param-value>Development</param-value>
+		<param-value>Production</param-value>
 	</context-param>
 	<context-param>
 		<param-name>com.sun.faces.allowTextChildren</param-name>
@@ -91,7 +99,7 @@
 
 
 	<welcome-file-list>
-		<welcome-file>login.xhtml</welcome-file>
+		<welcome-file>index.xhtml</welcome-file>
 	</welcome-file-list>
 
 
