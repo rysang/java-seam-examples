@@ -42,18 +42,8 @@
 	</security:global-method-security>
 
 	<security:authentication-manager>
-		<!-- <security:authentication-provider -->
-		<!-- ref="userDetailsService" /> -->
-
-		<security:authentication-provider>
-			<security:password-encoder hash="md5" />
-			<security:user-service>
-				<security:user name="moez" password="f69471ca2c42621b8b8e731b2b4446e4"
-					authorities="ROLE_SUPERVISOR, ROLE_USER, ROLE_ADMIN" />
-				<security:user name="test" password="098f6bcd4621d373cade4e832627b4f6"
-					authorities="ROLE_USER" />
-			</security:user-service>
-		</security:authentication-provider>
+		<security:authentication-provider
+			user-service-ref="userDetailsService" />
 	</security:authentication-manager>
 
 
