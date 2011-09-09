@@ -47,12 +47,23 @@
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan" value="org.spring.jsf.app" />
+		<property name="packagesToScan">
+			<list>
+				<value>org.spring.jsf.app</value>
+			</list>
+		</property>
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
 				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
 				<prop key="hibernate.generate_statistics">true</prop>
+
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.max_fetch_depth">4</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.EhCacheRegionFactory</prop>
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
 			</props>
 		</property>
 		<property name="eventListeners">
@@ -73,6 +84,14 @@
 	</bean>
 
 	<bean id="testDao" class="org.spring.jsf.app.dao.TestDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="userService" class="org.spring.jsf.app.dao.authentication.services.UserService">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="authorityService" class="org.spring.jsf.app.dao.authentication.services.AuthorityService">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
