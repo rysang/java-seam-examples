@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit38.AbstractJUnit38SpringContextTests;
 
-@ContextConfiguration("classpath:db-context.xml")
+@ContextConfiguration(locations = { "classpath:db-context.xml", "classpath:security-context.xml" })
 public class TestSpring extends AbstractJUnit38SpringContextTests {
 
   @Autowired

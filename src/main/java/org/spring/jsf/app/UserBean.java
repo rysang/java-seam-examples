@@ -9,12 +9,21 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 @Component("userBean")
 @Scope("session")
 public class UserBean {
+  private static final Logger LOG = Logger.getLogger(UserBean.class);
+
+  @Autowired
+  protected UserDetails currentUser;
+
   protected String nickname;
   protected String email;
   protected Date birthday;
@@ -86,5 +95,21 @@ public class UserBean {
       list.add(entered + i + "@hascode.com");
     }
     return list;
+  }
+
+  public String onSubmit() {
+    LOG.info("----------------------------");
+    LOG.info("CurrentUser: " + currentUser);
+
+    StringBuilder auths = new StringBuilder('[');
+    for (GrantedAuthority authority : currentUser.getAuthorities()) {
+      auths.append(authority).append(" ,");
+    }
+
+    auths.append(']');
+
+    LOG.info("Authorities: " + auths);
+    LOG.info("----------------------------");
+    return null;
   }
 }

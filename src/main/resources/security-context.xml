@@ -26,6 +26,10 @@
 		<property name="ignoreUnresolvablePlaceholders" value="true" />
 	</bean>
 
+	<bean id="currentUser" scope="session"
+		class="org.spring.jsf.app.authentication.user.SecurityContext"
+		lazy-init="true" factory-method="getCurrentUser" />
+
 	<security:http auto-config="true">
 		<security:access-denied-handler
 			error-page="/access_denied.xhtml" />

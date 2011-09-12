@@ -113,4 +113,12 @@ public class AppUser implements UserDetails {
     return enabled;
   }
 
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder('[').append(getUsername());
+    sb.append(" ,").append(getPassword()).append(']');
+
+    return sb.toString();
+  }
+
 }

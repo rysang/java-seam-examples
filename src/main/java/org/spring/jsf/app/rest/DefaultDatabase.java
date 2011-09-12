@@ -31,7 +31,7 @@ public class DefaultDatabase {
 
   @GET
   @Produces("text/html")
-  public void createDefaults() {
+  public String createDefaults() {
 
     AppAuthority auth1 = new AppAuthority("ROLE_ADMIN");
     AppAuthority auth2 = new AppAuthority("ROLE_USER");
@@ -44,6 +44,14 @@ public class DefaultDatabase {
     moez.setPassword("moez");
     moez.setAppAuthorities(Arrays.asList(new AppAuthority[] { auth1, auth2 }));
 
+    AppUser gigi = new AppUser();
+    gigi.setUsername("gigi");
+    gigi.setPassword("gigi");
+    gigi.setAppAuthorities(Arrays.asList(new AppAuthority[] { auth1, auth2 }));
+
     userService.save(moez);
+    userService.save(gigi);
+
+    return "Done";
   }
 }
