@@ -15,7 +15,7 @@
     http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring/ehcache-spring-1.1.xsd">
 
 
-	<context:component-scan base-package="org.spring.jsf.app" />
+	<context:component-scan base-package="org.cpcs" />
 	<tx:annotation-driven />
 
 	<bean id="propertyPlaceholderConfigurer"

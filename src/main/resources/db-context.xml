@@ -15,7 +15,7 @@
     http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring/ehcache-spring-1.1.xsd">
 
 
-	<context:component-scan base-package="org.spring.jsf.app" />
+	<context:component-scan base-package="org.cpcs" />
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<bean id="propertyPlaceholderConfigurer"
@@ -49,7 +49,7 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan">
 			<list>
-				<value>org.spring.jsf.app</value>
+				<value>org.cpcs</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -83,15 +83,15 @@
 		</property>
 	</bean>
 
-	<bean id="testDao" class="org.spring.jsf.app.dao.TestDAOImpl">
+	<bean id="testDao" class="org.cpcs.dao.TestDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	<bean id="userService" class="org.spring.jsf.app.dao.authentication.services.UserService">
+	<bean id="userService" class="org.cpcs.dao.authentication.services.UserService">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	<bean id="authorityService" class="org.spring.jsf.app.dao.authentication.services.AuthorityService">
+	<bean id="authorityService" class="org.cpcs.dao.authentication.services.AuthorityService">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 

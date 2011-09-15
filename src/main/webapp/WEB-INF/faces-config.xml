@@ -16,9 +16,12 @@
 			<base-name>org.msg.i18n.login</base-name>
 			<var>login</var>
 		</resource-bundle>
+		<resource-bundle>
+			<base-name>org.msg.i18n.header</base-name>
+			<var>h</var>
+		</resource-bundle>
+		
 	</application>
 
-	<lifecycle>
-		<phase-listener>org.spring.jsf.app.authentication.LoginErrorPhaseListener</phase-listener>
-	</lifecycle>
+
 </faces-config>

@@ -3,8 +3,8 @@ package org.spring.jsf.app;
 import java.util.List;
 import java.util.UUID;
 
-import org.spring.jsf.app.dao.TestBean;
-import org.spring.jsf.app.dao.TestDAO;
+import org.cpcs.dao.TestBean;
+import org.cpcs.dao.TestDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit38.AbstractJUnit38SpringContextTests;

@@ -9,40 +9,11 @@
 </h:head>
 <h:body>
 	<h:form>
-		<div id="registration" style="width: 400px; height: 400px;">
-
-
-			<br />
-
-			<p:accordionPanel autoHeight="false">
-				<p:tab title="Nickname">
-					<h:panelGrid columns="2" cellpadding="10">
-						<label>Nickname</label>
-						<h:inputText label="Nickname" id="nname"
-							value="#{userBean.nickname}" required="true" />
-						<h:message for="nname" />
-					</h:panelGrid>
-				</p:tab>
-				<p:tab title="E-Mail">
-					<h:panelGrid columns="2" cellpadding="10">
-						<label>E-Mail</label>
-						<p:autoComplete id="acSimple" value="#{userBean.email}"
-							required="true" validator="#{userBean.validateEmail}"
-							completeMethod="#{userBean.suggestEmail}" />
-						<h:message for="email" />
-					</h:panelGrid>
-				</p:tab>
-				<p:tab title="Birthday">
-					<h:panelGrid columns="2" cellpadding="10">
-						<label>Birthday</label>
-						<p:calendar value="#{userBean.birthday}" required="true" />
-						<h:message for="birthday" />
-					</h:panelGrid>
-				</p:tab>
-			</p:accordionPanel>
-			<p:commandButton action="#{userBean.onSubmit}" value="Register" />
-		</div>
-		<h:messages />
+		<ui:include src="../includes/header.xhtml" />
+		<p:panel id="mainPanel" header="#{navigationService.currentPageTitle == null ? h['org.cpcs.link.home'] : navigationService.currentPageTitle}"
+			style="margin-bottom:10px;">
+			<ui:include src="#{navigationService.currentPage}" />
+		</p:panel>
 	</h:form>
 </h:body>
 </html>
