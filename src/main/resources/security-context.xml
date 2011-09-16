@@ -36,7 +36,7 @@
 
 		<security:form-login login-page="/login.xhtml"
 			login-processing-url="/j_spring_security_check"
-			authentication-failure-url="/login.xhtml" default-target-url="/secure/index.xhtml" />
+			authentication-failure-url="/login.xhtml" default-target-url="${org.cpcs.web.home.page}" />
 		<security:intercept-url pattern="/secure/**"
 			access="ROLE_ADMIN" />
 	</security:http>

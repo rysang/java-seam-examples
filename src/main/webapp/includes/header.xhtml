@@ -3,30 +3,23 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.prime.com.tr/ui">
 
-	<h:panelGrid columns="8" cellpadding="10">
-		<h:commandLink update="mainPanel"
-			action="#{navigationService.navigateTo('../includes/main_panels/home.xhtml', h['org.cpcs.link.home'])}"
-			value="#{h['org.cpcs.link.home']}" />
-		<h:commandLink update="mainPanel"
-			action="#{navigationService.navigateTo('../includes/main_panels/todo-list.xhtml', h['org.cpcs.link.todo.list'])}"
-			value="#{h['org.cpcs.link.todo.list']}" />
-		<h:commandLink update="mainPanel"
-			action="#{navigationService.navigateTo('../includes/main_panels/task-request.xhtml', h['org.cpcs.link.task.request'])}"
-			value="#{h['org.cpcs.link.task.request']}" />
-		<h:commandLink update="mainPanel"
-			action="#{navigationService.navigateTo('../includes/main_panels/created-alerts.xhtml', h['org.cpcs.link.created.alerts'])}"
-			value="#{h['org.cpcs.link.created.alerts']}" />
-		<h:commandLink update="mainPanel"
-			action="#{navigationService.navigateTo('../includes/main_panels/received-alerts.xhtml', h['org.cpcs.link.received.alerts'])}"
-			value="#{h['org.cpcs.link.received.alerts']}" />
-		<h:commandLink update="mainPanel"
-			action="#{navigationService.navigateTo('../includes/main_panels/language-prefs.xhtml', h['org.cpcs.link.language.prefs'])}"
-			value="#{h['org.cpcs.link.language.prefs']}" />
-		<h:commandLink update="mainPanel"
-			action="#{navigationService.navigateTo('../includes/main_panels/search-closed-cases.xhtml', h['org.cpcs.link.search.closed.cases'])}"
-			value="#{h['org.cpcs.link.search.closed.cases']}" />
-		<h:commandLink update="mainPanel"
-			action="#{navigationService.navigateTo('../includes/main_panels/notifications.xhtml', h['org.cpcs.link.notifs'])}"
-			value="#{h['org.cpcs.link.notifs']}" />
-	</h:panelGrid>
+	<div style="padding: 10px">
+		<p:menubar>
+			<p:menuitem value="#{h['org.cpcs.link.home']}" url="home.xhtml" />
+			<p:menuitem value="#{h['org.cpcs.link.todo.list']}"
+				url="todo-list.xhtml" />
+			<p:menuitem value="#{h['org.cpcs.link.task.request']}"
+				url="task-request.xhtml" />
+			<p:menuitem value="#{h['org.cpcs.link.created.alerts']}"
+				url="created-alerts.xhtml" />
+			<p:menuitem value="#{h['org.cpcs.link.received.alerts']}"
+				url="received-alerts.xhtml" />
+			<p:menuitem value="#{h['org.cpcs.link.language.prefs']}"
+				url="language-prefs.xhtml" />
+			<p:menuitem value="#{h['org.cpcs.link.search.closed.cases']}"
+				url="search-closed-cases.xhtml" />
+			<p:menuitem value="#{h['org.cpcs.link.notifs']}"
+				url="notifications.xhtml" />
+		</p:menubar>
+	</div>
 </div>

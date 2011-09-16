@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:head>
+	<ui:include src="../includes/styles.xhtml" />
+</h:head>
+<h:body>
+	<h:form>
+		<p:layout fullPage="true">
+
+			<p:layoutUnit position="top" height="75">
+				<ui:include src="../includes/header.xhtml" />
+			</p:layoutUnit>
+
+			<p:layoutUnit position="bottom" height="75" resizable="true">
+
+			</p:layoutUnit>
+
+			<p:layoutUnit position="right" width="300" resizable="true">
+
+				<p:dataList value="#{tableBean.cars}" var="car" paginator="true"
+					rows="5" effectSpeed="fast"
+					paginatorTemplate="{PreviousPageLink} {CurrentPageReport} {NextPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="20,5,10,15">
+
+					<p:column>
+						<h:outputLink value="www.google.com">
+							<h:outputText value="#{car}" style="margin-left:10px" />
+						</h:outputLink>
+					</p:column>
+				</p:dataList>
+
+			</p:layoutUnit>
+
+			<p:layoutUnit position="center">
+				<p:panel id="mainPanel" header="#{h['org.cpcs.link.home']}"
+					style="margin-bottom:10px;">
+				</p:panel>
+			</p:layoutUnit>
+		</p:layout>
+	</h:form>
+</h:body>
+</html>

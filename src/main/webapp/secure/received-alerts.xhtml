@@ -10,9 +10,9 @@
 <h:body>
 	<h:form>
 		<ui:include src="../includes/header.xhtml" />
-		<p:panel id="mainPanel" header="#{navigationService.currentPageTitle == null ? h['org.cpcs.link.home'] : navigationService.currentPageTitle}"
+		<p:panel id="mainPanel" header="#{h['org.cpcs.link.received.alerts']}"
 			style="margin-bottom:10px;">
-			<ui:include src="#{navigationService.currentPage}" />
+			#{h['org.cpcs.link.received.alerts']}
 		</p:panel>
 	</h:form>
 </h:body>

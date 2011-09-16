@@ -12,11 +12,13 @@ public class NavigationBean implements NavigationService {
 
   }
 
-  public void navigateTo(String navigation, String title) {
+  public String navigateTo(String navigation, String title) {
     setCurrentPage(navigation);
     setCurrentPageTitle(title);
 
     LOG.info("Navigating to :" + navigation);
+    
+    return navigation;
   }
 
   public String getCurrentPage() {
