@@ -42,7 +42,7 @@
 	</security:http>
 
 	<security:global-method-security
-		secured-annotations="enabled" jsr250-annotations="enabled">
+		secured-annotations="enabled" jsr250-annotations="disabled">
 	</security:global-method-security>
 
 	<security:authentication-manager>
