@@ -19,20 +19,34 @@
 
 			</p:layoutUnit>
 
-			<p:layoutUnit position="right" width="300" resizable="true">
+			<p:layoutUnit position="right" width="300" resizable="true" scrollable="true">
+				<p:panel style="overflow: auto">
+					<h:panelGrid columns="1">
+						<p:dataList value="#{tableBean.cars}" var="car" paginator="true"
+							rows="20" effectSpeed="fast"
+							paginatorTemplate="{PreviousPageLink} {CurrentPageReport} {NextPageLink} {RowsPerPageDropdown}"
+							rowsPerPageTemplate="5,10,15,20">
 
-				<p:dataList value="#{tableBean.cars}" var="car" paginator="true"
-					rows="5" effectSpeed="fast"
-					paginatorTemplate="{PreviousPageLink} {CurrentPageReport} {NextPageLink} {RowsPerPageDropdown}"
-					rowsPerPageTemplate="20,5,10,15">
+							<p:column>
+								<h:outputLink value="www.google.com">
+									<h:outputText value="#{car}" style="margin-left:10px" />
+								</h:outputLink>
+							</p:column>
+						</p:dataList>
 
-					<p:column>
-						<h:outputLink value="www.google.com">
-							<h:outputText value="#{car}" style="margin-left:10px" />
-						</h:outputLink>
-					</p:column>
-				</p:dataList>
+						<p:dataList value="#{tableBean.cars}" var="car" paginator="true"
+							rows="20" effectSpeed="fast"
+							paginatorTemplate="{PreviousPageLink} {CurrentPageReport} {NextPageLink} {RowsPerPageDropdown}"
+							rowsPerPageTemplate="5,10,15,20">
 
+							<p:column>
+								<h:outputLink value="www.google.com">
+									<h:outputText value="#{car}" style="margin-left:10px" />
+								</h:outputLink>
+							</p:column>
+						</p:dataList>
+					</h:panelGrid>
+				</p:panel>
 			</p:layoutUnit>
 
 			<p:layoutUnit position="center">
