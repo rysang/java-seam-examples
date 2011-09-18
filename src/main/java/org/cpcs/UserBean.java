@@ -108,6 +108,9 @@ public class UserBean {
 
     auths.append(']');
 
+    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", currentUser.toString());
+    FacesContext.getCurrentInstance().addMessage(null, message);
+
     LOG.info("Authorities: " + auths);
     LOG.info("----------------------------");
     return null;
