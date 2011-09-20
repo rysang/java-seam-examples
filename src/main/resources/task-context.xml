@@ -18,12 +18,6 @@
 	<context:component-scan base-package="org.cpcs" />
 	<tx:annotation-driven />
 
-	<bean id="propertyPlaceholderConfigurer"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="classpath:config.properties" />
-		<property name="ignoreUnresolvablePlaceholders" value="true" />
-	</bean>
-
 	<bean id="taskExecutor"
 		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
 		<property name="corePoolSize" value="5" />

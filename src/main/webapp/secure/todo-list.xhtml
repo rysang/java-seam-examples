@@ -1,19 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.prime.com.tr/ui">
-<h:head>
-	<ui:include src="../includes/styles.xhtml" />
-</h:head>
-<h:body>
-	<h:form>
-		<ui:include src="../includes/header.xhtml" />
+
+
+<ui:composition template="/WEB-INF/templates/main_page.xhtml">
+	<ui:define name="title">#{h['org.cpcs.link.todo.list']}</ui:define>
+	<ui:define name="center">
+
 		<p:panel id="mainPanel" header="#{h['org.cpcs.link.todo.list']}"
 			style="margin-bottom:10px;">
 			#{h['org.cpcs.link.todo.list']}
 		</p:panel>
-	</h:form>
-</h:body>
+
+	</ui:define>
+</ui:composition>
 </html>

@@ -1,94 +1,44 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.prime.com.tr/ui">
-<h:head>
-	<ui:include src="../includes/styles.xhtml" />
-</h:head>
-<h:body>
 
-	<p:layout fullPage="true">
 
-		<p:layoutUnit position="top" height="75">
-			<ui:include src="../includes/header.xhtml" />
-		</p:layoutUnit>
+<ui:composition template="/WEB-INF/templates/main_page.xhtml">
+	<ui:define name="title">#{h['org.cpcs.link.home']}</ui:define>
+	<ui:define name="center">
 
-		<p:layoutUnit position="bottom" height="75" resizable="true">
+		<h:form>
+			<p:panel id="mainPanel" header="#{h['org.cpcs.link.home']}"
+				style="margin-bottom:10px;">
+				<p:panel header="Growl">
+					<p:growl id="growl" showDetail="true" />
+					<h:panelGrid columns="2">
+						<h:outputText value="Your Name: *" />
+						<p:inputText value="#{userBean.nickname}" required="true"
+							label="Name" />
 
-		</p:layoutUnit>
+						<h:outputText value="Email: *" />
+						<p:inputText value="#{userBean.email}" required="true"
+							label="Email" />
 
-		<p:layoutUnit position="right" width="300" resizable="true"
-			scrollable="true">
+						<p:commandButton value="Save"
+							actionListener="#{userBean.onSubmit}" update="growl" />
+						<p:ajaxStatus>
+							<f:facet name="start">
+								<h:graphicImage value="../images/ajaxloading.gif" />
+							</f:facet>
 
-			<h:form>
-				<p:panel style="overflow: auto">
-					<h:panelGrid columns="1">
-						<p:dataList value="#{tableBean.cars}" var="car" paginator="true"
-							rows="20" effectSpeed="fast"
-							paginatorTemplate="{PreviousPageLink} {CurrentPageReport} {NextPageLink} {RowsPerPageDropdown}"
-							rowsPerPageTemplate="5,10,15,20">
-
-							<p:column>
-								<h:outputLink value="www.google.com">
-									<h:outputText value="#{car}" style="margin-left:10px" />
-								</h:outputLink>
-							</p:column>
-						</p:dataList>
-
-						<p:dataList value="#{tableBean.cars}" var="car" paginator="true"
-							rows="20" effectSpeed="fast"
-							paginatorTemplate="{PreviousPageLink} {CurrentPageReport} {NextPageLink} {RowsPerPageDropdown}"
-							rowsPerPageTemplate="5,10,15,20">
-
-							<p:column>
-								<h:outputLink value="www.google.com">
-									<h:outputText value="#{car}" style="margin-left:10px" />
-								</h:outputLink>
-							</p:column>
-						</p:dataList>
+							<f:facet name="complete">
+								<h:outputText value="" />
+							</f:facet>
+						</p:ajaxStatus>
 					</h:panelGrid>
 				</p:panel>
-			</h:form>
-		</p:layoutUnit>
-
-		<p:layoutUnit position="center">
-			<h:form>
-				<p:panel id="mainPanel" header="#{h['org.cpcs.link.home']}"
-					style="margin-bottom:10px;">
-
-
-
-
-					<p:panel header="Growl">
-						<p:growl id="growl" showDetail="true" />
-						<h:panelGrid columns="2">
-							<h:outputText value="Your Name: *" />
-							<p:inputText value="#{userBean.nickname}" required="true"
-								label="Name" />
-
-							<h:outputText value="Email: *" />
-							<p:inputText value="#{userBean.email}" required="true"
-								label="Email" />
-
-							<p:commandButton value="Save"
-								actionListener="#{userBean.onSubmit}" update="growl" />
-							<p:ajaxStatus>
-								<f:facet name="start">
-									<h:graphicImage value="../images/ajaxloading.gif" />
-								</f:facet>
-
-								<f:facet name="complete">
-									<h:outputText value="" />
-								</f:facet>
-							</p:ajaxStatus>
-						</h:panelGrid>
-					</p:panel>
-				</p:panel>
-			</h:form>
-		</p:layoutUnit>
-	</p:layout>
-
-</h:body>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
 </html>

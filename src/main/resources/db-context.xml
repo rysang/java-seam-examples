@@ -18,12 +18,6 @@
 	<context:component-scan base-package="org.cpcs" />
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
-	<bean id="propertyPlaceholderConfigurer"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="classpath:config.properties" />
-		<property name="ignoreUnresolvablePlaceholders" value="true" />
-	</bean>
-
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="${jdbc.driver.classname}" />
@@ -86,11 +80,11 @@
 	<bean id="testDao" class="org.cpcs.dao.TestDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
+
 	<bean id="userService" class="org.cpcs.dao.authentication.services.UserService">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
+
 	<bean id="authorityService" class="org.cpcs.dao.authentication.services.AuthorityService">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>

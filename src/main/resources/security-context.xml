@@ -20,15 +20,9 @@
 	<bean id="loggerListener"
 		class="org.springframework.security.authentication.event.LoggerListener" />
 
-	<bean id="propertyPlaceholderConfigurer"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="classpath:config.properties" />
-		<property name="ignoreUnresolvablePlaceholders" value="true" />
-	</bean>
-
 	<bean id="currentUser" scope="session"
-		class="org.cpcs.authentication.user.SecurityContext"
-		lazy-init="true" factory-method="getCurrentUser" />
+		class="org.cpcs.authentication.user.SecurityContext" lazy-init="true"
+		factory-method="getCurrentUser" />
 
 	<security:http auto-config="true">
 		<security:access-denied-handler
