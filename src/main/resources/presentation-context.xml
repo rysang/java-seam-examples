@@ -22,9 +22,8 @@
 		<property name="ignoreUnresolvablePlaceholders" value="true" />
 	</bean>
 
-	<bean id="navigationService" class="org.cpcs.navigation.impl.NavigationBean"
-		scope="session">
-		<property name="currentPage" value="../includes/main_panels/home.xhtml" />
+	<bean id="localeService" class=" org.cpcs.locale.impl.LocaleBean" scope="session">
+
 	</bean>
 
 	<context:component-scan base-package="org.cpcs" />

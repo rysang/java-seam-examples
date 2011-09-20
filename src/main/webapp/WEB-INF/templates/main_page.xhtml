@@ -4,69 +4,73 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.prime.com.tr/ui">
-<h:head>
-	<ui:include src="includes/styles.xhtml" />
-	<title><ui:insert name="title">
+
+<f:view locale="#{localeService.currentLocale}">
+	<h:head>
+		<ui:include src="includes/styles.xhtml" />
+		<title><ui:insert name="title">
 			Default page title.
-		</ui:insert></title>
-</h:head>
-<h:body>
+		</ui:insert>
+		</title>
+	</h:head>
+	<h:body>
 
-	<p:layout fullPage="true">
+		<p:layout fullPage="true">
 
-		<p:layoutUnit position="top" height="75">
-			<ui:insert name="right">
-				<ui:include src="includes/header.xhtml" />
-			</ui:insert>
-		</p:layoutUnit>
+			<p:layoutUnit position="top" height="75">
+				<ui:insert name="right">
+					<ui:include src="includes/header.xhtml" />
+				</ui:insert>
+			</p:layoutUnit>
 
-		<p:layoutUnit position="bottom" height="75" resizable="true">
-			<ui:insert name="footer">
+			<p:layoutUnit position="bottom" height="75" resizable="true">
+				<ui:insert name="footer">
 				This is the footer.
 			</ui:insert>
-		</p:layoutUnit>
+			</p:layoutUnit>
 
-		<p:layoutUnit position="right" width="300" resizable="true"
-			scrollable="true">
-			<ui:insert name="right">
-				<h:form>
-					<p:panel style="overflow: auto">
-						<h:panelGrid columns="1">
-							<p:dataList value="#{tableBean.cars}" var="car" paginator="true"
-								rows="20" effectSpeed="fast"
-								paginatorTemplate="{PreviousPageLink} {CurrentPageReport} {NextPageLink} {RowsPerPageDropdown}"
-								rowsPerPageTemplate="5,10,15,20">
+			<p:layoutUnit position="right" width="300" resizable="true"
+				scrollable="true">
+				<ui:insert name="right">
+					<h:form>
+						<p:panel style="overflow: auto">
+							<h:panelGrid columns="1">
+								<p:dataList value="#{tableBean.cars}" var="car" paginator="true"
+									rows="20" effectSpeed="fast"
+									paginatorTemplate="{PreviousPageLink} {CurrentPageReport} {NextPageLink} {RowsPerPageDropdown}"
+									rowsPerPageTemplate="5,10,15,20">
 
-								<p:column>
-									<h:outputLink value="www.google.com">
-										<h:outputText value="#{car}" style="margin-left:10px" />
-									</h:outputLink>
-								</p:column>
-							</p:dataList>
+									<p:column>
+										<h:outputLink value="www.google.com">
+											<h:outputText value="#{car}" style="margin-left:10px" />
+										</h:outputLink>
+									</p:column>
+								</p:dataList>
 
-							<p:dataList value="#{tableBean.cars}" var="car" paginator="true"
-								rows="20" effectSpeed="fast"
-								paginatorTemplate="{PreviousPageLink} {CurrentPageReport} {NextPageLink} {RowsPerPageDropdown}"
-								rowsPerPageTemplate="5,10,15,20">
+								<p:dataList value="#{tableBean.cars}" var="car" paginator="true"
+									rows="20" effectSpeed="fast"
+									paginatorTemplate="{PreviousPageLink} {CurrentPageReport} {NextPageLink} {RowsPerPageDropdown}"
+									rowsPerPageTemplate="5,10,15,20">
 
-								<p:column>
-									<h:outputLink value="www.google.com">
-										<h:outputText value="#{car}" style="margin-left:10px" />
-									</h:outputLink>
-								</p:column>
-							</p:dataList>
-						</h:panelGrid>
-					</p:panel>
-				</h:form>
-			</ui:insert>
-		</p:layoutUnit>
+									<p:column>
+										<h:outputLink value="www.google.com">
+											<h:outputText value="#{car}" style="margin-left:10px" />
+										</h:outputLink>
+									</p:column>
+								</p:dataList>
+							</h:panelGrid>
+						</p:panel>
+					</h:form>
+				</ui:insert>
+			</p:layoutUnit>
 
-		<p:layoutUnit position="center">
-			<ui:insert name="center">
+			<p:layoutUnit position="center">
+				<ui:insert name="center">
 				This is the right resizable panel.
 			</ui:insert>
-		</p:layoutUnit>
-	</p:layout>
+			</p:layoutUnit>
+		</p:layout>
 
-</h:body>
+	</h:body>
+</f:view>
 </html>

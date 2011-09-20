@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.faces.context.FacesContext;
+
 import org.springframework.stereotype.Component;
 
 @Component("tableBean")

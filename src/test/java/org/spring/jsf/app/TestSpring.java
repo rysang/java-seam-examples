@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.cpcs.dao.TestBean;
 import org.cpcs.dao.TestDAO;
+import org.cpcs.locale.api.LocaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit38.AbstractJUnit38SpringContextTests;
@@ -15,6 +16,9 @@ public class TestSpring extends AbstractJUnit38SpringContextTests {
 
   @Autowired
   private TestDAO testDao;
+
+  @Autowired
+  private LocaleService localeService;
 
   @Override
   protected void setUp() throws Exception {
@@ -30,5 +34,9 @@ public class TestSpring extends AbstractJUnit38SpringContextTests {
 
     List<TestBean> list = testDao.list();
     assertEquals(1, list.size());
+  }
+
+  public void testLocale() throws Exception {
+
   }
 }

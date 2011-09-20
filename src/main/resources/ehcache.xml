@@ -6,7 +6,7 @@
 		for | detailed information on how to configurigure caches in this file + -->
 	<!-- Location of persistent caches on disk -->
 	<diskStore path="java.io.tmpdir/EhCacheSpringAnnotationsExampleApp" />
-	
+
 
 	<defaultCache eternal="false" maxElementsInMemory="1000"
 		overflowToDisk="false" diskPersistent="false" timeToIdleSeconds="0"
@@ -23,4 +23,9 @@
 	<cache name="fileCaching" eternal="false" maxElementsInMemory="100"
 		overflowToDisk="false" diskPersistent="false" timeToIdleSeconds="0"
 		timeToLiveSeconds="300" memoryStoreEvictionPolicy="LRU" />
+
+	<cache name="org.cpcs.languageCache" eternal="false"
+		maxElementsInMemory="100" overflowToDisk="true" diskPersistent="true"
+		timeToIdleSeconds="0" timeToLiveSeconds="15000"
+		memoryStoreEvictionPolicy="LRU" />
 </ehcache>
