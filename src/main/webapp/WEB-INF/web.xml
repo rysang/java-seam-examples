@@ -19,6 +19,7 @@
 			classpath:ehcache-context.xml
 			classpath:security-context.xml
 			classpath:task-context.xml
+			classpath:mail-context.xml
 		</param-value>
 	</context-param>
 
