@@ -11,6 +11,8 @@ import org.apache.log4j.Logger;
 import org.cpcs.locale.api.LocaleService;
 
 import com.googlecode.ehcache.annotations.Cacheable;
+import com.googlecode.ehcache.annotations.TriggersRemove;
+import com.googlecode.ehcache.annotations.When;
 
 public class LocaleBean implements LocaleService {
   private static Logger LOG = Logger.getLogger(LocaleBean.class);
@@ -47,6 +49,11 @@ public class LocaleBean implements LocaleService {
     }
 
     return listOfSupp;
+  }
+
+  @TriggersRemove(cacheName = "org.cpcs.languageCache", when = When.AFTER_METHOD_INVOCATION, removeAll = true)
+  public void reset() {
+    LOG.info("Resetting cache for languages.");
   }
 
   public void setCurrentLocale(String currentLocale) {

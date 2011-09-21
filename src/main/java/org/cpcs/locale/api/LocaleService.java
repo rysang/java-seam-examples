@@ -12,4 +12,5 @@ public interface LocaleService {
 
   public abstract void setCurrentLocaleLanguage();
 
+  public void reset();
 }

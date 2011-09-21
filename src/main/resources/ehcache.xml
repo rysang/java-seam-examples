@@ -5,24 +5,11 @@
 	<!-- | Please see http://ehcache.sourceforge.net/documentation/configuration.html 
 		for | detailed information on how to configurigure caches in this file + -->
 	<!-- Location of persistent caches on disk -->
-	<diskStore path="java.io.tmpdir/EhCacheSpringAnnotationsExampleApp" />
-
+	<diskStore path="java.io.tmpdir/tmpCache" />
 
 	<defaultCache eternal="false" maxElementsInMemory="1000"
 		overflowToDisk="false" diskPersistent="false" timeToIdleSeconds="0"
 		timeToLiveSeconds="600" memoryStoreEvictionPolicy="LRU" />
-
-	<cache name="test1Cache" eternal="false" maxElementsInMemory="100"
-		overflowToDisk="false" diskPersistent="false" timeToIdleSeconds="0"
-		timeToLiveSeconds="300" memoryStoreEvictionPolicy="LRU" />
-
-	<cache name="test2Cache" eternal="false" maxElementsInMemory="100"
-		overflowToDisk="false" diskPersistent="false" timeToIdleSeconds="0"
-		timeToLiveSeconds="300" memoryStoreEvictionPolicy="LRU" />
-
-	<cache name="fileCaching" eternal="false" maxElementsInMemory="100"
-		overflowToDisk="false" diskPersistent="false" timeToIdleSeconds="0"
-		timeToLiveSeconds="300" memoryStoreEvictionPolicy="LRU" />
 
 	<cache name="org.cpcs.languageCache" eternal="false"
 		maxElementsInMemory="100" overflowToDisk="true" diskPersistent="true"
