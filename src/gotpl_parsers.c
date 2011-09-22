@@ -25,10 +25,25 @@ typedef enum {
 	gotpl_state_in_expr_begin,
 	gotpl_state_in_expr,
 	gotpl_state_in_expr_end,
+	gotpl_state_plain_text,
 
-	gotpl_state_plain_text
-
+	gotpl_state_size
 } gotpl_parser_state;
+
+typedef enum {
+
+	gotpl_current_char_gt, // <
+	gotpl_current_char_lt, // >
+	gotpl_current_char_diez, // #
+	gotpl_current_char_slash, // /
+	gotpl_current_char_dollar, // $
+	gotpl_current_char_open_bracket, // {
+	gotpl_current_char_close_bracket, // }
+	gotpl_current_char_escape,
+	gotpl_current_char_any,
+
+	gotpl_current_char_size
+} gotpl_current_char;
 
 typedef struct {
 	gotpl_parser_state parser_state;
@@ -85,6 +100,14 @@ static gotpl_void gotpl_parser_reset_text(gotpl_state* state);
 static gotpl_void gotpl_parser_reset_args(gotpl_state* state);
 
 static gotpl_tag* gotpl_parser_get_tag(gotpl_state* state);
+
+typedef gotpl_bool (* gotpl_char_handler_t)(gotpl_state* is);
+
+//Define handlers
+static const gotpl_char_handler_t
+		handlers[gotpl_state_size][gotpl_current_char_size] = {
+
+		};
 
 static gotpl_bool gotpl_parser_is_cwhitespace(gotpl_ci utf8Char) {
 
