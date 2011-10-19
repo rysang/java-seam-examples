@@ -23,7 +23,6 @@
 	</bean>
 
 	<bean id="localeService" class=" org.cpcs.locale.impl.LocaleBean" scope="session">
-
 	</bean>
 
 	<context:component-scan base-package="org.cpcs" />

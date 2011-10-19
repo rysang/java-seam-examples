@@ -1,27 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
 
-	<application>
-		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+  <application>
+    <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
 
-		<locale-config>
-			<default-locale>en</default-locale>
-			<supported-locale>en</supported-locale>
-			<supported-locale>es</supported-locale>
-		</locale-config>
+    <locale-config>
+      <default-locale>en</default-locale>
+      <supported-locale>en</supported-locale>
+      <supported-locale>es</supported-locale>
+    </locale-config>
 
-		<resource-bundle>
-			<base-name>org.msg.i18n.login</base-name>
-			<var>login</var>
-		</resource-bundle>
-		<resource-bundle>
-			<base-name>org.msg.i18n.header</base-name>
-			<var>h</var>
-		</resource-bundle>
+    <resource-bundle>
+      <base-name>org.msg.i18n.login</base-name>
+      <var>login</var>
+    </resource-bundle>
+    <resource-bundle>
+      <base-name>org.msg.i18n.header</base-name>
+      <var>h</var>
+    </resource-bundle>
 
-	</application>
-
-
+  </application>
 </faces-config>
