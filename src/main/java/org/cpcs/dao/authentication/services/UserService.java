@@ -1,7 +1,7 @@
 package org.cpcs.dao.authentication.services;
 
+import org.cpcs.dao.NotifUser;
 import org.cpcs.dao.authentication.services.api.UserDao;
-import org.cpcs.dao.authentication.user.AppUser;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,12 +18,12 @@ public class UserService implements UserDao {
   }
 
   @Transactional
-  public void save(AppUser appUser) {
+  public void save(NotifUser appUser) {
     sessionFactory.getCurrentSession().save(appUser);
   }
 
   @Transactional(readOnly = true)
-  public AppUser getByUsername(String username) {
-    return (AppUser) sessionFactory.getCurrentSession().get(AppUser.class, username);
+  public NotifUser getByUsername(String username) {
+    return (NotifUser) sessionFactory.getCurrentSession().get(NotifUser.class, username);
   }
 }

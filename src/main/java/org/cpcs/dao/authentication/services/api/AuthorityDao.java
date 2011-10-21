@@ -1,7 +1,12 @@
 package org.cpcs.dao.authentication.services.api;
 
-import org.cpcs.dao.authentication.user.AppAuthority;
+import java.util.List;
+
+import org.cpcs.dao.NotifRole;
+import org.cpcs.dao.NotifUser;
 
 public interface AuthorityDao {
-  public void save(AppAuthority appAuthority);
+  public void save(NotifRole appAuthority);
+  
+  public List<NotifRole> getRolesForUser(NotifUser notifUser);
 }
