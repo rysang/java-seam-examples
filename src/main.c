@@ -12,6 +12,36 @@
 #include <stdio.h>
 #include <string.h>
 
+typedef enum {
+
+	gotpl_state_open_tag_start,
+	gotpl_state_close_tag_start,
+	gotpl_state_in_end_tag,
+	gotpl_state_in_tag,
+	gotpl_state_in_tag_params,
+	gotpl_state_in_expr_begin,
+	gotpl_state_in_expr,
+	gotpl_state_in_expr_end,
+	gotpl_state_plain_text,
+
+	gotpl_state_size
+} gotpl_parser_state;
+
+typedef enum {
+
+	gotpl_current_char_gt, // <
+	gotpl_current_char_lt, // >
+	gotpl_current_char_diez, // #
+	gotpl_current_char_slash, // /
+	gotpl_current_char_dollar, // $
+	gotpl_current_char_open_bracket, // {
+	gotpl_current_char_close_bracket, // }
+	gotpl_current_char_escape,
+	gotpl_current_char_any,
+
+	gotpl_current_char_size
+} gotpl_current_char;
+
 gotpl_pool* pool = 0;
 
 static gotpl_bool testParser() {
@@ -64,6 +94,8 @@ int main() {
 		GOTPL_ERROR("Failed to alloc pool.");
 		return 0;
 	}
+
+	printf("Size is : %i", gotpl_state_size * gotpl_current_char_size);
 
 	gotpl_input_stream is;
 	gotpl_create_std_input_stream(&is, "template.txt", gotpl_enc_utf8);

@@ -80,6 +80,8 @@ typedef struct {
 
 static gotpl_bool gotpl_parser_is_cwhitespace(gotpl_ci utf8Char);
 
+static gotpl_bool gotpl_parser_dummy_handler(gotpl_state* state);
+
 static gotpl_bool gotpl_parser_handle_lt(gotpl_state* state);
 static gotpl_bool gotpl_parser_handle_gt(gotpl_state* state);
 static gotpl_bool gotpl_parser_handle_diez(gotpl_state* state);
@@ -107,7 +109,103 @@ typedef gotpl_bool (* gotpl_char_handler_t)(gotpl_state* is);
 static const gotpl_char_handler_t
 		handlers[gotpl_state_size][gotpl_current_char_size] = {
 
-		};
+				//
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+
+				//
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+
+				//
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+
+				//
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+
+				//
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+
+				//
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+
+				//
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+
+				//
+				gotpl_parser_dummy_handler, gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler,
+
+				//
+				gotpl_parser_dummy_handler, gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler, gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler, gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler, gotpl_parser_dummy_handler,
+				gotpl_parser_dummy_handler };
+
+static gotpl_bool gotpl_parser_dummy_handler(gotpl_state* state) {
+	return gotpl_true;
+}
 
 static gotpl_bool gotpl_parser_is_cwhitespace(gotpl_ci utf8Char) {
 
@@ -206,28 +304,30 @@ static gotpl_bool gotpl_parser_handle_next_char(gotpl_state* state) {
 
 	switch (state->current_value.m8[0]) {
 	case '<':
-		return gotpl_parser_handle_lt(state);
+		return handlers[state->parser_state][gotpl_current_char_gt](state);
 		break;
 	case '#':
-		return gotpl_parser_handle_diez(state);
+		return handlers[state->parser_state][gotpl_current_char_diez](state);
 		break;
 	case '/':
-		return gotpl_parser_handle_slash(state);
+		return handlers[state->parser_state][gotpl_current_char_slash](state);
 		break;
 	case '$':
-		return gotpl_parser_handle_dollar(state);
+		return handlers[state->parser_state][gotpl_current_char_dollar](state);
 		break;
 	case '{':
-		return gotpl_parser_handle_open_accolade(state);
+		return handlers[state->parser_state][gotpl_current_char_open_bracket](
+				state);
 		break;
 	case '}':
-		return gotpl_parser_handle_close_accolade(state);
+		return handlers[state->parser_state][gotpl_current_char_close_bracket](
+				state);
 		break;
 	case '>':
-		return gotpl_parser_handle_gt(state);
+		return handlers[state->parser_state][gotpl_current_char_lt](state);
 		break;
 	case '\\':
-		//Handle char escape.
+		return handlers[state->parser_state][gotpl_current_char_escape](state);
 		break;
 	default:
 		if (gotpl_parser_is_cwhitespace(state->current_value)) {
