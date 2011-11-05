@@ -105,105 +105,127 @@ static gotpl_tag* gotpl_parser_get_tag(gotpl_state* state);
 
 typedef gotpl_bool (* gotpl_char_handler_t)(gotpl_state* is);
 
+typedef enum {
+
+	gotpl_state_open_tag_start,
+	gotpl_state_close_tag_start,
+	gotpl_state_in_end_tag,
+	gotpl_state_in_tag,
+	gotpl_state_in_tag_params,
+	gotpl_state_in_expr_begin,
+	gotpl_state_in_expr,
+	gotpl_state_in_expr_end,
+	gotpl_state_plain_text,
+
+	gotpl_state_size
+} gotpl_parser_state;
+
 //Define handlers
 static const gotpl_char_handler_t
 		handlers[gotpl_state_size][gotpl_current_char_size] = {
 
-				//
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
+		// gotpl_state_open_tag_start
+				gotpl_parser_dummy_handler, //gotpl_current_char_gt
+				gotpl_parser_dummy_handler, //gotpl_current_char_lt
+				gotpl_parser_dummy_handler, //gotpl_current_char_diez
+				gotpl_parser_dummy_handler, //gotpl_current_char_slash
+				gotpl_parser_dummy_handler, //gotpl_current_char_dollar
+				gotpl_parser_dummy_handler, //gotpl_current_char_open_bracket
+				gotpl_parser_dummy_handler, //gotpl_current_char_close_bracket
+				gotpl_parser_dummy_handler, //gotpl_current_char_escape
+				gotpl_parser_dummy_handler, //gotpl_current_char_any
 
-				//
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
+				// gotpl_state_close_tag_start
+				gotpl_parser_dummy_handler, //gotpl_current_char_gt
+				gotpl_parser_dummy_handler, //gotpl_current_char_lt
+				gotpl_parser_dummy_handler, //gotpl_current_char_diez
+				gotpl_parser_dummy_handler, //gotpl_current_char_slash
+				gotpl_parser_dummy_handler, //gotpl_current_char_dollar
+				gotpl_parser_dummy_handler, //gotpl_current_char_open_bracket
+				gotpl_parser_dummy_handler, //gotpl_current_char_close_bracket
+				gotpl_parser_dummy_handler, //gotpl_current_char_escape
+				gotpl_parser_dummy_handler, //gotpl_current_char_any
 
-				//
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
+				// gotpl_state_in_end_tag
+				gotpl_parser_dummy_handler, //gotpl_current_char_gt
+				gotpl_parser_dummy_handler, //gotpl_current_char_lt
+				gotpl_parser_dummy_handler, //gotpl_current_char_diez
+				gotpl_parser_dummy_handler, //gotpl_current_char_slash
+				gotpl_parser_dummy_handler, //gotpl_current_char_dollar
+				gotpl_parser_dummy_handler, //gotpl_current_char_open_bracket
+				gotpl_parser_dummy_handler, //gotpl_current_char_close_bracket
+				gotpl_parser_dummy_handler, //gotpl_current_char_escape
+				gotpl_parser_dummy_handler, //gotpl_current_char_any
 
-				//
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
+				// gotpl_state_in_tag
+				gotpl_parser_dummy_handler, //gotpl_current_char_gt
+				gotpl_parser_dummy_handler, //gotpl_current_char_lt
+				gotpl_parser_dummy_handler, //gotpl_current_char_diez
+				gotpl_parser_dummy_handler, //gotpl_current_char_slash
+				gotpl_parser_dummy_handler, //gotpl_current_char_dollar
+				gotpl_parser_dummy_handler, //gotpl_current_char_open_bracket
+				gotpl_parser_dummy_handler, //gotpl_current_char_close_bracket
+				gotpl_parser_dummy_handler, //gotpl_current_char_escape
+				gotpl_parser_dummy_handler, //gotpl_current_char_any
 
-				//
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
+				// gotpl_state_in_tag_params
+				gotpl_parser_dummy_handler, //gotpl_current_char_gt
+				gotpl_parser_dummy_handler, //gotpl_current_char_lt
+				gotpl_parser_dummy_handler, //gotpl_current_char_diez
+				gotpl_parser_dummy_handler, //gotpl_current_char_slash
+				gotpl_parser_dummy_handler, //gotpl_current_char_dollar
+				gotpl_parser_dummy_handler, //gotpl_current_char_open_bracket
+				gotpl_parser_dummy_handler, //gotpl_current_char_close_bracket
+				gotpl_parser_dummy_handler, //gotpl_current_char_escape
+				gotpl_parser_dummy_handler, //gotpl_current_char_any
 
-				//
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
+				// gotpl_state_in_expr_begin
+				gotpl_parser_dummy_handler, //gotpl_current_char_gt
+				gotpl_parser_dummy_handler, //gotpl_current_char_lt
+				gotpl_parser_dummy_handler, //gotpl_current_char_diez
+				gotpl_parser_dummy_handler, //gotpl_current_char_slash
+				gotpl_parser_dummy_handler, //gotpl_current_char_dollar
+				gotpl_parser_dummy_handler, //gotpl_current_char_open_bracket
+				gotpl_parser_dummy_handler, //gotpl_current_char_close_bracket
+				gotpl_parser_dummy_handler, //gotpl_current_char_escape
+				gotpl_parser_dummy_handler, //gotpl_current_char_any
 
-				//
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
+				// gotpl_state_in_expr
+				gotpl_parser_dummy_handler, //gotpl_current_char_gt
+				gotpl_parser_dummy_handler, //gotpl_current_char_lt
+				gotpl_parser_dummy_handler, //gotpl_current_char_diez
+				gotpl_parser_dummy_handler, //gotpl_current_char_slash
+				gotpl_parser_dummy_handler, //gotpl_current_char_dollar
+				gotpl_parser_dummy_handler, //gotpl_current_char_open_bracket
+				gotpl_parser_dummy_handler, //gotpl_current_char_close_bracket
+				gotpl_parser_dummy_handler, //gotpl_current_char_escape
+				gotpl_parser_dummy_handler, //gotpl_current_char_any
 
-				//
-				gotpl_parser_dummy_handler, gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler,
+				// gotpl_state_in_expr_end
+				gotpl_parser_dummy_handler, //gotpl_current_char_gt
+				gotpl_parser_dummy_handler, //gotpl_current_char_lt
+				gotpl_parser_dummy_handler, //gotpl_current_char_diez
+				gotpl_parser_dummy_handler, //gotpl_current_char_slash
+				gotpl_parser_dummy_handler, //gotpl_current_char_dollar
+				gotpl_parser_dummy_handler, //gotpl_current_char_open_bracket
+				gotpl_parser_dummy_handler, //gotpl_current_char_close_bracket
+				gotpl_parser_dummy_handler, //gotpl_current_char_escape
+				gotpl_parser_dummy_handler, //gotpl_current_char_any
 
-				//
-				gotpl_parser_dummy_handler, gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler, gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler, gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler, gotpl_parser_dummy_handler,
-				gotpl_parser_dummy_handler };
+				// gotpl_state_plain_text
+				gotpl_parser_dummy_handler, //gotpl_current_char_gt
+				gotpl_parser_dummy_handler, //gotpl_current_char_lt
+				gotpl_parser_dummy_handler, //gotpl_current_char_diez
+				gotpl_parser_dummy_handler, //gotpl_current_char_slash
+				gotpl_parser_dummy_handler, //gotpl_current_char_dollar
+				gotpl_parser_dummy_handler, //gotpl_current_char_open_bracket
+				gotpl_parser_dummy_handler, //gotpl_current_char_close_bracket
+				gotpl_parser_dummy_handler, //gotpl_current_char_escape
+				gotpl_parser_dummy_handler //gotpl_current_char_any
+				};
 
 static gotpl_bool gotpl_parser_dummy_handler(gotpl_state* state) {
+	GOTPL_DEBUG("Dummy processing.");
 	return gotpl_true;
 }
 
