@@ -80,7 +80,14 @@ typedef struct {
 
 static gotpl_bool gotpl_parser_is_cwhitespace(gotpl_ci utf8Char);
 
+// New stuff
 static gotpl_bool gotpl_parser_dummy_handler(gotpl_state* state);
+static gotpl_bool gotpl_parser_any_char(gotpl_state* state);
+
+static gotpl_bool gotpl_parser_open_tag_start_gt(gotpl_state* state);
+static gotpl_bool gotpl_parser_plain_text_lt(gotpl_state* state);
+
+//End new STuff
 
 static gotpl_bool gotpl_parser_handle_lt(gotpl_state* state);
 static gotpl_bool gotpl_parser_handle_gt(gotpl_state* state);
@@ -105,27 +112,12 @@ static gotpl_tag* gotpl_parser_get_tag(gotpl_state* state);
 
 typedef gotpl_bool (* gotpl_char_handler_t)(gotpl_state* is);
 
-typedef enum {
-
-	gotpl_state_open_tag_start,
-	gotpl_state_close_tag_start,
-	gotpl_state_in_end_tag,
-	gotpl_state_in_tag,
-	gotpl_state_in_tag_params,
-	gotpl_state_in_expr_begin,
-	gotpl_state_in_expr,
-	gotpl_state_in_expr_end,
-	gotpl_state_plain_text,
-
-	gotpl_state_size
-} gotpl_parser_state;
-
 //Define handlers
 static const gotpl_char_handler_t
 		handlers[gotpl_state_size][gotpl_current_char_size] = {
 
 		// gotpl_state_open_tag_start
-				gotpl_parser_dummy_handler, //gotpl_current_char_gt
+				gotpl_parser_open_tag_start_gt, //gotpl_current_char_gt
 				gotpl_parser_dummy_handler, //gotpl_current_char_lt
 				gotpl_parser_dummy_handler, //gotpl_current_char_diez
 				gotpl_parser_dummy_handler, //gotpl_current_char_slash
@@ -214,7 +206,7 @@ static const gotpl_char_handler_t
 
 				// gotpl_state_plain_text
 				gotpl_parser_dummy_handler, //gotpl_current_char_gt
-				gotpl_parser_dummy_handler, //gotpl_current_char_lt
+				gotpl_parser_plain_text_lt, //gotpl_current_char_lt
 				gotpl_parser_dummy_handler, //gotpl_current_char_diez
 				gotpl_parser_dummy_handler, //gotpl_current_char_slash
 				gotpl_parser_dummy_handler, //gotpl_current_char_dollar
@@ -226,6 +218,39 @@ static const gotpl_char_handler_t
 
 static gotpl_bool gotpl_parser_dummy_handler(gotpl_state* state) {
 	GOTPL_DEBUG("Dummy processing.");
+	return gotpl_true;
+}
+
+static gotpl_bool gotpl_parser_any_char(gotpl_state* state) {
+	GOTPL_DEBUG("Handling any character. Adding to buffer.");
+	gotpl_ui i;
+
+	if ((state->text_index + state->current_value_size)
+			< gotpl_default_parser_buffer_size) {
+
+		for (i = 0; i < state->current_value_size; i++) {
+			state->text_buffer[state->text_index + i]
+					= state->current_value.m8[i];
+		}
+
+		state->text_index += state->current_value_size;
+	}
+
+	else {
+		return gotpl_parser_pack_text_buffer(state);
+	}
+
+	return gotpl_true;
+}
+
+static gotpl_bool gotpl_parser_open_tag_start_gt(gotpl_state* state) {
+	GOTPL_DEBUG("Handling state open_tag_start and char <");
+	return gotpl_true;
+}
+
+static gotpl_bool gotpl_parser_plain_text_lt(gotpl_state* state) {
+	GOTPL_DEBUG("Treating tag start.");
+	state->parser_state = gotpl_state_open_tag_start;
 	return gotpl_true;
 }
 
@@ -399,7 +424,6 @@ static gotpl_bool gotpl_parser_handle_lt(gotpl_state* state) {
 static gotpl_bool gotpl_parser_handle_gt(gotpl_state* state) {
 	gotpl_ui tmp_val_size;
 	gotpl_ci tmp_val;
-	gotpl_tag* current_tag;
 
 	switch (state->parser_state) {
 	case gotpl_state_open_tag_start:
