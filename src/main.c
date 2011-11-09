@@ -66,7 +66,7 @@ int main() {
 	}
 
 	gotpl_input_stream is;
-	gotpl_create_std_input_stream(&is, "template.txt", gotpl_enc_utf8);
+	gotpl_create_std_input_stream(&is, "template1.txt", gotpl_enc_utf8);
 
 	gotpl_parser* parser = gotpl_utf8parser_create(pool);
 	gotpl_tag_map* map = gotpl_tag_map_create(10, pool);

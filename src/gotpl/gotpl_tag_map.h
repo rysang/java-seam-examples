@@ -9,7 +9,8 @@ gotpl_tag_map
 gotpl_ui gotpl_tag_map_put(gotpl_tag_map* owner, gotpl_i8* name,
 		gotpl_tag* obj);
 gotpl_i gotpl_tag_map_remove(gotpl_tag_map* owner, gotpl_i8* name);
-gotpl_tag* gotpl_tag_map_get(gotpl_tag_map* owner, gotpl_i8* name);
+gotpl_tag* gotpl_tag_map_get_copy(gotpl_tag_map* owner, gotpl_i8* name);
+gotpl_tag* gotpl_tag_map_get_ref(gotpl_tag_map* owner, gotpl_i8* name);
 gotpl_ui gotpl_tag_map_element_count(gotpl_tag_map* owner);
 
 #endif

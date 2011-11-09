@@ -19,9 +19,10 @@ typedef enum {
 
 	gotpl_state_open_tag_start,
 	gotpl_state_close_tag_start,
-	gotpl_state_in_end_tag,
 	gotpl_state_in_tag,
 	gotpl_state_in_tag_params,
+	gotpl_state_in_end_tag,
+	gotpl_state_in_end_tag_closing,
 	gotpl_state_in_expr_begin,
 	gotpl_state_in_expr,
 	gotpl_state_in_expr_end,
@@ -40,8 +41,8 @@ typedef struct {
 	gotpl_i8 text_buffer[gotpl_default_parser_buffer_size];
 	gotpl_ui text_index;
 
-	gotpl_i8 args_buffer[gotpl_parser_args_buffer];
-	gotpl_ui args_index;
+	gotpl_i8 tag_buffer[gotpl_parser_args_buffer];
+	gotpl_ui tag_buff_index;
 
 	//A small stack for previous elements.
 	gotpl_stack* char_index_stack;
@@ -60,6 +61,9 @@ typedef struct {
 
 	//pool for misc allocations.
 	gotpl_pool* pool;
+
+	//the current stream.
+	gotpl_input_stream* is;
 
 } gotpl_state;
 
@@ -82,9 +86,10 @@ static gotpl_bool gotpl_parser_handle_next_char(gotpl_state* state);
 static gotpl_bool gotpl_parser_pack_text_buffer(gotpl_state* state);
 
 static gotpl_void gotpl_parser_reset_text(gotpl_state* state);
-static gotpl_void gotpl_parser_reset_args(gotpl_state* state);
+static gotpl_void gotpl_parser_reset_tag_buffer(gotpl_state* state);
 
-static gotpl_tag* gotpl_parser_get_tag(gotpl_state* state);
+static gotpl_tag* gotpl_parser_get_tag(gotpl_state* state,
+		gotpl_bool create_children_list);
 
 static gotpl_bool gotpl_parser_is_cwhitespace(gotpl_ci utf8Char) {
 
@@ -153,6 +158,7 @@ gotpl_tag_list* gotpl_utf8parser_parse(gotpl_parser* parser,
 	state->custom_tags = tags;
 	state->parser_state = gotpl_state_plain_text;
 	state->pool = parser->pool;
+	state->is = in;
 
 	while (in->has_more(in)) {
 		state->current_value_size = in->read(in);
@@ -172,9 +178,9 @@ static gotpl_void gotpl_parser_reset_text(gotpl_state* state) {
 	memset(state->text_buffer, '\0', gotpl_default_parser_buffer_size);
 }
 
-static gotpl_void gotpl_parser_reset_args(gotpl_state* state) {
-	state->args_index = 0;
-	memset(state->args_buffer, '\0', gotpl_parser_args_buffer);
+static gotpl_void gotpl_parser_reset_tag_buffer(gotpl_state* state) {
+	state->tag_buff_index = 0;
+	memset(state->tag_buffer, '\0', gotpl_parser_args_buffer);
 }
 
 static gotpl_bool gotpl_parser_handle_next_char(gotpl_state* state) {
@@ -254,7 +260,9 @@ static gotpl_bool gotpl_parser_handle_lt(gotpl_state* state) {
 static gotpl_bool gotpl_parser_handle_gt(gotpl_state* state) {
 	gotpl_ui tmp_val_size;
 	gotpl_ci tmp_val;
-	gotpl_tag* current_tag;
+
+	gotpl_tag* current_tag = 0;
+	gotpl_tag* current_end_tag = 0;
 
 	switch (state->parser_state) {
 	case gotpl_state_open_tag_start:
@@ -279,11 +287,22 @@ static gotpl_bool gotpl_parser_handle_gt(gotpl_state* state) {
 
 		break;
 	case gotpl_state_in_end_tag:
-		return gotpl_parser_handle_tag_name_text(state);
+		current_tag = (gotpl_tag*) gotpl_stack_peek(state->parser_tag_stack);
+		current_end_tag = gotpl_parser_get_tag(state, gotpl_false);
+		if ((current_tag != 0) || (current_end_tag != 0)) {
+			if (strcmp(current_tag->name, current_end_tag->name) == 0) {
+				gotpl_stack_pop(state->parser_tag_stack);
+				return gotpl_true;
+			}
+		}
+
+		GOTPL_ERROR("Error end tag doesn't have a start tag.")
+		;
+		return gotpl_false;
 		break;
 	case gotpl_state_in_tag:
 		state->parser_state = gotpl_state_plain_text;
-		gotpl_tag* current_tag = gotpl_parser_get_tag(state);
+		current_tag = gotpl_parser_get_tag(state, gotpl_true);
 
 		if (!current_tag) {
 			GOTPL_ERROR("Tag not found. If this was not meant to be a tag escape one of < or #.");
@@ -301,14 +320,14 @@ static gotpl_bool gotpl_parser_handle_gt(gotpl_state* state) {
 
 		gotpl_parser_pack_text_buffer(state);
 		gotpl_stack_push(state->parser_tag_stack, (gotpl_i8*) current_tag);
-		gotpl_parser_reset_args(state);
+		gotpl_parser_reset_tag_buffer(state);
 
 		return gotpl_true;
 
 		break;
 	case gotpl_state_in_tag_params:
 		current_tag = (gotpl_tag*) gotpl_stack_peek(state->parser_tag_stack);
-		current_tag->init(current_tag, state->args_buffer, state->args_index);
+		current_tag->init(current_tag, state->tag_buffer, state->tag_buff_index);
 		state->parser_state = gotpl_state_plain_text;
 
 		return gotpl_true;
@@ -380,13 +399,18 @@ static gotpl_bool gotpl_parser_handle_slash(gotpl_state* state) {
 	switch (state->parser_state) {
 	case gotpl_state_open_tag_start:
 		state->parser_state = gotpl_state_close_tag_start;
+		gotpl_parser_reset_tag_buffer(state);
 		return gotpl_true;
 		break;
 	case gotpl_state_in_end_tag:
-		return gotpl_parser_handle_tag_name_text(state);
+		GOTPL_ERROR("Unexpected character / in tag name.")
+		;
+		return gotpl_false;
 		break;
 	case gotpl_state_in_tag:
-		return gotpl_parser_handle_tag_name_text(state);
+		GOTPL_ERROR("Unexpected character / in tag name.")
+		;
+		return gotpl_false;
 		break;
 	case gotpl_state_in_tag_params:
 		return gotpl_parser_handle_tag_params_text(state);
@@ -470,6 +494,7 @@ static gotpl_bool gotpl_parser_handle_plain_text(gotpl_state* state) {
 
 		state->current_value = tmp_val;
 		state->current_value_size = tmp_val_size;
+		gotpl_parser_reset_text(state);
 
 		break;
 	case gotpl_state_in_end_tag:
@@ -515,15 +540,15 @@ static gotpl_bool gotpl_parser_handle_plain_text(gotpl_state* state) {
 static gotpl_bool gotpl_parser_handle_tag_name_text(gotpl_state* state) {
 	gotpl_ui i;
 
-	if ((state->args_index + state->current_value_size)
+	if ((state->tag_buff_index + state->current_value_size)
 			< (gotpl_parser_args_buffer - 1)) {
 
 		for (i = 0; i < state->current_value_size; i++) {
-			state->args_buffer[state->args_index + i]
+			state->tag_buffer[state->tag_buff_index + i]
 					= state->current_value.m8[i];
 		}
 
-		state->args_index += state->current_value_size;
+		state->tag_buff_index += state->current_value_size;
 	}
 
 	else {
@@ -538,15 +563,15 @@ static gotpl_bool gotpl_parser_handle_tag_params_text(gotpl_state* state) {
 
 	gotpl_ui i;
 
-	if ((state->args_index + state->current_value_size)
+	if ((state->tag_buff_index + state->current_value_size)
 			< (gotpl_parser_args_buffer - 1)) {
 
 		for (i = 0; i < state->current_value_size; i++) {
-			state->args_buffer[state->args_index + i]
+			state->tag_buffer[state->tag_buff_index + i]
 					= state->current_value.m8[i];
 		}
 
-		state->args_index += state->current_value_size;
+		state->tag_buff_index += state->current_value_size;
 	}
 
 	else {
@@ -574,7 +599,7 @@ static gotpl_bool gotpl_parser_handle_white_space(gotpl_state* state) {
 		break;
 	case gotpl_state_in_tag:
 		state->parser_state = gotpl_state_in_tag_params;
-		gotpl_tag* current_tag = gotpl_parser_get_tag(state);
+		gotpl_tag* current_tag = gotpl_parser_get_tag(state, gotpl_true);
 
 		if (!current_tag) {
 			GOTPL_ERROR("Tag not found. If this was not meant to be a tag escape one of < or #.");
@@ -592,7 +617,7 @@ static gotpl_bool gotpl_parser_handle_white_space(gotpl_state* state) {
 
 		gotpl_parser_pack_text_buffer(state);
 		gotpl_stack_push(state->parser_tag_stack, (gotpl_i8*) current_tag);
-		gotpl_parser_reset_args(state);
+		gotpl_parser_reset_tag_buffer(state);
 
 		return gotpl_true;
 
@@ -635,16 +660,20 @@ static gotpl_bool gotpl_parser_pack_text_buffer(gotpl_state* state) {
 	return gotpl_true;
 }
 
-static gotpl_tag* gotpl_parser_get_tag(gotpl_state* state) {
-	state->args_buffer[state->args_index + 1] = '\0';
-	gotpl_tag* ret = gotpl_tag_map_get(state->custom_tags, state->args_buffer);
+static gotpl_tag* gotpl_parser_get_tag(gotpl_state* state,
+		gotpl_bool create_children_list) {
+	state->tag_buffer[state->tag_buff_index + 1] = '\0';
+	gotpl_tag* ret = gotpl_tag_map_get_copy(state->custom_tags,
+			state->tag_buffer);
 
 	if (!ret) {
-		ret = gotpl_tag_map_get(state->available_tags, state->args_buffer);
+		ret = gotpl_tag_map_get_copy(state->available_tags, state->tag_buffer);
 	}
 
 	if (ret) {
-		ret->children = gotpl_tag_list_create(state->pool);
+		if (create_children_list == gotpl_true) {
+			ret->children = gotpl_tag_list_create(state->pool);
+		}
 	}
 
 	return ret;

@@ -6,7 +6,7 @@
 typedef struct gotpl_map_chunk gotpl_map_chunk;
 
 struct gotpl_map_chunk {
-	gotpl_object object;
+	gotpl_object *object;
 	gotpl_map_chunk* next;
 	gotpl_ui hash;
 };
@@ -51,13 +51,13 @@ gotpl_ui gotpl_object_map_put(gotpl_object_map* owner, gotpl_i8* name,
 		GOTPL_DEBUG("Allocating first chunk in the array.");
 
 		chunk->hash = hash;
-		chunk->object = *obj;
+		chunk->object = obj;
 		return hash;
 
 	} else if (chunk->hash == hash) {
 		GOTPL_DEBUG("Entry exists, replacing it.");
 
-		chunk->object = *obj;
+		chunk->object = obj;
 		return hash;
 	}
 
@@ -73,8 +73,7 @@ gotpl_ui gotpl_object_map_put(gotpl_object_map* owner, gotpl_i8* name,
 			if (chunk) {
 
 				chunk->hash = hash;
-				chunk->hash = hash;
-				chunk->object = *obj;
+				chunk->object = obj;
 				return hash;
 
 			}
@@ -87,7 +86,7 @@ gotpl_ui gotpl_object_map_put(gotpl_object_map* owner, gotpl_i8* name,
 			GOTPL_DEBUG("Entry exists or empty space found recycling.");
 
 			chunk->hash = hash;
-			chunk->object = *obj;
+			chunk->object = obj;
 			return hash;
 		}
 	}
@@ -128,7 +127,7 @@ gotpl_i gotpl_object_map_remove(gotpl_object_map* owner, gotpl_i8* name) {
 	return -1;
 }
 
-gotpl_object* gotpl_object_map_get(gotpl_object_map* owner, gotpl_i8* name) {
+gotpl_object* gotpl_object_map_get_ref(gotpl_object_map* owner, gotpl_i8* name) {
 	gotpl_ui hash = super_fast_hash(name, strlen(name));
 	gotpl_map_chunk* chunk = &owner->array[hash % owner->array_length];
 
@@ -137,7 +136,32 @@ gotpl_object* gotpl_object_map_get(gotpl_object_map* owner, gotpl_i8* name) {
 		if (chunk != 0) {
 			if (chunk->hash != hash) {
 				GOTPL_DEBUG("Returning value.");
-				return &chunk->object;
+				return chunk->object;
+			}
+		} else {
+			GOTPL_DEBUG("Value not found.");
+			return 0;
+		}
+
+		chunk = chunk->next;
+	}
+
+	return 0;
+}
+
+gotpl_object* gotpl_object_map_get_copy(gotpl_object_map* owner, gotpl_i8* name) {
+	gotpl_ui hash = super_fast_hash(name, strlen(name));
+	gotpl_map_chunk* chunk = &owner->array[hash % owner->array_length];
+
+	while (gotpl_true) {
+
+		if (chunk != 0) {
+			if (chunk->hash != hash) {
+				gotpl_object* ret = (gotpl_object*) gotpl_pool_alloc(
+						owner->pool, sizeof(gotpl_object));
+				memcpy(ret, chunk->object, sizeof(gotpl_object));
+				GOTPL_DEBUG("Returning value.");
+				return ret;
 			}
 		} else {
 			GOTPL_DEBUG("Value not found.");
