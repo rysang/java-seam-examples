@@ -66,13 +66,13 @@ int main() {
 	}
 
 	gotpl_input_stream is;
-	gotpl_create_std_input_stream(&is, "template1.txt", gotpl_enc_utf8);
+	gotpl_create_std_input_stream(&is, "template.txt", gotpl_enc_utf8);
 
 	gotpl_parser* parser = gotpl_utf8parser_create(pool);
 	gotpl_tag_map* map = gotpl_tag_map_create(10, pool);
 	gotpl_tag_map_put(map, "if", gotpl_tag_create_if("mine", 4, pool));
 
-	gotpl_utf8parser_parse(parser, &is, map);
+	gotpl_tag_list* list = gotpl_utf8parser_parse(parser, &is, map);
 
 	is.close(&is);
 	gotpl_pool_destroy(&pool);

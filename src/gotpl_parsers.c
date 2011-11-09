@@ -170,17 +170,23 @@ gotpl_tag_list* gotpl_utf8parser_parse(gotpl_parser* parser,
 		}
 	}
 
+	if (state->text_index > 0) {
+		gotpl_parser_pack_text_buffer(state);
+	}
+
 	return state->ret_list;
 }
 
 static gotpl_void gotpl_parser_reset_text(gotpl_state* state) {
 	state->text_index = 0;
-	memset(state->text_buffer, '\0', gotpl_default_parser_buffer_size);
+	// Hard reset ?
+	//memset(state->text_buffer, '\0', gotpl_default_parser_buffer_size);
 }
 
 static gotpl_void gotpl_parser_reset_tag_buffer(gotpl_state* state) {
 	state->tag_buff_index = 0;
-	memset(state->tag_buffer, '\0', gotpl_parser_args_buffer);
+	// Hard reset ?
+	//memset(state->tag_buffer, '\0', gotpl_parser_args_buffer);
 }
 
 static gotpl_bool gotpl_parser_handle_next_char(gotpl_state* state) {
@@ -292,6 +298,7 @@ static gotpl_bool gotpl_parser_handle_gt(gotpl_state* state) {
 		if ((current_tag != 0) || (current_end_tag != 0)) {
 			if (strcmp(current_tag->name, current_end_tag->name) == 0) {
 				gotpl_stack_pop(state->parser_tag_stack);
+				state->parser_state = gotpl_state_plain_text;
 				return gotpl_true;
 			}
 		}
@@ -626,13 +633,13 @@ static gotpl_bool gotpl_parser_handle_white_space(gotpl_state* state) {
 		return gotpl_parser_handle_tag_params_text(state);
 		break;
 	case gotpl_state_in_expr_begin:
-		return gotpl_parser_handle_plain_text(state);
+		return gotpl_parser_handle_expr_text(state);
 		break;
 	case gotpl_state_in_expr:
 		return gotpl_parser_handle_expr_text(state);
 		break;
 	case gotpl_state_in_expr_end:
-		return gotpl_parser_handle_plain_text(state);
+		return gotpl_parser_handle_expr_text(state);
 		break;
 
 	default:
