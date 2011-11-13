@@ -180,13 +180,13 @@ gotpl_tag_list* gotpl_utf8parser_parse(gotpl_parser* parser,
 static gotpl_void gotpl_parser_reset_text(gotpl_state* state) {
 	state->text_index = 0;
 	// Hard reset ?
-	//memset(state->text_buffer, '\0', gotpl_default_parser_buffer_size);
+	memset(state->text_buffer, '\0', gotpl_default_parser_buffer_size);
 }
 
 static gotpl_void gotpl_parser_reset_tag_buffer(gotpl_state* state) {
 	state->tag_buff_index = 0;
 	// Hard reset ?
-	//memset(state->tag_buffer, '\0', gotpl_parser_args_buffer);
+	memset(state->tag_buffer, '\0', gotpl_parser_args_buffer);
 }
 
 static gotpl_bool gotpl_parser_handle_next_char(gotpl_state* state) {
@@ -295,7 +295,7 @@ static gotpl_bool gotpl_parser_handle_gt(gotpl_state* state) {
 	case gotpl_state_in_end_tag:
 		current_tag = (gotpl_tag*) gotpl_stack_peek(state->parser_tag_stack);
 		current_end_tag = gotpl_parser_get_tag(state, gotpl_false);
-		if ((current_tag != 0) || (current_end_tag != 0)) {
+		if ((current_tag != 0) && (current_end_tag != 0)) {
 			if (strcmp(current_tag->name, current_end_tag->name) == 0) {
 				gotpl_stack_pop(state->parser_tag_stack);
 				state->parser_state = gotpl_state_plain_text;
