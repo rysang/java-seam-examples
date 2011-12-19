@@ -13,30 +13,7 @@
 		<h:form>
 			<p:panel id="mainPanel" header="#{h['org.cpcs.link.home']}"
 				style="margin-bottom:10px;">
-				<p:panel header="Growl">
-					<p:growl id="growl" showDetail="true" />
-					<h:panelGrid columns="2">
-						<h:outputText value="Your Name: *" />
-						<p:inputText value="#{userBean.nickname}" required="true"
-							label="Name" />
 
-						<h:outputText value="Email: *" />
-						<p:inputText value="#{userBean.email}" required="true"
-							label="Email" />
-
-						<p:commandButton value="Save"
-							actionListener="#{userBean.onSubmit}" update="growl" />
-						<p:ajaxStatus>
-							<f:facet name="start">
-								<h:graphicImage value="../images/ajaxloading.gif" />
-							</f:facet>
-
-							<f:facet name="complete">
-								<h:outputText value="" />
-							</f:facet>
-						</p:ajaxStatus>
-					</h:panelGrid>
-				</p:panel>
 			</p:panel>
 		</h:form>
 	</ui:define>

@@ -15,70 +15,89 @@
 
 
   <context:component-scan base-package="org.cpcs" />
-  <tx:annotation-driven transaction-manager="transactionManager" />
 
-  <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-    <property name="driverClass" value="${jdbc.driver.classname}" />
-    <property name="jdbcUrl" value="${jdbc.url}" />
-    <property name="user" value="${jdbc.username}" />
-    <property name="password" value="${jdbc.password}" />
-
-    <property name="properties">
+  <bean id="baseTransactionProxy" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+    abstract="true">
+    <property name="transactionManager" ref="transactionManager" />
+    <property name="transactionAttributes">
       <props>
-        <prop key="c3p0.acquire_increment">5</prop>
-        <prop key="c3p0.idle_test_period">100</prop>
-        <prop key="c3p0.max_size">100</prop>
-        <prop key="c3p0.max_statements">0</prop>
-        <prop key="c3p0.min_size">10</prop>
+        <prop key="insert*">PROPAGATION_REQUIRED</prop>
+        <prop key="update*">PROPAGATION_REQUIRED</prop>
+        <prop key="save*">PROPAGATION_REQUIRED</prop>
+        <prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
       </props>
     </property>
-
   </bean>
 
+  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+    <property name="url" value="jdbc:oracle:thin:@s-sanco-dev2.net1.cec.eu.int:1521:SANCODEV" />
+    <property name="username" value="cpcsowner" />
+    <property name="password" value="cpcsapp123" />
+  </bean>
 
-  <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+  <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
     <property name="dataSource" ref="dataSource" />
-    <property name="packagesToScan">
-      <list>
-        <value>org.cpcs</value>
-      </list>
-    </property>
-    <property name="hibernateProperties">
-      <props>
-        <prop key="hibernate.dialect">${hibernate.dialect}</prop>
-        <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
-        <prop key="hibernate.generate_statistics">true</prop>
-        <prop key="hibernate.show_sql">true</prop>
+  </bean>
 
-        <prop key="hibernate.cache.use_second_level_cache">true</prop>
-        <prop key="hibernate.cache.use_query_cache">true</prop>
-        <prop key="hibernate.max_fetch_depth">4</prop>
-        <prop key="hibernate.cache.use_query_cache">true</prop>
-        <prop key="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.EhCacheRegionFactory</prop>
-        <prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
-      </props>
-    </property>
-    <property name="eventListeners">
-      <map>
-        <entry key="merge">
-          <bean class="org.springframework.orm.hibernate3.support.IdTransferringMergeEventListener" />
-        </entry>
-      </map>
+  <bean id="umaDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+    <property name="url" value="jdbc:oracle:thin:@s-sanco-dev2.net1.cec.eu.int:1521:SANCODEV" />
+    <property name="username" value="umaowner" />
+    <property name="password" value="cpcsapp123" />
+  </bean>
+
+  <bean id="organizationDao" parent="baseTransactionProxy">
+    <property name="target">
+      <bean class="org.cpcs.dao.services.OrganizationServiceImpl">
+        <property name="dataSource" ref="dataSource" />
+        <property name="organizationIncrementer" ref="organizationIncrementer" />
+
+        <!-- queries -->
+        <property name="listOrganizationsQuery" value="${list.organizations}" />
+        <property name="listCountQuery" value="${list.organizations.count}" />
+      </bean>
     </property>
   </bean>
 
-  <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-    <property name="sessionFactory">
-      <ref local="sessionFactory" />
+  <bean id="memberStateDao" parent="baseTransactionProxy">
+    <property name="target">
+      <bean class="org.cpcs.dao.services.MemberStateServiceImpl">
+        <property name="dataSource" ref="dataSource" />
+
+        <!-- queries -->
+        <property name="listStatesQuery" value="${list.member.states}" />
+      </bean>
     </property>
   </bean>
 
-  <bean id="userService" class="org.cpcs.dao.authentication.services.UserService">
-    <property name="sessionFactory" ref="sessionFactory" />
+  <bean id="roleDao" parent="baseTransactionProxy">
+    <property name="target">
+      <bean class="org.cpcs.dao.services.RoleServiceImpl">
+        <property name="dataSource" ref="dataSource" />
+
+        <!-- queries -->
+        <property name="listRolesQuery" value="${list.roles}" />
+      </bean>
+    </property>
   </bean>
 
-  <bean id="authorityService" class="org.cpcs.dao.authentication.services.AuthorityService">
-    <property name="sessionFactory" ref="sessionFactory" />
+  <bean id="directiveDao" parent="baseTransactionProxy">
+    <property name="target">
+      <bean class="org.cpcs.dao.services.DirectiveServiceImpl">
+        <property name="dataSource" ref="dataSource" />
+
+        <!-- queries -->
+        <property name="listDirectivesQuery" value="${list.directives}" />
+        <property name="listCountQuery" value="${list.directives.count}" />
+      </bean>
+    </property>
+  </bean>
+
+  <!-- Sequence incrementers -->
+  <bean id="organizationIncrementer" class="org.springframework.jdbc.support.incrementer.OracleSequenceMaxValueIncrementer">
+    <property name="dataSource" ref="dataSource" />
+    <property name="incrementerName" value="CPCS_ORGANIZATION_ID_SEQ" />
   </bean>
 
 </beans>

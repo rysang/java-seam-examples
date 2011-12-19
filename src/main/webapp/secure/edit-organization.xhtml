@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+
+
+<ui:composition template="/WEB-INF/templates/main_page.xhtml">
+	<ui:define name="title">#{org['organization.create']} / #{org['organization.edit']} - #{organizationActions.selectedOrganization.name}</ui:define>
+	<ui:define name="center">
+		<p:panel id="mainPanel"
+			header="#{organizationActions.selectedOrganization.shortName}"
+			style="margin-bottom:10px; width:500px">
+
+			<h:form>
+				<fieldset>
+					<legend>#{org['organization.name']}</legend>
+					<p:inputText
+						value="#{organizationActions.selectedOrganization.name}" disabled="true"/>
+				</fieldset>
+
+				<fieldset>
+					<legend>#{org['organization.member.state']}</legend>
+					<h:selectOneMenu
+						value="#{organizationActions.selectedOrganization.msId}">
+						<f:selectItems value="#{memberStateActions.memberStates}" />
+					</h:selectOneMenu>
+				</fieldset>
+				
+				<fieldset>
+					<legend>#{org['organization.role']}</legend>
+					<h:selectOneMenu
+						value="#{organizationActions.selectedOrganization.roleId}">
+						<f:selectItems value="#{roleActions.roles}" />
+					</h:selectOneMenu>
+				</fieldset>
+
+				<fieldset>
+					<legend>#{org['organization.short.name']}</legend>
+					<p:inputText
+						value="#{organizationActions.selectedOrganization.shortName}"
+						style="width:85%" />
+				</fieldset>
+
+				<fieldset>
+					<legend>#{org['organization.long.name']}</legend>
+					<p:inputText
+						value="#{organizationActions.selectedOrganization.longName}"
+						style="width:85%" />
+				</fieldset>
+
+				<div style="padding-top: 10px">
+					<p:commandButton value="#{org['organization.create']}"
+						action="#{organizationActions.createOrganization}" />
+				</div>
+			</h:form>
+
+		</p:panel>
+	</ui:define>
+</ui:composition>
+</html>

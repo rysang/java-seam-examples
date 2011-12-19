@@ -2,12 +2,12 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.email.notifier</groupId>
-  <artifactId>email-notifier</artifactId>
+  <groupId>eu.cec.sanco.cpcs</groupId>
+  <artifactId>cpcs-addon</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
 
-  <name>spring-jsf-app</name>
+  <name>cpcs-addon</name>
   <url>http://maven.apache.org</url>
 
 
@@ -136,6 +136,11 @@
       <groupId>c3p0</groupId>
       <artifactId>c3p0</artifactId>
       <version>0.9.1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-dbcp</groupId>
+      <artifactId>commons-dbcp</artifactId>
+      <version>1.4</version>
     </dependency>
 
     <!-- Spring 3.0 -->
@@ -336,6 +341,33 @@
       <artifactId>hibernate-annotations</artifactId>
       <version>3.3.1.GA</version>
     </dependency>
+
+
+    <dependency>
+      <groupId>com.oracle</groupId>
+      <artifactId>ojdbc14</artifactId>
+      <version>1.4</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/lib/ojdbc14_g.jar</systemPath>
+    </dependency>
+
+    <dependency>
+      <groupId>com.oracle</groupId>
+      <artifactId>orai18n</artifactId>
+      <version>1.8</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/lib/orai18n.jar</systemPath>
+    </dependency>
+
+
+    <dependency>
+      <groupId>eu.saas</groupId>
+      <artifactId>saas</artifactId>
+      <version>0.9.9</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/lib/saas-0.9.9.jar</systemPath>
+    </dependency>
+
 
   </dependencies>
 

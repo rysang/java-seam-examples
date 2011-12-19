@@ -12,6 +12,14 @@
     </locale-config>
 
     <resource-bundle>
+      <base-name>org.msg.i18n.directive</base-name>
+      <var>dir</var>
+    </resource-bundle>
+    <resource-bundle>
+      <base-name>org.msg.i18n.organization</base-name>
+      <var>org</var>
+    </resource-bundle>
+    <resource-bundle>
       <base-name>org.msg.i18n.login</base-name>
       <var>login</var>
     </resource-bundle>
@@ -21,4 +29,24 @@
     </resource-bundle>
 
   </application>
+
+
+  <navigation-rule>
+    <from-view-id>/secure/organization-list.xhtml</from-view-id>
+    <navigation-case>
+      <from-outcome>edit-organization</from-outcome>
+      <to-view-id>/secure/edit-organization.xhtml</to-view-id>
+      <redirect />
+    </navigation-case>
+  </navigation-rule>
+
+  <navigation-rule>
+    <from-view-id>/secure/organization-list.xhtml</from-view-id>
+    <navigation-case>
+      <from-outcome>create-organization</from-outcome>
+      <to-view-id>/secure/edit-organization.xhtml</to-view-id>
+      <redirect />
+    </navigation-case>
+  </navigation-rule>
+
 </faces-config>

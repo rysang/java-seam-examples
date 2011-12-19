@@ -8,20 +8,10 @@
 			<div style="padding: 10px">
 				<p:menubar>
 					<p:menuitem value="#{h['org.cpcs.link.home']}" url="home.xhtml" />
-					<p:menuitem value="#{h['org.cpcs.link.todo.list']}"
-						url="todo-list.xhtml" />
-					<p:menuitem value="#{h['org.cpcs.link.task.request']}"
-						url="task-request.xhtml" />
-					<p:menuitem value="#{h['org.cpcs.link.created.alerts']}"
-						url="created-alerts.xhtml" />
-					<p:menuitem value="#{h['org.cpcs.link.received.alerts']}"
-						url="received-alerts.xhtml" />
-					<p:menuitem value="#{h['org.cpcs.link.language.prefs']}"
-						url="language-prefs.xhtml" />
-					<p:menuitem value="#{h['org.cpcs.link.search.closed.cases']}"
-						url="search-closed-cases.xhtml" />
-					<p:menuitem value="#{h['org.cpcs.link.notifs']}"
-						url="notifications.xhtml" />
+					<p:menuitem value="#{h['org.cpcs.link.organization.list']}"
+						url="organization-list.xhtml" />
+					<p:menuitem value="#{h['org.cpcs.link.directive.list']}"
+						url="directive-list.xhtml" />
 				</p:menubar>
 			</div>
 		</p:outputPanel>
@@ -34,8 +24,8 @@
 						value="#{localeService.currentLocale}">
 						<f:selectItems value="#{localeService.supportedLocales}" />
 					</h:selectOneMenu>
-					<p:commandButton action="#{localeService.setCurrentLocaleLanguage}" ajax="false"
-						value="Submit" />
+					<p:commandButton action="#{localeService.setCurrentLocaleLanguage}"
+						ajax="false" value="Submit" />
 				</h:panelGrid>
 			</h:form>
 		</p:outputPanel>

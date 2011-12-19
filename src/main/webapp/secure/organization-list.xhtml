@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+
+
+<ui:composition template="/WEB-INF/templates/main_page.xhtml">
+	<ui:define name="title">#{h['org.cpcs.link.organization.list']}</ui:define>
+	<ui:define name="center">
+
+		<h:panelGrid columns="1">
+			<h:panelGrid columns="2">
+				<h:form>
+					<p:commandButton value="#{org['organization.create']}"
+						action="#{organizationActions.createOrganization}" />
+				</h:form>
+			</h:panelGrid>
+			<h:form>
+				<p:dataTable var="organization"
+					value="#{organizationActions.organizationDataModel}"
+					paginator="true" rows="10" lazy="true"
+					paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+					rowsPerPageTemplate="5,10,15,30,50,100,200"
+					selectionMode="single" onRowSelectUpdate="display">
+
+					<f:facet name="header">
+            			Organizations
+        		</f:facet>
+
+					<p:column headerText="#{org['organization.name']}">
+						<h:outputText value="#{organization.name}" />
+					</p:column>
+
+					<p:column headerText="#{org['organization.member.state']}">
+						<h:outputText value="#{organization.memberState}" />
+					</p:column>
+
+					<p:column headerText="#{org['organization.role']}">
+						<h:outputText value="#{organization.role}" />
+					</p:column>
+
+					<p:column headerText="#{org['organization.short.name']}">
+						<h:outputText value="#{organization.shortName}" />
+					</p:column>
+
+					<p:column headerText="#{org['organization.long.name']}">
+						<h:outputText value="#{organization.longName}" />
+					</p:column>
+
+					<p:column headerText="#{org['organization.deleted']}">
+						<h:outputText value="#{organization.deleted}" />
+					</p:column>
+
+					<p:column headerText="Edit">
+						<h:commandLink
+							action="#{organizationActions.editOrganization(organization)}"
+							value="Edit" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</h:panelGrid>
+	</ui:define>
+</ui:composition>
+</html>
