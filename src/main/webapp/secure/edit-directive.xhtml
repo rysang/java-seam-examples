@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+
+
+<ui:composition template="/WEB-INF/templates/main_page.xhtml">
+	<ui:define name="title">#{dir['directive.edit']} / #{dir['directive.create']} - #{directiveActions.selectedDirective.description}</ui:define>
+	<ui:define name="center">
+		<p:panel id="mainPanel"
+			header="#{directiveActions.selectedDirective.description}"
+			style="margin-bottom:10px; width:500px">
+
+			<h:form>
+				<fieldset>
+					<legend>#{dir['directive.code']}</legend>
+					<p:inputText value="#{directiveActions.selectedDirective.code}"
+						style="width: 85%" />
+				</fieldset>
+
+				<fieldset>
+					<legend>#{dir['directive.description']}</legend>
+					<p:inputText
+						value="#{directiveActions.selectedDirective.description}"
+						style="width: 85%" />
+				</fieldset>
+
+				<fieldset>
+					<legend>#{dir['directive.com.dir.id']}</legend>
+					<p:inputText value="#{directiveActions.selectedDirective.comDirId}"
+						style="width: 85%" />
+				</fieldset>
+
+				<div style="padding-top: 10px">
+					<p:commandButton value="#{dir['directive.submit']}"
+						action="#{directiveActions.saveDirective(directiveActions.selectedDirective)}" />
+				</div>
+			</h:form>
+
+		</p:panel>
+	</ui:define>
+</ui:composition>
+</html>

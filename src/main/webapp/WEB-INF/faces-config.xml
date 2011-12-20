@@ -49,4 +49,41 @@
     </navigation-case>
   </navigation-rule>
 
+  <navigation-rule>
+    <from-view-id>/secure/directive-list.xhtml</from-view-id>
+    <navigation-case>
+      <from-outcome>edit-directive</from-outcome>
+      <to-view-id>/secure/edit-directive.xhtml</to-view-id>
+      <redirect />
+    </navigation-case>
+  </navigation-rule>
+
+  <navigation-rule>
+    <from-view-id>/secure/directive-list.xhtml</from-view-id>
+    <navigation-case>
+      <from-outcome>create-directive</from-outcome>
+      <to-view-id>/secure/edit-directive.xhtml</to-view-id>
+      <redirect />
+    </navigation-case>
+  </navigation-rule>
+
+  <navigation-rule>
+    <from-view-id>/secure/edit-directive.xhtml</from-view-id>
+    <navigation-case>
+      <from-outcome>directive-list</from-outcome>
+      <to-view-id>/secure/directive-list.xhtml</to-view-id>
+      <redirect />
+    </navigation-case>
+  </navigation-rule>
+
+  <navigation-rule>
+    <from-view-id>/secure/directive-list.xhtml</from-view-id>
+    <navigation-case>
+      <from-outcome>directive-list</from-outcome>
+      <to-view-id>/secure/directive-list.xhtml</to-view-id>
+      <redirect />
+    </navigation-case>
+  </navigation-rule>
+
+
 </faces-config>

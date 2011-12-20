@@ -20,6 +20,10 @@ public class DirectiveServiceImpl implements DirectiveService {
 
   private String listCountQuery;
 
+  private String createDirectiveQuery;
+
+  private String deleteDirectiveQuery;
+
   public DirectiveServiceImpl() {
 
   }
@@ -50,6 +54,40 @@ public class DirectiveServiceImpl implements DirectiveService {
 
   public String getListCountQuery() {
     return listCountQuery;
+  }
+
+  public void saveDirective(Directive directive) {
+    LOG.info("Saving: " + directive);
+
+    if (directive.getId() == null) {
+      LOG.info("New directive detected.");
+
+      jdbcTemplate.update(getCreateDirectiveQuery(), directive.getCode(), directive.getDescription(),
+          directive.getComDirId());
+    }
+
+  }
+
+  public void deleteDirective(Directive directive) {
+    LOG.info("Deleting directive: " + directive);
+
+    jdbcTemplate.update(getDeleteDirectiveQuery(), directive.getId());
+  }
+
+  public void setCreateDirectiveQuery(String createDirectiveQuery) {
+    this.createDirectiveQuery = createDirectiveQuery;
+  }
+
+  public String getCreateDirectiveQuery() {
+    return createDirectiveQuery;
+  }
+
+  public void setDeleteDirectiveQuery(String deleteDirectiveQuery) {
+    this.deleteDirectiveQuery = deleteDirectiveQuery;
+  }
+
+  public String getDeleteDirectiveQuery() {
+    return deleteDirectiveQuery;
   }
 
 }

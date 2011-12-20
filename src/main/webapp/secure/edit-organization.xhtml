@@ -7,7 +7,7 @@
 
 
 <ui:composition template="/WEB-INF/templates/main_page.xhtml">
-	<ui:define name="title">#{org['organization.create']} / #{org['organization.edit']} - #{organizationActions.selectedOrganization.name}</ui:define>
+	<ui:define name="title">#{org['organization.edit']} / #{org['organization.create']} - #{organizationActions.selectedOrganization.name}</ui:define>
 	<ui:define name="center">
 		<p:panel id="mainPanel"
 			header="#{organizationActions.selectedOrganization.shortName}"
@@ -51,7 +51,7 @@
 				</fieldset>
 
 				<div style="padding-top: 10px">
-					<p:commandButton value="#{org['organization.create']}"
+					<p:commandButton value="#{org['organization.submit']}"
 						action="#{organizationActions.createOrganization}" />
 				</div>
 			</h:form>

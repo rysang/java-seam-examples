@@ -6,6 +6,7 @@ public class Directive {
   private String description;
   private String comDirId;
   private boolean active;
+  private String compendiumUrl;
 
   public Directive() {
 
@@ -62,5 +63,13 @@ public class Directive {
     sb.append(getDescription()).append(']');
 
     return sb.toString();
+  }
+
+  public void setCompendiumUrl(String compendiumUrl) {
+    this.compendiumUrl = compendiumUrl;
+  }
+
+  public String getCompendiumUrl() {
+    return compendiumUrl;
   }
 }

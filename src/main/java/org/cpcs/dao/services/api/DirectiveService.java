@@ -10,4 +10,8 @@ public interface DirectiveService {
 
   public abstract int listCount();
 
+  public void saveDirective(Directive directive);
+
+  public abstract void deleteDirective(Directive directive);
+
 }
