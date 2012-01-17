@@ -1,5 +1,7 @@
 package org.cpcs.dao.services;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -7,8 +9,8 @@ import javax.sql.DataSource;
 import org.apache.log4j.Logger;
 import org.cpcs.dao.services.api.MemberStateService;
 import org.cpcs.dao.services.beans.MemberState;
-import org.cpcs.dao.services.mappers.MemberStateMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 
 public class MemberStateServiceImpl implements MemberStateService {
 
@@ -27,7 +29,16 @@ public class MemberStateServiceImpl implements MemberStateService {
   }
 
   public List<MemberState> listMemberStates() {
-    return jdbcTemplate.query(getListStatesQuery(), new MemberStateMapper());
+    return jdbcTemplate.query(getListStatesQuery(), new RowMapper<MemberState>() {
+      public MemberState mapRow(ResultSet rs, int rowNum) throws SQLException {
+        MemberState memberState = new MemberState();
+        memberState.setId(rs.getString("id"));
+        memberState.setDescription(rs.getString("description"));
+        memberState.setCode(rs.getString("code"));
+
+        return memberState;
+      }
+    });
   }
 
   public void setListStatesQuery(String listStatesQuery) {

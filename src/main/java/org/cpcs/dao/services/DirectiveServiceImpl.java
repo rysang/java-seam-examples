@@ -1,5 +1,7 @@
 package org.cpcs.dao.services;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -7,8 +9,8 @@ import javax.sql.DataSource;
 import org.apache.log4j.Logger;
 import org.cpcs.dao.services.api.DirectiveService;
 import org.cpcs.dao.services.beans.Directive;
-import org.cpcs.dao.services.mappers.DirectiveMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 
 public class DirectiveServiceImpl implements DirectiveService {
 
@@ -33,7 +35,17 @@ public class DirectiveServiceImpl implements DirectiveService {
   }
 
   public List<Directive> listDirectives() {
-    return jdbcTemplate.query(getListDirectivesQuery(), new DirectiveMapper());
+    return jdbcTemplate.query(getListDirectivesQuery(), new RowMapper<Directive>() {
+      public Directive mapRow(ResultSet rs, int rowNum) throws SQLException {
+        Directive directive = new Directive(rs.getString("id"));
+        directive.setDescription(rs.getString("description"));
+        directive.setCode(rs.getString("code"));
+        directive.setActive(rs.getString("active").equals("Y") ? true : false);
+        directive.setComDirId(rs.getString("com_dir_id"));
+
+        return directive;
+      }
+    });
   }
 
   public void setListDirectivesQuery(String listDirectivesQuery) {

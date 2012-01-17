@@ -27,10 +27,10 @@
     <security:form-login login-page="/login.xhtml" login-processing-url="/j_spring_security_check"
       authentication-failure-url="/login.xhtml" default-target-url="${org.cpcs.web.home.page}" />
     <security:intercept-url pattern="/secure/**" access="ROLE_ADMIN" />
+    <security:logout invalidate-session="true" logout-url="/secure/logout" logout-success-url="/login.xhtml" />
   </security:http>
 
-  <security:global-method-security secured-annotations="enabled" jsr250-annotations="disabled">
-  </security:global-method-security>
+  <security:global-method-security secured-annotations="enabled" jsr250-annotations="disabled" />
 
   <security:authentication-manager>
     <security:authentication-provider user-service-ref="userDetailsService" />

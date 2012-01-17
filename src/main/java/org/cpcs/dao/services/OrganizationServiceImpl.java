@@ -1,5 +1,7 @@
 package org.cpcs.dao.services;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -7,8 +9,8 @@ import javax.sql.DataSource;
 import org.apache.log4j.Logger;
 import org.cpcs.dao.services.api.OrganizationService;
 import org.cpcs.dao.services.beans.Organization;
-import org.cpcs.dao.services.mappers.OrganizationMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.incrementer.DataFieldMaxValueIncrementer;
 
 public class OrganizationServiceImpl implements OrganizationService {
@@ -33,7 +35,23 @@ public class OrganizationServiceImpl implements OrganizationService {
   }
 
   public List<Organization> listOrganizations(int index, int count) {
-    return jdbcTemplate.query(getListOrganizationsQuery(), new Object[] { index, count }, new OrganizationMapper());
+    return jdbcTemplate.query(getListOrganizationsQuery(), new Object[] { index, count },
+        new RowMapper<Organization>() {
+          public Organization mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Organization organization = new Organization();
+            organization.setId(rs.getString("id"));
+            organization.setMemberState(rs.getString("member_state"));
+            organization.setName(rs.getString("name"));
+            organization.setShortName(rs.getString("short_name"));
+            organization.setLongName(rs.getString("long_name"));
+            organization.setRole(rs.getString("role"));
+            organization.setDeleted(rs.getString("is_deleted").equals("N") ? false : true);
+            organization.setMsId(rs.getString("ms_id"));
+            organization.setRoleId(rs.getString("role_id"));
+
+            return organization;
+          }
+        });
   }
 
   public void setListOrganizationsQuery(String listOrganizationsQuery) {

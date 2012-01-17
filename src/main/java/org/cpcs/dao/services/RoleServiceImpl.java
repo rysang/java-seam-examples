@@ -1,5 +1,7 @@
 package org.cpcs.dao.services;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -7,8 +9,8 @@ import javax.sql.DataSource;
 import org.apache.log4j.Logger;
 import org.cpcs.dao.services.api.RoleService;
 import org.cpcs.dao.services.beans.Role;
-import org.cpcs.dao.services.mappers.RoleMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 
 public class RoleServiceImpl implements RoleService {
 
@@ -27,7 +29,18 @@ public class RoleServiceImpl implements RoleService {
   }
 
   public List<Role> listRoles() {
-    return jdbcTemplate.query(getListRolesQuery(), new RoleMapper());
+    return jdbcTemplate.query(getListRolesQuery(), new RowMapper<Role>() {
+
+      public Role mapRow(ResultSet rs, int rowNum) throws SQLException {
+        Role role = new Role(rs.getLong("id"));
+        role.setDescription(rs.getString("description"));
+        role.setCode(rs.getString("code"));
+        role.setInternalRole(rs.getString("internal_role").equals("Y") ? true : false);
+
+        return role;
+      }
+
+    });
   }
 
   public void setListRolesQuery(String listRolesQuery) {
