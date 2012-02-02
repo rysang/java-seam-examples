@@ -17,7 +17,7 @@ public class FakeJndi implements DynamicClass {
   }
 
   public XADataSource getDataSource(String name) throws SQLException {
-    return db1;
+    return name.contains("mydb1") ? db1 : db2;
   }
 
   public XADataSource getDataSource(String name, boolean arg1) throws SQLException {

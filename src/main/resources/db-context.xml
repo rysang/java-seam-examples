@@ -17,48 +17,28 @@
   <context:component-scan base-package="org.price" />
 
   <bean id="contextPreloader" class="org.price.jndi.FakeJndi">
-    <property name="db1" ref="dataSource1" />
-    <property name="db2" ref="dataSource2" />
+    <property name="db1" ref="xaDataSource1" />
+    <property name="db2" ref="xaDataSource2" />
   </bean>
 
   <bean id="dsProps" class="java.util.Properties" depends-on="contextPreloader">
     <constructor-arg>
       <props>
-        <prop key="user">root</prop>
-        <prop key="password">hidden</prop>
         <prop key="DYNAMIC_CLASS">org.price.jndi.FakeJndi</prop>
       </props>
     </constructor-arg>
   </bean>
 
-
-  <bean id="dataSources" class="java.util.Hashtable">
-    <constructor-arg>
-      <map>
-        <entry key="mysql://127.0.0.1:3306/mydb1" value-ref="dataSource1" />
-        <entry key="mysql://127.0.0.1:3306/mydb2" value-ref="dataSource2" />
-      </map>
-    </constructor-arg>
+  <bean id="xaDataSource1" class="com.mysql.jdbc.jdbc2.optional.MysqlXADataSource">
+    <property name="url" value="jdbc:mysql://127.0.0.1:3306/mydb1" />
+    <property name="user" value="root" />
+    <property name="password" value="hidden" />
   </bean>
-
-  <bean id="dataSource1" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-    <property name="driverClassName">
-      <value>com.arjuna.ats.jdbc.TransactionalDriver</value>
-    </property>
-    <property name="url" value="jdbc:arjuna:mysql://127.0.0.1:3306/mydb1" />
-    <property name="connectionProperties">
-      <ref bean="dsProps" />
-    </property>
-  </bean>
-
-  <bean id="dataSource2" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-    <property name="driverClassName">
-      <value>com.arjuna.ats.jdbc.TransactionalDriver</value>
-    </property>
-    <property name="url" value="jdbc:arjuna:mysql://127.0.0.1:3306/mydb2" />
-    <property name="connectionProperties">
-      <ref bean="dsProps" />
-    </property>
+  
+  <bean id="xaDataSource2" class="com.mysql.jdbc.jdbc2.optional.MysqlXADataSource">
+    <property name="url" value="jdbc:mysql://127.0.0.1:3306/mydb2" />
+    <property name="user" value="root" />
+    <property name="password" value="hidden" />
   </bean>
 
 
@@ -68,8 +48,8 @@
     </property>
     <property name="target">
       <bean class="org.price.TestBean">
-        <property name="db1" ref="dataSource1" />
-        <property name="db2" ref="dataSource2" />
+        <property name="db1" ref="xaDataSource1" />
+        <property name="db2" ref="xaDataSource2" />
       </bean>
     </property>
     <property name="transactionAttributes">

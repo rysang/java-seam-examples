@@ -19,8 +19,8 @@ public class TestBean implements Test {
   public void handleDbCreate() {
     LOG.info("Creating tables.");
 
-    db1.update("create table test1(pk integer, val varchar(20)");
-    db2.update("create table test2(pk integer, val varchar(20)");
+    db1.update("create table test1(pk integer, val varchar(20) )");
+    db2.update("create table test2pk integer, val varchar(20) )");
 
     LOG.info("Tables created");
   }
