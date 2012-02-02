@@ -16,24 +16,51 @@
 
   <context:component-scan base-package="org.price" />
 
-
-  <bean id="dataSource1" class="org.apache.commons.dbcp.managed.BasicManagedDataSource" destroy-method="close">
-    <property name="driverClassName" value="org.hsqldb.jdbcDriver" />
-    <property name="url" value="jdbc:hsqldb:mem:db1" />
-    <property name="username" value="sa" />
-    <property name="password" value="" />
-    <property name="defaultAutoCommit" value="false" />
-    <property name="XADataSource" value="org.hsqldb.jdbc.pool.JDBCXADataSource" />
+  <bean id="contextPreloader" class="org.price.jndi.FakeJndi">
+    <property name="db1" ref="dataSource1" />
+    <property name="db2" ref="dataSource2" />
   </bean>
 
-  <bean id="dataSource2" class="org.apache.commons.dbcp.managed.BasicManagedDataSource" destroy-method="close">
-    <property name="driverClassName" value="org.hsqldb.jdbcDriver" />
-    <property name="url" value="jdbc:hsqldb:mem:db2" />
-    <property name="username" value="sa" />
-    <property name="password" value="" />
-    <property name="defaultAutoCommit" value="false" />
-    <property name="XADataSource" value="org.hsqldb.jdbc.pool.JDBCXADataSource" />
+  <bean id="dsProps" class="java.util.Properties" depends-on="contextPreloader">
+    <constructor-arg>
+      <props>
+        <prop key="user">root</prop>
+        <prop key="password">hidden</prop>
+        <prop key="DYNAMIC_CLASS">org.price.jndi.FakeJndi</prop>
+      </props>
+    </constructor-arg>
   </bean>
+
+
+  <bean id="dataSources" class="java.util.Hashtable">
+    <constructor-arg>
+      <map>
+        <entry key="mysql://127.0.0.1:3306/mydb1" value-ref="dataSource1" />
+        <entry key="mysql://127.0.0.1:3306/mydb2" value-ref="dataSource2" />
+      </map>
+    </constructor-arg>
+  </bean>
+
+  <bean id="dataSource1" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <property name="driverClassName">
+      <value>com.arjuna.ats.jdbc.TransactionalDriver</value>
+    </property>
+    <property name="url" value="jdbc:arjuna:mysql://127.0.0.1:3306/mydb1" />
+    <property name="connectionProperties">
+      <ref bean="dsProps" />
+    </property>
+  </bean>
+
+  <bean id="dataSource2" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <property name="driverClassName">
+      <value>com.arjuna.ats.jdbc.TransactionalDriver</value>
+    </property>
+    <property name="url" value="jdbc:arjuna:mysql://127.0.0.1:3306/mydb2" />
+    <property name="connectionProperties">
+      <ref bean="dsProps" />
+    </property>
+  </bean>
+
 
   <bean id="testBean" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
     <property name="transactionManager">
