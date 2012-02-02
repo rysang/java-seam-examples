@@ -1,8 +1,5 @@
 package org.spring.jsf.app;
 
-import java.util.List;
-
-import org.cpcs.locale.api.LocaleService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.spring.jsf.app.scope.WebContextTestExecutionListener;
@@ -14,13 +11,13 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:ehcache-context.xml", "classpath:presentation-context.xml" })
+@ContextConfiguration(locations = { "classpath:db-context.xml" })
 @TestExecutionListeners({ WebContextTestExecutionListener.class, DependencyInjectionTestExecutionListener.class,
     DirtiesContextTestExecutionListener.class })
 public class LocaleTest {
 
   @Autowired
-  private LocaleService localeService;
+  private org.price.api.Test testBean;
 
   public LocaleTest() {
 
@@ -28,8 +25,8 @@ public class LocaleTest {
 
   @Test
   public void testLocale() throws Exception {
-
-    List<String> locales = localeService.getSupportedLocales();
-
+    System.out.println(testBean);
+    
+    testBean.handleDbCreate();
   }
 }
