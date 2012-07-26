@@ -1,4 +1,4 @@
-package org.test.app;
+package org.price.survy;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;

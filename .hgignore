@@ -4,3 +4,6 @@ glob:Debug/*
 glob:.settings/*
 syntax: glob
 *.stackdump
+.classpath
+target/*
+survy.log

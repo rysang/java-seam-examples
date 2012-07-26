@@ -1,4 +1,4 @@
-package org.test.app;
+package org.price.survy;
 
 public class FlowItem {
   public FlowItem() {
