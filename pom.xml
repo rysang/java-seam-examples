@@ -2,8 +2,8 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.price.survy</groupId>
-  <artifactId>survy</artifactId>
+  <groupId>eu.cec.sanco</groupId>
+  <artifactId>eccrs-ext</artifactId>
   <packaging>war</packaging>
   <version>1.0</version>
 
@@ -11,11 +11,16 @@
   <url>http://maven.apache.org</url>
 
   <properties>
-    <spring.version>3.1.1.RELEASE</spring.version>
-    <platform.name>${os.name}-${os.arch}</platform.name>
+    <spring.version>3.0.5.RELEASE</spring.version>
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>1.7.1</version>
+    </dependency>
+
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>servlet-api</artifactId>
@@ -142,22 +147,16 @@
     </dependency>
 
     <dependency>
-      <groupId>com.googlecode.javacpp</groupId>
-      <artifactId>javacpp</artifactId>
-      <version>0.2</version>
+      <groupId>org.xerial</groupId>
+      <artifactId>sqlite-jdbc</artifactId>
+      <version>3.7.2</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-dbcp</groupId>
+      <artifactId>commons-dbcp</artifactId>
+      <version>1.4</version>
     </dependency>
 
-    <dependency>
-      <groupId>com.googlecode.javacpp</groupId>
-      <artifactId>javacv</artifactId>
-      <version>0.2</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.googlecode.javacpp</groupId>
-      <artifactId>javacv-${platform.name}</artifactId>
-      <version>0.2</version>
-    </dependency>
   </dependencies>
 
   <repositories>
@@ -202,65 +201,6 @@
 
   <build>
     <plugins>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-install-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>install-javacpp</id>
-            <phase>validate</phase>
-            <configuration>
-              <file>${project.basedir}/lib/javacpp.jar</file>
-              <repositoryLayout>default</repositoryLayout>
-              <groupId>com.googlecode.javacpp</groupId>
-              <artifactId>javacpp</artifactId>
-              <version>0.2</version>
-              <packaging>jar</packaging>
-              <generatePom>true</generatePom>
-            </configuration>
-            <goals>
-              <goal>install-file</goal>
-            </goals>
-          </execution>
-
-          <execution>
-            <id>install-javacv</id>
-            <phase>validate</phase>
-            <configuration>
-              <file>${project.basedir}/lib/javacv.jar</file>
-              <repositoryLayout>default</repositoryLayout>
-              <groupId>com.googlecode.javacpp</groupId>
-              <artifactId>javacv</artifactId>
-              <version>0.2</version>
-              <packaging>jar</packaging>
-              <generatePom>true</generatePom>
-            </configuration>
-            <goals>
-              <goal>install-file</goal>
-            </goals>
-          </execution>
-
-          <execution>
-            <id>install-javacv-${platform.name}</id>
-            <phase>validate</phase>
-            <configuration>
-              <file>${project.basedir}/lib/javacv-${platform.name}.jar</file>
-              <repositoryLayout>default</repositoryLayout>
-              <groupId>com.googlecode.javacpp</groupId>
-              <artifactId>javacv-${platform.name}</artifactId>
-              <version>0.2</version>
-              <packaging>jar</packaging>
-              <generatePom>true</generatePom>
-            </configuration>
-            <goals>
-              <goal>install-file</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -304,107 +244,4 @@
       </plugin>
     </plugins>
   </build>
-
-  <profiles>
-    <profile>
-      <id>linux</id>
-      <activation>
-        <os>
-          <name>linux</name>
-        </os>
-      </activation>
-      <properties>
-        <os.name>linux</os.name>
-      </properties>
-    </profile>
-    <profile>
-      <id>macosx</id>
-      <activation>
-        <os>
-          <name>mac os x</name>
-        </os>
-      </activation>
-      <properties>
-        <os.name>macosx</os.name>
-      </properties>
-    </profile>
-    <profile>
-      <id>windows</id>
-      <activation>
-        <os>
-          <family>windows</family>
-        </os>
-      </activation>
-      <properties>
-        <os.name>windows</os.name>
-      </properties>
-    </profile>
-    <profile>
-      <id>i386</id>
-      <activation>
-        <os>
-          <arch>i386</arch>
-        </os>
-      </activation>
-      <properties>
-        <os.arch>x86</os.arch>
-      </properties>
-    </profile>
-    <profile>
-      <id>i486</id>
-      <activation>
-        <os>
-          <arch>i486</arch>
-        </os>
-      </activation>
-      <properties>
-        <os.arch>x86</os.arch>
-      </properties>
-    </profile>
-    <profile>
-      <id>i586</id>
-      <activation>
-        <os>
-          <arch>i586</arch>
-        </os>
-      </activation>
-      <properties>
-        <os.arch>x86</os.arch>
-      </properties>
-    </profile>
-    <profile>
-      <id>i686</id>
-      <activation>
-        <os>
-          <arch>i686</arch>
-        </os>
-      </activation>
-      <properties>
-        <os.arch>x86</os.arch>
-      </properties>
-    </profile>
-    <profile>
-      <id>amd64</id>
-      <activation>
-        <os>
-          <arch>amd64</arch>
-        </os>
-      </activation>
-      <properties>
-        <os.arch>x86_64</os.arch>
-      </properties>
-    </profile>
-    <profile>
-      <id>x86-64</id>
-      <activation>
-        <os>
-          <arch>x86-64</arch>
-        </os>
-      </activation>
-      <properties>
-        <os.arch>x86_64</os.arch>
-      </properties>
-    </profile>
-  </profiles>
-
 </project>

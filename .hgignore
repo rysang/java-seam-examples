@@ -7,3 +7,5 @@ syntax: glob
 .classpath
 target/*
 survy.log
+eccrs.log
+eccrs.log.1

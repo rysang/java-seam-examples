@@ -1,4 +1,4 @@
-package org.price.survy;
+package eu.cec.sanco;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
