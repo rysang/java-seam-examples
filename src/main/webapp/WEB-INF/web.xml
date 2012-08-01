@@ -32,6 +32,10 @@
     <param-value>org.jboss.el.ExpressionFactoryImpl</param-value>
   </context-param>
 
+  <context-param>
+    <param-name>primefaces.THEME</param-name>
+    <param-value>south-street</param-value>
+  </context-param>
 
   <!-- Security -->
   <filter>

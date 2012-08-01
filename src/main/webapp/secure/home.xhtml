@@ -3,13 +3,14 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-
+	<ui:include src="/WEB-INF/includes/styles.xhtml" />
 </h:head>
 <h:body>
 	<h:form>
 		<p:tabView id="tabView" effect="slide" effectDuration="normal">
 
 			<p:tab id="tab1" title="Godfather Part I">
+				<p:commandButton value="Ajax Submit" id="ajax" />
 				<h:panelGrid columns="1" cellpadding="10">
 
 					<h:outputText id="tab1Text"
