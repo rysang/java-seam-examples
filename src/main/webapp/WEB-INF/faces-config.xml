@@ -15,6 +15,15 @@
       <base-name>org.msg.i18n.login</base-name>
       <var>login</var>
     </resource-bundle>
+    <resource-bundle>
+      <base-name>org.msg.i18n.enc.app_data</base-name>
+      <var>appmsg</var>
+    </resource-bundle>
+    <resource-bundle>
+      <base-name>org.msg.i18n.enc.controls_msg</base-name>
+      <var>ctrlm</var>
+    </resource-bundle>
+    
 
   </application>
 

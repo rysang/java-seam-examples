@@ -1,44 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <html xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-<h:head>
-	<ui:include src="/WEB-INF/includes/styles.xhtml" />
-</h:head>
-<h:body>
-	<h:form>
-		<p:tabView id="tabView" effect="slide" effectDuration="normal">
 
-			<p:tab id="tab1" title="Godfather Part I">
-				<p:commandButton value="Ajax Submit" id="ajax" />
-				<h:panelGrid columns="1" cellpadding="10">
+<f:view locale="#{localeService.currentLocale}">
+	<h:head>
+		<ui:include src="/WEB-INF/includes/styles.xhtml" />
+	</h:head>
+	<h:body>
 
-					<h:outputText id="tab1Text"
-						value="The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
-				His beloved son Michael has just come home from the war, but does not intend to become part of his father's business. T
-				hrough Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect,
-				but given to ruthless violence whenever anything stands against the good of the family." />
-				</h:panelGrid>
+		<h:form>
+			<p:toolbar>
+				<p:toolbarGroup align="right">
+					<p:selectOneMenu value="#{localeService.currentLocale}">
+						<f:selectItem itemValue="bg" itemLabel="Bulgarian" />
+						<f:selectItem itemValue="cs" itemLabel="Czech" />
+						<f:selectItem itemValue="da" itemLabel="Danish" />
+						<f:selectItem itemValue="nl" itemLabel="Dutch" />
+						<f:selectItem itemValue="en" itemLabel="English" />
+						<f:selectItem itemValue="et" itemLabel="Estonian" />
+						<f:selectItem itemValue="fi" itemLabel="Finnish" />
+						<f:selectItem itemValue="fr" itemLabel="French" />
+						<f:selectItem itemValue="de" itemLabel="German" />
+						<f:selectItem itemValue="el" itemLabel="Greek" />
+						<f:selectItem itemValue="hu" itemLabel="Hungarian" />
+						<f:selectItem itemValue="it" itemLabel="Italian" />
+						<f:selectItem itemValue="lv" itemLabel="Latvian" />
+						<f:selectItem itemValue="lt" itemLabel="Lithuanian" />
+						<f:selectItem itemValue="mt" itemLabel="Maltese" />
+						<f:selectItem itemValue="pl" itemLabel="Polish" />
+						<f:selectItem itemValue="pt" itemLabel="Portuguese" />
+						<f:selectItem itemValue="ro" itemLabel="Romanian" />
+						<f:selectItem itemValue="sk" itemLabel="Slovak" />
+						<f:selectItem itemValue="sl" itemLabel="Slovenian" />
+						<f:selectItem itemValue="es" itemLabel="Spanish" />
+						<f:selectItem itemValue="sv" itemLabel="Swedish" />
+						<p:ajax event="change" update=":tabView" />
+					</p:selectOneMenu>
+				</p:toolbarGroup>
+			</p:toolbar>
+		</h:form>
+
+		<br />
+
+		<p:tabView id="tabView">
+
+			<p:tab id="tab1" title="#{ctrlm['header.complaints.menu']}">
+				<ui:include src="main/complaints.xhtml" />
 			</p:tab>
 
-			<p:tab id="tab2" title="Godfather Part II">
-				<h:panelGrid columns="1" cellpadding="10">
-					<h:outputText id="tab2Text"
-						value="Francis Ford Coppola's legendary continuation and sequel to his landmark 1972 film, The_Godfather, parallels the young Vito Corleone's rise with his son Michael's spiritual fall, deepening The_Godfather's depiction of the dark side of the American dream.
-			In the early 1900s, the child Vito flees his Sicilian village for America after the local Mafia kills his family. Vito struggles to make a living, legally or illegally, for his wife and growing brood in Little Italy,
-			killing the local Black Hand Fanucci after he demands his customary cut of the tyro's business. With Fanucci gone, Vito's communal stature grows." />
-				</h:panelGrid>
+			<p:tab id="tab2" title="#{ctrlm['header.closed.complaints.menu']}">
+
 			</p:tab>
 
-			<p:tab id="tab3" title="Godfather Part III">
-				<h:panelGrid columns="1" cellpadding="10">
-					<h:outputText id="tab3Text"
-						value="After a break of more than 15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family.
-				Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate." />
-				</h:panelGrid>
+			<p:tab id="tab3" title="#{ctrlm['header.submitted.menu']}">
+
 			</p:tab>
 
 		</p:tabView>
-	</h:form>
-</h:body>
+
+	</h:body>
+</f:view>
 </html>

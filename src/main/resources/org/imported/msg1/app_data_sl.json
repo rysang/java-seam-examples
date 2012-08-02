@@ -1,0 +1,1198 @@
+{
+	"levels": {
+		"Quality of goods and services": {
+			"value": "Kakovost blaga in storitev",
+			"values": [
+				{
+					"label": "Okvara, povzročena škoda",
+					"value": "Defective, caused damage"
+				},
+				{
+					"label": "Neskladnost z naročilom",
+					"value": "Not in conformity with order"
+				},
+				{
+					"label": "Ne ustreza določenemu namenu",
+					"value": "Not fit for particular purpose"
+				},
+				{
+					"label": "Drugo",
+					"value": "Other issues"
+				}
+			]
+		},
+		"Delivery of goods/ Provision of services": {
+			"value": "Dostava blaga ali opravljanje storitev",
+			"values": [
+				{
+					"label": "Nedostavljeno ali neopravljeno",
+					"value": "Not delivered / not provided"
+				},
+				{
+					"label": "Delno dostavljeno ali delno opravljeno",
+					"value": "Partially delivered / partially provided"
+				},
+				{
+					"label": "Zamuda",
+					"value": "Delay"
+				},
+				{
+					"label": "Ni na voljo / ni dostopa",
+					"value": "Not available / No access"
+				},
+				{
+					"label": "Zavrnitev prodaje blaga ali opravljanja storitve",
+					"value": "Refusal to sell / provide a good or a service"
+				},
+				{
+					"label": "Prekinitev dostave blaga ali opravljanja storitve brez predhodnega obvestila",
+					"value": "Suspension of the delivery of a good or the provision of a service without prior notice"
+				},
+				{
+					"label": "Delovni čas",
+					"value": "Opening hours"
+				},
+				{
+					"label": "Podpora strankam",
+					"value": "Customer service"
+				},
+				{
+					"label": "Poprodajne storitve/pomoč",
+					"value": "After-sales service/assistance"
+				},
+				{
+					"label": "Druga vprašanja v zvezi z dostavo blaga ali opravljanjem storitev",
+					"value": "Other issues related to the delivery of goods/provisions of services"
+				}
+			]
+		},
+		"Price / Tariff": {
+			"value": "Cena/cenik",
+			"values": [
+				{
+					"label": "Sprememba cene/cenika",
+					"value": "Price / tariff change"
+				},
+				{
+					"label": "Cenovna diskriminacija",
+					"value": "Price discrimination"
+				},
+				{
+					"label": "Preglednost cenika (nejasen, zapleten)",
+					"value": "Tariff transparency (unclear, complex)"
+				},
+				{
+					"label": "Druga vprašanja v zvezi s ceno/cenikom",
+					"value": "Other issues related to price/tariff"
+				}
+			]
+		},
+		"Invoicing / billing and debt collection": {
+			"value": "Izdajanje računov, zaračunavanje in izterjava dolgov",
+			"values": [
+				{
+					"label": "Napačen račun",
+					"value": "Incorrect invoice / bill"
+				},
+				{
+					"label": "Nejasen račun",
+					"value": "Unclear invoice / bill"
+				},
+				{
+					"label": "Neizdan račun ali otežen dostop do računa/mesečnega izpiska",
+					"value": "Non-issue of invoice or difficult access to invoice/monthly statement"
+				},
+				{
+					"label": "Neupravičeno izdajanje računov/zaračunavanje",
+					"value": "Unjustified invoicing / billing"
+				},
+				{
+					"label": "Izterjava dolgov",
+					"value": "Debt collection"
+				},
+				{
+					"label": "Druga vprašanja v zvezi z izdajanjem računov, zaračunavanjem in izterjavo dolgov",
+					"value": "Other issues related to invoicing/billing and debt collection"
+				}
+			]
+		},
+		"Warranty / statutory guarantee and commercial guarantees": {
+			"value": "Jamstvo, predpisana garancija in tržne garancije",
+			"values": [
+				{
+					"label": "Neupoštevano jamstvo oz. predpisana garancija",
+					"value": "Warranty / statutory guarantee not honoured"
+				},
+				{
+					"label": "Neupoštevana tržna garancija",
+					"value": "Commercial guarantee not honoured"
+				},
+				{
+					"label": "Drugo",
+					"value": "Other issues"
+				}
+			]
+		},
+		"Redress": {
+			"value": "Odškodnina",
+			"values": [
+				{
+					"label": "Otežen dostop do odškodnine",
+					"value": "Difficult access to redress"
+				},
+				{
+					"label": "Brez odškodnine",
+					"value": "No redress"
+				},
+				{
+					"label": "Delna ali napačna odškodnina",
+					"value": "Part or incorrect redress"
+				},
+				{
+					"label": "Zapoznela odškodnina",
+					"value": "Delayed redress"
+				},
+				{
+					"label": "Druga vprašanja v zvezi z odškodnino",
+					"value": "Other issues related to redress"
+				}
+			]
+		},
+		"Unfair Commercial Practices": {
+			"value": "Nepoštene poslovne prakse",
+			"values": [
+				{
+					"label": "Zavajajoča pogodbena določila in pogoji",
+					"value": "Misleading contractual terms and conditions"
+				},
+				{
+					"label": "Napačno ali zavajajoče navajanje cen/cenika in označevanje",
+					"value": "Incorrect or misleading indication of prices / tariffs and labelling"
+				},
+				{
+					"label": "Zavajajoče oglaševanje",
+					"value": "Misleading advertising"
+				},
+				{
+					"label": "Neželeno oglaševanje",
+					"value": "Unsolicited advertising"
+				},
+				{
+					"label": "Nenaročeno blago ali storitve",
+					"value": "Unsolicited goods or services"
+				},
+				{
+					"label": "Agresivne prodajne prakse",
+					"value": "Aggressive selling practices"
+				},
+				{
+					"label": "Goljufive prakse",
+					"value": "Fraudulent practices"
+				},
+				{
+					"label": "Druge nepoštene poslovne prakse",
+					"value": "Other unfair commercial practices"
+				}
+			]
+		},
+		"Contracts and sales": {
+			"value": "Pogodbe in prodaja",
+			"values": [
+				{
+					"label": "Nepoštena pogodbena določila ali sprememba pogodbenih določil",
+					"value": "Unfair contractual terms / change of contractual terms"
+				},
+				{
+					"label": "Pomanjkanje informacij",
+					"value": "Lack of information"
+				},
+				{
+					"label": "Potrditev naročila (ni prejeto/napačno)",
+					"value": "Order confirmation (not received/wrong)"
+				},
+				{
+					"label": "Čas za premislek, pravica do odstopa",
+					"value": "Cooling-off period / Right of withdrawal"
+				},
+				{
+					"label": "Plačila (npr. predplačila in obroki)",
+					"value": "Payments (e.g. prepayments and instalments)"
+				},
+				{
+					"label": "Odpoved pogodbe",
+					"value": "Rescission of contract"
+				},
+				{
+					"label": "Najkrajši pogodbeni rok",
+					"value": "Minimum contractual period"
+				},
+				{
+					"label": "Druga vprašanja v zvezi s pogodbami in prodajo",
+					"value": "Other issues related to contracts and sales"
+				}
+			]
+		},
+		"Provider change / switching": {
+			"value": "Sprememba/zamenjava ponudnika",
+			"values": [
+				{
+					"label": "Sprememba/zamenjava ponudnika",
+					"value": "Provider change / switching"
+				},
+				{
+					"label": "Drugo",
+					"value": "Other issues"
+				}
+			]
+		},
+		"Safety - covers both goods (including food) and services": {
+			"value": "Varnost – zajema blago (vključno z živili) in storitve",
+			"values": [
+				{
+					"label": "Varnost izdelkov – zajema blago (vključno z živili) in storitve",
+					"value": "Product safety - covers both goods (including food) and services"
+				},
+				{
+					"label": "Embalaža, označevanje in navodila – zajema blago (vključno z živili) in storitve",
+					"value": "Package, labelling and instructions - covers both goods (including food) and services"
+				},
+				{
+					"label": "Drugo",
+					"value": "Other issues"
+				}
+			]
+		},
+		"Privacy and data protection": {
+			"value": "Zasebnost in varstvo podatkov",
+			"values": [
+				{
+					"label": "Varstvo podatkov",
+					"value": "Data protection"
+				},
+				{
+					"label": "Zasebnost",
+					"value": "Privacy"
+				},
+				{
+					"label": "Druga vprašanja v zvezi z zasebnostjo in varstvom podatkov",
+					"value": "Other issues related to privacy and data protection"
+				}
+			]
+		},
+		"Other issues": {
+			"value": "Drugo",
+			"values": [
+				{
+					"label": "Drugo",
+					"value": "Other issues"
+				}
+			]
+		}
+	},
+	"sectors": {
+		"Consumer Goods": {
+			"value": "Potrošniško blago",
+			"values": [
+				{
+					"label": "Živila – sadje in zelenjava",
+					"value": "Food - Fruit and vegetables"
+				},
+				{
+					"label": "Živila – meso",
+					"value": "Food - Meat"
+				},
+				{
+					"label": "Živila – kruh in žita",
+					"value": "Food - Bread and Cereals"
+				},
+				{
+					"label": "Živila – zdrava prehrana in hranila",
+					"value": "Food - Health food and nutrients"
+				},
+				{
+					"label": "Živila – drugo",
+					"value": "Food - Other"
+				},
+				{
+					"label": "Brezalkoholne pijače",
+					"value": "Non-alcoholic beverages"
+				},
+				{
+					"label": "Alkoholne pijače",
+					"value": "Alcoholic beverages"
+				},
+				{
+					"label": "Tobak",
+					"value": "Tobacco"
+				},
+				{
+					"label": "Oblačila (tudi po meri) in obutev",
+					"value": "Clothing (including tailor-made goods) and footwear"
+				},
+				{
+					"label": "Izdelki za vzdrževanje in prenovo stanovanj",
+					"value": "House maintenance and improvement goods"
+				},
+				{
+					"label": "Notranja oprema",
+					"value": "Furnishings"
+				},
+				{
+					"label": "Veliki gospodinjski aparati (vključno s sesalniki in mikrovalovnimi pečicami)",
+					"value": "Large domestic household appliances (including vacuum cleaners and microwaves)"
+				},
+				{
+					"label": "Mali gospodinjski aparati (vključno s kavnimi aparati in aparati za predelavo hrane)",
+					"value": "Small domestic household appliances (including coffee machines and food- processing appliances)"
+				},
+				{
+					"label": "Električni izdelki (ki niso izdelki IKT / zabavna elektronika)",
+					"value": "Electronic goods (non-ICT/recreational)"
+				},
+				{
+					"label": "Izdelki informacijske in komunikacijske tehnologije (IKT)",
+					"value": "Information and communication technology (ICT) goods"
+				},
+				{
+					"label": "Oprema za prosti čas (športna oprema, glasbeni instrumenti itn.)",
+					"value": "Leisure goods (sports equipment, musical instruments, etc)"
+				},
+				{
+					"label": "Novi avtomobili",
+					"value": "New cars"
+				},
+				{
+					"label": "Rabljena vozila",
+					"value": "Second-hand cars"
+				},
+				{
+					"label": "Druga osebna prevozna sredstva",
+					"value": "Other personal transport"
+				},
+				{
+					"label": "Rezervni deli in dodatki za vozila in druga osebna prevozna sredstva",
+					"value": "Spares and accessories for vehicles and other means of personal transport"
+				},
+				{
+					"label": "Goriva in maziva za vozila in druga osebna prevozna sredstva",
+					"value": "Fuels and lubricants for vehicles and other means of personal transport"
+				},
+				{
+					"label": "Knjige, revije, časopisi, pisarniški material (razen poštnih pošiljk)",
+					"value": "Books, magazines, newspapers, stationery (excluding postal delivery)"
+				},
+				{
+					"label": "Hišne živali in izdelki zanje",
+					"value": "Pets and pet goods"
+				},
+				{
+					"label": "Električne naprave za osebno nego",
+					"value": "Electrical appliances for personal care"
+				},
+				{
+					"label": "Kozmetika in toaletne potrebščine za osebno nego",
+					"value": "Cosmetics and toiletries for personal care"
+				},
+				{
+					"label": "Nakit, srebrnina, ure, zapestne ure in dodatki",
+					"value": "Jewellery, silverware, clocks, watches and accessories"
+				},
+				{
+					"label": "Izdelki za nego dojenčkov in otrok",
+					"value": "Baby and child care articles"
+				},
+				{
+					"label": "Čistila in sredstva za vzdrževanje, pripomočki za čiščenje in potrošni material za gospodinjstvo",
+					"value": "Cleaning and maintenance products, articles for cleaning and non-durable household articles"
+				},
+				{
+					"label": "Drugo",
+					"value": "Other"
+				}
+			]
+		},
+		"General Consumer Services": {
+			"value": "Splošne potrošniške storitve",
+			"values": [
+				{
+					"label": "Nepremičninske storitve",
+					"value": "Real estate services"
+				},
+				{
+					"label": "Gradnja novih hiš",
+					"value": "Construction of new houses"
+				},
+				{
+					"label": "Vzdrževanje in prenova stanovanj",
+					"value": "House maintenance and improvement services"
+				},
+				{
+					"label": "Selitev in skladiščenje",
+					"value": "House removal and storage"
+				},
+				{
+					"label": "Čiščenje stanovanj",
+					"value": "House cleaning services"
+				},
+				{
+					"label": "Storitve za osebno nego",
+					"value": "Personal care services"
+				},
+				{
+					"label": "Čiščenje, popravilo in izposoja oblačil in obutve",
+					"value": "Cleaning, repair and hiring of clothing and footwear"
+				},
+				{
+					"label": "Podpora, raziskave in posredništvo",
+					"value": "Support, research and intermediary services"
+				},
+				{
+					"label": "Vzdrževanje in popravilo vozil in drugih prevoznih sredstev",
+					"value": "Maintenance and repair of vehicles and other transport"
+				},
+				{
+					"label": "Pravne storitve in računovodstvo",
+					"value": "Legal services & accountancy"
+				},
+				{
+					"label": "Pogrebne storitve",
+					"value": "Funeral services"
+				},
+				{
+					"label": "Varstvo otrok",
+					"value": "Child care"
+				},
+				{
+					"label": "Storitve za hišne živali",
+					"value": "Pet services"
+				},
+				{
+					"label": "Drugo",
+					"value": "Other"
+				}
+			]
+		},
+		"Financial Services": {
+			"value": "Finančne storitve",
+			"values": [
+				{
+					"label": "Finančne storitve – plačilni račun in plačilne storitve",
+					"value": "Financial Services - Payment account and payment services"
+				},
+				{
+					"label": "Finančne storitve – kredit (razen hipotekarnih ali stanovanjskih posojil)",
+					"value": "Financial Services - Credit (excluding mortgage/home loans)"
+				},
+				{
+					"label": "Finančne storitve – hipotekarna ali stanovanjska posojila",
+					"value": "Financial Services - Mortgages / Home loans"
+				},
+				{
+					"label": "Finančne storitve – varčevanje",
+					"value": "Financial Services - Savings"
+				},
+				{
+					"label": "Finančne storitve – drugo",
+					"value": "Financial Services - Other"
+				},
+				{
+					"label": "Naložbe, pokojnine in vrednostni papirji",
+					"value": "Investments, pensions and securities"
+				},
+				{
+					"label": "Neživljenjsko zavarovanje – dom in premoženje",
+					"value": "Non-life Insurance - Home and property"
+				},
+				{
+					"label": "Neživljenjsko zavarovanje – prevoz",
+					"value": "Non-life Insurance - Transport"
+				},
+				{
+					"label": "Neživljenjsko zavarovanje – potovanje",
+					"value": "Non-life Insurance – Travel"
+				},
+				{
+					"label": "Neživljenjsko zavarovanje – zdravje, nezgode in drugo",
+					"value": "Non-life Insurance - Health, accident and other"
+				},
+				{
+					"label": "Življenjsko zavarovanje",
+					"value": "Insurance - Life"
+				},
+				{
+					"label": "Drugo",
+					"value": "Other"
+				}
+			]
+		},
+		"Postal services and electronic communications": {
+			"value": "Poštne storitve in elektronske komunikacije",
+			"values": [
+				{
+					"label": "Poštne in kurirske storitve",
+					"value": "Postal services & couriers"
+				},
+				{
+					"label": "Storitve fiksne telefonije",
+					"value": "Fixed telephone services"
+				},
+				{
+					"label": "Storitve mobilne telefonije",
+					"value": "Mobile telephone services"
+				},
+				{
+					"label": "Internetne storitve",
+					"value": "Internet services"
+				},
+				{
+					"label": "Televizijske storitve",
+					"value": "Television services"
+				},
+				{
+					"label": "Druge komunikacijske storitve",
+					"value": "Other communication services"
+				}
+			]
+		},
+		"Transport services": {
+			"value": "Prevozne storitve",
+			"values": [
+				{
+					"label": "Tramvaj, avtobus, metro in podzemna železnica",
+					"value": "Tram, bus, metro and underground"
+				},
+				{
+					"label": "Železnice",
+					"value": "Railways"
+				},
+				{
+					"label": "Letalski promet",
+					"value": "Airlines"
+				},
+				{
+					"label": "Taksi",
+					"value": "Taxi"
+				},
+				{
+					"label": "Prevoz po morju ali reki, drug vodni prevoz",
+					"value": "Sea, river, other water transport"
+				},
+				{
+					"label": "Storitve prometne infrastrukture",
+					"value": "Transport infrastructure services"
+				},
+				{
+					"label": "Storitve najema",
+					"value": "Rental services"
+				},
+				{
+					"label": "Drugo",
+					"value": "Other"
+				}
+			]
+		},
+		"Leisure Services": {
+			"value": "Storitve za prosti čas",
+			"values": [
+				{
+					"label": "Hoteli in druge počitniške nastanitve",
+					"value": "Hotels and other holiday accommodation"
+				},
+				{
+					"label": "Paketno potovanje",
+					"value": "Package travel"
+				},
+				{
+					"label": "Storitve potovalnih agencij",
+					"value": "Travel agency services"
+				},
+				{
+					"label": "Časovni zakup in podobne storitve",
+					"value": "Timeshare and similar"
+				},
+				{
+					"label": "Restavracije in bari",
+					"value": "Restaurants and bars"
+				},
+				{
+					"label": "Storitve v zvezi s športom in konjički",
+					"value": "Services related to sports and hobbies"
+				},
+				{
+					"label": "Kulturne storitve in zabavne prireditve",
+					"value": "Cultural and entertainment services"
+				},
+				{
+					"label": "Igralništvo, loterija",
+					"value": "Gambling, lotteries"
+				},
+				{
+					"label": "Druge storitve za prosti čas",
+					"value": "Other leisure services"
+				}
+			]
+		},
+		"Energy and Water": {
+			"value": "Energija in voda",
+			"values": [
+				{
+					"label": "Voda",
+					"value": "Water"
+				},
+				{
+					"label": "Električna energija",
+					"value": "Electricity"
+				},
+				{
+					"label": "Plin",
+					"value": "Gas"
+				},
+				{
+					"label": "Drugi viri energije",
+					"value": "Other energy sources"
+				}
+			]
+		},
+		"Health": {
+			"value": "Zdravje",
+			"values": [
+				{
+					"label": "Predpisano zdravilo",
+					"value": "Prescribed medication"
+				},
+				{
+					"label": "Zdravilo brez recepta",
+					"value": "Over-the-counter medication"
+				},
+				{
+					"label": "Medicinski pripomočki in drugi telesni pripomočki za bolnike",
+					"value": "Medical devices and other physical aids used by patients"
+				},
+				{
+					"label": "Zdravstvene storitve",
+					"value": "Health services"
+				},
+				{
+					"label": "Domovi za ostarele in oskrba na domu",
+					"value": "Retirement homes and home care"
+				},
+				{
+					"label": "Drugo",
+					"value": "Other"
+				}
+			]
+		},
+		"Education": {
+			"value": "Izobraževanje",
+			"values": [
+				{
+					"label": "Šole",
+					"value": "Schools"
+				},
+				{
+					"label": "Jezikovni tečaji, avtošole in drugi zasebni tečaji",
+					"value": "Language, driving instruction and other private courses"
+				},
+				{
+					"label": "Drugo",
+					"value": "Other"
+				}
+			]
+		},
+		"Other": {
+			"value": "Drugo",
+			"values": [
+				{
+					"label": "Drugo (blago in storitve)",
+					"value": "Other (Includes both goods and services)"
+				}
+			]
+		}
+	},
+	"country": {
+		"value": "Država",
+		"values": [
+			{
+				"label": "Avstrija",
+				"value": "AT"
+			},
+			{
+				"label": "Belgija",
+				"value": "BE"
+			},
+			{
+				"label": "Bolgarija",
+				"value": "BG"
+			},
+			{
+				"label": "Ciper",
+				"value": "CY"
+			},
+			{
+				"label": "Češka",
+				"value": "CZ"
+			},
+			{
+				"label": "Danska",
+				"value": "DK"
+			},
+			{
+				"label": "Estonija",
+				"value": "EE"
+			},
+			{
+				"label": "Finska",
+				"value": "FI"
+			},
+			{
+				"label": "Francija",
+				"value": "FR"
+			},
+			{
+				"label": "Nemčija",
+				"value": "DE"
+			},
+			{
+				"label": "Grčija",
+				"value": "GR"
+			},
+			{
+				"label": "Madžarska",
+				"value": "HU"
+			},
+			{
+				"label": "Islandija",
+				"value": "IS"
+			},
+			{
+				"label": "Irska",
+				"value": "IE"
+			},
+			{
+				"label": "Italija",
+				"value": "IT"
+			},
+			{
+				"label": "Latvija",
+				"value": "LV"
+			},
+			{
+				"label": "Lihtenštajn",
+				"value": "LI"
+			},
+			{
+				"label": "Litva",
+				"value": "LT"
+			},
+			{
+				"label": "Luksemburg",
+				"value": "LU"
+			},
+			{
+				"label": "Malta",
+				"value": "MT"
+			},
+			{
+				"label": "Nizozemska",
+				"value": "NL"
+			},
+			{
+				"label": "Norveška",
+				"value": "NO"
+			},
+			{
+				"label": "Poljska",
+				"value": "PL"
+			},
+			{
+				"label": "Portugalska",
+				"value": "PT"
+			},
+			{
+				"label": "Romunija",
+				"value": "RO"
+			},
+			{
+				"label": "Slovaška",
+				"value": "SK"
+			},
+			{
+				"label": "Slovenija",
+				"value": "SI"
+			},
+			{
+				"label": "Španija",
+				"value": "ES"
+			},
+			{
+				"label": "Švedska",
+				"value": "SE"
+			},
+			{
+				"label": "Švica",
+				"value": "CH"
+			},
+			{
+				"label": "Združeno kraljestvo",
+				"value": "UK"
+			},
+			{
+				"label": "Avstralija",
+				"value": "AU"
+			},
+			{
+				"label": "Brazilija",
+				"value": "BR"
+			},
+			{
+				"label": "Canada",
+				"value": "CA"
+			},
+			{
+				"label": "Kitajska",
+				"value": "CN"
+			},
+			{
+				"label": "Hrvaška",
+				"value": "HR"
+			},
+			{
+				"label": "Slovenija",
+				"value": "SR"
+			},
+			{
+				"label": "India",
+				"value": "IN"
+			},
+			{
+				"label": "Mexico",
+				"value": "MX"
+			},
+			{
+				"label": "Ruske federacije",
+				"value": "RU"
+			},
+			{
+				"label": "Južna Afrika",
+				"value": "ZA"
+			},
+			{
+				"label": "Turčija",
+				"value": "TR"
+			},
+			{
+				"label": "Združene države Amerike",
+				"value": "US"
+			},
+			{
+				"label": "Drugo",
+				"value": "Other"
+			},
+			{
+				"label": "Ne vem",
+				"value": "Do not know"
+			}
+		]
+	},
+	"distinction": {
+		"value": "Razlog",
+		"values": [
+			{
+				"label": "Pritožba",
+				"value": "Complaint"
+			},
+			{
+				"label": "Poizvedba",
+				"value": "Enquiry"
+			}
+		]
+	},
+	"selling_method": {
+		"value": "Prodajna metoda",
+		"values": [
+			{
+				"label": "Osebna prodaja",
+				"value": "Face-to-face"
+			},
+			{
+				"label": "Osebna prodaja: supermarket, hipermarket",
+				"value": "Face-to-face: Supermarket, hypermarket"
+			},
+			{
+				"label": "Osebna prodaja: diskont",
+				"value": "Face-to-face: Discount store"
+			},
+			{
+				"label": "Osebna prodaja: veleblagovnica",
+				"value": "Face-to-face: Department store"
+			},
+			{
+				"label": "Osebna prodaja: maloprodajna veriga",
+				"value": "Face-to-face: Retail chain store"
+			},
+			{
+				"label": "Osebna prodaja: maloprodajna trgovina",
+				"value": "Face-to-face: Retail store"
+			},
+			{
+				"label": "Osebna prodaja: majhna trgovina",
+				"value": "Face-to-face: Small shop, small store"
+			},
+			{
+				"label": "Osebna prodaja: trgovina s sadjem in zelenjavo, nočna trgovina",
+				"value": "Face-to-face: Greengrocer, night shop"
+			},
+			{
+				"label": "Osebna prodaja: ulična tržnica, prodajalna na kmetiji",
+				"value": "Face-to-face: Street market, farm shop"
+			},
+			{
+				"label": "Osebna prodaja: bencinska črpalka",
+				"value": "Face-to-face: Petrol station"
+			},
+			{
+				"label": "Osebna prodaja: pisarna (vključno z bankami in drugimi finančnimi ustanovami)",
+				"value": "Face-to-face: Office (includes banks and other financial institutions)"
+			},
+			{
+				"label": "Osebna prodaja: potovalna agencija, organizatorji potovanj",
+				"value": "Face-to-face: Travel agency, tour operator agency"
+			},
+			{
+				"label": "Osebna prodaja: bolnišnica, klinika, ordinacija",
+				"value": "Face-to-face: Hospital, clinic, surgery"
+			},
+			{
+				"label": "Osebna prodaja: šola",
+				"value": "Face-to-face: School"
+			},
+			{
+				"label": "Osebna prodaja: športni objekti, objekti za prosti čas",
+				"value": "Face-to-face: Sports and leisure premises"
+			},
+			{
+				"label": "Osebna prodaja: drugo",
+				"value": "Face-to-face: Other type of premises"
+			},
+			{
+				"label": "Prodaja na daljavo (npr. po telefonu, pošti), razen e-trgovine, mobilnega trgovanja in spletnih dražb",
+				"value": "Distance selling (e.g. phone, post), excluding e-commerce, mobile commerce and internet auctions"
+			},
+			{
+				"label": "E-trgovina, razen mobilnega trgovanja in spletnih dražb",
+				"value": "E-commerce, excluding mobile commerce and internet auctions"
+			},
+			{
+				"label": "Mobilno trgovanje ",
+				"value": "Mobile commerce"
+			},
+			{
+				"label": "Trg, trgovinski sejem",
+				"value": "Market, trade fair"
+			},
+			{
+				"label": "Dražbe",
+				"value": "Auctions"
+			},
+			{
+				"label": "Spletne dražbe",
+				"value": "Internet auctions"
+			},
+			{
+				"label": "Prodaja zunaj poslovnih prostorov",
+				"value": "Selling away from business premises (off-premises)"
+			},
+			{
+				"label": "Druge prodajne metode",
+				"value": "Other selling methods"
+			},
+			{
+				"label": "Ne vem",
+				"value": "Do not know"
+			},
+			{
+				"label": "Ni relevantno",
+				"value": "Not applicable"
+			}
+		]
+	},
+	"advertising_method": {
+		"value": "Metoda oglaševanja",
+		"values": [
+			{
+				"label": "Osebno",
+				"value": "Face-to-face"
+			},
+			{
+				"label": "Telefonsko",
+				"value": "Phone call"
+			},
+			{
+				"label": "Po SMS",
+				"value": "Text message"
+			},
+			{
+				"label": "Po avdiovizualnem mediju (TV itn.)",
+				"value": "Audiovisual (TV, etc.)"
+			},
+			{
+				"label": "Po tiskanem mediju (časopis, brošura, letak itn.)",
+				"value": "Print (newspaper, brochure, flyer, etc.)"
+			},
+			{
+				"label": "Po internetu (spletišče)",
+				"value": "Internet (website)"
+			},
+			{
+				"label": "Po elektronski pošti",
+				"value": "E-mail"
+			},
+			{
+				"label": "Po radiu",
+				"value": "Radio"
+			},
+			{
+				"label": "Na prostem (fiksni oglasi, na primer panoji, ali premični oglasi, na primer na vozilih)",
+				"value": "Outdoor (fixed advertising such as on billboards or mobile advertising such as on vehicles)"
+			},
+			{
+				"label": "Drugo",
+				"value": "Other"
+			},
+			{
+				"label": "Ne vem",
+				"value": "Do not know"
+			},
+			{
+				"label": "Ni relevantno",
+				"value": "Not applicable"
+			}
+		]
+	},
+	"payment_means": {
+		"value": "Način plačila",
+		"values": [
+			{
+				"label": "Gotovina",
+				"value": "Cash"
+			},
+			{
+				"label": "Plačilna kartica",
+				"value": "Debit card"
+			},
+			{
+				"label": "Kreditna kartica",
+				"value": "Credit card"
+			},
+			{
+				"label": "Papirni ček, vavčer ali potovalni ček",
+				"value": "Paper cheque, paper-based vouchers and paper-based traveller's cheques"
+			},
+			{
+				"label": "Bančno nakazilo",
+				"value": "Credit transfer"
+			},
+			{
+				"label": "Neposredna obremenitev tekočega računa",
+				"value": "Direct debit"
+			},
+			{
+				"label": "Elektronski denar",
+				"value": "Electronic money"
+			},
+			{
+				"label": "Denarno nakazilo",
+				"value": "Money remittance"
+			},
+			{
+				"label": "Predplačilna kartica",
+				"value": "Pre-paid cards"
+			},
+			{
+				"label": "Plačilo z mobilnim telefonom (npr. SMS)",
+				"value": "Mobile payments (e.g. SMS)"
+			},
+			{
+				"label": "Drugo",
+				"value": "Other"
+			},
+			{
+				"label": "Ne vem",
+				"value": "Do not know"
+			}
+		]
+	},
+	"transaction_currency": {
+		"value": "Valuta",
+		"values": [
+			{
+				"label": "EUR",
+				"value": "EUR"
+			},
+			{
+				"label": "BGN",
+				"value": "BRL"
+			},
+			{
+				"label": "CZK",
+				"value": "CZK"
+			},
+			{
+				"label": "DKK",
+				"value": "DKK"
+			},
+			{
+				"label": "EEK",
+				"value": "EEK"
+			},
+			{
+				"label": "HUF",
+				"value": "HUF"
+			},
+			{
+				"label": "LVL",
+				"value": "LVL"
+			},
+			{
+				"label": "LTL",
+				"value": "LTL"
+			},
+			{
+				"label": "PLN",
+				"value": "PLN"
+			},
+			{
+				"label": "RON",
+				"value": "RON"
+			},
+			{
+				"label": "SEK",
+				"value": "SEK"
+			},
+			{
+				"label": "GBP",
+				"value": "GBP"
+			},
+			{
+				"label": "ISK",
+				"value": "ISK"
+			},
+			{
+				"label": "CHF",
+				"value": "CHF"
+			},
+			{
+				"label": "NOK",
+				"value": "NOK"
+			},
+			{
+				"label": "USD",
+				"value": "USD"
+			},
+			{
+				"label": "Drugo",
+				"value": "Other"
+			}
+		]
+	}
+}

@@ -1,0 +1,1198 @@
+{
+	"levels": {
+		"Quality of goods and services": {
+			"value": "Jakość produktów i usług",
+			"values": [
+				{
+					"label": "Wady, powód szkody",
+					"value": "Defective, caused damage"
+				},
+				{
+					"label": "Niezgodność z zamówieniem",
+					"value": "Not in conformity with order"
+				},
+				{
+					"label": "Niezgodność z przeznaczeniem",
+					"value": "Not fit for particular purpose"
+				},
+				{
+					"label": "Inne kwestie",
+					"value": "Other issues"
+				}
+			]
+		},
+		"Delivery of goods/ Provision of services": {
+			"value": "Dostawa produktów lub świadczenie usług",
+			"values": [
+				{
+					"label": "Niedostarczenie lub niewykonanie",
+					"value": "Not delivered / not provided"
+				},
+				{
+					"label": "Częściowe dostarczenie lub częściowe wykonanie",
+					"value": "Partially delivered / partially provided"
+				},
+				{
+					"label": "Opóźnienie",
+					"value": "Delay"
+				},
+				{
+					"label": "Niedostępność lub brak dostępu",
+					"value": "Not available / No access"
+				},
+				{
+					"label": "Odmowa sprzedaży lub dostarczenia produktu lub usługi",
+					"value": "Refusal to sell / provide a good or a service"
+				},
+				{
+					"label": "Wstrzymanie dostawy produktu lub wykonania usługi bez wcześniejszego powiadomienia",
+					"value": "Suspension of the delivery of a good or the provision of a service without prior notice"
+				},
+				{
+					"label": "Godziny otwarcia",
+					"value": "Opening hours"
+				},
+				{
+					"label": "Obsługa konsumenta",
+					"value": "Customer service"
+				},
+				{
+					"label": "Obsługa lub pomoc posprzedażna",
+					"value": "After-sales service/assistance"
+				},
+				{
+					"label": "Inne kwestie związane z dostawą produktów lub świadczeniem usług",
+					"value": "Other issues related to the delivery of goods/provisions of services"
+				}
+			]
+		},
+		"Price / Tariff": {
+			"value": "Ceny i cenniki",
+			"values": [
+				{
+					"label": "Zmiana cen",
+					"value": "Price / tariff change"
+				},
+				{
+					"label": "Dyskryminacja cenowa",
+					"value": "Price discrimination"
+				},
+				{
+					"label": "Przejrzystość cenowa (niejasność, złożoność)",
+					"value": "Tariff transparency (unclear, complex)"
+				},
+				{
+					"label": "Inne kwestie związane z cenami",
+					"value": "Other issues related to price/tariff"
+				}
+			]
+		},
+		"Invoicing / billing and debt collection": {
+			"value": "Wystawianie rachunków i windykacja wierzytelności",
+			"values": [
+				{
+					"label": "Błędy w rachunkach",
+					"value": "Incorrect invoice / bill"
+				},
+				{
+					"label": "Niejasności w rachunkach",
+					"value": "Unclear invoice / bill"
+				},
+				{
+					"label": "Niewystawienie rachunku lub trudności w dostępie do rachunku lub miesięcznego zestawienia",
+					"value": "Non-issue of invoice or difficult access to invoice/monthly statement"
+				},
+				{
+					"label": "Nieuzasadnione wystawienie rachunku",
+					"value": "Unjustified invoicing / billing"
+				},
+				{
+					"label": "Windykacja wierzytelności",
+					"value": "Debt collection"
+				},
+				{
+					"label": "Inne kwestie związane z wystawieniem rachunków i windykacją wierzytelności",
+					"value": "Other issues related to invoicing/billing and debt collection"
+				}
+			]
+		},
+		"Warranty / statutory guarantee and commercial guarantees": {
+			"value": "Rękojmia lub gwarancja statutowa oraz gwarancje handlowe",
+			"values": [
+				{
+					"label": "Nieuznanie rękojmi lub gwarancji statutowej",
+					"value": "Warranty / statutory guarantee not honoured"
+				},
+				{
+					"label": "Nieuznanie gwarancji handlowej",
+					"value": "Commercial guarantee not honoured"
+				},
+				{
+					"label": "Inne kwestie",
+					"value": "Other issues"
+				}
+			]
+		},
+		"Redress": {
+			"value": "Odszkodowanie",
+			"values": [
+				{
+					"label": "Trudności w dostępie do odszkodowania",
+					"value": "Difficult access to redress"
+				},
+				{
+					"label": "Brak odszkodowania",
+					"value": "No redress"
+				},
+				{
+					"label": "Częściowe lub niewystarczające odszkodowanie",
+					"value": "Part or incorrect redress"
+				},
+				{
+					"label": "Opóźnienie w odszkodowaniu",
+					"value": "Delayed redress"
+				},
+				{
+					"label": "Inne kwestie związane z odszkodowaniami",
+					"value": "Other issues related to redress"
+				}
+			]
+		},
+		"Unfair Commercial Practices": {
+			"value": "Nieuczciwe praktyki handlowe",
+			"values": [
+				{
+					"label": "Wprowadzające w błąd warunki umowy",
+					"value": "Misleading contractual terms and conditions"
+				},
+				{
+					"label": "Nieprawdziwe lub wprowadzające w błąd informacje o cenach i na etykietach",
+					"value": "Incorrect or misleading indication of prices / tariffs and labelling"
+				},
+				{
+					"label": "Reklama wprowadzająca w błąd",
+					"value": "Misleading advertising"
+				},
+				{
+					"label": "Niechciana reklama",
+					"value": "Unsolicited advertising"
+				},
+				{
+					"label": "Niechciane produkty lub usługi",
+					"value": "Unsolicited goods or services"
+				},
+				{
+					"label": "Agresywne praktyki handlowe",
+					"value": "Aggressive selling practices"
+				},
+				{
+					"label": "Oszukańcze praktyki",
+					"value": "Fraudulent practices"
+				},
+				{
+					"label": "Inne nieuczciwe praktyki handlowe",
+					"value": "Other unfair commercial practices"
+				}
+			]
+		},
+		"Contracts and sales": {
+			"value": "Umowy i sprzedaż",
+			"values": [
+				{
+					"label": "Nieuczciwe warunki umowy lub zmiana warunków umowy",
+					"value": "Unfair contractual terms / change of contractual terms"
+				},
+				{
+					"label": "Brak informacji",
+					"value": "Lack of information"
+				},
+				{
+					"label": "Potwierdzenie zamówienia (brak lub niewłaściwe)",
+					"value": "Order confirmation (not received/wrong)"
+				},
+				{
+					"label": "Okres wypowiedzenia umowy lub prawo do wypowiedzenia umowy",
+					"value": "Cooling-off period / Right of withdrawal"
+				},
+				{
+					"label": "Płatność (np. płatność z góry i płatność na raty)",
+					"value": "Payments (e.g. prepayments and instalments)"
+				},
+				{
+					"label": "Rozwiązanie umowy",
+					"value": "Rescission of contract"
+				},
+				{
+					"label": "Minimalny okres trwania umowy",
+					"value": "Minimum contractual period"
+				},
+				{
+					"label": "Inne kwestie związane z umowami i sprzedażą",
+					"value": "Other issues related to contracts and sales"
+				}
+			]
+		},
+		"Provider change / switching": {
+			"value": "Zmiana dostawcy",
+			"values": [
+				{
+					"label": "Zmiana dostawcy",
+					"value": "Provider change / switching"
+				},
+				{
+					"label": "Inne kwestie",
+					"value": "Other issues"
+				}
+			]
+		},
+		"Safety - covers both goods (including food) and services": {
+			"value": "Bezpieczeństwo – dotyczy produktów (także żywności) i usług",
+			"values": [
+				{
+					"label": "Bezpieczeństwo produktów – dotyczy produktów (także żywności) i usług",
+					"value": "Product safety - covers both goods (including food) and services"
+				},
+				{
+					"label": "Opakowanie, etykietowanie i instrukcje – dotyczy produktów (także żywności) i usług",
+					"value": "Package, labelling and instructions - covers both goods (including food) and services"
+				},
+				{
+					"label": "Inne kwestie",
+					"value": "Other issues"
+				}
+			]
+		},
+		"Privacy and data protection": {
+			"value": "Ochrona prywatności oraz ochrona danych",
+			"values": [
+				{
+					"label": "Ochrona danych",
+					"value": "Data protection"
+				},
+				{
+					"label": "Ochrona prywatności",
+					"value": "Privacy"
+				},
+				{
+					"label": "Inne kwestie związane z ochroną prywatności i ochroną danych",
+					"value": "Other issues related to privacy and data protection"
+				}
+			]
+		},
+		"Other issues": {
+			"value": "Inne kwestie",
+			"values": [
+				{
+					"label": "Inne kwestie",
+					"value": "Other issues"
+				}
+			]
+		}
+	},
+	"sectors": {
+		"Consumer Goods": {
+			"value": "Dobra konsumpcyjne",
+			"values": [
+				{
+					"label": "Artykuły żywnościowe – owoce i warzywa",
+					"value": "Food - Fruit and vegetables"
+				},
+				{
+					"label": "Artykuły żywnościowe - mięso",
+					"value": "Food - Meat"
+				},
+				{
+					"label": "Artykuły żywnościowe - pieczywo i zboża",
+					"value": "Food - Bread and Cereals"
+				},
+				{
+					"label": "Artykuły żywnościowe - zdrowa żywność i substancje odżywcze",
+					"value": "Food - Health food and nutrients"
+				},
+				{
+					"label": "Artykuły żywnościowe - inne",
+					"value": "Food - Other"
+				},
+				{
+					"label": "Napoje bezalkoholowe",
+					"value": "Non-alcoholic beverages"
+				},
+				{
+					"label": "Napoje alkoholowe",
+					"value": "Alcoholic beverages"
+				},
+				{
+					"label": "Tytoń",
+					"value": "Tobacco"
+				},
+				{
+					"label": "Odzież (w tym odzież na miarę) i obuwie",
+					"value": "Clothing (including tailor-made goods) and footwear"
+				},
+				{
+					"label": "Artykuły do bieżącego utrzymania domu i drobnych napraw",
+					"value": "House maintenance and improvement goods"
+				},
+				{
+					"label": "Meble",
+					"value": "Furnishings"
+				},
+				{
+					"label": "Duże urządzenia gospodarstwa domowego (w tym odkurzacze i kuchenki mikrofalowe)",
+					"value": "Large domestic household appliances (including vacuum cleaners and microwaves)"
+				},
+				{
+					"label": "Małe urządzenia gospodarstwa domowego (w tym ekspresy do kawy, roboty kuchenne)",
+					"value": "Small domestic household appliances (including coffee machines and food- processing appliances)"
+				},
+				{
+					"label": "Artykuły elektroniczne (inne niż sprzęt komputerowy i telekomunikacyjny lub rekreacyjny)",
+					"value": "Electronic goods (non-ICT/recreational)"
+				},
+				{
+					"label": "Sprzęt komputerowy i telekomunikacyjny",
+					"value": "Information and communication technology (ICT) goods"
+				},
+				{
+					"label": "Artykuły rekreacyjne (wyposażenie sportowe, instrumenty muzyczne itd.)",
+					"value": "Leisure goods (sports equipment, musical instruments, etc)"
+				},
+				{
+					"label": "Nowe samochody",
+					"value": "New cars"
+				},
+				{
+					"label": "Samochody używane",
+					"value": "Second-hand cars"
+				},
+				{
+					"label": "Inne środki transportu osobistego",
+					"value": "Other personal transport"
+				},
+				{
+					"label": "Części zamienne i akcesoria dla pojazdów i innych środków transportu indywidualnego",
+					"value": "Spares and accessories for vehicles and other means of personal transport"
+				},
+				{
+					"label": "Paliwa i smary dla pojazdów i innych środków transportu indywidualnego",
+					"value": "Fuels and lubricants for vehicles and other means of personal transport"
+				},
+				{
+					"label": "Książki, magazyny, gazety, przybory piśmiennicze (z wyjątkiem dostarczania poczty)",
+					"value": "Books, magazines, newspapers, stationery (excluding postal delivery)"
+				},
+				{
+					"label": "Zwierzęta domowe i artykuły dla zwierząt domowych",
+					"value": "Pets and pet goods"
+				},
+				{
+					"label": "Urządzenia elektryczne do higieny osobistej",
+					"value": "Electrical appliances for personal care"
+				},
+				{
+					"label": "Kosmetyki i artykuły toaletowe do higieny osobistej",
+					"value": "Cosmetics and toiletries for personal care"
+				},
+				{
+					"label": "Biżuteria, srebra, zegary, zegarki i akcesoria",
+					"value": "Jewellery, silverware, clocks, watches and accessories"
+				},
+				{
+					"label": "Artykuły do pielęgnacji niemowląt i dzieci",
+					"value": "Baby and child care articles"
+				},
+				{
+					"label": "Środki czyszczące i konserwujące, artykuły do sprzątania i nietrwałe artykuły gospodarstwa domowego",
+					"value": "Cleaning and maintenance products, articles for cleaning and non-durable household articles"
+				},
+				{
+					"label": "Inna",
+					"value": "Other"
+				}
+			]
+		},
+		"General Consumer Services": {
+			"value": "Usługi ogólne dla konsumentów",
+			"values": [
+				{
+					"label": "Usługi związane z obsługą rynku nieruchomości",
+					"value": "Real estate services"
+				},
+				{
+					"label": "Budowa nowych domów",
+					"value": "Construction of new houses"
+				},
+				{
+					"label": "Usługi w zakresie bieżącego utrzymania domu i drobnych napraw",
+					"value": "House maintenance and improvement services"
+				},
+				{
+					"label": "Przeprowadzki i przechowywanie",
+					"value": "House removal and storage"
+				},
+				{
+					"label": "Usługi w zakresie sprzątania domu",
+					"value": "House cleaning services"
+				},
+				{
+					"label": "Usługi w zakresie pielęgnacji",
+					"value": "Personal care services"
+				},
+				{
+					"label": "Czyszczenie, naprawa i wypożyczanie odzieży i obuwia",
+					"value": "Cleaning, repair and hiring of clothing and footwear"
+				},
+				{
+					"label": "Usługi w zakresie pomocy, badań i pośrednictwa",
+					"value": "Support, research and intermediary services"
+				},
+				{
+					"label": "Konserwacja i naprawa pojazdów i innych środków transportu",
+					"value": "Maintenance and repair of vehicles and other transport"
+				},
+				{
+					"label": "Usługi prawne i księgowe",
+					"value": "Legal services & accountancy"
+				},
+				{
+					"label": "Usługi pogrzebowe",
+					"value": "Funeral services"
+				},
+				{
+					"label": "Opieka nad dziećmi",
+					"value": "Child care"
+				},
+				{
+					"label": "Usługi związane ze zwierzętami domowymi",
+					"value": "Pet services"
+				},
+				{
+					"label": "Inna",
+					"value": "Other"
+				}
+			]
+		},
+		"Financial Services": {
+			"value": "Usługi finansowe",
+			"values": [
+				{
+					"label": "Usługi finansowe – rachunki bieżące i usługi płatnicze",
+					"value": "Financial Services - Payment account and payment services"
+				},
+				{
+					"label": "Usługi finansowe – kredyty (z wyjątkiem kredytów hipotecznych i pożyczek mieszkaniowych)",
+					"value": "Financial Services - Credit (excluding mortgage/home loans)"
+				},
+				{
+					"label": "Usługi finansowe – kredyty hipoteczne i pożyczki mieszkaniowe",
+					"value": "Financial Services - Mortgages / Home loans"
+				},
+				{
+					"label": "Usługi finansowe – oszczędności",
+					"value": "Financial Services - Savings"
+				},
+				{
+					"label": "Usługi finansowe – inne",
+					"value": "Financial Services - Other"
+				},
+				{
+					"label": "Inwestycje, emerytury i papiery wartościowe",
+					"value": "Investments, pensions and securities"
+				},
+				{
+					"label": "Ubezpieczenie inne niż na życie – dom i nieruchomości",
+					"value": "Non-life Insurance - Home and property"
+				},
+				{
+					"label": "Ubezpieczenie inne niż na życie – transport",
+					"value": "Non-life Insurance - Transport"
+				},
+				{
+					"label": "Ubezpieczenie inne niż na życie – podróże",
+					"value": "Non-life Insurance – Travel"
+				},
+				{
+					"label": "Ubezpieczenie inne niż na życie – zdrowotne, od nieszczęśliwych wypadków i inne",
+					"value": "Non-life Insurance - Health, accident and other"
+				},
+				{
+					"label": "Ubezpieczenie na życie",
+					"value": "Insurance - Life"
+				},
+				{
+					"label": "Inna",
+					"value": "Other"
+				}
+			]
+		},
+		"Postal services and electronic communications": {
+			"value": "Usługi pocztowe i komunikacja elektroniczna",
+			"values": [
+				{
+					"label": "Usługi pocztowe i kurierskie",
+					"value": "Postal services & couriers"
+				},
+				{
+					"label": "Usługi telefonii stacjonarnej",
+					"value": "Fixed telephone services"
+				},
+				{
+					"label": "Usługi telefonii komórkowej",
+					"value": "Mobile telephone services"
+				},
+				{
+					"label": "Usługi internetowe",
+					"value": "Internet services"
+				},
+				{
+					"label": "Usługi telewizyjne",
+					"value": "Television services"
+				},
+				{
+					"label": "Inne usługi komunikacyjne",
+					"value": "Other communication services"
+				}
+			]
+		},
+		"Transport services": {
+			"value": "Usługi transportowe",
+			"values": [
+				{
+					"label": "Tramwaje, autobusy, metro",
+					"value": "Tram, bus, metro and underground"
+				},
+				{
+					"label": "Koleje",
+					"value": "Railways"
+				},
+				{
+					"label": "Linie lotnicze",
+					"value": "Airlines"
+				},
+				{
+					"label": "Taksówki",
+					"value": "Taxi"
+				},
+				{
+					"label": "Transport morski, rzeczny i pozostały transport wodny",
+					"value": "Sea, river, other water transport"
+				},
+				{
+					"label": "Usługi w zakresie infrastruktury transportowej",
+					"value": "Transport infrastructure services"
+				},
+				{
+					"label": "Usługi w zakresie wypożyczania",
+					"value": "Rental services"
+				},
+				{
+					"label": "Inna",
+					"value": "Other"
+				}
+			]
+		},
+		"Leisure Services": {
+			"value": "Usługi w zakresie rekreacji",
+			"values": [
+				{
+					"label": "Hotele i inne obiekty wypoczynkowe",
+					"value": "Hotels and other holiday accommodation"
+				},
+				{
+					"label": "Wycieczki zorganizowane",
+					"value": "Package travel"
+				},
+				{
+					"label": "Usługi agencji podróży",
+					"value": "Travel agency services"
+				},
+				{
+					"label": "Użytkowanie nieruchomości w oznaczonym czasie i usługi podobne",
+					"value": "Timeshare and similar"
+				},
+				{
+					"label": "Restauracje i bary",
+					"value": "Restaurants and bars"
+				},
+				{
+					"label": "Usługi związane ze sportem i hobby",
+					"value": "Services related to sports and hobbies"
+				},
+				{
+					"label": "Usługi w zakresie kultury i rozrywki",
+					"value": "Cultural and entertainment services"
+				},
+				{
+					"label": "Zakłady, loterie",
+					"value": "Gambling, lotteries"
+				},
+				{
+					"label": "Inne usługi w zakresie rekreacji",
+					"value": "Other leisure services"
+				}
+			]
+		},
+		"Energy and Water": {
+			"value": "Sektor energetyczny i wodny",
+			"values": [
+				{
+					"label": "Woda",
+					"value": "Water"
+				},
+				{
+					"label": "Elektryczność",
+					"value": "Electricity"
+				},
+				{
+					"label": "Gaz",
+					"value": "Gas"
+				},
+				{
+					"label": "Inne źródła energii",
+					"value": "Other energy sources"
+				}
+			]
+		},
+		"Health": {
+			"value": "Zdrowie",
+			"values": [
+				{
+					"label": "Leki na receptę",
+					"value": "Prescribed medication"
+				},
+				{
+					"label": "Leki bez recepty",
+					"value": "Over-the-counter medication"
+				},
+				{
+					"label": "Wyroby medyczne i inny sprzęt pomocniczo-rehabilitacyjny stosowany przez pacjentów",
+					"value": "Medical devices and other physical aids used by patients"
+				},
+				{
+					"label": "Opieka zdrowotna",
+					"value": "Health services"
+				},
+				{
+					"label": "Domy spokojnej starości i domy opieki",
+					"value": "Retirement homes and home care"
+				},
+				{
+					"label": "Inna",
+					"value": "Other"
+				}
+			]
+		},
+		"Education": {
+			"value": "Edukacja",
+			"values": [
+				{
+					"label": "Szkoły",
+					"value": "Schools"
+				},
+				{
+					"label": "Nauka języków obcych, nauka jazdy i inne kursy prywatne",
+					"value": "Language, driving instruction and other private courses"
+				},
+				{
+					"label": "Inna",
+					"value": "Other"
+				}
+			]
+		},
+		"Other": {
+			"value": "Inne",
+			"values": [
+				{
+					"label": "Inne (obejmuje zarówno produkty, jak i usługi)",
+					"value": "Other (Includes both goods and services)"
+				}
+			]
+		}
+	},
+	"country": {
+		"value": "kraj",
+		"values": [
+			{
+				"label": "Austria",
+				"value": "AT"
+			},
+			{
+				"label": "Belgia",
+				"value": "BE"
+			},
+			{
+				"label": "Bułgaria",
+				"value": "BG"
+			},
+			{
+				"label": "Cypr",
+				"value": "CY"
+			},
+			{
+				"label": "Republika Czeska",
+				"value": "CZ"
+			},
+			{
+				"label": "Dania",
+				"value": "DK"
+			},
+			{
+				"label": "Estonia",
+				"value": "EE"
+			},
+			{
+				"label": "Finlandia",
+				"value": "FI"
+			},
+			{
+				"label": "Francja",
+				"value": "FR"
+			},
+			{
+				"label": "Niemcy",
+				"value": "DE"
+			},
+			{
+				"label": "Grecja",
+				"value": "GR"
+			},
+			{
+				"label": "Węgry",
+				"value": "HU"
+			},
+			{
+				"label": "Islandia",
+				"value": "IS"
+			},
+			{
+				"label": "Irlandia",
+				"value": "IE"
+			},
+			{
+				"label": "Włochy",
+				"value": "IT"
+			},
+			{
+				"label": "Łotwa",
+				"value": "LV"
+			},
+			{
+				"label": "Liechtenstein",
+				"value": "LI"
+			},
+			{
+				"label": "Litwa",
+				"value": "LT"
+			},
+			{
+				"label": "Luksemburg",
+				"value": "LU"
+			},
+			{
+				"label": "Malta",
+				"value": "MT"
+			},
+			{
+				"label": "Niderlandy",
+				"value": "NL"
+			},
+			{
+				"label": "Norwegia",
+				"value": "NO"
+			},
+			{
+				"label": "Polska",
+				"value": "PL"
+			},
+			{
+				"label": "Portugalia",
+				"value": "PT"
+			},
+			{
+				"label": "Rumunia",
+				"value": "RO"
+			},
+			{
+				"label": "Słowacja",
+				"value": "SK"
+			},
+			{
+				"label": "Słowenia",
+				"value": "SI"
+			},
+			{
+				"label": "Hiszpania",
+				"value": "ES"
+			},
+			{
+				"label": "Szwecja",
+				"value": "SE"
+			},
+			{
+				"label": "Szwajcaria",
+				"value": "CH"
+			},
+			{
+				"label": "Zjednoczone Królestwo",
+				"value": "UK"
+			},
+			{
+				"label": "Australia",
+				"value": "AU"
+			},
+			{
+				"label": "Brazylia",
+				"value": "BR"
+			},
+			{
+				"label": "Kanada",
+				"value": "CA"
+			},
+			{
+				"label": "Chiny",
+				"value": "CN"
+			},
+			{
+				"label": "Chorwacja",
+				"value": "HR"
+			},
+			{
+				"label": "Słowenia",
+				"value": "SR"
+			},
+			{
+				"label": "Indie",
+				"value": "IN"
+			},
+			{
+				"label": "Meksyk",
+				"value": "MX"
+			},
+			{
+				"label": "Federacji Rosyjskiej",
+				"value": "RU"
+			},
+			{
+				"label": "Republika Południowej Afryki",
+				"value": "ZA"
+			},
+			{
+				"label": "Turcja",
+				"value": "TR"
+			},
+			{
+				"label": "Stany Zjednoczone",
+				"value": "US"
+			},
+			{
+				"label": "Inny",
+				"value": "Other"
+			},
+			{
+				"label": "Nieznany",
+				"value": "Do not know"
+			}
+		]
+	},
+	"distinction": {
+		"value": "powód",
+		"values": [
+			{
+				"label": "Skarga",
+				"value": "Complaint"
+			},
+			{
+				"label": "Zapytanie",
+				"value": "Enquiry"
+			}
+		]
+	},
+	"selling_method": {
+		"value": "metoda_sprzedaży",
+		"values": [
+			{
+				"label": "Kontakt osobisty",
+				"value": "Face-to-face"
+			},
+			{
+				"label": "Kontakt osobisty: supermarket, hipermarket",
+				"value": "Face-to-face: Supermarket, hypermarket"
+			},
+			{
+				"label": "Kontakt osobisty: dyskont",
+				"value": "Face-to-face: Discount store"
+			},
+			{
+				"label": "Kontakt osobisty: dom handlowy",
+				"value": "Face-to-face: Department store"
+			},
+			{
+				"label": "Kontakt osobisty: sieciowy sklep detaliczny",
+				"value": "Face-to-face: Retail chain store"
+			},
+			{
+				"label": "Kontakt osobisty: sklep detaliczny",
+				"value": "Face-to-face: Retail store"
+			},
+			{
+				"label": "Kontakt osobisty: mały sklep",
+				"value": "Face-to-face: Small shop, small store"
+			},
+			{
+				"label": "Kontakt osobisty: sklep spożywczy, sklep nocny",
+				"value": "Face-to-face: Greengrocer, night shop"
+			},
+			{
+				"label": "Kontakt osobisty: targ uliczny, sklep przy gospodarstwie rolnym",
+				"value": "Face-to-face: Street market, farm shop"
+			},
+			{
+				"label": "Kontakt osobisty: stacja benzynowa",
+				"value": "Face-to-face: Petrol station"
+			},
+			{
+				"label": "Kontakt osobisty: biuro (w tym banki i inne instytucje finansowe)",
+				"value": "Face-to-face: Office (includes banks and other financial institutions)"
+			},
+			{
+				"label": "Kontakt osobisty: biuro podróży, agencja turystyczna",
+				"value": "Face-to-face: Travel agency, tour operator agency"
+			},
+			{
+				"label": "Kontakt osobisty: szpital, klinika, gabinet lekarski",
+				"value": "Face-to-face: Hospital, clinic, surgery"
+			},
+			{
+				"label": "Kontakt osobisty: szkoła",
+				"value": "Face-to-face: School"
+			},
+			{
+				"label": "Kontakt osobisty: tereny sportowe i rekreacyjne",
+				"value": "Face-to-face: Sports and leisure premises"
+			},
+			{
+				"label": "Kontakt osobisty: inny rodzaj miejsca",
+				"value": "Face-to-face: Other type of premises"
+			},
+			{
+				"label": "Sprzedaż na odległość (np. telefoniczna, pocztowa), z wyłączeniem e-handlu, handlu mobilnego i aukcji internetowych",
+				"value": "Distance selling (e.g. phone, post), excluding e-commerce, mobile commerce and internet auctions"
+			},
+			{
+				"label": "E-handel, z wyłączeniem handlu mobilnego i aukcji internetowych",
+				"value": "E-commerce, excluding mobile commerce and internet auctions"
+			},
+			{
+				"label": "Handel mobilny",
+				"value": "Mobile commerce"
+			},
+			{
+				"label": "Targ, targi",
+				"value": "Market, trade fair"
+			},
+			{
+				"label": "Aukcja",
+				"value": "Auctions"
+			},
+			{
+				"label": "Aukcja internetowa",
+				"value": "Internet auctions"
+			},
+			{
+				"label": "Sprzedaż poza lokalem przedsiębiorstwa",
+				"value": "Selling away from business premises (off-premises)"
+			},
+			{
+				"label": "Inna metoda sprzedaży",
+				"value": "Other selling methods"
+			},
+			{
+				"label": "Nieznana",
+				"value": "Do not know"
+			},
+			{
+				"label": "Nie dotyczy",
+				"value": "Not applicable"
+			}
+		]
+	},
+	"advertising_method": {
+		"value": "sposób_reklamowania",
+		"values": [
+			{
+				"label": "Kontakt osobisty",
+				"value": "Face-to-face"
+			},
+			{
+				"label": "Rozmowa telefoniczna",
+				"value": "Phone call"
+			},
+			{
+				"label": "Wiadomość tekstowa",
+				"value": "Text message"
+			},
+			{
+				"label": "Media audiowizualne (telewizja itd.)",
+				"value": "Audiovisual (TV, etc.)"
+			},
+			{
+				"label": "Media drukowane (gazeta, broszura, ulotka itd.)",
+				"value": "Print (newspaper, brochure, flyer, etc.)"
+			},
+			{
+				"label": "Internet (strona internetowa)",
+				"value": "Internet (website)"
+			},
+			{
+				"label": "Poczta elektroniczna",
+				"value": "E-mail"
+			},
+			{
+				"label": "Radio",
+				"value": "Radio"
+			},
+			{
+				"label": "Media zewnętrzne (reklamy stałe, np. bilboardy lub reklamy ruchome, np. na pojazdach)",
+				"value": "Outdoor (fixed advertising such as on billboards or mobile advertising such as on vehicles)"
+			},
+			{
+				"label": "Inny",
+				"value": "Other"
+			},
+			{
+				"label": "Nieznany",
+				"value": "Do not know"
+			},
+			{
+				"label": "Nie dotyczy",
+				"value": "Not applicable"
+			}
+		]
+	},
+	"payment_means": {
+		"value": "sposób_realizacji_płatności",
+		"values": [
+			{
+				"label": "Gotówka",
+				"value": "Cash"
+			},
+			{
+				"label": "Karta debetowa",
+				"value": "Debit card"
+			},
+			{
+				"label": "Krata kredytowa",
+				"value": "Credit card"
+			},
+			{
+				"label": "Czeki papierowe, papierowe kupony i papierowe czeki podróżne",
+				"value": "Paper cheque, paper-based vouchers and paper-based traveller's cheques"
+			},
+			{
+				"label": "Polecenie przelewu",
+				"value": "Credit transfer"
+			},
+			{
+				"label": "Polecenie zapłaty",
+				"value": "Direct debit"
+			},
+			{
+				"label": "E-pieniądz ",
+				"value": "Electronic money"
+			},
+			{
+				"label": "Usługa przekazu pieniężnego",
+				"value": "Money remittance"
+			},
+			{
+				"label": "Karta typu pre-paid",
+				"value": "Pre-paid cards"
+			},
+			{
+				"label": "Płatność mobilna (np. SMS-em)",
+				"value": "Mobile payments (e.g. SMS)"
+			},
+			{
+				"label": "Inny",
+				"value": "Other"
+			},
+			{
+				"label": "Nieznany",
+				"value": "Do not know"
+			}
+		]
+	},
+	"transaction_currency": {
+		"value": "waluta",
+		"values": [
+			{
+				"label": "EUR",
+				"value": "EUR"
+			},
+			{
+				"label": "BGN",
+				"value": "BRL"
+			},
+			{
+				"label": "CZK",
+				"value": "CZK"
+			},
+			{
+				"label": "DKK",
+				"value": "DKK"
+			},
+			{
+				"label": "EEK",
+				"value": "EEK"
+			},
+			{
+				"label": "HUF",
+				"value": "HUF"
+			},
+			{
+				"label": "LVL",
+				"value": "LVL"
+			},
+			{
+				"label": "LTL",
+				"value": "LTL"
+			},
+			{
+				"label": "PLN",
+				"value": "PLN"
+			},
+			{
+				"label": "RON",
+				"value": "RON"
+			},
+			{
+				"label": "SEK",
+				"value": "SEK"
+			},
+			{
+				"label": "GBP",
+				"value": "GBP"
+			},
+			{
+				"label": "ISK",
+				"value": "ISK"
+			},
+			{
+				"label": "CHF",
+				"value": "CHF"
+			},
+			{
+				"label": "NOK",
+				"value": "NOK"
+			},
+			{
+				"label": "USD",
+				"value": "USD"
+			},
+			{
+				"label": "Inna",
+				"value": "Other"
+			}
+		]
+	}
+}

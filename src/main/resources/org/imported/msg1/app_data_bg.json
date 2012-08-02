@@ -1,0 +1,1202 @@
+{
+	"levels": {
+		"Quality of goods and services": {
+			"value": "Качество на стоки и услуги",
+			"values": [
+				{
+					"label": "С дефекти, причиняване на щета",
+					"value": "Defective, caused damage"
+				},
+				{
+					"label": "Не съответстват на поръчката",
+					"value": "Not in conformity with order"
+				},
+				{
+					"label": "Не могат да послужат за конкретна цел",
+					"value": "Not fit for particular purpose"
+				},
+				{
+					"label": "Други въпроси",
+					"value": "Other issues"
+				}
+			]
+		},
+		"Delivery of goods/ Provision of services": {
+			"value": "Доставка на стоки/предоставяне на услуги",
+			"values": [
+				{
+					"label": "Недоставени/непредоставени",
+					"value": "Not delivered / not provided"
+				},
+				{
+					"label": "Частично доставени/частично предоставени",
+					"value": "Partially delivered / partially provided"
+				},
+				{
+					"label": "Забавяне",
+					"value": "Delay"
+				},
+				{
+					"label": "Неналичност/Липса на достъп",
+					"value": "Not available / No access"
+				},
+				{
+					"label": "Отказ да бъде продадена стока/доставена услуга",
+					"value": "Refusal to sell / provide a good or a service"
+				},
+				{
+					"label": "Прекратяване без предупреждение на доставката на стока или на предоставянето на услуга",
+					"value": "Suspension of the delivery of a good or the provision of a service without prior notice"
+				},
+				{
+					"label": "Работно време",
+					"value": "Opening hours"
+				},
+				{
+					"label": "Обслужване на клиенти",
+					"value": "Customer service"
+				},
+				{
+					"label": "Следпродажбено (сервизно) обслужване/съдействие",
+					"value": "After-sales service/assistance"
+				},
+				{
+					"label": "Други въпроси, свързани с доставката на стоки/предоставянето на услуги",
+					"value": "Other issues related to the delivery of goods/provisions of services"
+				}
+			]
+		},
+		"Price / Tariff": {
+			"value": "Цени/ценоразпис",
+			"values": [
+				{
+					"label": "Промяна на цените/промяна на ценоразписа",
+					"value": "Price / tariff change"
+				},
+				{
+					"label": "Ценова дискриминация",
+					"value": "Price discrimination"
+				},
+				{
+					"label": "Яснота на ценоразписа (неясен, усложнен)",
+					"value": "Tariff transparency (unclear, complex)"
+				},
+				{
+					"label": "Други въпроси, свързани с цените/ценоразписа",
+					"value": "Other issues related to price/tariff"
+				}
+			]
+		},
+		"Invoicing / billing and debt collection": {
+			"value": "Фактуриране и събиране на вземания",
+			"values": [
+				{
+					"label": "Сгрешена фактура/сметка",
+					"value": "Incorrect invoice / bill"
+				},
+				{
+					"label": "Неясна фактура/сметка",
+					"value": "Unclear invoice / bill"
+				},
+				{
+					"label": "Неиздаване на фактура или затруднен достъп до фактура/месечна справка",
+					"value": "Non-issue of invoice or difficult access to invoice/monthly statement"
+				},
+				{
+					"label": "Неоснователна фактура/сметка",
+					"value": "Unjustified invoicing / billing"
+				},
+				{
+					"label": "Събиране на вземания",
+					"value": "Debt collection"
+				},
+				{
+					"label": "Други въпроси, свързани с фактуриране и събиране на вземания",
+					"value": "Other issues related to invoicing/billing and debt collection"
+				}
+			]
+		},
+		"Warranty / statutory guarantee and commercial guarantees": {
+			"value": "Задължителна законоустановена гаранция и търговски гаранции",
+			"values": [
+				{
+					"label": "Неспазена задължителна законоустановена гаранция",
+					"value": "Warranty / statutory guarantee not honoured"
+				},
+				{
+					"label": "Неспазена търговска гаранция",
+					"value": "Commercial guarantee not honoured"
+				},
+				{
+					"label": "Други въпроси",
+					"value": "Other issues"
+				}
+			]
+		},
+		"Redress": {
+			"value": "Правна защита",
+			"values": [
+				{
+					"label": "Затруднен достъп до средства за правна защита",
+					"value": "Difficult access to redress"
+				},
+				{
+					"label": "Неполучаване на правна защита",
+					"value": "No redress"
+				},
+				{
+					"label": "Частична или неподходяща правна защита",
+					"value": "Part or incorrect redress"
+				},
+				{
+					"label": "Забава на правната защита",
+					"value": "Delayed redress"
+				},
+				{
+					"label": "Други въпроси, свързани с правната защита",
+					"value": "Other issues related to redress"
+				}
+			]
+		},
+		"Unfair Commercial Practices": {
+			"value": "Нелоялни търговски практики",
+			"values": [
+				{
+					"label": "Заблуждаващи договорни условия",
+					"value": "Misleading contractual terms and conditions"
+				},
+				{
+					"label": "Грешни или подвеждащи цени/ценоразпис и етикети",
+					"value": "Incorrect or misleading indication of prices / tariffs and labelling"
+				},
+				{
+					"label": "Заблуждаваща реклама",
+					"value": "Misleading advertising"
+				},
+				{
+					"label": "Нежелана реклама",
+					"value": "Unsolicited advertising"
+				},
+				{
+					"label": "Нежелани стоки или услуги",
+					"value": "Unsolicited goods or services"
+				},
+				{
+					"label": "Агресивни търговски практики",
+					"value": "Aggressive selling practices"
+				},
+				{
+					"label": "Измамни практики",
+					"value": "Fraudulent practices"
+				},
+				{
+					"label": "Други нелоялни търговски практики",
+					"value": "Other unfair commercial practices"
+				}
+			]
+		},
+		"Contracts and sales": {
+			"value": "Договори и продажби",
+			"values": [
+				{
+					"label": "Неравноправни договорни условия/промяна на договорните условия",
+					"value": "Unfair contractual terms / change of contractual terms"
+				},
+				{
+					"label": "Липса на информация",
+					"value": "Lack of information"
+				},
+				{
+					"label": "Потвърждение на поръчката (неполучено/сгрешено)",
+					"value": "Order confirmation (not received/wrong)"
+				},
+				{
+					"label": "Период за размисъл/Право на отмяна на поръчката",
+					"value": "Cooling-off period / Right of withdrawal"
+				},
+				{
+					"label": "Плащания (напр. предварителни плащания и вноски)",
+					"value": "Payments (e.g. prepayments and instalments)"
+				},
+				{
+					"label": "Анулиране на договор",
+					"value": "Rescission of contract"
+				},
+				{
+					"label": "Минимален срок на договора",
+					"value": "Minimum contractual period"
+				},
+				{
+					"label": "Други въпроси, свързани с договори и продажби",
+					"value": "Other issues related to contracts and sales"
+				}
+			]
+		},
+		"Provider change / switching": {
+			"value": "Смяна на доставчика",
+			"values": [
+				{
+					"label": "Смяна на доставчика",
+					"value": "Provider change / switching"
+				},
+				{
+					"label": "Други въпроси",
+					"value": "Other issues"
+				}
+			]
+		},
+		"Safety - covers both goods (including food) and services": {
+			"value": "Безопасност — обхваща стоки (включително хранителни стоки) и услуги",
+			"values": [
+				{
+					"label": "Безопасност на продуктите — обхваща стоки (включително хранителни стоки) и услуги",
+					"value": "Product safety - covers both goods (including food) and services"
+				},
+				{
+					"label": "Опаковка, етикетиране и указания за използване — обхваща стоки (включително хранителни стоки) и услуги",
+					"value": "Package, labelling and instructions - covers both goods (including food) and services"
+				},
+				{
+					"label": "Други въпроси",
+					"value": "Other issues"
+				}
+			]
+		},
+		"Privacy and data protection": {
+			"value": "Неприкосновеност на личния живот и защита на данните",
+			"values": [
+				{
+					"label": "Защита на данните",
+					"value": "Data protection"
+				},
+				{
+					"label": "Неприкосновеност на личния живот",
+					"value": "Privacy"
+				},
+				{
+					"label": "Други въпроси, свързани с неприкосновеността на частния живот и защитата на данни",
+					"value": "Other issues related to privacy and data protection"
+				},
+				{
+					"label": "Други въпроси",
+					"value": "Other issues"
+				}
+			]
+		},
+		"Other issues": {
+			"value": "Други въпроси",
+			"values": [
+				{
+					"label": "Други въпроси",
+					"value": "Other issues"
+				}
+			]
+		}
+	},
+	"sectors": {
+		"Consumer Goods": {
+			"value": "Потребителски стоки",
+			"values": [
+				{
+					"label": "Хранителни продукти — плодове и зеленчуци",
+					"value": "Food - Fruit and vegetables"
+				},
+				{
+					"label": "Хранителни продукти — месо и месни продукти",
+					"value": "Food - Meat"
+				},
+				{
+					"label": "Хранителни продукти — хляб и зърнени храни",
+					"value": "Food - Bread and Cereals"
+				},
+				{
+					"label": "Хранителни продукти — здравословни храни и хранителни вещества",
+					"value": "Food - Health food and nutrients"
+				},
+				{
+					"label": "Хранителни продукти — други",
+					"value": "Food - Other"
+				},
+				{
+					"label": "Безалкохолни напитки",
+					"value": "Non-alcoholic beverages"
+				},
+				{
+					"label": "Алкохолни напитки",
+					"value": "Alcoholic beverages"
+				},
+				{
+					"label": "Тютюневи изделия",
+					"value": "Tobacco"
+				},
+				{
+					"label": "Облекло (включително ушито по мярка) и обувки",
+					"value": "Clothing (including tailor-made goods) and footwear"
+				},
+				{
+					"label": "Стоки за поддръжка и ремонт",
+					"value": "House maintenance and improvement goods"
+				},
+				{
+					"label": "Обзавеждане",
+					"value": "Furnishings"
+				},
+				{
+					"label": "Големи домакински уреди (включително прахосмукачки и микровълнови фурни)",
+					"value": "Large domestic household appliances (including vacuum cleaners and microwaves)"
+				},
+				{
+					"label": "Малки електрически домакински уреди (включително кафемашини и уреди за обработка на храна)",
+					"value": "Small domestic household appliances (including coffee machines and food- processing appliances)"
+				},
+				{
+					"label": "Електроника (не-ИКТ/за свободното време)",
+					"value": "Electronic goods (non-ICT/recreational)"
+				},
+				{
+					"label": "Продукти на информационните и комуникационни технологии (ИКТ)",
+					"value": "Information and communication technology (ICT) goods"
+				},
+				{
+					"label": "Стоки за свободното време (спортно оборудване, музикални инструменти и др.)",
+					"value": "Leisure goods (sports equipment, musical instruments, etc)"
+				},
+				{
+					"label": "Нови коли",
+					"value": "New cars"
+				},
+				{
+					"label": "Автомобили втора употреба",
+					"value": "Second-hand cars"
+				},
+				{
+					"label": "Други видове лични превозни средства",
+					"value": "Other personal transport"
+				},
+				{
+					"label": "Резервни части и аксесоари за превозни средства и други средства за личен транспорт",
+					"value": "Spares and accessories for vehicles and other means of personal transport"
+				},
+				{
+					"label": "Горива и смазочни масла за превозни средства и други средства за личен транспорт",
+					"value": "Fuels and lubricants for vehicles and other means of personal transport"
+				},
+				{
+					"label": "Книги, списания, вестници, канцеларски материали (не включва пощенски доставки)",
+					"value": "Books, magazines, newspapers, stationery (excluding postal delivery)"
+				},
+				{
+					"label": "Домашни любимци и продукти за тях",
+					"value": "Pets and pet goods"
+				},
+				{
+					"label": "Електрически уреди за лична грижа",
+					"value": "Electrical appliances for personal care"
+				},
+				{
+					"label": "Козметика и тоалетни принадлежности за лична грижа",
+					"value": "Cosmetics and toiletries for personal care"
+				},
+				{
+					"label": "Бижутерия, сребърни прибори, стенни и ръчни часовници, аксесоари",
+					"value": "Jewellery, silverware, clocks, watches and accessories"
+				},
+				{
+					"label": "Изделия за отглеждане на бебета и деца",
+					"value": "Baby and child care articles"
+				},
+				{
+					"label": "Продукти за почистване и поддръжка, артикули за чистене, домакински стоки за краткотрайна употреба",
+					"value": "Cleaning and maintenance products, articles for cleaning and non-durable household articles"
+				},
+				{
+					"label": "Друг",
+					"value": "Other"
+				}
+			]
+		},
+		"General Consumer Services": {
+			"value": "Разнообразни услуги за потребителите",
+			"values": [
+				{
+					"label": "Услуги, свързани с недвижими имоти",
+					"value": "Real estate services"
+				},
+				{
+					"label": "Строителство на нови сгради",
+					"value": "Construction of new houses"
+				},
+				{
+					"label": "Услуги по поддръжка и ремонт на сгради",
+					"value": "House maintenance and improvement services"
+				},
+				{
+					"label": "Услуги по превоз и съхраняване на мебели и покъщнина",
+					"value": "House removal and storage"
+				},
+				{
+					"label": "Услуги за почистване на дома",
+					"value": "House cleaning services"
+				},
+				{
+					"label": "Услуги за лична хигиена и разкрасяване",
+					"value": "Personal care services"
+				},
+				{
+					"label": "Почистване, поправка на дрехи, облекло и обувки под наем",
+					"value": "Cleaning, repair and hiring of clothing and footwear"
+				},
+				{
+					"label": "Помощни, консултантски и посреднически услуги",
+					"value": "Support, research and intermediary services"
+				},
+				{
+					"label": "Поддръжка и поправка на превозни средства и други транспортни средства",
+					"value": "Maintenance and repair of vehicles and other transport"
+				},
+				{
+					"label": "Правни услуги и счетоводство",
+					"value": "Legal services & accountancy"
+				},
+				{
+					"label": "Погребални услуги",
+					"value": "Funeral services"
+				},
+				{
+					"label": "Грижи за деца",
+					"value": "Child care"
+				},
+				{
+					"label": "Услуги за домашни любимци",
+					"value": "Pet services"
+				},
+				{
+					"label": "Друг",
+					"value": "Other"
+				}
+			]
+		},
+		"Financial Services": {
+			"value": "Финансови услуги",
+			"values": [
+				{
+					"label": "Финансови услуги — платежна сметка и платежни услуги",
+					"value": "Financial Services - Payment account and payment services"
+				},
+				{
+					"label": "Финансови услуги — кредит (с изключение на ипотечни/жилищни заеми)",
+					"value": "Financial Services - Credit (excluding mortgage/home loans)"
+				},
+				{
+					"label": "Финансови услуги — ипотеки/жилищни кредити",
+					"value": "Financial Services - Mortgages / Home loans"
+				},
+				{
+					"label": "Финансови услуги — спестявания",
+					"value": "Financial Services - Savings"
+				},
+				{
+					"label": "Финансови услуги — други",
+					"value": "Financial Services - Other"
+				},
+				{
+					"label": "Инвестиции, пенсии и ценни книжа",
+					"value": "Investments, pensions and securities"
+				},
+				{
+					"label": "Застраховки, различни от животозастраховането — жилище и собственост",
+					"value": "Non-life Insurance - Home and property"
+				},
+				{
+					"label": "Застраховки, различни от животозастраховането — транспорт",
+					"value": "Non-life Insurance - Transport"
+				},
+				{
+					"label": "Застраховки, различни от животозастраховането — пътуване",
+					"value": "Non-life Insurance – Travel"
+				},
+				{
+					"label": "Застраховки, различни от животозастраховането — здраве, произшествия и други",
+					"value": "Non-life Insurance - Health, accident and other"
+				},
+				{
+					"label": "Застраховки — живот",
+					"value": "Insurance - Life"
+				},
+				{
+					"label": "Друг",
+					"value": "Other"
+				}
+			]
+		},
+		"Postal services and electronic communications": {
+			"value": "Пощенски услуги и електронни комуникации",
+			"values": [
+				{
+					"label": "Пощенски услуги и куриерски услуги",
+					"value": "Postal services & couriers"
+				},
+				{
+					"label": "Фиксирани телефонни услуги",
+					"value": "Fixed telephone services"
+				},
+				{
+					"label": "Мобилни телефонни услуги",
+					"value": "Mobile telephone services"
+				},
+				{
+					"label": "Интернет услуги",
+					"value": "Internet services"
+				},
+				{
+					"label": "Услуги на телевизията",
+					"value": "Television services"
+				},
+				{
+					"label": "Други комуникационни услуги",
+					"value": "Other communication services"
+				}
+			]
+		},
+		"Transport services": {
+			"value": "Транспортни услуги",
+			"values": [
+				{
+					"label": "Трамваен и автобусен транспорт, метро",
+					"value": "Tram, bus, metro and underground"
+				},
+				{
+					"label": "Железопътен транспорт",
+					"value": "Railways"
+				},
+				{
+					"label": "Авиокомпании",
+					"value": "Airlines"
+				},
+				{
+					"label": "Такси",
+					"value": "Taxi"
+				},
+				{
+					"label": "Морски, речен и друг вид воден транспорт",
+					"value": "Sea, river, other water transport"
+				},
+				{
+					"label": "Транспортни инфраструктурни услуги",
+					"value": "Transport infrastructure services"
+				},
+				{
+					"label": "Даване на превозни средства под наем",
+					"value": "Rental services"
+				},
+				{
+					"label": "Друг",
+					"value": "Other"
+				}
+			]
+		},
+		"Leisure Services": {
+			"value": "Услуги, свързани с почивка",
+			"values": [
+				{
+					"label": "Хотели и други почивни обекти",
+					"value": "Hotels and other holiday accommodation"
+				},
+				{
+					"label": "Туристически пакети",
+					"value": "Package travel"
+				},
+				{
+					"label": "Услуги на туристически агенции",
+					"value": "Travel agency services"
+				},
+				{
+					"label": "Временно ползване на недвижима собственост и подобни",
+					"value": "Timeshare and similar"
+				},
+				{
+					"label": "Ресторанти и барове",
+					"value": "Restaurants and bars"
+				},
+				{
+					"label": "Услуги, свързани със спорт и хоби",
+					"value": "Services related to sports and hobbies"
+				},
+				{
+					"label": "Услуги за култура и развлечение",
+					"value": "Cultural and entertainment services"
+				},
+				{
+					"label": "Хазарт, лотарии",
+					"value": "Gambling, lotteries"
+				},
+				{
+					"label": "Други услуги, свързани с почивка",
+					"value": "Other leisure services"
+				}
+			]
+		},
+		"Energy and Water": {
+			"value": "Енергия и вода",
+			"values": [
+				{
+					"label": "Вода",
+					"value": "Water"
+				},
+				{
+					"label": "Електроенергия",
+					"value": "Electricity"
+				},
+				{
+					"label": "Газ",
+					"value": "Gas"
+				},
+				{
+					"label": "Други енергийни източници",
+					"value": "Other energy sources"
+				}
+			]
+		},
+		"Health": {
+			"value": "Здравеопазване",
+			"values": [
+				{
+					"label": "Предписани лекарства",
+					"value": "Prescribed medication"
+				},
+				{
+					"label": "Лекарства без рецепта",
+					"value": "Over-the-counter medication"
+				},
+				{
+					"label": "Медицински изделия и други помощни средства, използвани от пациентите",
+					"value": "Medical devices and other physical aids used by patients"
+				},
+				{
+					"label": "Здравни услуги",
+					"value": "Health services"
+				},
+				{
+					"label": "Домове за стари хора и медико-социални грижи по домовете",
+					"value": "Retirement homes and home care"
+				},
+				{
+					"label": "Друг",
+					"value": "Other"
+				}
+			]
+		},
+		"Education": {
+			"value": "Образование",
+			"values": [
+				{
+					"label": "Училища",
+					"value": "Schools"
+				},
+				{
+					"label": "Езикови курсове, шофьорски курсове и други частни курсове",
+					"value": "Language, driving instruction and other private courses"
+				},
+				{
+					"label": "Друг",
+					"value": "Other"
+				}
+			]
+		},
+		"Other": {
+			"value": "Други",
+			"values": [
+				{
+					"label": "Други (тук се включват стоки и услуги)",
+					"value": "Other (Includes both goods and services)"
+				}
+			]
+		}
+	},
+	"country": {
+		"value": "държава",
+		"values": [
+			{
+				"label": "Австрия",
+				"value": "AT"
+			},
+			{
+				"label": "Белгия",
+				"value": "BE"
+			},
+			{
+				"label": "България",
+				"value": "BG"
+			},
+			{
+				"label": "Кипър",
+				"value": "CY"
+			},
+			{
+				"label": "Чешка република",
+				"value": "CZ"
+			},
+			{
+				"label": "Дания",
+				"value": "DK"
+			},
+			{
+				"label": "Естония",
+				"value": "EE"
+			},
+			{
+				"label": "Финландия",
+				"value": "FI"
+			},
+			{
+				"label": "Франция",
+				"value": "FR"
+			},
+			{
+				"label": "Германия",
+				"value": "DE"
+			},
+			{
+				"label": "Гърция",
+				"value": "GR"
+			},
+			{
+				"label": "Унгария",
+				"value": "HU"
+			},
+			{
+				"label": "Исландия",
+				"value": "IS"
+			},
+			{
+				"label": "Ирландия",
+				"value": "IE"
+			},
+			{
+				"label": "Италия",
+				"value": "IT"
+			},
+			{
+				"label": "Латвия",
+				"value": "LV"
+			},
+			{
+				"label": "Лихтенщайн",
+				"value": "LI"
+			},
+			{
+				"label": "Литва",
+				"value": "LT"
+			},
+			{
+				"label": "Люксембург",
+				"value": "LU"
+			},
+			{
+				"label": "Малта",
+				"value": "MT"
+			},
+			{
+				"label": "Нидерландия",
+				"value": "NL"
+			},
+			{
+				"label": "Норвегия",
+				"value": "NO"
+			},
+			{
+				"label": "Полша",
+				"value": "PL"
+			},
+			{
+				"label": "Португалия",
+				"value": "PT"
+			},
+			{
+				"label": "Румъния",
+				"value": "RO"
+			},
+			{
+				"label": "Словакия",
+				"value": "SK"
+			},
+			{
+				"label": "Словения",
+				"value": "SI"
+			},
+			{
+				"label": "Испания",
+				"value": "ES"
+			},
+			{
+				"label": "Швеция",
+				"value": "SE"
+			},
+			{
+				"label": "Швейцария",
+				"value": "CH"
+			},
+			{
+				"label": "Обединеното кралство",
+				"value": "UK"
+			},
+			{
+				"label": "Австралия",
+				"value": "AU"
+			},
+			{
+				"label": "Бразилия ",
+				"value": "BR"
+			},
+			{
+				"label": "Канада",
+				"value": "CA"
+			},
+			{
+				"label": "Китай",
+				"value": "CN"
+			},
+			{
+				"label": "Хърватия",
+				"value": "HR"
+			},
+			{
+				"label": "Сърбия",
+				"value": "SR"
+			},
+			{
+				"label": "Индия",
+				"value": "IN"
+			},
+			{
+				"label": "Мексико",
+				"value": "MX"
+			},
+			{
+				"label": "Русия",
+				"value": "RU"
+			},
+			{
+				"label": "Южна Африка",
+				"value": "ZA"
+			},
+			{
+				"label": "Турция",
+				"value": "TR"
+			},
+			{
+				"label": "САЩ",
+				"value": "US"
+			},
+			{
+				"label": "Друга",
+				"value": "Other"
+			},
+			{
+				"label": "Неизвестна",
+				"value": "Do not know"
+			}
+		]
+	},
+	"distinction": {
+		"value": "разграничение",
+		"values": [
+			{
+				"label": "Жалба",
+				"value": "Complaint"
+			},
+			{
+				"label": "Запитване",
+				"value": "Enquiry"
+			}
+		]
+	},
+	"selling_method": {
+		"value": "метод на продажба",
+		"values": [
+			{
+				"label": "Лично",
+				"value": "Face-to-face"
+			},
+			{
+				"label": "Лично: Супермаркет, хипермаркети",
+				"value": "Face-to-face: Supermarket, hypermarket"
+			},
+			{
+				"label": "Лично: Дисконтен магазин",
+				"value": "Face-to-face: Discount store"
+			},
+			{
+				"label": "Лично: Универсален магазин",
+				"value": "Face-to-face: Department store"
+			},
+			{
+				"label": "Лично: Магазин от верига за продажба на дребно на маркови стоки",
+				"value": "Face-to-face: Retail chain store"
+			},
+			{
+				"label": "Лично: Магазин за продажба на дребно на маркови стоки",
+				"value": "Face-to-face: Retail store"
+			},
+			{
+				"label": "Лично: Малък магазин",
+				"value": "Face-to-face: Small shop, small store"
+			},
+			{
+				"label": "Лично: Магазин за плодове и зеленчуци, нощен магазин",
+				"value": "Face-to-face: Greengrocer, night shop"
+			},
+			{
+				"label": "Лично: Открит пазар, селскостопански магазин",
+				"value": "Face-to-face: Street market, farm shop"
+			},
+			{
+				"label": "Лично: Бензиностанция",
+				"value": "Face-to-face: Petrol station"
+			},
+			{
+				"label": "Лично: Клон/офис (включва банки и други финансови институции)",
+				"value": "Face-to-face: Office (includes banks and other financial institutions)"
+			},
+			{
+				"label": "Лично: Туристическа агенция, туроператор",
+				"value": "Face-to-face: Travel agency, tour operator agency"
+			},
+			{
+				"label": "Лично: Болница, клиника, хирургическа клиника",
+				"value": "Face-to-face: Hospital, clinic, surgery"
+			},
+			{
+				"label": "Лично: Учебно заведение",
+				"value": "Face-to-face: School"
+			},
+			{
+				"label": "Лично: Спортни съоръжения и съоръжения за свободното време",
+				"value": "Face-to-face: Sports and leisure premises"
+			},
+			{
+				"label": "Лично: Друг вид помещения",
+				"value": "Face-to-face: Other type of premises"
+			},
+			{
+				"label": "Продажба от разстояние (напр. по телефона, по пощата), с изключение на електронната търговия, мобилната търговия и търговете в интернет",
+				"value": "Distance selling (e.g. phone, post), excluding e-commerce, mobile commerce and internet auctions"
+			},
+			{
+				"label": "Електронна търговия, с изключение на мобилната търговия и търговете в интернет",
+				"value": "E-commerce, excluding mobile commerce and internet auctions"
+			},
+			{
+				"label": "Мобилна търговия",
+				"value": "Mobile commerce"
+			},
+			{
+				"label": "Пазар, търговско изложение",
+				"value": "Market, trade fair"
+			},
+			{
+				"label": "Търгове",
+				"value": "Auctions"
+			},
+			{
+				"label": "Търгове в интернет",
+				"value": "Internet auctions"
+			},
+			{
+				"label": "Продажба извън търговския обект",
+				"value": "Selling away from business premises (off-premises)"
+			},
+			{
+				"label": "Други методи на продажба",
+				"value": "Other selling methods"
+			},
+			{
+				"label": "Неизвестен",
+				"value": "Do not know"
+			},
+			{
+				"label": "Неприложимо",
+				"value": "Not applicable"
+			}
+		]
+	},
+	"advertising_method": {
+		"value": "метод на реклама",
+		"values": [
+			{
+				"label": "Лично",
+				"value": "Face-to-face"
+			},
+			{
+				"label": "Телефонно обаждане",
+				"value": "Phone call"
+			},
+			{
+				"label": "Текстово съобщение",
+				"value": "Text message"
+			},
+			{
+				"label": "Аудиовизуална (телевизия и др.)",
+				"value": "Audiovisual (TV, etc.)"
+			},
+			{
+				"label": "Печатна (вестник, брошура, листовка и др.)",
+				"value": "Print (newspaper, brochure, flyer, etc.)"
+			},
+			{
+				"label": "В интернет (уебсайт)",
+				"value": "Internet (website)"
+			},
+			{
+				"label": "Електронна поща",
+				"value": "E-mail"
+			},
+			{
+				"label": "Радио",
+				"value": "Radio"
+			},
+			{
+				"label": "На открито (фиксирани средства за реклама като билбордове или подвижни средства за реклама, например върху превозни средства)",
+				"value": "Outdoor (fixed advertising such as on billboards or mobile advertising such as on vehicles)"
+			},
+			{
+				"label": "Друг",
+				"value": "Other"
+			},
+			{
+				"label": "Неизвестен",
+				"value": "Do not know"
+			},
+			{
+				"label": "Неприложимо",
+				"value": "Not applicable"
+			}
+		]
+	},
+	"payment_means": {
+		"value": "платежно средство",
+		"values": [
+			{
+				"label": "В брой",
+				"value": "Cash"
+			},
+			{
+				"label": "Дебитна карта",
+				"value": "Debit card"
+			},
+			{
+				"label": "Кредитна карта",
+				"value": "Credit card"
+			},
+			{
+				"label": "Чекове, ваучери и пътнически чекове на хартиен носител",
+				"value": "Paper cheque, paper-based vouchers and paper-based traveller's cheques"
+			},
+			{
+				"label": "Кредитно нареждане",
+				"value": "Credit transfer"
+			},
+			{
+				"label": "Директен дебит",
+				"value": "Direct debit"
+			},
+			{
+				"label": "Електронни пари",
+				"value": "Electronic money"
+			},
+			{
+				"label": "Налични парични преводи",
+				"value": "Money remittance"
+			},
+			{
+				"label": "Предплатени карти",
+				"value": "Pre-paid cards"
+			},
+			{
+				"label": "Мобилни плащания (напр. с текстово съобщение)",
+				"value": "Mobile payments (e.g. SMS)"
+			},
+			{
+				"label": "Друго",
+				"value": "Other"
+			},
+			{
+				"label": "Неизвестно",
+				"value": "Do not know"
+			}
+		]
+	},
+	"transaction_currency": {
+		"value": "парична единица при трансакцията",
+		"values": [
+			{
+				"label": "EUR",
+				"value": "EUR"
+			},
+			{
+				"label": "BGN",
+				"value": "BRL"
+			},
+			{
+				"label": "CZK",
+				"value": "CZK"
+			},
+			{
+				"label": "DKK",
+				"value": "DKK"
+			},
+			{
+				"label": "EEK",
+				"value": "EEK"
+			},
+			{
+				"label": "HUF",
+				"value": "HUF"
+			},
+			{
+				"label": "LVL",
+				"value": "LVL"
+			},
+			{
+				"label": "LTL",
+				"value": "LTL"
+			},
+			{
+				"label": "PLN",
+				"value": "PLN"
+			},
+			{
+				"label": "RON",
+				"value": "RON"
+			},
+			{
+				"label": "SEK",
+				"value": "SEK"
+			},
+			{
+				"label": "GBP",
+				"value": "GBP"
+			},
+			{
+				"label": "ISK",
+				"value": "ISK"
+			},
+			{
+				"label": "CHF",
+				"value": "CHF"
+			},
+			{
+				"label": "NOK",
+				"value": "NOK"
+			},
+			{
+				"label": "USD",
+				"value": "USD"
+			},
+			{
+				"label": "Друга",
+				"value": "Other"
+			}
+		]
+	}
+}

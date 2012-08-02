@@ -1,0 +1,1201 @@
+{
+	"levels": {
+		"Quality of goods and services": {
+			"value": "Preču un pakalpojumu kvalitāte",
+			"values": [
+				{
+					"label": "Bojāta prece vai nepilnīgs pakalpojums, radīti bojājumi",
+					"value": "Defective, caused damage"
+				},
+				{
+					"label": "Pasūtījumam neatbilstoša prece vai pakalpojums",
+					"value": "Not in conformity with order"
+				},
+				{
+					"label": "Preces vai pakalpojuma neatbilstība nolūkam",
+					"value": "Not fit for particular purpose"
+				},
+				{
+					"label": "Citas sūdzības un jautājumi",
+					"value": "Other issues"
+				}
+			]
+		},
+		"Delivery of goods/ Provision of services": {
+			"value": "Preču piegāde/pakalpojumu sniegšana",
+			"values": [
+				{
+					"label": "Prece nav piegādāta/pakalpojums nav sniegts",
+					"value": "Not delivered / not provided"
+				},
+				{
+					"label": "Daļēji piegādāta prece/daļēji sniegts pakalpojums",
+					"value": "Partially delivered / partially provided"
+				},
+				{
+					"label": "Kavēšanās",
+					"value": "Delay"
+				},
+				{
+					"label": "Prece vai pakalpojums nav pieejams/ nav nodrošināta piekļuve precei vai pakalpojumam",
+					"value": "Not available / No access"
+				},
+				{
+					"label": "Preces pārdošanas/pakalpojuma sniegšanas atteikums",
+					"value": "Refusal to sell / provide a good or a service"
+				},
+				{
+					"label": "Preces piegādes vai pakalpojuma sniegšanas atlikšana bez iepriekšēja paziņojuma",
+					"value": "Suspension of the delivery of a good or the provision of a service without prior notice"
+				},
+				{
+					"label": "Darba laiks",
+					"value": "Opening hours"
+				},
+				{
+					"label": "Klientu apkalpošana",
+					"value": "Customer service"
+				},
+				{
+					"label": "Pēcpārdošanas pakalpojumi/klientu atbalsts",
+					"value": "After-sales service/assistance"
+				},
+				{
+					"label": "Cita veida sūdzība/jautājums, kas saistīts ar preču/pakalpojumu piegādi",
+					"value": "Other issues related to the delivery of goods/provisions of services"
+				}
+			]
+		},
+		"Price / Tariff": {
+			"value": "Cena/tarifs",
+			"values": [
+				{
+					"label": "Cenas/tarifa izmaiņas",
+					"value": "Price / tariff change"
+				},
+				{
+					"label": "Cenas diskriminācija",
+					"value": "Price discrimination"
+				},
+				{
+					"label": "Tarifu caurskatāmība (neskaidra vai sarežģīti pasniegta informācija)",
+					"value": "Tariff transparency (unclear, complex)"
+				},
+				{
+					"label": "Citas sūdzības vai jautājumi par cenām/tarifiem",
+					"value": "Other issues related to price/tariff"
+				}
+			]
+		},
+		"Invoicing / billing and debt collection": {
+			"value": "Rēķinu piesūtīšana/parādu piedziņa",
+			"values": [
+				{
+					"label": "Kļūdaina rēķina piesūtīšana",
+					"value": "Incorrect invoice / bill"
+				},
+				{
+					"label": "Neskaidri sagatavots rēķins",
+					"value": "Unclear invoice / bill"
+				},
+				{
+					"label": "Rēķins nav izsniegts vai ir apgrūtināta piekļuve rēķinam/ikmēneša pārskatam",
+					"value": "Non-issue of invoice or difficult access to invoice/monthly statement"
+				},
+				{
+					"label": "Nepamatota rēķina piesūtīšana",
+					"value": "Unjustified invoicing / billing"
+				},
+				{
+					"label": "Parādu piedziņa",
+					"value": "Debt collection"
+				},
+				{
+					"label": "Citas sūdzības vai jautājumi par rēķinu piesūtīšanu un parādu piedziņu",
+					"value": "Other issues related to invoicing/billing and debt collection"
+				}
+			]
+		},
+		"Warranty / statutory guarantee and commercial guarantees": {
+			"value": "Garantija/likumā noteiktā garantija un komercgarantija",
+			"values": [
+				{
+					"label": "Garantijas/likumā noteiktās garantijas nosacījumu pārkāpums",
+					"value": "Warranty / statutory guarantee not honoured"
+				},
+				{
+					"label": "Komercgarantijas nosacījumu pārkāpums",
+					"value": "Commercial guarantee not honoured"
+				},
+				{
+					"label": "Citas sūdzības un jautājumi",
+					"value": "Other issues"
+				}
+
+			]
+		},
+		"Redress": {
+			"value": "Kompensācija",
+			"values": [
+				{
+					"label": "Sarežģīta kompensācijas saņemšanas kārtība",
+					"value": "Difficult access to redress"
+				},
+				{
+					"label": "Kompensācijas atteikums",
+					"value": "No redress"
+				},
+				{
+					"label": "Daļēja vai neatbilstīga kompensācija",
+					"value": "Part or incorrect redress"
+				},
+				{
+					"label": "Kompensācijas kavēšana",
+					"value": "Delayed redress"
+				},
+				{
+					"label": "Citas sūdzības vai jautājumi par kompensācijām",
+					"value": "Other issues related to redress"
+				}
+			]
+		},
+		"Unfair Commercial Practices": {
+			"value": "Negodīga komercprakse",
+			"values": [
+				{
+					"label": "Maldinoši līguma noteikumi",
+					"value": "Misleading contractual terms and conditions"
+				},
+				{
+					"label": "Nepareizas vai maldinošas cenas/tarifu vai marķējuma norādes",
+					"value": "Incorrect or misleading indication of prices / tariffs and labelling"
+				},
+				{
+					"label": "Maldinoša reklāma",
+					"value": "Misleading advertising"
+				},
+				{
+					"label": "Nevēlama reklāma",
+					"value": "Unsolicited advertising"
+				},
+				{
+					"label": "Nevēlamas preces un pakalpojumi",
+					"value": "Unsolicited goods or services"
+				},
+				{
+					"label": "Agresīva pārdošanas prakse",
+					"value": "Aggressive selling practices"
+				},
+				{
+					"label": "Krāpšana",
+					"value": "Fraudulent practices"
+				},
+				{
+					"label": "Citi negodīgas komercprakses veidi",
+					"value": "Other unfair commercial practices"
+				}
+			]
+		},
+		"Contracts and sales": {
+			"value": "Līguma noteikumi",
+			"values": [
+				{
+					"label": "Negodīgi līguma noteikumi/līguma noteikumu izmaiņas",
+					"value": "Unfair contractual terms / change of contractual terms"
+				},
+				{
+					"label": "Informācijas trūkums",
+					"value": "Lack of information"
+				},
+				{
+					"label": "Pasūtījuma informācija (informācija nav saņemta vai ir neprecīza)",
+					"value": "Order confirmation (not received/wrong)"
+				},
+				{
+					"label": "Uzteikuma periods/atteikuma tiesības",
+					"value": "Cooling-off period / Right of withdrawal"
+				},
+				{
+					"label": "Maksājumi (piemēram, priekšapmaksa vai iemaksas)",
+					"value": "Payments (e.g. prepayments and instalments)"
+				},
+				{
+					"label": "Līguma anulēšana",
+					"value": "Rescission of contract"
+				},
+				{
+					"label": "Minimālais līguma termiņš",
+					"value": "Minimum contractual period"
+				},
+				{
+					"label": "Citas sūdzības vai jautājumi par līguma noteikumiem un pārdošanu",
+					"value": "Other issues related to contracts and sales"
+				}
+			]
+		},
+		"Provider change / switching": {
+			"value": "Pakalpojumu sniedzēja maiņas iespējas",
+			"values": [
+				{
+					"label": "Pakalpojumu sniedzēja maiņas iespējas",
+					"value": "Provider change / switching"
+				},
+				{
+					"label": "Citas sūdzības un jautājumi",
+					"value": "Other issues"
+				}
+
+			]
+		},
+		"Safety - covers both goods (including food) and services": {
+			"value": "Drošums – ietver gan preces (tostarp pārtiku), gan pakalpojumus",
+			"values": [
+				{
+					"label": "Iepakojums, marķējums un lietošanas instrukcijas – ietver gan preces (tostarp pārtiku), gan pakalpojumus",
+					"value": "Product safety - covers both goods (including food) and services"
+				},
+				{
+					"label": "Iepakojums, marķējums un lietošanas instrukcijas – ietver gan preces (tostarp pārtiku), gan pakalpojumus",
+					"value": "Package, labelling and instructions - covers both goods (including food) and services"
+				},
+				{
+					"label": "Citas sūdzības un jautājumi",
+					"value": "Other issues"
+				}
+
+			]
+		},
+		"Privacy and data protection": {
+			"value": "Privātās dzīves un personas datu aizsardzība",
+			"values": [
+				{
+					"label": "Personas datu aizsardzība",
+					"value": "Data protection"
+				},
+				{
+					"label": "Privātā dzīve",
+					"value": "Privacy"
+				},
+				{
+					"label": "Citi ar privāto dzīvi un personas datu aizsardzību saistīti jautājumi",
+					"value": "Other issues related to privacy and data protection"
+				}
+			]
+		},
+		"Other issues": {
+			"value": "Citas sūdzības un jautājumi",
+			"values": [
+				{
+					"label": "Citas sūdzības un jautājumi",
+					"value": "Other issues"
+				}
+			]
+		}
+	},
+	"sectors": {
+		"Consumer Goods": {
+			"value": "Patēriņa preces",
+			"values": [
+				{
+					"label": "Pārtika – augļi un dārzeņi",
+					"value": "Food - Fruit and vegetables"
+				},
+				{
+					"label": "Pārtika – gaļa",
+					"value": "Food - Meat"
+				},
+				{
+					"label": "Pārtika – maize un graudaugi ",
+					"value": "Food - Bread and Cereals"
+				},
+				{
+					"label": "Pārtika – veselīga pārtika un uzturvielas ",
+					"value": "Food - Health food and nutrients"
+				},
+				{
+					"label": "Pārtika – citi pārtikas produkti ",
+					"value": "Food - Other"
+				},
+				{
+					"label": "Bezalkoholiskie dzērieni ",
+					"value": "Non-alcoholic beverages"
+				},
+				{
+					"label": "Alkoholiskie dzērieni",
+					"value": "Alcoholic beverages"
+				},
+				{
+					"label": "Tabaka",
+					"value": "Tobacco"
+				},
+				{
+					"label": "Apģērbs (tostarp pēc individuāla pasūtījuma izgatavotas preces) un apavi ",
+					"value": "Clothing (including tailor-made goods) and footwear"
+				},
+				{
+					"label": "Preces mājokļa uzturēšanai un labiekārtošanai",
+					"value": "House maintenance and improvement goods"
+				},
+				{
+					"label": "Mēbelējums",
+					"value": "Furnishings"
+				},
+				{
+					"label": "Liela izmēra mājsaimniecības ierīces (tostarp putekļsūcēji un mikroviļņu krāsnis)",
+					"value": "Large domestic household appliances (including vacuum cleaners and microwaves)"
+				},
+				{
+					"label": "Maza izmēra mājsaimniecības ierīces (tostarp kafijas automāti un virtuves kombaini)",
+					"value": "Small domestic household appliances (including coffee machines and food- processing appliances)"
+				},
+				{
+					"label": "Elektroniskās preces (izklaidei paredzētas preces, kas nav informācijas un komunikāciju tehnoloģijas (IKT))",
+					"value": "Electronic goods (non-ICT/recreational)"
+				},
+				{
+					"label": "Informācijas un komunikāciju tehnoloģiju (IKT) produkti",
+					"value": "Information and communication technology (ICT) goods"
+				},
+				{
+					"label": "Atpūtai paredzētas preces (sporta aprīkojums, mūzikas instrumenti utt.)",
+					"value": "Leisure goods (sports equipment, musical instruments, etc)"
+				},
+				{
+					"label": "Jauni automobiļi",
+					"value": "New cars"
+				},
+				{
+					"label": "Lietoti automobiļi",
+					"value": "Second-hand cars"
+				},
+				{
+					"label": "Citi personīgie transportlīdzekļi",
+					"value": "Other personal transport"
+				},
+				{
+					"label": "Rezerves daļas un piederumi personiskajiem transportlīdzekļiem",
+					"value": "Spares and accessories for vehicles and other means of personal transport"
+				},
+				{
+					"label": "Degviela un smērvielas personiskajiem transportlīdzekļiem",
+					"value": "Fuels and lubricants for vehicles and other means of personal transport"
+				},
+				{
+					"label": "Grāmatas, žurnāli, avīzes un kancelejas preces (bez piegādes)",
+					"value": "Books, magazines, newspapers, stationery (excluding postal delivery)"
+				},
+				{
+					"label": "Lolojumdzīvnieki un ar tiem saistītas preces",
+					"value": "Pets and pet goods"
+				},
+				{
+					"label": "Elektriskās ierīces ķermeņa kopšanai",
+					"value": "Electrical appliances for personal care"
+				},
+				{
+					"label": "Kosmētika un higiēnas preces ķermeņa kopšanai",
+					"value": "Cosmetics and toiletries for personal care"
+				},
+				{
+					"label": "Dārglietas, sudrablietas, pulksteņi, rokas pulksteņi un piederumi",
+					"value": "Jewellery, silverware, clocks, watches and accessories"
+				},
+				{
+					"label": "Zīdaiņu un bērnu aprūpes piederumi",
+					"value": "Baby and child care articles"
+				},
+				{
+					"label": "Preces tīrīšanai un uzkopšanai, īslaicīgas lietošanas mājsaimniecības piederumi",
+					"value": "Cleaning and maintenance products, articles for cleaning and non-durable household articles"
+				},
+				{
+					"label": "Citi",
+					"value": "Other"
+				}
+			]
+		},
+		"General Consumer Services": {
+			"value": "Vispārējie pakalpojumi",
+			"values": [
+				{
+					"label": "Nekustamā īpašuma pakalpojumi",
+					"value": "Real estate services"
+				},
+				{
+					"label": "Jaunu ēku būvniecība",
+					"value": "Construction of new houses"
+				},
+				{
+					"label": "Mājokļa uzturēšanas un labiekārtošanas pakalpojumi",
+					"value": "House maintenance and improvement services"
+				},
+				{
+					"label": "Mājsaimniecības priekšmetu aizvešanas un uzglabāšanas pakalpojumi",
+					"value": "House removal and storage"
+				},
+				{
+					"label": "Mājokļa tīrīšanas pakalpojumi",
+					"value": "House cleaning services"
+				},
+				{
+					"label": "Ķermeņa kopšanas pakalpojumi",
+					"value": "Personal care services"
+				},
+				{
+					"label": "Apģērbu un apavu tīrīšana, labošana un noma",
+					"value": "Cleaning, repair and hiring of clothing and footwear"
+				},
+				{
+					"label": "Atbalsta, izpētes un starpniecības pakalpojumi",
+					"value": "Support, research and intermediary services"
+				},
+				{
+					"label": "Automobiļu un citu transportlīdzekļu apkope un remonts",
+					"value": "Maintenance and repair of vehicles and other transport"
+				},
+				{
+					"label": "Juridiskie un grāmatvedības pakalpojumi",
+					"value": "Legal services & accountancy"
+				},
+				{
+					"label": "Apbedīšanas pakalpojumi",
+					"value": "Funeral services"
+				},
+				{
+					"label": "Bērnu aprūpe",
+					"value": "Child care"
+				},
+				{
+					"label": "Pakalpojumi lolojumdzīvniekiem",
+					"value": "Pet services"
+				},
+				{
+					"label": "Citi",
+					"value": "Other"
+				}
+			]
+		},
+		"Financial Services": {
+			"value": "Finanšu pakalpojumi",
+			"values": [
+				{
+					"label": "Finanšu pakalpojumi – norēķinu konta un norēķinu pakalpojumi",
+					"value": "Financial Services - Payment account and payment services"
+				},
+				{
+					"label": "Finanšu pakalpojumi – aizdevumi (izņemot hipotekāros/mājokļa kredītus)",
+					"value": "Financial Services - Credit (excluding mortgage/home loans)"
+				},
+				{
+					"label": "Finanšu pakalpojumi – hipotekārie/mājokļa kredīti",
+					"value": "Financial Services - Mortgages / Home loans"
+				},
+				{
+					"label": "Finanšu pakalpojumi – uzkrājumi",
+					"value": "Financial Services - Savings"
+				},
+				{
+					"label": "Finanšu pakalpojumi – citi pakalpojumi",
+					"value": "Financial Services - Other"
+				},
+				{
+					"label": "Ieguldījumi, pensijas un vērtspapīri",
+					"value": "Investments, pensions and securities"
+				},
+				{
+					"label": "Nedzīvības apdrošināšana – mājoklis un nekustamais īpašums",
+					"value": "Non-life Insurance - Home and property"
+				},
+				{
+					"label": "Nedzīvības apdrošināšana – transports",
+					"value": "Non-life Insurance - Transport"
+				},
+				{
+					"label": "Nedzīvības apdrošināšana – ceļojumi",
+					"value": "Non-life Insurance – Travel"
+				},
+				{
+					"label": "Nedzīvības apdrošināšana – veselības, nelaimes gadījumu un citu risku apdrošināšana",
+					"value": "Non-life Insurance - Health, accident and other"
+				},
+				{
+					"label": "Dzīvības apdrošināšana",
+					"value": "Insurance - Life"
+				},
+				{
+					"label": "Citi",
+					"value": "Other"
+				}
+			]
+		},
+		"Postal services and electronic communications": {
+			"value": "Pasta un elektronisko komunikāciju pakalpojumi",
+			"values": [
+				{
+					"label": "Pasta un kurjeru pakalpojumi",
+					"value": "Postal services & couriers"
+				},
+				{
+					"label": "Fiksēto telefonu pakalpojumi",
+					"value": "Fixed telephone services"
+				},
+				{
+					"label": "Mobilo telefonu pakalpojumi",
+					"value": "Mobile telephone services"
+				},
+				{
+					"label": "Interneta pakalpojumi",
+					"value": "Internet services"
+				},
+				{
+					"label": "Televīzijas pakalpojumi",
+					"value": "Television services"
+				},
+				{
+					"label": "Citi komunikāciju pakalpojumi",
+					"value": "Other communication services"
+				}
+			]
+		},
+		"Transport services": {
+			"value": "Transporta pakalpojumi",
+			"values": [
+				{
+					"label": "Tramvaju, autobusu, metro un apakšzemes vilcienu pakalpojumi",
+					"value": "Tram, bus, metro and underground"
+				},
+				{
+					"label": "Dzelzceļi",
+					"value": "Railways"
+				},
+				{
+					"label": "Aviosabiedrības",
+					"value": "Airlines"
+				},
+				{
+					"label": "Taksometri",
+					"value": "Taxi"
+				},
+				{
+					"label": "Jūras, upju un citi ūdenstransporta pakalpojumi",
+					"value": "Sea, river, other water transport"
+				},
+				{
+					"label": "Transporta infrastruktūras pakalpojumi",
+					"value": "Transport infrastructure services"
+				},
+				{
+					"label": "Nomas pakalpojumi",
+					"value": "Rental services"
+				},
+				{
+					"label": "Citi",
+					"value": "Other"
+				}
+			]
+		},
+		"Leisure Services": {
+			"value": "Atpūtas pakalpojumi",
+			"values": [
+				{
+					"label": "Viesnīcas un citas brīvdienu mītnes",
+					"value": "Hotels and other holiday accommodation"
+				},
+				{
+					"label": "Ceļojuma komplekss",
+					"value": "Package travel"
+				},
+				{
+					"label": "Ceļojumu biroju pakalpojumi",
+					"value": "Travel agency services"
+				},
+				{
+					"label": "Daļlaika lietojuma tiesības un citi saistītie pakalpojumi",
+					"value": "Timeshare and similar"
+				},
+				{
+					"label": "Restorāni un bāri",
+					"value": "Restaurants and bars"
+				},
+				{
+					"label": "Pakalpojumi, kas saistīti ar sportu un vaļaspriekiem",
+					"value": "Services related to sports and hobbies"
+				},
+				{
+					"label": "Kultūras un izklaides pakalpojumi",
+					"value": "Cultural and entertainment services"
+				},
+				{
+					"label": "Azartspēles un loterijas",
+					"value": "Gambling, lotteries"
+				},
+				{
+					"label": "Citi ar atpūtu saistīti pakalpojumi",
+					"value": "Other leisure services"
+				}
+			]
+		},
+		"Energy and Water": {
+			"value": "Energoapgāde un ūdensapgāde",
+			"values": [
+				{
+					"label": "Ūdensapgāde",
+					"value": "Water"
+				},
+				{
+					"label": "Elektroapgāde",
+					"value": "Electricity"
+				},
+				{
+					"label": "Gāzes apgāde",
+					"value": "Gas"
+				},
+				{
+					"label": "Citi enerģijas avoti",
+					"value": "Other energy sources"
+				}
+			]
+		},
+		"Health": {
+			"value": "Veselības aprūpe",
+			"values": [
+				{
+					"label": "Recepšu medikamenti",
+					"value": "Prescribed medication"
+				},
+				{
+					"label": "Bezrecepšu medikamenti",
+					"value": "Over-the-counter medication"
+				},
+				{
+					"label": "Pacientu lietošanai paredzētas medicīnas ierīces un palīglīdzekļi",
+					"value": "Medical devices and other physical aids used by patients"
+				},
+				{
+					"label": "Veselības aprūpes pakalpojumi",
+					"value": "Health services"
+				},
+				{
+					"label": "Pakalpojumi veco ļaužu mājās un mājaprūpe",
+					"value": "Retirement homes and home care"
+				},
+				{
+					"label": "Citi",
+					"value": "Other"
+				}
+			]
+		},
+		"Education": {
+			"value": "Izglītība",
+			"values": [
+				{
+					"label": "Skolas",
+					"value": "Schools"
+				},
+				{
+					"label": "Valodu apmācība, transportlīdzekļa vadīšanas apmācība un citi individuāli mācību kursi",
+					"value": "Language, driving instruction and other private courses"
+				},
+				{
+					"label": "Citi",
+					"value": "Other"
+				}
+			]
+		},
+		"Other": {
+			"value": "Citi",
+			"values": [
+				{
+					"label": "Citi (gan preces, gan pakalpojumi)",
+					"value": "Other (Includes both goods and services)"
+				}
+			]
+		}
+	},
+	"country": {
+		"value": "valsts",
+		"values": [
+			{
+				"label": "Austrija",
+				"value": "AT"
+			},
+			{
+				"label": "Beļģija",
+				"value": "BE"
+			},
+			{
+				"label": "Bulgārija",
+				"value": "BG"
+			},
+			{
+				"label": "Kipra",
+				"value": "CY"
+			},
+			{
+				"label": "Čehijas Republika",
+				"value": "CZ"
+			},
+			{
+				"label": "Dānija",
+				"value": "DK"
+			},
+			{
+				"label": "Igaunija",
+				"value": "EE"
+			},
+			{
+				"label": "Somija",
+				"value": "FI"
+			},
+			{
+				"label": "Francija",
+				"value": "FR"
+			},
+			{
+				"label": "Vācija",
+				"value": "DE"
+			},
+			{
+				"label": "Grieķija",
+				"value": "GR"
+			},
+			{
+				"label": "Ungārija",
+				"value": "HU"
+			},
+			{
+				"label": "Islande",
+				"value": "IS"
+			},
+			{
+				"label": "Īrija",
+				"value": "IE"
+			},
+			{
+				"label": "Itālija",
+				"value": "IT"
+			},
+			{
+				"label": "Latvija",
+				"value": "LV"
+			},
+			{
+				"label": "Lihtenšteina",
+				"value": "LI"
+			},
+			{
+				"label": "Lietuva",
+				"value": "LT"
+			},
+			{
+				"label": "Luksemburga",
+				"value": "LU"
+			},
+			{
+				"label": "Malta",
+				"value": "MT"
+			},
+			{
+				"label": "Nīderlande",
+				"value": "NL"
+			},
+			{
+				"label": "Norvēģija",
+				"value": "NO"
+			},
+			{
+				"label": "Polija",
+				"value": "PL"
+			},
+			{
+				"label": "Portugāle",
+				"value": "PT"
+			},
+			{
+				"label": "Rumānija",
+				"value": "RO"
+			},
+			{
+				"label": "Slovākija",
+				"value": "SK"
+			},
+			{
+				"label": "Slovēnija",
+				"value": "SI"
+			},
+			{
+				"label": "Spānija",
+				"value": "ES"
+			},
+			{
+				"label": "Zviedrija",
+				"value": "SE"
+			},
+			{
+				"label": "Šveice",
+				"value": "CH"
+			},
+			{
+				"label": "Apvienotā Karaliste",
+				"value": "UK"
+			},
+			{
+				"label": "Austrālija",
+				"value": "AU"
+			},
+			{
+				"label": "pirīts",
+				"value": "BR"
+			},
+			{
+				"label": "Kanāda",
+				"value": "CA"
+			},
+			{
+				"label": "Ķīna",
+				"value": "CN"
+			},
+			{
+				"label": "Horvātija",
+				"value": "HR"
+			},
+			{
+				"label": "Slovēnija",
+				"value": "SR"
+			},
+			{
+				"label": "Indija",
+				"value": "IN"
+			},
+			{
+				"label": "Meksika",
+				"value": "MX"
+			},
+			{
+				"label": "Krievijas Federācija",
+				"value": "RU"
+			},
+			{
+				"label": "Dienvidāfrika",
+				"value": "ZA"
+			},
+			{
+				"label": "Turcija",
+				"value": "TR"
+			},
+			{
+				"label": "Amerikas Savienotās Valstis",
+				"value": "US"
+			},
+			{
+				"label": "Citi",
+				"value": "Other"
+			},
+			{
+				"label": "Nav zināms",
+				"value": "Do not know"
+			}
+		]
+	},
+	"distinction": {
+		"value": "būtība",
+		"values": [
+			{
+				"label": "Sūdzība",
+				"value": "Complaint"
+			},
+			{
+				"label": "Jautājums",
+				"value": "Enquiry"
+			}
+		]
+	},
+	"selling_method": {
+		"value": "Pārdošanas metode",
+		"values": [
+			{
+				"label": "Tiešā pārdošana",
+				"value": "Face-to-face"
+			},
+			{
+				"label": "Tiešā pārdošana: lielveikals, tirdzniecības centrs",
+				"value": "Face-to-face: Supermarket, hypermarket"
+			},
+			{
+				"label": "Tiešā pārdošana: atlaižu veikals",
+				"value": "Face-to-face: Discount store"
+			},
+			{
+				"label": "Tiešā pārdošana: universālveikals",
+				"value": "Face-to-face: Department store"
+			},
+			{
+				"label": "Tiešā pārdošana: mazumtirdzniecības ķēdes veikals",
+				"value": "Face-to-face: Retail chain store"
+			},
+			{
+				"label": "Tiešā pārdošana: mazumtirdzniecības veikals",
+				"value": "Face-to-face: Retail store"
+			},
+			{
+				"label": "Tiešā pārdošana: neliels veikals, tirdzniecības vieta",
+				"value": "Face-to-face: Small shop, small store"
+			},
+			{
+				"label": "Tiešā pārdošana: augļu un dārzeņu veikals, nakts veikals",
+				"value": "Face-to-face: Greengrocer, night shop"
+			},
+			{
+				"label": "Tiešā pārdošana: ielu tirgotava, zemnieku saimniecības veikals ",
+				"value": "Face-to-face: Street market, farm shop"
+			},
+			{
+				"label": "Tiešā pārdošana: degvielas uzpildes stacija",
+				"value": "Face-to-face: Petrol station"
+			},
+			{
+				"label": "Tiešā pārdošana: biroja telpas (tostarp banku un citu finanšu iestāžu telpas) ",
+				"value": "Face-to-face: Office (includes banks and other financial institutions)"
+			},
+			{
+				"label": "Tiešā pārdošana: ceļojumu aģentūra, ceļojumu rīkotājs ",
+				"value": "Face-to-face: Travel agency, tour operator agency"
+			},
+			{
+				"label": "Tiešā pārdošana: slimnīca, klīnika, ārsta kabinets ",
+				"value": "Face-to-face: Hospital, clinic, surgery"
+			},
+			{
+				"label": "Tiešā pārdošana: skola ",
+				"value": "Face-to-face: School"
+			},
+			{
+				"label": "Tiešā pārdošana: sporta un atpūtas telpas",
+				"value": "Face-to-face: Sports and leisure premises"
+			},
+			{
+				"label": "Tiešā pārdošana: cita veida telpas ",
+				"value": "Face-to-face: Other type of premises"
+			},
+			{
+				"label": "Tālpārdošana (piemēram, izmantojot telefonu vai pasta pakalpojumus), izņemot e-komerciju, mobilo komerciju un izsoles interneta tīklā",
+				"value": "Distance selling (e.g. phone, post), excluding e-commerce, mobile commerce and internet auctions"
+			},
+			{
+				"label": "E-komercija, izņemot mobilo komerciju un izsoles internetā ",
+				"value": "E-commerce, excluding mobile commerce and internet auctions"
+			},
+			{
+				"label": "Mobilā komercija",
+				"value": "Mobile commerce"
+			},
+			{
+				"label": "Tirgus, gadatirgus ",
+				"value": "Market, trade fair"
+			},
+			{
+				"label": "Izsoles",
+				"value": "Auctions"
+			},
+			{
+				"label": "Izsoles internetā ",
+				"value": "Internet auctions"
+			},
+			{
+				"label": "Pārdošana ārpus tirdzniecības telpām ",
+				"value": "Selling away from business premises (off-premises)"
+			},
+			{
+				"label": "Citas pārdošanas metodes ",
+				"value": "Other selling methods"
+			},
+			{
+				"label": "Nav zināms",
+				"value": "Do not know"
+			},
+			{
+				"label": "Nepiemēro",
+				"value": "Not applicable"
+			}
+		]
+	},
+	"advertising_method": {
+		"value": "reklāmas metode",
+		"values": [
+			{
+				"label": "Tiešā reklāma",
+				"value": "Face-to-face"
+			},
+			{
+				"label": "Telefona saruna",
+				"value": "Phone call"
+			},
+			{
+				"label": "Īsziņa",
+				"value": "Text message"
+			},
+			{
+				"label": "Audiovizuālā reklāma (televīzija utt.) ",
+				"value": "Audiovisual (TV, etc.)"
+			},
+			{
+				"label": "Drukāta reklāma (avīze, brošūra, skrejlapa utt.) ",
+				"value": "Print (newspaper, brochure, flyer, etc.)"
+			},
+			{
+				"label": "Internets (tīmekļa vietne)",
+				"value": "Internet (website)"
+			},
+			{
+				"label": "E-pasts",
+				"value": "E-mail"
+			},
+			{
+				"label": "Radio",
+				"value": "Radio"
+			},
+			{
+				"label": "Vides reklāma (stacionāra, piemēram, izvietota uz reklāmas stenda, vai mobila, piemēram, izvietota uz transportlīdzekļa) ",
+				"value": "Outdoor (fixed advertising such as on billboards or mobile advertising such as on vehicles)"
+			},
+			{
+				"label": "Citi",
+				"value": "Other"
+			},
+			{
+				"label": "Nav zināms",
+				"value": "Do not know"
+			},
+			{
+				"label": "Nepiemēro",
+				"value": "Not applicable"
+			}
+		]
+	},
+	"payment_means": {
+		"value": "norēķinu veids",
+		"values": [
+			{
+				"label": "Skaidra nauda",
+				"value": "Cash"
+			},
+			{
+				"label": "Debetkarte",
+				"value": "Debit card"
+			},
+			{
+				"label": "Kredītkarte",
+				"value": "Credit card"
+			},
+			{
+				"label": "Papīra čeks, papīra kupons vai papīra ceļojumu čeks ",
+				"value": "Paper cheque, paper-based vouchers and paper-based traveller's cheques"
+			},
+			{
+				"label": "Pārskaitījums",
+				"value": "Credit transfer"
+			},
+			{
+				"label": "Tiešais debets",
+				"value": "Direct debit"
+			},
+			{
+				"label": "Elektroniskā nauda",
+				"value": "Electronic money"
+			},
+			{
+				"label": "Naudas pārvedums",
+				"value": "Money remittance"
+			},
+			{
+				"label": "Priekšapmaksas karte",
+				"value": "Pre-paid cards"
+			},
+			{
+				"label": "Mobilie maksājumi (piemēram, ar SMS)",
+				"value": "Mobile payments (e.g. SMS)"
+			},
+			{
+				"label": "Citi",
+				"value": "Other"
+			},
+			{
+				"label": "Nav zināms",
+				"value": "Do not know"
+			}
+		]
+	},
+	"transaction_currency": {
+		"value": "darījuma valūta",
+		"values": [
+			{
+				"label": "EUR",
+				"value": "EUR"
+			},
+			{
+				"label": "BGN",
+				"value": "BRL"
+			},
+			{
+				"label": "CZK",
+				"value": "CZK"
+			},
+			{
+				"label": "DKK",
+				"value": "DKK"
+			},
+			{
+				"label": "EEK",
+				"value": "EEK"
+			},
+			{
+				"label": "HUF",
+				"value": "HUF"
+			},
+			{
+				"label": "LVL",
+				"value": "LVL"
+			},
+			{
+				"label": "LTL",
+				"value": "LTL"
+			},
+			{
+				"label": "PLN",
+				"value": "PLN"
+			},
+			{
+				"label": "RON",
+				"value": "RON"
+			},
+			{
+				"label": "SEK",
+				"value": "SEK"
+			},
+			{
+				"label": "GBP",
+				"value": "GBP"
+			},
+			{
+				"label": "ISK",
+				"value": "ISK"
+			},
+			{
+				"label": "CHF",
+				"value": "CHF"
+			},
+			{
+				"label": "NOK",
+				"value": "NOK"
+			},
+			{
+				"label": "USD",
+				"value": "USD"
+			},
+			{
+				"label": "Citi",
+				"value": "Other"
+			}
+		]
+	}
+}

@@ -1,0 +1,1198 @@
+{
+	"levels": {
+		"Quality of goods and services": {
+			"value": "Calitatea bunurilor și serviciilor",
+			"values": [
+				{
+					"label": "Deficient, a cauzat prejudicii",
+					"value": "Defective, caused damage"
+				},
+				{
+					"label": "Nu este conform comenzii",
+					"value": "Not in conformity with order"
+				},
+				{
+					"label": "Nu servește scopul căruia îi este destinat",
+					"value": "Not fit for particular purpose"
+				},
+				{
+					"label": "Alte aspecte",
+					"value": "Other issues"
+				}
+			]
+		},
+		"Delivery of goods/ Provision of services": {
+			"value": "Livrarea de bunuri/Prestarea de servicii",
+			"values": [
+				{
+					"label": "Nelivrat/neprestat",
+					"value": "Not delivered / not provided"
+				},
+				{
+					"label": "Livrat parțial/prestat parțial",
+					"value": "Partially delivered / partially provided"
+				},
+				{
+					"label": "Întârziere",
+					"value": "Delay"
+				},
+				{
+					"label": "Nedisponibil/Inaccesibil",
+					"value": "Not available / No access"
+				},
+				{
+					"label": "Refuzul de a vinde/furniza un bun sau un serviciu",
+					"value": "Refusal to sell / provide a good or a service"
+				},
+				{
+					"label": "Suspendarea livrării unui bun sau a prestării unui serviciu fără aviz prealabil",
+					"value": "Suspension of the delivery of a good or the provision of a service without prior notice"
+				},
+				{
+					"label": "Program de lucru",
+					"value": "Opening hours"
+				},
+				{
+					"label": "Serviciul pentru clienți",
+					"value": "Customer service"
+				},
+				{
+					"label": "Servicii/asistență postvânzare",
+					"value": "After-sales service/assistance"
+				},
+				{
+					"label": "Alte aspecte legate de livrarea bunurilor/prestarea serviciilor",
+					"value": "Other issues related to the delivery of goods/provisions of services"
+				}
+			]
+		},
+		"Price / Tariff": {
+			"value": "Preț/tarif",
+			"values": [
+				{
+					"label": "Modificare de preț/tarif",
+					"value": "Price / tariff change"
+				},
+				{
+					"label": "Discriminare în materie de prețuri",
+					"value": "Price discrimination"
+				},
+				{
+					"label": "Transparența tarifului (neclar, complex)",
+					"value": "Tariff transparency (unclear, complex)"
+				},
+				{
+					"label": "Alte aspecte asociate prețului/tarifului",
+					"value": "Other issues related to price/tariff"
+				}
+			]
+		},
+		"Invoicing / billing and debt collection": {
+			"value": "Facturare și recuperarea datoriilor",
+			"values": [
+				{
+					"label": "Factură incorectă",
+					"value": "Incorrect invoice / bill"
+				},
+				{
+					"label": "Factură neclară",
+					"value": "Unclear invoice / bill"
+				},
+				{
+					"label": "Neemiterea facturii sau accesul dificil la factură/extras lunar",
+					"value": "Non-issue of invoice or difficult access to invoice/monthly statement"
+				},
+				{
+					"label": "Facturare nejustificată",
+					"value": "Unjustified invoicing / billing"
+				},
+				{
+					"label": "Recuperarea datoriilor",
+					"value": "Debt collection"
+				},
+				{
+					"label": "Alte aspecte asociate facturării și recuperării datoriilor",
+					"value": "Other issues related to invoicing/billing and debt collection"
+				}
+			]
+		},
+		"Warranty / statutory guarantee and commercial guarantees": {
+			"value": "Garanție/garanție legală și garanții comerciale",
+			"values": [
+				{
+					"label": "Garanție/garanție legală neonorată",
+					"value": "Warranty / statutory guarantee not honoured"
+				},
+				{
+					"label": "Garanție comercială neonorată",
+					"value": "Commercial guarantee not honoured"
+				},
+				{
+					"label": "Alte aspecte",
+					"value": "Other issues"
+				}
+			]
+		},
+		"Redress": {
+			"value": "Contestații",
+			"values": [
+				{
+					"label": "Acces dificil la căile de atac",
+					"value": "Difficult access to redress"
+				},
+				{
+					"label": "Absența despăgubirii",
+					"value": "No redress"
+				},
+				{
+					"label": "Despăgubire parțială sau incorectă",
+					"value": "Part or incorrect redress"
+				},
+				{
+					"label": "Despăgubire întârziată",
+					"value": "Delayed redress"
+				},
+				{
+					"label": "Alte aspecte asociate contestației",
+					"value": "Other issues related to redress"
+				}
+			]
+		},
+		"Unfair Commercial Practices": {
+			"value": "Practici comerciale neloiale",
+			"values": [
+				{
+					"label": "Clauze și condiții contractuale înșelătoare",
+					"value": "Misleading contractual terms and conditions"
+				},
+				{
+					"label": "Indicarea prețurilor/tarifelor și etichetarea inexactă sau înșelătoare",
+					"value": "Incorrect or misleading indication of prices / tariffs and labelling"
+				},
+				{
+					"label": "Publicitate înșelătoare",
+					"value": "Misleading advertising"
+				},
+				{
+					"label": "Publicitate nesolicitată",
+					"value": "Unsolicited advertising"
+				},
+				{
+					"label": "Bunuri sau servicii nesolicitate",
+					"value": "Unsolicited goods or services"
+				},
+				{
+					"label": "Practici comerciale agresive",
+					"value": "Aggressive selling practices"
+				},
+				{
+					"label": "Practici frauduloase",
+					"value": "Fraudulent practices"
+				},
+				{
+					"label": "Alte practici comerciale neloiale",
+					"value": "Other unfair commercial practices"
+				}
+			]
+		},
+		"Contracts and sales": {
+			"value": "Contracte și vânzări",
+			"values": [
+				{
+					"label": "Clauze contractuale neloiale/modificarea clauzelor contractuale",
+					"value": "Unfair contractual terms / change of contractual terms"
+				},
+				{
+					"label": "Lipsa de informare",
+					"value": "Lack of information"
+				},
+				{
+					"label": "Confirmarea comenzii (lipsește/este greșită)",
+					"value": "Order confirmation (not received/wrong)"
+				},
+				{
+					"label": "Perioada de așteptare (cooling off)/Dreptul de retragere",
+					"value": "Cooling-off period / Right of withdrawal"
+				},
+				{
+					"label": "Plăți (de exemplu, plăți anticipate și tranșe)",
+					"value": "Payments (e.g. prepayments and instalments)"
+				},
+				{
+					"label": "Anularea contractului",
+					"value": "Rescission of contract"
+				},
+				{
+					"label": "Perioada contractuală minimă",
+					"value": "Minimum contractual period"
+				},
+				{
+					"label": "Alte aspecte legate de contracte și vânzări",
+					"value": "Other issues related to contracts and sales"
+				}
+			]
+		},
+		"Provider change / switching": {
+			"value": "Schimbarea/înlocuirea furnizorului",
+			"values": [
+				{
+					"label": "Schimbarea/înlocuirea furnizorului",
+					"value": "Provider change / switching"
+				},
+				{
+					"label": "Alte aspecte",
+					"value": "Other issues"
+				}
+			]
+		},
+		"Safety - covers both goods (including food) and services": {
+			"value": "Siguranța – acoperă atât bunurile (inclusiv alimente), cât și serviciile",
+			"values": [
+				{
+					"label": "Siguranța produsului – acoperă atât bunurile (inclusiv alimente), cât și serviciile",
+					"value": "Product safety - covers both goods (including food) and services"
+				},
+				{
+					"label": "Ambalare, etichetare și instrucțiuni – acoperă toate produsele (inclusiv alimentare) și serviciile",
+					"value": "Package, labelling and instructions - covers both goods (including food) and services"
+				},
+				{
+					"label": "Alte aspecte",
+					"value": "Other issues"
+				}
+			]
+		},
+		"Privacy and data protection": {
+			"value": "Confidențialitate și protecția datelor",
+			"values": [
+				{
+					"label": "Protecția datelor",
+					"value": "Data protection"
+				},
+				{
+					"label": "Confidențialitate",
+					"value": "Privacy"
+				},
+				{
+					"label": "Alte aspecte legate de confidențialitate și de protecția datelor",
+					"value": "Other issues related to privacy and data protection"
+				}
+			]
+		},
+		"Other issues": {
+			"value": "Alte aspecte",
+			"values": [
+				{
+					"label": "Alte aspecte",
+					"value": "Other issues"
+				}
+			]
+		}
+	},
+	"sectors": {
+		"Consumer Goods": {
+			"value": "Bunuri de consum",
+			"values": [
+				{
+					"label": "Alimente – Fructe și legume",
+					"value": "Food - Fruit and vegetables"
+				},
+				{
+					"label": "Alimente – Carne",
+					"value": "Food - Meat"
+				},
+				{
+					"label": "Alimente – Pâine și cereale",
+					"value": "Food - Bread and Cereals"
+				},
+				{
+					"label": "Alimente – Alimente și substanțe nutritive sănătoase",
+					"value": "Food - Health food and nutrients"
+				},
+				{
+					"label": "Alimente – Altele",
+					"value": "Food - Other"
+				},
+				{
+					"label": "Băuturi nealcoolice",
+					"value": "Non-alcoholic beverages"
+				},
+				{
+					"label": "Băuturi alcoolice",
+					"value": "Alcoholic beverages"
+				},
+				{
+					"label": "Tutun",
+					"value": "Tobacco"
+				},
+				{
+					"label": "Articole de îmbrăcăminte (inclusiv articole confecționate la comandă) și încălțăminte",
+					"value": "Clothing (including tailor-made goods) and footwear"
+				},
+				{
+					"label": "Bunuri pentru întreținerea și îmbunătățirea locuințelor",
+					"value": "House maintenance and improvement goods"
+				},
+				{
+					"label": "Mobilă",
+					"value": "Furnishings"
+				},
+				{
+					"label": "Aparate de uz casnic mari (inclusiv aspiratoare și cuptoare cu microunde)",
+					"value": "Large domestic household appliances (including vacuum cleaners and microwaves)"
+				},
+				{
+					"label": "Aparate de uz casnic mici (inclusiv filtre de cafea și aparate de preparare a alimentelor)",
+					"value": "Small domestic household appliances (including coffee machines and food- processing appliances)"
+				},
+				{
+					"label": "Aparate electronice (non-TIC/pentru activități recreative)",
+					"value": "Electronic goods (non-ICT/recreational)"
+				},
+				{
+					"label": "Bunuri din domeniul tehnologiei informației și a comunicațiilor (TIC)",
+					"value": "Information and communication technology (ICT) goods"
+				},
+				{
+					"label": "Bunuri pentru activități de agrement (echipament sportiv, instrumente muzicale etc.)",
+					"value": "Leisure goods (sports equipment, musical instruments, etc)"
+				},
+				{
+					"label": "Autovehicule noi",
+					"value": "New cars"
+				},
+				{
+					"label": "Autovehicule de ocazie",
+					"value": "Second-hand cars"
+				},
+				{
+					"label": "Alte vehicule pentru transport personal",
+					"value": "Other personal transport"
+				},
+				{
+					"label": "Piese de schimb și accesorii pentru autovehicule și alte mijloace personale de transport",
+					"value": "Spares and accessories for vehicles and other means of personal transport"
+				},
+				{
+					"label": "Combustibili și lubrifianți pentru autovehicule și alte mijloace personale de transport",
+					"value": "Fuels and lubricants for vehicles and other means of personal transport"
+				},
+				{
+					"label": "Cărți, reviste, ziare, articole de papetărie (cu excepția livrărilor poștale)",
+					"value": "Books, magazines, newspapers, stationery (excluding postal delivery)"
+				},
+				{
+					"label": "Animale de companie și produse destinate acestora",
+					"value": "Pets and pet goods"
+				},
+				{
+					"label": "Aparate electrice pentru îngrijirea personală",
+					"value": "Electrical appliances for personal care"
+				},
+				{
+					"label": "Produse cosmetice și de toaletă pentru îngrijirea personală",
+					"value": "Cosmetics and toiletries for personal care"
+				},
+				{
+					"label": "Bijuterii, argintărie, orologii și pendule, ceasuri de mână și accesorii",
+					"value": "Jewellery, silverware, clocks, watches and accessories"
+				},
+				{
+					"label": "Articole pentru îngrijirea copiilor și nou-născuților",
+					"value": "Baby and child care articles"
+				},
+				{
+					"label": "Produse pentru curățenie și întreținere, articole de curățat și articole casnice de uz curent",
+					"value": "Cleaning and maintenance products, articles for cleaning and non-durable household articles"
+				},
+				{
+					"label": "Altceva",
+					"value": "Other"
+				}
+			]
+		},
+		"General Consumer Services": {
+			"value": "Servicii pentru public",
+			"values": [
+				{
+					"label": "Servicii imobiliare",
+					"value": "Real estate services"
+				},
+				{
+					"label": "Construirea de locuințe noi",
+					"value": "Construction of new houses"
+				},
+				{
+					"label": "Servicii de întreținere și de îmbunătățire a locuințelor",
+					"value": "House maintenance and improvement services"
+				},
+				{
+					"label": "Eliminarea și depozitarea bunurilor din locuință",
+					"value": "House removal and storage"
+				},
+				{
+					"label": "Servicii de curățenie a locuinței",
+					"value": "House cleaning services"
+				},
+				{
+					"label": "Servicii de îngrijire personală",
+					"value": "Personal care services"
+				},
+				{
+					"label": "Curățarea, repararea și închirierea articolelor de îmbrăcăminte și încălțăminte",
+					"value": "Cleaning, repair and hiring of clothing and footwear"
+				},
+				{
+					"label": "Servicii de asistență, cercetare și servicii intermediare",
+					"value": "Support, research and intermediary services"
+				},
+				{
+					"label": "Întreținerea și reparația autovehiculelor și a altor mijloace de transport",
+					"value": "Maintenance and repair of vehicles and other transport"
+				},
+				{
+					"label": "Servicii juridice și de contabilitate",
+					"value": "Legal services & accountancy"
+				},
+				{
+					"label": "Servicii de pompe funebre",
+					"value": "Funeral services"
+				},
+				{
+					"label": "Servicii de îngrijire a copilului",
+					"value": "Child care"
+				},
+				{
+					"label": "Servicii pentru animale de companie",
+					"value": "Pet services"
+				},
+				{
+					"label": "Altceva",
+					"value": "Other"
+				}
+			]
+		},
+		"Financial Services": {
+			"value": "Servicii financiare",
+			"values": [
+				{
+					"label": "Servicii financiare – Cont de plăți și servicii de plată",
+					"value": "Financial Services - Payment account and payment services"
+				},
+				{
+					"label": "Servicii financiare – Credite (cu excepția creditelor ipotecare/pentru investiții imobiliare)",
+					"value": "Financial Services - Credit (excluding mortgage/home loans)"
+				},
+				{
+					"label": "Servicii financiare – Credite ipotecare/pentru investiții imobiliare",
+					"value": "Financial Services - Mortgages / Home loans"
+				},
+				{
+					"label": "Servicii financiare – Economii",
+					"value": "Financial Services - Savings"
+				},
+				{
+					"label": "Servicii financiare – Altele",
+					"value": "Financial Services - Other"
+				},
+				{
+					"label": "Investiții, pensii și garanții",
+					"value": "Investments, pensions and securities"
+				},
+				{
+					"label": "Asigurări generale – Asigurări de locuințe și proprietăți",
+					"value": "Non-life Insurance - Home and property"
+				},
+				{
+					"label": "Asigurări non-viață – Asigurări de transport",
+					"value": "Non-life Insurance - Transport"
+				},
+				{
+					"label": "Asigurări non-viață – Asigurări de călătorie",
+					"value": "Non-life Insurance – Travel"
+				},
+				{
+					"label": "Asigurări non-viață – Asigurări de sănătate, împotriva accidentelor și alte asigurări",
+					"value": "Non-life Insurance - Health, accident and other"
+				},
+				{
+					"label": "Asigurări – Asigurări de viață",
+					"value": "Insurance - Life"
+				},
+				{
+					"label": "Altceva",
+					"value": "Other"
+				}
+			]
+		},
+		"Postal services and electronic communications": {
+			"value": "Servicii poștale și comunicații electronice",
+			"values": [
+				{
+					"label": "Servicii poștale și de curierat",
+					"value": "Postal services & couriers"
+				},
+				{
+					"label": "Servicii de telefonie fixă",
+					"value": "Fixed telephone services"
+				},
+				{
+					"label": "Servicii de telefonie mobilă",
+					"value": "Mobile telephone services"
+				},
+				{
+					"label": "Servicii de internet",
+					"value": "Internet services"
+				},
+				{
+					"label": "Servicii de televiziune",
+					"value": "Television services"
+				},
+				{
+					"label": "Alte servicii de comunicații",
+					"value": "Other communication services"
+				}
+			]
+		},
+		"Transport services": {
+			"value": "Servicii de transport",
+			"values": [
+				{
+					"label": "Transportul cu tramvaiul, autobuzul și metroul",
+					"value": "Tram, bus, metro and underground"
+				},
+				{
+					"label": "Căi ferate",
+					"value": "Railways"
+				},
+				{
+					"label": "Linii aeriene",
+					"value": "Airlines"
+				},
+				{
+					"label": "Taxi",
+					"value": "Taxi"
+				},
+				{
+					"label": "Transportul maritim, fluvial și alte tipuri de transport pe apă",
+					"value": "Sea, river, other water transport"
+				},
+				{
+					"label": "Servicii de infrastructură de transport",
+					"value": "Transport infrastructure services"
+				},
+				{
+					"label": "Servicii de închiriere",
+					"value": "Rental services"
+				},
+				{
+					"label": "Altceva",
+					"value": "Other"
+				}
+			]
+		},
+		"Leisure Services": {
+			"value": "Servicii de agrement",
+			"values": [
+				{
+					"label": "Hoteluri și alte unități de cazare pentru vacanță",
+					"value": "Hotels and other holiday accommodation"
+				},
+				{
+					"label": "Pachet de servicii de călătorie",
+					"value": "Package travel"
+				},
+				{
+					"label": "Servicii de tipul celor prestate de agențiile de turism",
+					"value": "Travel agency services"
+				},
+				{
+					"label": "Folosință pe durată limitată și servicii similare",
+					"value": "Timeshare and similar"
+				},
+				{
+					"label": "Restaurante și baruri",
+					"value": "Restaurants and bars"
+				},
+				{
+					"label": "Servicii asociate activităților sportive și hobby-urilor",
+					"value": "Services related to sports and hobbies"
+				},
+				{
+					"label": "Activități culturale și de divertisment",
+					"value": "Cultural and entertainment services"
+				},
+				{
+					"label": "Jocuri de noroc, loterii",
+					"value": "Gambling, lotteries"
+				},
+				{
+					"label": "Alte servicii recreative",
+					"value": "Other leisure services"
+				}
+			]
+		},
+		"Energy and Water": {
+			"value": "Energie și apă",
+			"values": [
+				{
+					"label": "Apă",
+					"value": "Water"
+				},
+				{
+					"label": "Electricitate",
+					"value": "Electricity"
+				},
+				{
+					"label": "Gaze",
+					"value": "Gas"
+				},
+				{
+					"label": "Alte surse de energie",
+					"value": "Other energy sources"
+				}
+			]
+		},
+		"Health": {
+			"value": "Sănătate",
+			"values": [
+				{
+					"label": "Medicamente prescrise",
+					"value": "Prescribed medication"
+				},
+				{
+					"label": "Medicamente eliberate fără rețetă",
+					"value": "Over-the-counter medication"
+				},
+				{
+					"label": "Dispozitive medicale și alte mijloace fizice utilizate de pacienți",
+					"value": "Medical devices and other physical aids used by patients"
+				},
+				{
+					"label": "Servicii de sănătate",
+					"value": "Health services"
+				},
+				{
+					"label": "Aziluri de bătrâni și îngrijirea la domiciliu",
+					"value": "Retirement homes and home care"
+				},
+				{
+					"label": "Altceva",
+					"value": "Other"
+				}
+			]
+		},
+		"Education": {
+			"value": "Educație",
+			"values": [
+				{
+					"label": "Școli",
+					"value": "Schools"
+				},
+				{
+					"label": "Cursuri de limbă, lecții de conducere și alte cursuri particulare",
+					"value": "Language, driving instruction and other private courses"
+				},
+				{
+					"label": "Altceva",
+					"value": "Other"
+				}
+			]
+		},
+		"Other": {
+			"value": "Altele",
+			"values": [
+				{
+					"label": "Altele (sunt incluse atât bunuri, cât și servicii)",
+					"value": "Other (Includes both goods and services)"
+				}
+			]
+		}
+	},
+	"country": {
+		"value": "țara",
+		"values": [
+			{
+				"label": "Austria",
+				"value": "AT"
+			},
+			{
+				"label": "Belgia",
+				"value": "BE"
+			},
+			{
+				"label": "Bulgaria",
+				"value": "BG"
+			},
+			{
+				"label": "Cipru",
+				"value": "CY"
+			},
+			{
+				"label": "Republica Cehă",
+				"value": "CZ"
+			},
+			{
+				"label": "Danemarca",
+				"value": "DK"
+			},
+			{
+				"label": "Estonia",
+				"value": "EE"
+			},
+			{
+				"label": "Finlanda",
+				"value": "FI"
+			},
+			{
+				"label": "Franța",
+				"value": "FR"
+			},
+			{
+				"label": "Germania",
+				"value": "DE"
+			},
+			{
+				"label": "Grecia",
+				"value": "GR"
+			},
+			{
+				"label": "Ungaria",
+				"value": "HU"
+			},
+			{
+				"label": "Islanda",
+				"value": "IS"
+			},
+			{
+				"label": "Irlanda",
+				"value": "IE"
+			},
+			{
+				"label": "Italia",
+				"value": "IT"
+			},
+			{
+				"label": "Letonia",
+				"value": "LV"
+			},
+			{
+				"label": "Liechtenstein",
+				"value": "LI"
+			},
+			{
+				"label": "Lituania",
+				"value": "LT"
+			},
+			{
+				"label": "Luxemburg",
+				"value": "LU"
+			},
+			{
+				"label": "Malta",
+				"value": "MT"
+			},
+			{
+				"label": "Țările de Jos",
+				"value": "NL"
+			},
+			{
+				"label": "Norvegia",
+				"value": "NO"
+			},
+			{
+				"label": "Polonia",
+				"value": "PL"
+			},
+			{
+				"label": "Portugalia",
+				"value": "PT"
+			},
+			{
+				"label": "România",
+				"value": "RO"
+			},
+			{
+				"label": "Slovacia",
+				"value": "SK"
+			},
+			{
+				"label": "Slovenia",
+				"value": "SI"
+			},
+			{
+				"label": "Spania",
+				"value": "ES"
+			},
+			{
+				"label": "Suedia",
+				"value": "SE"
+			},
+			{
+				"label": "Elveția",
+				"value": "CH"
+			},
+			{
+				"label": "Regatul Unit",
+				"value": "UK"
+			},
+			{
+				"label": "Australia",
+				"value": "AU"
+			},
+			{
+				"label": "Brazilia",
+				"value": "BR"
+			},
+			{
+				"label": "Canada",
+				"value": "CA"
+			},
+			{
+				"label": "China",
+				"value": "CN"
+			},
+			{
+				"label": "Croaţia",
+				"value": "HR"
+			},
+			{
+				"label": "Slovenia",
+				"value": "SR"
+			},
+			{
+				"label": "India",
+				"value": "IN"
+			},
+			{
+				"label": "Mexic",
+				"value": "MX"
+			},
+			{
+				"label": "Federaţia rusă",
+				"value": "RU"
+			},
+			{
+				"label": "Africa de Sud",
+				"value": "ZA"
+			},
+			{
+				"label": "Turcia",
+				"value": "TR"
+			},
+			{
+				"label": "statele Unite",
+				"value": "US"
+			},
+			{
+				"label": "Alta",
+				"value": "Other"
+			},
+			{
+				"label": "Necunoscută",
+				"value": "Do not know"
+			}
+		]
+	},
+	"distinction": {
+		"value": "distincție",
+		"values": [
+			{
+				"label": "Plângere",
+				"value": "Complaint"
+			},
+			{
+				"label": "Cerere de informații",
+				"value": "Enquiry"
+			}
+		]
+	},
+	"selling_method": {
+		"value": "metodă_vânzare",
+		"values": [
+			{
+				"label": "Directă",
+				"value": "Face-to-face"
+			},
+			{
+				"label": "Directă: Supermarket, hypermarket",
+				"value": "Face-to-face: Supermarket, hypermarket"
+			},
+			{
+				"label": "Directă: Magazin de solduri",
+				"value": "Face-to-face: Discount store"
+			},
+			{
+				"label": "Directă: Magazin universal",
+				"value": "Face-to-face: Department store"
+			},
+			{
+				"label": "Directă: Lanț de magazine de vânzare cu amănuntul",
+				"value": "Face-to-face: Retail chain store"
+			},
+			{
+				"label": "Directă: Magazin de vânzare cu amănuntul",
+				"value": "Face-to-face: Retail store"
+			},
+			{
+				"label": "Directă: Magazin mic",
+				"value": "Face-to-face: Small shop, small store"
+			},
+			{
+				"label": "Directă: Magazin de legume și fructe, magazin de noapte",
+				"value": "Face-to-face: Greengrocer, night shop"
+			},
+			{
+				"label": "Directă: Piață în aer liber, magazin agro-alimentar",
+				"value": "Face-to-face: Street market, farm shop"
+			},
+			{
+				"label": "Directă: Benzinărie",
+				"value": "Face-to-face: Petrol station"
+			},
+			{
+				"label": "Directă: Birouri (include bănci și alte instituții financiare)",
+				"value": "Face-to-face: Office (includes banks and other financial institutions)"
+			},
+			{
+				"label": "Directă: Agenție de turism, tur-operatori",
+				"value": "Face-to-face: Travel agency, tour operator agency"
+			},
+			{
+				"label": "Directă: Spital, clinică, cabinet medical ",
+				"value": "Face-to-face: Hospital, clinic, surgery"
+			},
+			{
+				"label": "Directă: Școală ",
+				"value": "Face-to-face: School"
+			},
+			{
+				"label": "Directă: Locuri pentru activități sportive și activități în timpul liber ",
+				"value": "Face-to-face: Sports and leisure premises"
+			},
+			{
+				"label": "Directă: Alt tip de amplasament ",
+				"value": "Face-to-face: Other type of premises"
+			},
+			{
+				"label": "Vânzare la distanță (de exemplu, prin telefon sau prin poștă), cu excepția comerțului electronic, a comerțului mobil și a licitațiilor pe internet ",
+				"value": "Distance selling (e.g. phone, post), excluding e-commerce, mobile commerce and internet auctions"
+			},
+			{
+				"label": "Comerț electronic, cu excepția comerțului mobil și a licitațiilor pe internet",
+				"value": "E-commerce, excluding mobile commerce and internet auctions"
+			},
+			{
+				"label": "Comerț mobil",
+				"value": "Mobile commerce"
+			},
+			{
+				"label": "Piață, târg comercial",
+				"value": "Market, trade fair"
+			},
+			{
+				"label": "Licitații",
+				"value": "Auctions"
+			},
+			{
+				"label": "Licitații pe internet ",
+				"value": "Internet auctions"
+			},
+			{
+				"label": "Vânzare departe de sediul comercial (în afara spațiilor comerciale) ",
+				"value": "Selling away from business premises (off-premises)"
+			},
+			{
+				"label": "Alte metode de vânzare",
+				"value": "Other selling methods"
+			},
+			{
+				"label": "Necunoscută",
+				"value": "Do not know"
+			},
+			{
+				"label": "Nu este cazul ",
+				"value": "Not applicable"
+			}
+		]
+	},
+	"advertising_method": {
+		"value": "metodă_publicitate",
+		"values": [
+			{
+				"label": "Directă",
+				"value": "Face-to-face"
+			},
+			{
+				"label": "Prin telefon",
+				"value": "Phone call"
+			},
+			{
+				"label": "Prin mesaje text",
+				"value": "Text message"
+			},
+			{
+				"label": "Audiovizuală (TV etc.)",
+				"value": "Audiovisual (TV, etc.)"
+			},
+			{
+				"label": "Pe suport de hârtie (ziar, broșură, fluturaș etc.)",
+				"value": "Print (newspaper, brochure, flyer, etc.)"
+			},
+			{
+				"label": "Prin internet (site internet)",
+				"value": "Internet (website)"
+			},
+			{
+				"label": "Prin e-mail",
+				"value": "E-mail"
+			},
+			{
+				"label": "Prin radio",
+				"value": "Radio"
+			},
+			{
+				"label": "În spații deschise (publicitate fixă, de exemplu, panouri sau publicitate mobilă, pe autovehicule)",
+				"value": "Outdoor (fixed advertising such as on billboards or mobile advertising such as on vehicles)"
+			},
+			{
+				"label": "Alta",
+				"value": "Other"
+			},
+			{
+				"label": "Necunoscută",
+				"value": "Do not know"
+			},
+			{
+				"label": "Nu este cazul ",
+				"value": "Not applicable"
+			}
+		]
+	},
+	"payment_means": {
+		"value": "modalitate_plată",
+		"values": [
+			{
+				"label": "În numerar",
+				"value": "Cash"
+			},
+			{
+				"label": "Carte de debit",
+				"value": "Debit card"
+			},
+			{
+				"label": "Carte de credit",
+				"value": "Credit card"
+			},
+			{
+				"label": "Cec pe suport hârtie, cupoane și cecuri de călătorie pe suport hârtie",
+				"value": "Paper cheque, paper-based vouchers and paper-based traveller's cheques"
+			},
+			{
+				"label": "Transfer de credit",
+				"value": "Credit transfer"
+			},
+			{
+				"label": "Debit direct",
+				"value": "Direct debit"
+			},
+			{
+				"label": "Bani electronici",
+				"value": "Electronic money"
+			},
+			{
+				"label": "Vărsământ",
+				"value": "Money remittance"
+			},
+			{
+				"label": "Carduri preplătite",
+				"value": "Pre-paid cards"
+			},
+			{
+				"label": "Plăți prin telefonia mobilă (de exemplu, prin SMS)",
+				"value": "Mobile payments (e.g. SMS)"
+			},
+			{
+				"label": "Alta",
+				"value": "Other"
+			},
+			{
+				"label": "Necunoscută",
+				"value": "Do not know"
+			}
+		]
+	},
+	"transaction_currency": {
+		"value": "valuta_tranzacției",
+		"values": [
+			{
+				"label": "EUR",
+				"value": "EUR"
+			},
+			{
+				"label": "BGN",
+				"value": "BRL"
+			},
+			{
+				"label": "CZK",
+				"value": "CZK"
+			},
+			{
+				"label": "DKK",
+				"value": "DKK"
+			},
+			{
+				"label": "EEK",
+				"value": "EEK"
+			},
+			{
+				"label": "HUF",
+				"value": "HUF"
+			},
+			{
+				"label": "LVL",
+				"value": "LVL"
+			},
+			{
+				"label": "LTL",
+				"value": "LTL"
+			},
+			{
+				"label": "PLN",
+				"value": "PLN"
+			},
+			{
+				"label": "RON",
+				"value": "RON"
+			},
+			{
+				"label": "SEK",
+				"value": "SEK"
+			},
+			{
+				"label": "GBP",
+				"value": "GBP"
+			},
+			{
+				"label": "ISK",
+				"value": "ISK"
+			},
+			{
+				"label": "CHF",
+				"value": "CHF"
+			},
+			{
+				"label": "NOK",
+				"value": "NOK"
+			},
+			{
+				"label": "USD",
+				"value": "USD"
+			},
+			{
+				"label": "Altceva",
+				"value": "Other"
+			}
+		]
+	}
+}

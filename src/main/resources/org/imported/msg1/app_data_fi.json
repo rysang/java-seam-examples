@@ -1,0 +1,1203 @@
+{
+	"levels": {
+		"Quality of goods and services": {
+			"value": "Tavaroiden ja palvelujen laatu",
+			"values": [
+				{
+					"label": "Viallinen, aiheuttaa vahinkoa",
+					"value": "Defective, caused damage"
+				},
+				{
+					"label": "Ei tilauksen mukainen",
+					"value": "Not in conformity with order"
+				},
+				{
+					"label": "Ei sovellu tiettyyn tarkoitukseen",
+					"value": "Not fit for particular purpose"
+				},
+				{
+					"label": "Muut näkökohdat",
+					"value": "Other issues"
+				}
+			]
+		},
+		"Delivery of goods/ Provision of services": {
+			"value": "Tavarantoimitus / palveluntarjonta",
+			"values": [
+				{
+					"label": "Tavaraa ei toimitettu / palvelua ei suoritettu",
+					"value": "Not delivered / not provided"
+				},
+				{
+					"label": "Tavara toimitettiin / palvelu suoritettiin vain osittain",
+					"value": "Partially delivered / partially provided"
+				},
+				{
+					"label": "Viivästyminen",
+					"value": "Delay"
+				},
+				{
+					"label": "Tavaraa/palvelua ei mahdollista saada",
+					"value": "Not available / No access"
+				},
+				{
+					"label": "Tavaran tai palvelun myynnistä/tarjoamisesta kieltäytyminen",
+					"value": "Refusal to sell / provide a good or a service"
+				},
+				{
+					"label": "Tavaran toimituksen tai palvelun tarjoamisen keskeyttäminen ilmoittamatta asiasta etukäteen",
+					"value": "Suspension of the delivery of a good or the provision of a service without prior notice"
+				},
+				{
+					"label": "Aukioloajat",
+					"value": "Opening hours"
+				},
+				{
+					"label": "Asiakaspalvelu",
+					"value": "Customer service"
+				},
+				{
+					"label": "Myynnin jälkeinen asiakaspalvelu",
+					"value": "After-sales service/assistance"
+				},
+				{
+					"label": "Muut tavaroiden toimitukseen / palvelujen tarjoamiseen liittyvät näkökohdat",
+					"value": "Other issues related to the delivery of goods/provisions of services"
+				}
+			]
+		},
+		"Price / Tariff": {
+			"value": "Hinta",
+			"values": [
+				{
+					"label": "Hinnan muuttuminen",
+					"value": "Price / tariff change"
+				},
+				{
+					"label": "Hintasyrjintä",
+					"value": "Price discrimination"
+				},
+				{
+					"label": "Hintojen läpinäkyvyys (epäselvä, monimutkainen)",
+					"value": "Tariff transparency (unclear, complex)"
+				},
+				{
+					"label": "Muut hintaan liittyvät näkökohdat",
+					"value": "Other issues related to price/tariff"
+				}
+			]
+		},
+		"Invoicing / billing and debt collection": {
+			"value": "Laskutus ja saatavien perintä",
+			"values": [
+				{
+					"label": "Vriheellinen lasku",
+					"value": "Incorrect invoice / bill"
+				},
+				{
+					"label": "Epäselvä lasku",
+					"value": "Unclear invoice / bill"
+				},
+				{
+					"label": "Laskua ei anneta tai laskun/kuukausi-ilmoituksen saanti on vaikeaa",
+					"value": "Non-issue of invoice or difficult access to invoice/monthly statement"
+				},
+				{
+					"label": "Aiheeton laskutus",
+					"value": "Unjustified invoicing / billing"
+				},
+				{
+					"label": "Saatavien perintä",
+					"value": "Debt collection"
+				},
+				{
+					"label": "Muut laskutukseen ja saatavien perintään liittyvät näkökohdat",
+					"value": "Other issues related to invoicing/billing and debt collection"
+				}
+			]
+		},
+		"Warranty / statutory guarantee and commercial guarantees": {
+			"value": "Takuu / lakimääräinen takuu ja kaupallinen takuu ",
+			"values": [
+				{
+					"label": "Takuuta / lakimääräistä takuuta ei ole noudatettu",
+					"value": "Warranty / statutory guarantee not honoured"
+				},
+				{
+					"label": "Kaupallista takuuta ei ole noudatettu",
+					"value": "Commercial guarantee not honoured"
+				}
+				,
+				{
+					"label": "Muut näkökohdat",
+					"value": "Other issues"
+				}
+			]
+		},
+		"Redress": {
+			"value": "Korvaus",
+			"values": [
+				{
+					"label": "Korvauksen hakeminen hankalaa",
+					"value": "Difficult access to redress"
+				},
+				{
+					"label": "Ei korvausta",
+					"value": "No redress"
+				},
+				{
+					"label": "Osittainen tai epäasianmukainen korvaus",
+					"value": "Part or incorrect redress"
+				},
+				{
+					"label": "Korvauksen viivästyminen",
+					"value": "Delayed redress"
+				},
+				{
+					"label": "Muut korvaukseen liittyvät näkökohdat",
+					"value": "Other issues related to redress"
+				},
+				{
+					"label": "Muut näkökohdat",
+					"value": "Other issues"
+				}
+			]
+		},
+		"Unfair Commercial Practices": {
+			"value": "Sopimattomat kaupalliset menettelyt",
+			"values": [
+				{
+					"label": "Harhaanjohtavat sopimusehdot",
+					"value": "Misleading contractual terms and conditions"
+				},
+				{
+					"label": "Virheelliset tai harhaanjohtavat hinta- ja pakkausmerkinnät",
+					"value": "Incorrect or misleading indication of prices / tariffs and labelling"
+				},
+				{
+					"label": "Harhaanjohtava mainonta",
+					"value": "Misleading advertising"
+				},
+				{
+					"label": "Tilaamaton mainonta",
+					"value": "Unsolicited advertising"
+				},
+				{
+					"label": "Tilaamaton tavara tai palvelu",
+					"value": "Unsolicited goods or services"
+				},
+				{
+					"label": "Aggressiiviset myyntimenettelyt",
+					"value": "Aggressive selling practices"
+				},
+				{
+					"label": "Vilpilliset menettelyt",
+					"value": "Fraudulent practices"
+				},
+				{
+					"label": "Muut sopimattomat kaupalliset menettelyt",
+					"value": "Other unfair commercial practices"
+				}
+			]
+		},
+		"Contracts and sales": {
+			"value": "Sopimukset ja myynti",
+			"values": [
+				{
+					"label": "Kohtuuttomat sopimusehdot / muutokset sopimusehtoihin",
+					"value": "Unfair contractual terms / change of contractual terms"
+				},
+				{
+					"label": "Tiedonpuute",
+					"value": "Lack of information"
+				},
+				{
+					"label": "Tilausvahvistus (ei saatu / virheellinen)",
+					"value": "Order confirmation (not received/wrong)"
+				},
+				{
+					"label": "Harkinta-aika / perumisoikeus",
+					"value": "Cooling-off period / Right of withdrawal"
+				},
+				{
+					"label": "Maksut (esim. ennakkomaksut ja osamaksut)",
+					"value": "Payments (e.g. prepayments and instalments)"
+				},
+				{
+					"label": "Sopimuksen peruminen",
+					"value": "Rescission of contract"
+				},
+				{
+					"label": "Sopimuksen vähimmäiskesto",
+					"value": "Minimum contractual period"
+				},
+				{
+					"label": "Muut sopimuksiin ja myyntiin liittyvät näkökohdat",
+					"value": "Other issues related to contracts and sales"
+				}
+			]
+		},
+		"Provider change / switching": {
+			"value": "Tavarantoimittajan tai palveluntarjoajan vaihtuminen",
+			"values": [
+				{
+					"label": "Tavarantoimittajan tai palveluntarjoajan vaihtuminen",
+					"value": "Provider change / switching"
+				},
+				{
+					"label": "Muut näkökohdat",
+					"value": "Other issues"
+				}
+			]
+		},
+		"Safety - covers both goods (including food) and services": {
+			"value": "Turvallisuus – kattaa sekä tavarat (myös elintarvikkeet) että palvelut",
+			"values": [
+				{
+					"label": "Tuoteturvallisuus – kattaa sekä tavarat (myös elintarvikkeet) että palvelut",
+					"value": "Product safety - covers both goods (including food) and services"
+				},
+				{
+					"label": "Pakkaus, merkinnät ja ohjeet – kattaa sekä tavarat (myös elintarvikkeet) että palvelut",
+					"value": "Package, labelling and instructions - covers both goods (including food) and services"
+				},
+				{
+					"label": "Muut näkökohdat",
+					"value": "Other issues"
+				}
+			]
+		},
+		"Privacy and data protection": {
+			"value": "Yksityisyys ja tietosuoja",
+			"values": [
+				{
+					"label": "Tietosuoja",
+					"value": "Data protection"
+				},
+				{
+					"label": "Yksityisyys",
+					"value": "Privacy"
+				},
+				{
+					"label": "Muut yksityisyyteen ja tietosuojaan liittyvät näkökohdat",
+					"value": "Other issues related to privacy and data protection"
+				}
+			]
+		},
+		"Other issues": {
+			"value": "Muut näkökohdat",
+			"values": [
+				{
+					"label": "Muut näkökohdat",
+					"value": "Other issues"
+				}
+			]
+		}
+	},
+	"sectors": {
+		"Consumer Goods": {
+			"value": "Kulutustavarat",
+			"values": [
+				{
+					"label": "Elintarvikkeet - hedelmät ja vihannekset",
+					"value": "Food - Fruit and vegetables"
+				},
+				{
+					"label": "Elintarvikkeet - liha",
+					"value": "Food - Meat"
+				},
+				{
+					"label": "Elintarvikkeet - leipä ja viljatuotteet",
+					"value": "Food - Bread and Cereals"
+				},
+				{
+					"label": "Elintarvikkeet - terveyselintarvikkeet ja ravinteet",
+					"value": "Food - Health food and nutrients"
+				},
+				{
+					"label": "Elintarvikkeet - muut elintarvikkeet",
+					"value": "Food - Other"
+				},
+				{
+					"label": "Alkoholittomat juomat",
+					"value": "Non-alcoholic beverages"
+				},
+				{
+					"label": "Alkoholijuomat",
+					"value": "Alcoholic beverages"
+				},
+				{
+					"label": "Tupakka",
+					"value": "Tobacco"
+				},
+				{
+					"label": "Vaatteet (myös mittatilaustuotteet) ja jalkineet",
+					"value": "Clothing (including tailor-made goods) and footwear"
+				},
+				{
+					"label": "Asunnon huoltoon ja korjaukseen liittyvät materiaalit",
+					"value": "House maintenance and improvement goods"
+				},
+				{
+					"label": "Kalusteet",
+					"value": "Furnishings"
+				},
+				{
+					"label": "Suuret kodinkoneet (myös pölynimurit ja mikroaaltouunit)",
+					"value": "Large domestic household appliances (including vacuum cleaners and microwaves)"
+				},
+				{
+					"label": "Kodin pienkoneet (myös kahvinkeittimet ja ruoankäsittelylaitteet)",
+					"value": "Small domestic household appliances (including coffee machines and food- processing appliances)"
+				},
+				{
+					"label": "Elektroniikka (muu kuin tietotekniikka/viihde-elektroniikka)",
+					"value": "Electronic goods (non-ICT/recreational)"
+				},
+				{
+					"label": "Tietojenkäsittelylaitteet",
+					"value": "Information and communication technology (ICT) goods"
+				},
+				{
+					"label": "Vapaa-aikaan liittyvät tavarat (urheiluvälineet, soittimet jne.)",
+					"value": "Leisure goods (sports equipment, musical instruments, etc)"
+				},
+				{
+					"label": "Uudet henkilöautot",
+					"value": "New cars"
+				},
+				{
+					"label": "Käytetyt henkilöautot",
+					"value": "Second-hand cars"
+				},
+				{
+					"label": "Muut yksityisajoneuvot",
+					"value": "Other personal transport"
+				},
+				{
+					"label": "Yksityisajoneuvojen ja muiden yksityisten kulkuvälineiden varaosat ja lisävarusteet",
+					"value": "Spares and accessories for vehicles and other means of personal transport"
+				},
+				{
+					"label": "Yksityisajoneuvojen ja muiden yksityisten kulkuvälineiden polttoaineet ja voiteluöljyt",
+					"value": "Fuels and lubricants for vehicles and other means of personal transport"
+				},
+				{
+					"label": "Kirjat, aikakauslehdet, sanomalehdet, paperitavarat (postitoimitusta lukuun ottamatta)",
+					"value": "Books, magazines, newspapers, stationery (excluding postal delivery)"
+				},
+				{
+					"label": "Lemmikkieläimet ja niihin liittyvät tuotteet",
+					"value": "Pets and pet goods"
+				},
+				{
+					"label": "Henkilökohtaisen hygienian hoitoon tarkoitetut sähkökäyttöiset laitteet",
+					"value": "Electrical appliances for personal care"
+				},
+				{
+					"label": "Kosmetiikka ja toalettitarvikkeet",
+					"value": "Cosmetics and toiletries for personal care"
+				},
+				{
+					"label": "Korut, hopeaesineet, kellot, rannekellot ja asusteet",
+					"value": "Jewellery, silverware, clocks, watches and accessories"
+				},
+				{
+					"label": "Vauvan- ja lastenhoitotarvikkeet",
+					"value": "Baby and child care articles"
+				},
+				{
+					"label": "Puhdistus- ja siivoustuotteet, siivoustarvikkeet ja kodin kulutustavarat",
+					"value": "Cleaning and maintenance products, articles for cleaning and non-durable household articles"
+				},
+			{
+				"label": "Muu",
+				"value": "Other"
+			}
+			]
+		},
+		"General Consumer Services": {
+			"value": "Yleiset kulutuspalvelut",
+			"values": [
+				{
+					"label": "Kiinteistönvälityspalvelut",
+					"value": "Real estate services"
+				},
+				{
+					"label": "Uusien asuntojen rakentaminen",
+					"value": "Construction of new houses"
+				},
+				{
+					"label": "Asunnon huoltoon ja korjaukseen liittyvät palvelut",
+					"value": "House maintenance and improvement services"
+				},
+				{
+					"label": "Muutto- ja varastointipalvelut",
+					"value": "House removal and storage"
+				},
+				{
+					"label": "Kodin siivouspalvelut",
+					"value": "House cleaning services"
+				},
+				{
+					"label": "Henkilökohtaiset hoitopalvelut",
+					"value": "Personal care services"
+				},
+				{
+					"label": "Vaatteiden ja jalkineiden pesu, korjaus ja vuokraus",
+					"value": "Cleaning, repair and hiring of clothing and footwear"
+				},
+				{
+					"label": "Tuki-, tutkimus- ja välityspalvelut",
+					"value": "Support, research and intermediary services"
+				},
+				{
+					"label": "Ajoneuvojen ja muiden kulkuvälineiden huolto ja korjaus",
+					"value": "Maintenance and repair of vehicles and other transport"
+				},
+				{
+					"label": "Oikeudelliset palvelut ja kirjanpito",
+					"value": "Legal services & accountancy"
+				},
+				{
+					"label": "Hautauspalvelut",
+					"value": "Funeral services"
+				},
+				{
+					"label": "Lastenhoito",
+					"value": "Child care"
+				},
+				{
+					"label": "Lemmikkieläinpalvelut",
+					"value": "Pet services"
+				},
+			{
+				"label": "Muu",
+				"value": "Other"
+			}
+			]
+		},
+		"Financial Services": {
+			"value": "Rahoituspalvelut",
+			"values": [
+				{
+					"label": "Rahoituspalvelut – maksutili- ja maksupalvelut",
+					"value": "Financial Services - Payment account and payment services"
+				},
+				{
+					"label": "Rahoituspalvelut – luotto (lukuun ottamatta kiinne-/asuntolainoja)",
+					"value": "Financial Services - Credit (excluding mortgage/home loans)"
+				},
+				{
+					"label": "Rahoituspalvelut – kiinne-/asuntolainat",
+					"value": "Financial Services - Mortgages / Home loans"
+				},
+				{
+					"label": "Rahoituspalvelut – säästöt",
+					"value": "Financial Services - Savings"
+				},
+				{
+					"label": "Rahoituspalvelut – muut rahoituspalvelut",
+					"value": "Financial Services - Other"
+				},
+				{
+					"label": "Sijoitukset, eläkkeet ja arvopaperit",
+					"value": "Investments, pensions and securities"
+				},
+				{
+					"label": "Vahinkovakuutukset – koti- ja kiinteistövakuutukset",
+					"value": "Non-life Insurance - Home and property"
+				},
+				{
+					"label": "Vahinkovakuutukset – liikenteeseen liittyvät vakuutukset",
+					"value": "Non-life Insurance - Transport"
+				},
+				{
+					"label": "Vahinkovakuutukset – matkavakuutukset",
+					"value": "Non-life Insurance – Travel"
+				},
+				{
+					"label": "Vahinkovakuutukset – sairaus- ja tapaturmavakuutukset sekä muut vastaavat",
+					"value": "Non-life Insurance - Health, accident and other"
+				},
+				{
+					"label": "Henkivakuutukset",
+					"value": "Insurance - Life"
+				},
+			{
+				"label": "Muu",
+				"value": "Other"
+			}
+			]
+		},
+		"Postal services and electronic communications": {
+			"value": "Postipalvelut ja sähköisen viestinnän palvelut",
+			"values": [
+				{
+					"label": "Posti- ja kuriiripalvelut",
+					"value": "Postal services & couriers"
+				},
+				{
+					"label": "Lankapuhelinpalvelut",
+					"value": "Fixed telephone services"
+				},
+				{
+					"label": "Matkapuhelinpalvelut",
+					"value": "Mobile telephone services"
+				},
+				{
+					"label": "Internetpalvelut",
+					"value": "Internet services"
+				},
+				{
+					"label": "Televisiopalvelut",
+					"value": "Television services"
+				},
+				{
+					"label": "Muut viestintäpalvelut",
+					"value": "Other communication services"
+				}
+			]
+		},
+		"Transport services": {
+			"value": "Kuljetuspalvelut",
+			"values": [
+				{
+					"label": "Raitiovaunu, linja-auto, metro ja maanalainen",
+					"value": "Tram, bus, metro and underground"
+				},
+				{
+					"label": "Rautatiet",
+					"value": "Railways"
+				},
+				{
+					"label": "Lentoyhtiöt",
+					"value": "Airlines"
+				},
+				{
+					"label": "Taksi",
+					"value": "Taxi"
+				},
+				{
+					"label": "Meri- tai jokikuljetus tai muu vesitse tapahtuva kuljetus",
+					"value": "Sea, river, other water transport"
+				},
+				{
+					"label": "Liikenneinfrastruktuuriin liittyvät palvelut",
+					"value": "Transport infrastructure services"
+				},
+				{
+					"label": "Vuokrauspalvelut",
+					"value": "Rental services"
+				},
+				{
+					"label": "Muu",
+					"value": "Other"
+				}
+			]
+		},
+		"Leisure Services": {
+			"value": "Vapaa-ajan palvelut",
+			"values": [
+				{
+					"label": "Hotellit ja muut majoitusliikkeet",
+					"value": "Hotels and other holiday accommodation"
+				},
+				{
+					"label": "Valmismatkat",
+					"value": "Package travel"
+				},
+				{
+					"label": "Matkatoimiston palvelut",
+					"value": "Travel agency services"
+				},
+				{
+					"label": "Lomaosakkeet ja vastaavat",
+					"value": "Timeshare and similar"
+				},
+				{
+					"label": "Ravintolat ja baarit",
+					"value": "Restaurants and bars"
+				},
+				{
+					"label": "Urheiluun ja vapaa-aikaan liittyvät palvelut",
+					"value": "Services related to sports and hobbies"
+				},
+				{
+					"label": "Kulttuuri- ja viihdepalvelut",
+					"value": "Cultural and entertainment services"
+				},
+				{
+					"label": "Uhkapelit ja arpajaiset",
+					"value": "Gambling, lotteries"
+				},
+				{
+					"label": "Muut vapaa-ajan palvelut",
+					"value": "Other leisure services"
+				}
+			]
+		},
+		"Energy and Water": {
+			"value": "Energia ja vesi",
+			"values": [
+				{
+					"label": "Vesi",
+					"value": "Water"
+				},
+				{
+					"label": "Sähkö",
+					"value": "Electricity"
+				},
+				{
+					"label": "Kaasu",
+					"value": "Gas"
+				},
+				{
+					"label": "Muut energialähteet",
+					"value": "Other energy sources"
+				}
+			]
+		},
+		"Health": {
+			"value": "Terveys",
+			"values": [
+				{
+					"label": "Reseptilääkkeet",
+					"value": "Prescribed medication"
+				},
+				{
+					"label": "Käsikauppalääkkeet",
+					"value": "Over-the-counter medication"
+				},
+				{
+					"label": "Potilaiden käyttämät lääkinnälliset laitteet ja muut apuvälineet",
+					"value": "Medical devices and other physical aids used by patients"
+				},
+				{
+					"label": "Terveyspalvelut",
+					"value": "Health services"
+				},
+				{
+					"label": "Vanhainkodit ja kotihoito",
+					"value": "Retirement homes and home care"
+				},
+				{
+					"label": "Muu",
+					"value": "Other"
+				}
+			]
+		},
+		"Education": {
+			"value": "Koulutus",
+			"values": [
+				{
+					"label": "Oppilaitokset",
+					"value": "Schools"
+				},
+				{
+					"label": "Kielikurssit, ajo-opetus ja muut yksityiset kurssit",
+					"value": "Language, driving instruction and other private courses"
+				},
+				{
+					"label": "Muu",
+					"value": "Other"
+				}
+			]
+		},
+		"Other": {
+			"value": "Muut",
+			"values": [
+				{
+					"label": "Muut tavarat ja palvelut",
+					"value": "Other (Includes both goods and services)"
+				}
+			]
+		}
+	},
+	"country": {
+		"value": "maa",
+		"values": [
+			{
+				"label": "Itävalta",
+				"value": "AT"
+			},
+			{
+				"label": "Belgia",
+				"value": "BE"
+			},
+			{
+				"label": "Bulgaria",
+				"value": "BG"
+			},
+			{
+				"label": "Kypros",
+				"value": "CY"
+			},
+			{
+				"label": "Tšekki",
+				"value": "CZ"
+			},
+			{
+				"label": "Tanska",
+				"value": "DK"
+			},
+			{
+				"label": "Viro",
+				"value": "EE"
+			},
+			{
+				"label": "Suomi",
+				"value": "FI"
+			},
+			{
+				"label": "Ranska",
+				"value": "FR"
+			},
+			{
+				"label": "Saksa",
+				"value": "DE"
+			},
+			{
+				"label": "Kreikka",
+				"value": "GR"
+			},
+			{
+				"label": "Unkari",
+				"value": "HU"
+			},
+			{
+				"label": "Islanti",
+				"value": "IS"
+			},
+			{
+				"label": "Irlanti",
+				"value": "IE"
+			},
+			{
+				"label": "Italia",
+				"value": "IT"
+			},
+			{
+				"label": "Latvia",
+				"value": "LV"
+			},
+			{
+				"label": "Liechtenstein",
+				"value": "LI"
+			},
+			{
+				"label": "Liettua",
+				"value": "LT"
+			},
+			{
+				"label": "Luxemburg",
+				"value": "LU"
+			},
+			{
+				"label": "Malta",
+				"value": "MT"
+			},
+			{
+				"label": "Alankomaat",
+				"value": "NL"
+			},
+			{
+				"label": "Norja",
+				"value": "NO"
+			},
+			{
+				"label": "Puola",
+				"value": "PL"
+			},
+			{
+				"label": "Portugali",
+				"value": "PT"
+			},
+			{
+				"label": "Romania",
+				"value": "RO"
+			},
+			{
+				"label": "Slovakia",
+				"value": "SK"
+			},
+			{
+				"label": "Slovenia",
+				"value": "SI"
+			},
+			{
+				"label": "Espanja",
+				"value": "ES"
+			},
+			{
+				"label": "Ruotsi",
+				"value": "SE"
+			},
+			{
+				"label": "Sveitsi",
+				"value": "CH"
+			},
+			{
+				"label": "Yhdistynyt kuningaskunta",
+				"value": "UK"
+			},
+			{
+				"label": "Australia",
+				"value": "AU"
+			},
+			{
+				"label": "Brasilia",
+				"value": "BR"
+			},
+			{
+				"label": "Kanada",
+				"value": "CA"
+			},
+			{
+				"label": "Kiina",
+				"value": "CN"
+			},
+			{
+				"label": "Kroatia",
+				"value": "HR"
+			},
+			{
+				"label": "Slovenia",
+				"value": "SR"
+			},
+			{
+				"label": "Intia",
+				"value": "IN"
+			},
+			{
+				"label": "Meksiko",
+				"value": "MX"
+			},
+			{
+				"label": "Venäjä",
+				"value": "RU"
+			},
+			{
+				"label": "Etelä-Afrikka",
+				"value": "ZA"
+			},
+			{
+				"label": "Turkki",
+				"value": "TR"
+			},
+			{
+				"label": "Yhdysvalloissa",
+				"value": "US"
+			},
+			{
+				"label": "Muu",
+				"value": "Other"
+			},
+			{
+				"label": "Ei tiedossa",
+				"value": "Do not know"
+			}
+		]
+	},
+	"distinction": {
+		"value": "yhteydenoton syy",
+		"values": [
+			{
+				"label": "Valitus",
+				"value": "Complaint"
+			},
+			{
+				"label": "Tiedustelu",
+				"value": "Enquiry"
+			}
+		]
+	},
+	"selling_method": {
+		"value": "myyntitapa",
+		"values": [
+			{
+				"label": "Kasvotusten",
+				"value": "Face-to-face"
+			},
+			{
+				"label": "Kasvotusten: Supermarket, automarket",
+				"value": "Face-to-face: Supermarket, hypermarket"
+			},
+			{
+				"label": "Kasvotusten: Halpamyymälä",
+				"value": "Face-to-face: Discount store"
+			},
+			{
+				"label": "Kasvotusten: Tavaratalo",
+				"value": "Face-to-face: Department store"
+			},
+			{
+				"label": "Kasvotusten: Ketjumyymälä",
+				"value": "Face-to-face: Retail chain store"
+			},
+			{
+				"label": "Kasvotusten: Lähikauppa",
+				"value": "Face-to-face: Retail store"
+			},
+			{
+				"label": "Kasvotusten: Pienkauppa",
+				"value": "Face-to-face: Small shop, small store"
+			},
+			{
+				"label": "Kasvotusten: Elintarvikeliike, öisin auki oleva",
+				"value": "Face-to-face: Greengrocer, night shop"
+			},
+			{
+				"label": "Kasvotusten: Torimyyntipiste, tilamyymälä",
+				"value": "Face-to-face: Street market, farm shop"
+			},
+			{
+				"label": "Kasvotusten: Huoltamo",
+				"value": "Face-to-face: Petrol station"
+			},
+			{
+				"label": "Kasvotusten: Toimisto (myös pankit ja muut rahoituslaitokset)",
+				"value": "Face-to-face: Office (includes banks and other financial institutions)"
+			},
+			{
+				"label": "Kasvotusten: Matkatoimisto, matkanjärjestäjä",
+				"value": "Face-to-face: Travel agency, tour operator agency"
+			},
+			{
+				"label": "Kasvotusten: Sairaala, poliklinikka, laakärin vastaanotto",
+				"value": "Face-to-face: Hospital, clinic, surgery"
+			},
+			{
+				"label": "Kasvotusten: Koulu",
+				"value": "Face-to-face: School"
+			},
+			{
+				"label": "Kasvotusten: Urheilu- ja vapaa-ajanviettotilat",
+				"value": "Face-to-face: Sports and leisure premises"
+			},
+			{
+				"label": "Kasvotusten: Muut tilat",
+				"value": "Face-to-face: Other type of premises"
+			},
+			{
+				"label": "Etämyynti (esim. puhelin- tai postimyynti), ei kuitenkaan verkkokauppa, mobiilikauppa eikä verkkohuutokauppa",
+				"value": "Distance selling (e.g. phone, post), excluding e-commerce, mobile commerce and internet auctions"
+			},
+			{
+				"label": "Verkkokauppa, ei kuitenkaan mobiilikauppa eikä verkkohuutokauppa",
+				"value": "E-commerce, excluding mobile commerce and internet auctions"
+			},
+			{
+				"label": "Mobiilikauppa",
+				"value": "Mobile commerce"
+			},
+			{
+				"label": "Markkinat, messut",
+				"value": "Market, trade fair"
+			},
+			{
+				"label": "Huutokaupat",
+				"value": "Auctions"
+			},
+			{
+				"label": "Verkkohuutokaupat",
+				"value": "Internet auctions"
+			},
+			{
+				"label": "Myynti liiketilojen ulkopuolella",
+				"value": "Selling away from business premises (off-premises)"
+			},
+			{
+				"label": "Muut myyntitavat",
+				"value": "Other selling methods"
+			},
+			{
+				"label": "Ei tiedossa",
+				"value": "Do not know"
+			},
+			{
+				"label": "Ei koske kyseessä olevaa asiaa",
+				"value": "Not applicable"
+			}
+		]
+	},
+	"advertising_method": {
+		"value": "mainostamistapa",
+		"values": [
+			{
+				"label": "Kasvotusten",
+				"value": "Face-to-face"
+			},
+			{
+				"label": "Puhelin",
+				"value": "Phone call"
+			},
+			{
+				"label": "Tekstiviesti",
+				"value": "Text message"
+			},
+			{
+				"label": "Audiovisuaalinen mainos (esim. televisiossa)",
+				"value": "Audiovisual (TV, etc.)"
+			},
+			{
+				"label": "Painettu mainos (esim. sanomalehti, esite)",
+				"value": "Print (newspaper, brochure, flyer, etc.)"
+			},
+			{
+				"label": "Internet-mainos (verkkosivusto)",
+				"value": "Internet (website)"
+			},
+			{
+				"label": "Sähköposti",
+				"value": "E-mail"
+			},
+			{
+				"label": "Radiomainos",
+				"value": "Radio"
+			},
+			{
+				"label": "Ulkomainonta (kiinteät mainokset esim. mainostauluilla tai liikkuvat mainokset esim. ajoneuvoissa)",
+				"value": "Outdoor (fixed advertising such as on billboards or mobile advertising such as on vehicles)"
+			},
+			{
+				"label": "Muu",
+				"value": "Other"
+			},
+			{
+				"label": "Ei tiedossa",
+				"value": "Do not know"
+			},
+			{
+				"label": "Ei koske kyseessä olevaa asiaa",
+				"value": "Not applicable"
+			}
+		]
+	},
+	"payment_means": {
+		"value": "maksutapa",
+		"values": [
+			{
+				"label": "Käteinen",
+				"value": "Cash"
+			},
+			{
+				"label": "Pankkikortti ",
+				"value": "Debit card"
+			},
+			{
+				"label": "Luottokortti ",
+				"value": "Credit card"
+			},
+			{
+				"label": "Sekki, matkasekki tai arvoseteli",
+				"value": "Paper cheque, paper-based vouchers and paper-based traveller's cheques"
+			},
+			{
+				"label": "Tilisiirto",
+				"value": "Credit transfer"
+			},
+			{
+				"label": "Suoraveloitus",
+				"value": "Direct debit"
+			},
+			{
+				"label": "Sähköinen raha",
+				"value": "Electronic money"
+			},
+			{
+				"label": "Rahalähetys",
+				"value": "Money remittance"
+			},
+			{
+				"label": "Rahakortti (prepaid-kortti)",
+				"value": "Pre-paid cards"
+			},
+			{
+				"label": "Matkapuhelinmaksu (esim. tekstiviestillä)",
+				"value": "Mobile payments (e.g. SMS)"
+			},
+			{
+				"label": "Muu",
+				"value": "Other"
+			},
+			{
+				"label": "Ei tiedossa",
+				"value": "Do not know"
+			}
+		]
+	},
+	"transaction_currency": {
+		"value": "liiketoimen_valuutta",
+		"values": [
+			{
+				"label": "EUR - euro",
+				"value": "EUR"
+			},
+			{
+				"label": "BGN - Bulgarian lev",
+				"value": "BRL"
+			},
+			{
+				"label": "CZK - Tšekin koruna",
+				"value": "CZK"
+			},
+			{
+				"label": "DKK - Tanskan kruunu",
+				"value": "DKK"
+			},
+			{
+				"label": "EEK - Viron kruunu",
+				"value": "EEK"
+			},
+			{
+				"label": "HUF - Unkarin forintti",
+				"value": "HUF"
+			},
+			{
+				"label": "LVL - Latvian lati",
+				"value": "LVL"
+			},
+			{
+				"label": "LTL - Liettuan liti",
+				"value": "LTL"
+			},
+			{
+				"label": "PLN - Puolan zloty",
+				"value": "PLN"
+			},
+			{
+				"label": "RON - Romanian leu",
+				"value": "RON"
+			},
+			{
+				"label": "SEK - Ruotsin kruunu",
+				"value": "SEK"
+			},
+			{
+				"label": "GBP - Englannin punta",
+				"value": "GBP"
+			},
+			{
+				"label": "ISK - Islannin kruunu",
+				"value": "ISK"
+			},
+			{
+				"label": "CHF - Sveitsin frangi",
+				"value": "CHF"
+			},
+			{
+				"label": "NOK - Norjan kruunu",
+				"value": "NOK"
+			},
+			{
+				"label": "USD - Yhdysvaltain dollari",
+				"value": "USD"
+			},
+			{
+				"label": "Muu",
+				"value": "Other"
+			}
+		]
+	}
+}

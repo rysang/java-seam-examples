@@ -1,0 +1,1201 @@
+{
+	"levels": {
+		"Quality of goods and services": {
+			"value": "Termékek és szolgáltatások minősége",
+			"values": [
+				{
+					"label": "Hibás, kárt okozott",
+					"value": "Defective, caused damage"
+				},
+				{
+					"label": "Nem felel meg a megrendelésnek",
+					"value": "Not in conformity with order"
+				},
+				{
+					"label": "Nem alkalmas az adott célra",
+					"value": "Not fit for particular purpose"
+				},
+				{
+					"label": "Egyéb kérdések",
+					"value": "Other issues"
+				}
+			]
+		},
+		"Delivery of goods/ Provision of services": {
+			"value": "Termékek kézbesítése/szolgáltatások nyújtása",
+			"values": [
+				{
+					"label": "A termék kézbesítése/szolgáltatás nyújtása nem történt meg",
+					"value": "Not delivered / not provided"
+				},
+				{
+					"label": "A termék kézbesítése/szolgáltatás nyújtása csak részlegesen történt meg",
+					"value": "Partially delivered / partially provided"
+				},
+				{
+					"label": "Késedelem",
+					"value": "Delay"
+				},
+				{
+					"label": "A termék nem áll rendelkezésre/a szolgáltatás nem hozzáférhető",
+					"value": "Not available / No access"
+				},
+				{
+					"label": "Termék eladásának/szolgáltatás nyújtásának megtagadása",
+					"value": "Refusal to sell / provide a good or a service"
+				},
+				{
+					"label": "Egy termék szállításának vagy szolgáltatás nyújtásának előzetes értesítés nélkül történő felfüggesztése",
+					"value": "Suspension of the delivery of a good or the provision of a service without prior notice"
+				},
+				{
+					"label": "Nyitvatartási idő",
+					"value": "Opening hours"
+				},
+				{
+					"label": "Ügyfélszolgálat",
+					"value": "Customer service"
+				},
+				{
+					"label": "Értékesítés utáni vevőszolgálat/ügyfélszolgálat",
+					"value": "After-sales service/assistance"
+				},
+				{
+					"label": "Termékek szállításával/szolgáltatások nyújtásával kapcsolatos egyéb kérdések",
+					"value": "Other issues related to the delivery of goods/provisions of services"
+				}
+			]
+		},
+		"Price / Tariff": {
+			"value": "Árak/díjak",
+			"values": [
+				{
+					"label": "Árak/díjak változása",
+					"value": "Price / tariff change"
+				},
+				{
+					"label": "Árdiszkrimináció",
+					"value": "Price discrimination"
+				},
+				{
+					"label": "Díjak átláthatósága (nem egyértelmű, bonyolult)",
+					"value": "Tariff transparency (unclear, complex)"
+				},
+				{
+					"label": "Árakhoz/díjakhoz kapcsolódó egyéb kérdések",
+					"value": "Other issues related to price/tariff"
+				}
+			]
+		},
+		"Invoicing / billing and debt collection": {
+			"value": "Számlázás és követelésbehajtás",
+			"values": [
+				{
+					"label": "Hibás számla",
+					"value": "Incorrect invoice / bill"
+				},
+				{
+					"label": "Nem egyértelmű számla",
+					"value": "Unclear invoice / bill"
+				},
+				{
+					"label": "A számla kiállítása nem történt meg, illetve a számla/havi kivonat nehezen hozzáférhető",
+					"value": "Non-issue of invoice or difficult access to invoice/monthly statement"
+				},
+				{
+					"label": "Indokolatlan számlázás",
+					"value": "Unjustified invoicing / billing"
+				},
+				{
+					"label": "Követelésbehajtás",
+					"value": "Debt collection"
+				},
+				{
+					"label": "Számlázással és követelésbehajtással kapcsolatos egyéb kérdések",
+					"value": "Other issues related to invoicing/billing and debt collection"
+				}
+			]
+		},
+		"Warranty / statutory guarantee and commercial guarantees": {
+			"value": "Jótállás/kötelező garancia és kereskedelmi garanciák",
+			"values": [
+				{
+					"label": "Jótállás/kötelező garancia be nem tartása",
+					"value": "Warranty / statutory guarantee not honoured"
+				},
+				{
+					"label": "Kereskedelmi garancia be nem tartása",
+					"value": "Commercial guarantee not honoured"
+				},
+				{
+					"label": "Egyéb kérdések",
+					"value": "Other issues"
+				}
+
+			]
+		},
+		"Redress": {
+			"value": "Jogorvoslat",
+			"values": [
+				{
+					"label": "A jogorvoslat nehezen vehető igénybe",
+					"value": "Difficult access to redress"
+				},
+				{
+					"label": "Elmaradt jogorvoslat",
+					"value": "No redress"
+				},
+				{
+					"label": "Részleges vagy téves jogorvoslat",
+					"value": "Part or incorrect redress"
+				},
+				{
+					"label": "Késedelmes jogorvoslat",
+					"value": "Delayed redress"
+				},
+				{
+					"label": "A jogorvoslatokhoz kapcsolódó egyéb kérdések",
+					"value": "Other issues related to redress"
+				}
+			]
+		},
+		"Unfair Commercial Practices": {
+			"value": "Tisztességtelen kereskedelmi gyakorlatok",
+			"values": [
+				{
+					"label": "Félrevezető szerződési feltételek",
+					"value": "Misleading contractual terms and conditions"
+				},
+				{
+					"label": "Téves vagy félrevezető árak/díjak és címkézés",
+					"value": "Incorrect or misleading indication of prices / tariffs and labelling"
+				},
+				{
+					"label": "Megtévesztő reklám",
+					"value": "Misleading advertising"
+				},
+				{
+					"label": "Kéretlen reklám",
+					"value": "Unsolicited advertising"
+				},
+				{
+					"label": "Kéretlen termékek vagy szolgáltatások",
+					"value": "Unsolicited goods or services"
+				},
+				{
+					"label": "Agresszív eladási gyakorlatok",
+					"value": "Aggressive selling practices"
+				},
+				{
+					"label": "Megtévesztésre irányuló gyakorlat",
+					"value": "Fraudulent practices"
+				},
+				{
+					"label": "Más tisztességtelen kereskedelmi gyakorlatok",
+					"value": "Other unfair commercial practices"
+				}
+			]
+		},
+		"Contracts and sales": {
+			"value": "Szerződések és adásvétel",
+			"values": [
+				{
+					"label": "Tisztességtelen szerződési feltételek/szerződési feltételek megváltoztatása",
+					"value": "Unfair contractual terms / change of contractual terms"
+				},
+				{
+					"label": "Információhiány",
+					"value": "Lack of information"
+				},
+				{
+					"label": "A megrendelés visszaigazolása (nem történik meg/hibás)",
+					"value": "Order confirmation (not received/wrong)"
+				},
+				{
+					"label": "Megfontolási idő/elállási jog",
+					"value": "Cooling-off period / Right of withdrawal"
+				},
+				{
+					"label": "Fizetés (pl. előlegek és részletfizetés)",
+					"value": "Payments (e.g. prepayments and instalments)"
+				},
+				{
+					"label": "Szerződésbontás",
+					"value": "Rescission of contract"
+				},
+				{
+					"label": "Minimális szerződéses időtartam",
+					"value": "Minimum contractual period"
+				},
+				{
+					"label": "Szerződésekkel és adásvétellel kapcsolatos egyéb kérdések",
+					"value": "Other issues related to contracts and sales"
+				}
+			]
+		},
+		"Provider change / switching": {
+			"value": "Szolgáltatóváltás",
+			"values": [
+				{
+					"label": "Szolgáltatóváltás",
+					"value": "Provider change / switching"
+				},
+				{
+					"label": "Egyéb kérdések",
+					"value": "Other issues"
+				}
+
+			]
+		},
+		"Safety - covers both goods (including food) and services": {
+			"value": "Biztonság – termékek (beleértve az élelmiszereket) és szolgáltatások",
+			"values": [
+				{
+					"label": "Termékbiztonság – termékek (beleértve az élelmiszereket) és szolgáltatások",
+					"value": "Product safety - covers both goods (including food) and services"
+				},
+				{
+					"label": "Csomagolás, címkézés és használati utasítások – termékek (beleértve az élelmiszereket) és szolgáltatások",
+					"value": "Package, labelling and instructions - covers both goods (including food) and services"
+				},
+				{
+					"label": "Egyéb kérdések",
+					"value": "Other issues"
+				}
+
+			]
+		},
+		"Privacy and data protection": {
+			"value": "A magánélet védelme és adatvédelem",
+			"values": [
+				{
+					"label": "Adatvédelem",
+					"value": "Data protection"
+				},
+				{
+					"label": "A magánélet védelme",
+					"value": "Privacy"
+				},
+				{
+					"label": "A magánélet védelmével és adatvédelemmel kapcsolatos egyéb kérdések",
+					"value": "Other issues related to privacy and data protection"
+				}
+			]
+		},
+		"Other issues": {
+			"value": "Egyéb kérdések",
+			"values": [
+				{
+					"label": "Egyéb kérdések",
+					"value": "Other issues"
+				}
+			]
+		}
+	},
+	"sectors": {
+		"Consumer Goods": {
+			"value": "Fogyasztási cikkek",
+			"values": [
+				{
+					"label": "Élelmiszerek - gyümölcs- és zöldségfélék",
+					"value": "Food - Fruit and vegetables"
+				},
+				{
+					"label": "Élelmiszerek - hús",
+					"value": "Food - Meat"
+				},
+				{
+					"label": "Élelmiszerek - kenyér és gabonafélék",
+					"value": "Food - Bread and Cereals"
+				},
+				{
+					"label": "Élelmiszerek - reformélelmiszerek és -tápanyagok",
+					"value": "Food - Health food and nutrients"
+				},
+				{
+					"label": "Élelmiszerek - Egyéb",
+					"value": "Food - Other"
+				},
+				{
+					"label": "Alkoholmentes italok",
+					"value": "Non-alcoholic beverages"
+				},
+				{
+					"label": "Alkoholtartalmú italok",
+					"value": "Alcoholic beverages"
+				},
+				{
+					"label": "Dohány",
+					"value": "Tobacco"
+				},
+				{
+					"label": "Ruházati cikkek (ideértve a személyre szabott termékeket) és lábbelik",
+					"value": "Clothing (including tailor-made goods) and footwear"
+				},
+				{
+					"label": "Lakáskarbantartáshoz és -javításhoz használt termékek",
+					"value": "House maintenance and improvement goods"
+				},
+				{
+					"label": "Lakberendezési cikkek",
+					"value": "Furnishings"
+				},
+				{
+					"label": "Nagyméretű háztartási készülékek (beleértve a porszívókat és mikrohullámú sütőket is)",
+					"value": "Large domestic household appliances (including vacuum cleaners and microwaves)"
+				},
+				{
+					"label": "Kisméretű háztartási készülékek (beleértve a kávéfőzőket és a konyhai robotgépeket is)",
+					"value": "Small domestic household appliances (including coffee machines and food- processing appliances)"
+				},
+				{
+					"label": "Elektronikai termékek (nem IKT/szórakoztató)",
+					"value": "Electronic goods (non-ICT/recreational)"
+				},
+				{
+					"label": "Információs és kommunikációs technológiai (IKT) termékek",
+					"value": "Information and communication technology (ICT) goods"
+				},
+				{
+					"label": "Szabadidős termékek (sporteszközök, hangszerek stb.)",
+					"value": "Leisure goods (sports equipment, musical instruments, etc)"
+				},
+				{
+					"label": "Új autók",
+					"value": "New cars"
+				},
+				{
+					"label": "Használt autók",
+					"value": "Second-hand cars"
+				},
+				{
+					"label": "Egyéb személyszállító eszközök",
+					"value": "Other personal transport"
+				},
+				{
+					"label": "Járművek és egyéb személyszállító eszközök alkatrészei és tartozékai",
+					"value": "Spares and accessories for vehicles and other means of personal transport"
+				},
+				{
+					"label": "Járművek és egyéb személyszállító eszközök üzemanyagai és kenőanyagai",
+					"value": "Fuels and lubricants for vehicles and other means of personal transport"
+				},
+				{
+					"label": "Könyvek, újságok, magazinok, papír és írószer (kivéve a postai kézbesítést)",
+					"value": "Books, magazines, newspapers, stationery (excluding postal delivery)"
+				},
+				{
+					"label": "Hobbiállatok és a tartásukkal kapcsolatos termékek",
+					"value": "Pets and pet goods"
+				},
+				{
+					"label": "Elektromos testápolási készülékek",
+					"value": "Electrical appliances for personal care"
+				},
+				{
+					"label": "Kozmetikumok és testápolási cikkek",
+					"value": "Cosmetics and toiletries for personal care"
+				},
+				{
+					"label": "Ékszer, ezüsttárgyak, órák, karórák és kiegészítők",
+					"value": "Jewellery, silverware, clocks, watches and accessories"
+				},
+				{
+					"label": "Csecsemő- és gyermekgondozási cikkek",
+					"value": "Baby and child care articles"
+				},
+				{
+					"label": "Tisztításra és karbantartásra szolgáló termékek, takarítóeszközök és nem tartós háztartási cikkek",
+					"value": "Cleaning and maintenance products, articles for cleaning and non-durable household articles"
+				},
+				{
+					"label": "Egyéb",
+					"value": "Other"
+				}
+			]
+		},
+		"General Consumer Services": {
+			"value": "Általános fogyasztási szolgáltatások",
+			"values": [
+				{
+					"label": "Ingatlanügyletek",
+					"value": "Real estate services"
+				},
+				{
+					"label": "Új házak építése",
+					"value": "Construction of new houses"
+				},
+				{
+					"label": "Lakáskarbantartáshoz és -javításhoz kapcsolódó szolgáltatások",
+					"value": "House maintenance and improvement services"
+				},
+				{
+					"label": "Költöztetés és raktározás",
+					"value": "House removal and storage"
+				},
+				{
+					"label": "Takarítási szolgáltatások",
+					"value": "House cleaning services"
+				},
+				{
+					"label": "Testápolási szolgáltatások",
+					"value": "Personal care services"
+				},
+				{
+					"label": "Ruházat és lábbelik javítása, tisztítása és kölcsönzése",
+					"value": "Cleaning, repair and hiring of clothing and footwear"
+				},
+				{
+					"label": "Segítő-, kereső- és közvetítőszolgáltatások",
+					"value": "Support, research and intermediary services"
+				},
+				{
+					"label": "Járművek és egyéb szállítóeszközök karbantartása és javítása",
+					"value": "Maintenance and repair of vehicles and other transport"
+				},
+				{
+					"label": "Jogi szolgáltatások és számvitel",
+					"value": "Legal services & accountancy"
+				},
+				{
+					"label": "Temetkezési szolgáltatások",
+					"value": "Funeral services"
+				},
+				{
+					"label": "Gyermekgondozás",
+					"value": "Child care"
+				},
+				{
+					"label": "Hobbiállatokkal kapcsolatos szolgáltatások",
+					"value": "Pet services"
+				},
+				{
+					"label": "Egyéb",
+					"value": "Other"
+				}
+			]
+		},
+		"Financial Services": {
+			"value": "Pénzügyi szolgáltatások",
+			"values": [
+				{
+					"label": "Pénzügyi szolgáltatások – fizetési számla és fizetési szolgáltatások",
+					"value": "Financial Services - Payment account and payment services"
+				},
+				{
+					"label": "Pénzügyi szolgáltatások – hitelek (kivéve jelzálog/lakáshitelek)",
+					"value": "Financial Services - Credit (excluding mortgage/home loans)"
+				},
+				{
+					"label": "Pénzügyi szolgáltatások – jelzálog-, illetve lakáshitelek",
+					"value": "Financial Services - Mortgages / Home loans"
+				},
+				{
+					"label": "Pénzügyi szolgáltatások – megtakarítások",
+					"value": "Financial Services - Savings"
+				},
+				{
+					"label": "Pénzügyi szolgáltatások – egyéb",
+					"value": "Financial Services - Other"
+				},
+				{
+					"label": "Befektetések, nyugdíjak és értékpapírok",
+					"value": "Investments, pensions and securities"
+				},
+				{
+					"label": "Nem-életbiztosítás – otthon- és vagyonbiztosítás",
+					"value": "Non-life Insurance - Home and property"
+				},
+				{
+					"label": "Nem-életbiztosítás – közlekedés",
+					"value": "Non-life Insurance - Transport"
+				},
+				{
+					"label": "Nem-életbiztosítás – utazás",
+					"value": "Non-life Insurance – Travel"
+				},
+				{
+					"label": "Nem-életbiztosítás – egészség, baleset és egyéb",
+					"value": "Non-life Insurance - Health, accident and other"
+				},
+				{
+					"label": "Életbiztosítás",
+					"value": "Insurance - Life"
+				},
+				{
+					"label": "Egyéb",
+					"value": "Other"
+				}
+			]
+		},
+		"Postal services and electronic communications": {
+			"value": "Postai szolgáltatások és elektronikus kommunikáció",
+			"values": [
+				{
+					"label": "Postai és futárszolgáltatások",
+					"value": "Postal services & couriers"
+				},
+				{
+					"label": "Vonalas telefonos szolgáltatások",
+					"value": "Fixed telephone services"
+				},
+				{
+					"label": "Mobiltelefon-szolgáltatás",
+					"value": "Mobile telephone services"
+				},
+				{
+					"label": "Internetszolgáltatások",
+					"value": "Internet services"
+				},
+				{
+					"label": "Televíziós szolgáltatások",
+					"value": "Television services"
+				},
+				{
+					"label": "Más kommunikációs szolgáltatások",
+					"value": "Other communication services"
+				}
+			]
+		},
+		"Transport services": {
+			"value": "Szállítási szolgáltatások",
+			"values": [
+				{
+					"label": "Villamos, busz, metró és földalatti",
+					"value": "Tram, bus, metro and underground"
+				},
+				{
+					"label": "Vasút",
+					"value": "Railways"
+				},
+				{
+					"label": "Légitársaságok",
+					"value": "Airlines"
+				},
+				{
+					"label": "Taxi",
+					"value": "Taxi"
+				},
+				{
+					"label": "Tengeren, folyón történő és egyéb vízi szállítás",
+					"value": "Sea, river, other water transport"
+				},
+				{
+					"label": "Közlekedési infrastruktúra-szolgáltatások",
+					"value": "Transport infrastructure services"
+				},
+				{
+					"label": "Bérleti szolgáltatások",
+					"value": "Rental services"
+				},
+				{
+					"label": "Egyéb",
+					"value": "Other"
+				}
+			]
+		},
+		"Leisure Services": {
+			"value": "Szabadidős szolgáltatások",
+			"values": [
+				{
+					"label": "Szállodák és más üdülési szálláshelyek",
+					"value": "Hotels and other holiday accommodation"
+				},
+				{
+					"label": "Szervezett utazás",
+					"value": "Package travel"
+				},
+				{
+					"label": "Utazásközvetítés",
+					"value": "Travel agency services"
+				},
+				{
+					"label": "Ingatlanok időben megosztott használati joga (timeshare) és hasonlók",
+					"value": "Timeshare and similar"
+				},
+				{
+					"label": "Éttermek és bárok",
+					"value": "Restaurants and bars"
+				},
+				{
+					"label": "Sport és hobbitevékenységekhez kapcsolódó szolgáltatások",
+					"value": "Services related to sports and hobbies"
+				},
+				{
+					"label": "Kulturális és szórakoztató szolgáltatások",
+					"value": "Cultural and entertainment services"
+				},
+				{
+					"label": "Szerencsejáték, sorsolásos játékok",
+					"value": "Gambling, lotteries"
+				},
+				{
+					"label": "Más szabadidős szolgáltatások",
+					"value": "Other leisure services"
+				}
+			]
+		},
+		"Energy and Water": {
+			"value": "Energia és víz",
+			"values": [
+				{
+					"label": "Víz",
+					"value": "Water"
+				},
+				{
+					"label": "Villamos energia",
+					"value": "Electricity"
+				},
+				{
+					"label": "Földgáz",
+					"value": "Gas"
+				},
+				{
+					"label": "Egyéb energiahordozók",
+					"value": "Other energy sources"
+				}
+			]
+		},
+		"Health": {
+			"value": "Egészség",
+			"values": [
+				{
+					"label": "Vényköteles gyógyszerek",
+					"value": "Prescribed medication"
+				},
+				{
+					"label": "Vény nélkül kapható gyógyszerek",
+					"value": "Over-the-counter medication"
+				},
+				{
+					"label": "Betegek által használt orvosi eszközök és egyéb fizikai segédeszközök",
+					"value": "Medical devices and other physical aids used by patients"
+				},
+				{
+					"label": "Egészségügyi szolgáltatások",
+					"value": "Health services"
+				},
+				{
+					"label": "Idősek otthonai és otthoni ápolás",
+					"value": "Retirement homes and home care"
+				},
+				{
+					"label": "Egyéb",
+					"value": "Other"
+				}
+			]
+		},
+		"Education": {
+			"value": "Oktatás",
+			"values": [
+				{
+					"label": "Iskolák",
+					"value": "Schools"
+				},
+				{
+					"label": "Nyelvoktatás, gépjárművezető-oktatás és egyéb magánórák",
+					"value": "Language, driving instruction and other private courses"
+				},
+				{
+					"label": "Egyéb",
+					"value": "Other"
+				}
+			]
+		},
+		"Other": {
+			"value": "egyéb",
+			"values": [
+				{
+					"label": "Más (tartalmazza mind a termékeket, mind a szolgáltatásokat)",
+					"value": "Other (Includes both goods and services)"
+				}
+			]
+		}
+	},
+	"country": {
+		"value": "ország",
+		"values": [
+			{
+				"label": "Ausztria",
+				"value": "AT"
+			},
+			{
+				"label": "Belgium",
+				"value": "BE"
+			},
+			{
+				"label": "Bulgária",
+				"value": "BG"
+			},
+			{
+				"label": "Ciprus",
+				"value": "CY"
+			},
+			{
+				"label": "Cseh Köztársaság",
+				"value": "CZ"
+			},
+			{
+				"label": "Dánia",
+				"value": "DK"
+			},
+			{
+				"label": "Észtország",
+				"value": "EE"
+			},
+			{
+				"label": "Finnország",
+				"value": "FI"
+			},
+			{
+				"label": "Franciaország",
+				"value": "FR"
+			},
+			{
+				"label": "Németország",
+				"value": "DE"
+			},
+			{
+				"label": "Görögország",
+				"value": "GR"
+			},
+			{
+				"label": "Magyarország",
+				"value": "HU"
+			},
+			{
+				"label": "Izland",
+				"value": "IS"
+			},
+			{
+				"label": "Írország",
+				"value": "IE"
+			},
+			{
+				"label": "Olaszország",
+				"value": "IT"
+			},
+			{
+				"label": "Lettország",
+				"value": "LV"
+			},
+			{
+				"label": "Liechtenstein",
+				"value": "LI"
+			},
+			{
+				"label": "Litvánia",
+				"value": "LT"
+			},
+			{
+				"label": "Luxemburg",
+				"value": "LU"
+			},
+			{
+				"label": "Málta",
+				"value": "MT"
+			},
+			{
+				"label": "Hollandia",
+				"value": "NL"
+			},
+			{
+				"label": "Norvégia",
+				"value": "NO"
+			},
+			{
+				"label": "Lengyelország",
+				"value": "PL"
+			},
+			{
+				"label": "Portugália",
+				"value": "PT"
+			},
+			{
+				"label": "Románia",
+				"value": "RO"
+			},
+			{
+				"label": "Szlovákia",
+				"value": "SK"
+			},
+			{
+				"label": "Szlovénia",
+				"value": "SI"
+			},
+			{
+				"label": "Spanyolország",
+				"value": "ES"
+			},
+			{
+				"label": "Svédország",
+				"value": "SE"
+			},
+			{
+				"label": "Svájc",
+				"value": "CH"
+			},
+			{
+				"label": "Egyesült Királyság",
+				"value": "UK"
+			},
+			{
+				"label": "Ausztrália",
+				"value": "AU"
+			},
+			{
+				"label": "Brazília",
+				"value": "BR"
+			},
+			{
+				"label": "Kanada",
+				"value": "CA"
+			},
+			{
+				"label": "Kína",
+				"value": "CN"
+			},
+			{
+				"label": "Horvátország",
+				"value": "HR"
+			},
+			{
+				"label": "Szlovénia",
+				"value": "SR"
+			},
+			{
+				"label": "India",
+				"value": "IN"
+			},
+			{
+				"label": "Mexikó",
+				"value": "MX"
+			},
+			{
+				"label": "Oroszország",
+				"value": "RU"
+			},
+			{
+				"label": "Dél-Afrika",
+				"value": "ZA"
+			},
+			{
+				"label": "Törökország",
+				"value": "TR"
+			},
+			{
+				"label": "Egyesült Államok",
+				"value": "US"
+			},
+			{
+				"label": "Egyéb",
+				"value": "Other"
+			},
+			{
+				"label": "Nem ismert",
+				"value": "Do not know"
+			}
+		]
+	},
+	"distinction": {
+		"value": "megkeresés típusa",
+		"values": [
+			{
+				"label": "Panasz",
+				"value": "Complaint"
+			},
+			{
+				"label": "Kérdés",
+				"value": "Enquiry"
+			}
+		]
+	},
+	"selling_method": {
+		"value": "az eladás módja",
+		"values": [
+			{
+				"label": "Személyes",
+				"value": "Face-to-face"
+			},
+			{
+				"label": "Személyes: Szupermarket, hipermarket",
+				"value": "Face-to-face: Supermarket, hypermarket"
+			},
+			{
+				"label": "Személyes: Diszkontáruház",
+				"value": "Face-to-face: Discount store"
+			},
+			{
+				"label": "Személyes: Áruház",
+				"value": "Face-to-face: Department store"
+			},
+			{
+				"label": "Személyes: Kiskerekedelmi üzletlánc",
+				"value": "Face-to-face: Retail chain store"
+			},
+			{
+				"label": "Személyes: Kiskerekedelmi egység",
+				"value": "Face-to-face: Retail store"
+			},
+			{
+				"label": "Személyes: Kisebb üzlet",
+				"value": "Face-to-face: Small shop, small store"
+			},
+			{
+				"label": "Személyes: Zöldséges, éjjel-nappal nyitva tartó üzlet",
+				"value": "Face-to-face: Greengrocer, night shop"
+			},
+			{
+				"label": "Személyes: Szabadtéri piac, mezőgazdasági bolt",
+				"value": "Face-to-face: Street market, farm shop"
+			},
+			{
+				"label": "Személyes: Benzinkút",
+				"value": "Face-to-face: Petrol station"
+			},
+			{
+				"label": "Személyes: Iroda (ideértve a bankokat és más pénzintézeteket is)",
+				"value": "Face-to-face: Office (includes banks and other financial institutions)"
+			},
+			{
+				"label": "Személyes: Utazási iroda, utazásszervező ügynökség",
+				"value": "Face-to-face: Travel agency, tour operator agency"
+			},
+			{
+				"label": "Személyes: Kórház, klinika, sebészet",
+				"value": "Face-to-face: Hospital, clinic, surgery"
+			},
+			{
+				"label": "Személyes: Iskola",
+				"value": "Face-to-face: School"
+			},
+			{
+				"label": "Személyes: Sport- és szabadidős helyszínek",
+				"value": "Face-to-face: Sports and leisure premises"
+			},
+			{
+				"label": "Személyes: más típusú helyszínek",
+				"value": "Face-to-face: Other type of premises"
+			},
+			{
+				"label": "Távértékesítés  (pl. postai úton, telefonon), kikivéve az e-kereskedelmet, mobil kereskedelmet és az internetes árveréseket",
+				"value": "Distance selling (e.g. phone, post), excluding e-commerce, mobile commerce and internet auctions"
+			},
+			{
+				"label": "E-kereskedelem, kivéve a mobil kereskedelmet és az internetes árveréseket",
+				"value": "E-commerce, excluding mobile commerce and internet auctions"
+			},
+			{
+				"label": "Mobil kereskedelem",
+				"value": "Mobile commerce"
+			},
+			{
+				"label": "Piac, kereskedelmi vásár",
+				"value": "Market, trade fair"
+			},
+			{
+				"label": "Árverések",
+				"value": "Auctions"
+			},
+			{
+				"label": "Internetes árverések",
+				"value": "Internet auctions"
+			},
+			{
+				"label": "Üzlethelyiségen kívül történő eladás",
+				"value": "Selling away from business premises (off-premises)"
+			},
+			{
+				"label": "Egyéb eladási módok",
+				"value": "Other selling methods"
+			},
+			{
+				"label": "Nem tudja",
+				"value": "Do not know"
+			},
+			{
+				"label": "Nem alkalmazható",
+				"value": "Not applicable"
+			}
+		]
+	},
+	"advertising_method": {
+		"value": "a hirdetés módja",
+		"values": [
+			{
+				"label": "Személyes",
+				"value": "Face-to-face"
+			},
+			{
+				"label": "Telefonhívás",
+				"value": "Phone call"
+			},
+			{
+				"label": "Szöveges üzenet",
+				"value": "Text message"
+			},
+			{
+				"label": "Audiovizuális (TV stb.)",
+				"value": "Audiovisual (TV, etc.)"
+			},
+			{
+				"label": "Nyomtatott (újság, prospektus, szórólap stb.)",
+				"value": "Print (newspaper, brochure, flyer, etc.)"
+			},
+			{
+				"label": "Internetes (weboldal)",
+				"value": "Internet (website)"
+			},
+			{
+				"label": "E-mail",
+				"value": "E-mail"
+			},
+			{
+				"label": "Rádió",
+				"value": "Radio"
+			},
+			{
+				"label": "Utcai (rögzített hirdetések, pl. óriásplakátok, illetve mobil hirdetések, pl. járműveken elhelyezett hirdetések)",
+				"value": "Outdoor (fixed advertising such as on billboards or mobile advertising such as on vehicles)"
+			},
+			{
+				"label": "Egyéb",
+				"value": "Other"
+			},
+			{
+				"label": "Nem ismert",
+				"value": "Do not know"
+			},
+			{
+				"label": "Nem alkalmazható",
+				"value": "Not applicable"
+			}
+		]
+	},
+	"payment_means": {
+		"value": "a fizetés módja",
+		"values": [
+			{
+				"label": "Készpénz",
+				"value": "Cash"
+			},
+			{
+				"label": "Betéti kártya",
+				"value": "Debit card"
+			},
+			{
+				"label": "Hitelkártya",
+				"value": "Credit card"
+			},
+			{
+				"label": "Papíralapú csekk, papíralapú utalvány és papíralapú utazási csekk",
+				"value": "Paper cheque, paper-based vouchers and paper-based traveller's cheques"
+			},
+			{
+				"label": "Átutalás",
+				"value": "Credit transfer"
+			},
+			{
+				"label": "Csoportos beszedés",
+				"value": "Direct debit"
+			},
+			{
+				"label": "Elektronikus pénz",
+				"value": "Electronic money"
+			},
+			{
+				"label": "Készpénzátutalás",
+				"value": "Money remittance"
+			},
+			{
+				"label": "Előre fizetett kártyák",
+				"value": "Pre-paid cards"
+			},
+			{
+				"label": "Mobil fizetések (pl. SMS)",
+				"value": "Mobile payments (e.g. SMS)"
+			},
+			{
+				"label": "Egyéb",
+				"value": "Other"
+			},
+			{
+				"label": "Nem ismert",
+				"value": "Do not know"
+			}
+		]
+	},
+	"transaction_currency": {
+		"value": "az ügylet pénzneme",
+		"values": [
+			{
+				"label": "EUR",
+				"value": "EUR"
+			},
+			{
+				"label": "BGN",
+				"value": "BRL"
+			},
+			{
+				"label": "CZK",
+				"value": "CZK"
+			},
+			{
+				"label": "DKK",
+				"value": "DKK"
+			},
+			{
+				"label": "EEK",
+				"value": "EEK"
+			},
+			{
+				"label": "HUF",
+				"value": "HUF"
+			},
+			{
+				"label": "LVL",
+				"value": "LVL"
+			},
+			{
+				"label": "LTL",
+				"value": "LTL"
+			},
+			{
+				"label": "PLN",
+				"value": "PLN"
+			},
+			{
+				"label": "RON",
+				"value": "RON"
+			},
+			{
+				"label": "SEK",
+				"value": "SEK"
+			},
+			{
+				"label": "GBP",
+				"value": "GBP"
+			},
+			{
+				"label": "ISK",
+				"value": "ISK"
+			},
+			{
+				"label": "CHF",
+				"value": "CHF"
+			},
+			{
+				"label": "NOK",
+				"value": "NOK"
+			},
+			{
+				"label": "USD",
+				"value": "USD"
+			},
+			{
+				"label": "Egyéb",
+				"value": "Other"
+			}
+		]
+	}
+}

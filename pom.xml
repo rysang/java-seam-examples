@@ -7,11 +7,12 @@
   <packaging>war</packaging>
   <version>1.0</version>
 
-  <name>survy</name>
+  <name>eccrs-ext</name>
   <url>http://maven.apache.org</url>
 
   <properties>
     <spring.version>3.0.5.RELEASE</spring.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
   <dependencies>
@@ -24,7 +25,13 @@
     <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
-      <version>1.7.1</version>
+      <version>2.2.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.6</version>
     </dependency>
 
     <dependency>
@@ -247,6 +254,22 @@
         <configuration>
           <scanIntervalSeconds>1000</scanIntervalSeconds>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>native2ascii-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>native2ascii</goal>
+            </goals>
+            <configuration>
+              <src>${project.basedir}/src/main/resources/org/msg/i18n/unencoded</src>
+              <dest>${project.basedir}/src/main/resources/org/msg/i18n/enc</dest>
+              <encoding>UTF8</encoding>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
