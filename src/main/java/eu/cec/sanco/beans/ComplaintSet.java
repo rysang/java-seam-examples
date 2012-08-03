@@ -1,5 +1,6 @@
 package eu.cec.sanco.beans;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -39,6 +40,10 @@ public class ComplaintSet {
 
   public void setCreation_date(String creation_date) {
     this.creation_date = creation_date;
+  }
+
+  public Date getModifDate() {
+    return new Date(new Long(modification_date));
   }
 
   public String getModification_date() {

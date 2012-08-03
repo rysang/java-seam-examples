@@ -4,13 +4,13 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 
-	<p:panel id="panelComplaints"
+	<p:panel id="panelComplaintsLocked"
 		header="#{ctrlm['list.of.complaints.title.open.complaints']}"
 		style="margin-bottom:10px;">
 		<h:form>
-			<p:dataTable id="unlockedComplDt" var="complaint"
-				value="#{complaintActions.unlockedComplaints}"
-				widgetVar="complaintTable"
+			<p:dataTable id="lockedComplDt" var="complaint"
+				value="#{complaintActions.lockedComplaints}"
+				widgetVar="complaintLockedTable"
 				emptyMessage="No complaints found with given criteria"
 				paginator="true" rows="10" paginatorPosition="bottom"
 				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"

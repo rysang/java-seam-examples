@@ -2,6 +2,7 @@ package eu.cec.sanco.services.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,8 +14,10 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.google.gson.Gson;
 
+import eu.cec.sanco.beans.AppState;
 import eu.cec.sanco.beans.ComplaintSet;
 import eu.cec.sanco.beans.Entry;
+import eu.cec.sanco.beans.Organisation;
 import eu.cec.sanco.services.api.PersistenceService;
 
 public class PersistenceServiceImpl implements PersistenceService {
@@ -54,10 +57,33 @@ public class PersistenceServiceImpl implements PersistenceService {
         });
   }
 
+  public AppState getAppState() {
+    LOG.info("Searching for appstate.");
+    return jdbcTemplate.queryForObject("select * from complaints c where c.id = ?", new Object[] { "app_state" },
+        new RowMapper<AppState>() {
+          public AppState mapRow(ResultSet rs, int rowNum) throws SQLException {
+            AppState appState = gson.fromJson(rs.getString("VALUE"), AppState.class);
+            return appState;
+          }
+        });
+  }
+
+  public Organisation getOrganisation() {
+    LOG.info("Searching for organisation.");
+    return jdbcTemplate.queryForObject("select * from complaints c where c.id = ?", new Object[] { "organisation" },
+        new RowMapper<Organisation>() {
+          public Organisation mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Organisation org = gson.fromJson(rs.getString("VALUE"), Organisation.class);
+            return org;
+          }
+        });
+  }
+
   public List<Entry> getEntries() {
     LOG.info("Getting all entries.");
 
-    return jdbcTemplate.query("select * from complaints c where c.id <> 'app_state' and c.id <> 'organisation' order by c.timestamp desc",
+    return jdbcTemplate.query(
+        "select * from complaints c where c.id <> 'app_state' and c.id <> 'organisation' order by c.timestamp desc",
         new RowMapper<Entry>() {
           public Entry mapRow(ResultSet rs, int rowNum) throws SQLException {
             Entry entry = new Entry();
@@ -68,5 +94,31 @@ public class PersistenceServiceImpl implements PersistenceService {
             return entry;
           }
         });
+  }
+
+  public List<ComplaintSet> getUnlockedComplaints() {
+    List<Entry> allEntries = getEntries();
+    ArrayList<ComplaintSet> unlockedEntries = new ArrayList<ComplaintSet>(allEntries.size());
+
+    for (Entry e : allEntries) {
+      if (!"true".equals(e.getComplaintSet().getLocked())) {
+        unlockedEntries.add(e.getComplaintSet());
+      }
+    }
+
+    return unlockedEntries;
+  }
+  
+  public List<ComplaintSet> getLockedComplaints() {
+    List<Entry> allEntries = getEntries();
+    ArrayList<ComplaintSet> lockedEntries = new ArrayList<ComplaintSet>(allEntries.size());
+
+    for (Entry e : allEntries) {
+      if (!"false".equals(e.getComplaintSet().getLocked())) {
+        lockedEntries.add(e.getComplaintSet());
+      }
+    }
+
+    return lockedEntries;
   }
 }

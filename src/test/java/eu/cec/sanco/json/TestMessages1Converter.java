@@ -84,54 +84,58 @@ public class TestMessages1Converter extends TestCase {
       OutputStreamWriter w = new OutputStreamWriter(fos, Charset.forName("UTF-8"));
 
       Map<String, Object> qaGoodsServices = (Map<String, Object>) levels.get("Quality of goods and services");
-      w.append("levels.").append("qa.goods.sevcs.value=").append(qaGoodsServices.get("value").toString()).append("\n");
+      w.append("levels.").append(rebuildString("Quality of goods and services")).append(".value=")
+          .append(qaGoodsServices.get("value").toString()).append("\n");
 
       List<Map<String, Object>> values = (List<Map<String, Object>>) qaGoodsServices.get("values");
 
       for (Map<String, Object> val : values) {
         String v = rebuildString(val.get("value").toString());
-        w.append("levels.").append("qa.goods.sevcs.").append(v).append('=');
+        w.append("levels.").append(rebuildString("Quality of goods and services")).append('.').append(v).append('=');
         w.append(val.get("label").toString()).append('\n');
       }
 
       w.append('\n');
 
       qaGoodsServices = (Map<String, Object>) levels.get("Delivery of goods/ Provision of services");
-      w.append("levels.").append("deliv.goods.prov.sevcs.value=").append(qaGoodsServices.get("value").toString())
-          .append("\n");
+      w.append("levels.").append(rebuildString("Delivery of goods/ Provision of services")).append(".value=")
+          .append(qaGoodsServices.get("value").toString()).append("\n");
 
       values = (List<Map<String, Object>>) qaGoodsServices.get("values");
 
       for (Map<String, Object> val : values) {
         String v = rebuildString(val.get("value").toString());
-        w.append("levels.").append("deliv.goods.prov.sevcs.").append(v).append('=');
+        w.append("levels.").append(rebuildString("Delivery of goods/ Provision of services")).append('.').append(v)
+            .append('=');
         w.append(val.get("label").toString()).append('\n');
       }
 
       w.append('\n');
 
       qaGoodsServices = (Map<String, Object>) levels.get("Price / Tariff");
-      w.append("levels.").append("price.tarrif.value=").append(qaGoodsServices.get("value").toString()).append("\n");
+      w.append("levels.").append(rebuildString("Price / Tariff")).append(".value=")
+          .append(qaGoodsServices.get("value").toString()).append("\n");
 
       values = (List<Map<String, Object>>) qaGoodsServices.get("values");
 
       for (Map<String, Object> val : values) {
         String v = rebuildString(val.get("value").toString());
-        w.append("levels.").append("price.tarrif.").append(v).append('=');
+        w.append("levels.").append(rebuildString("Price / Tariff")).append('.').append(v).append('=');
         w.append(val.get("label").toString()).append('\n');
       }
 
       w.append('\n');
 
       qaGoodsServices = (Map<String, Object>) levels.get("Invoicing / billing and debt collection");
-      w.append("levels.").append("invoicing.billing.debt.coll.value=").append(qaGoodsServices.get("value").toString())
-          .append("\n");
+      w.append("levels.").append(rebuildString("Invoicing / billing and debt collection")).append(".value=")
+          .append(qaGoodsServices.get("value").toString()).append("\n");
 
       values = (List<Map<String, Object>>) qaGoodsServices.get("values");
 
       for (Map<String, Object> val : values) {
         String v = rebuildString(val.get("value").toString());
-        w.append("levels.").append("invoicing.billing.debt.coll.").append(v).append('=');
+        w.append("levels.").append(rebuildString("Invoicing / billing and debt collection")).append('.').append(v)
+            .append('=');
         w.append(val.get("label").toString()).append('\n');
       }
 

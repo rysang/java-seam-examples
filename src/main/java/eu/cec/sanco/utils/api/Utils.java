@@ -12,4 +12,6 @@ public interface Utils {
   public String getCountryShort(String countryName);
 
   public String generateUser(String country);
+
+  public String rebuildString(String str);
 }

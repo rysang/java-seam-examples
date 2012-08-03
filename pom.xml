@@ -18,7 +18,7 @@
   <dependencies>
     <dependency>
       <groupId>org.primefaces.themes</groupId>
-      <artifactId>south-street</artifactId>
+      <artifactId>sunny</artifactId>
       <version>1.0.6</version>
     </dependency>
 
@@ -264,8 +264,7 @@
               <goal>native2ascii</goal>
             </goals>
             <configuration>
-              <src>${project.basedir}/src/main/resources/org/msg/i18n/unencoded</src>
-              <dest>${project.basedir}/src/main/resources/org/msg/i18n/enc</dest>
+              <src>${project.basedir}/src/main/resources/org/msg/i18n</src>
               <encoding>UTF8</encoding>
             </configuration>
           </execution>

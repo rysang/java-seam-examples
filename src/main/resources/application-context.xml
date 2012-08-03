@@ -50,4 +50,7 @@
     <property name="gson" ref="gson" />
   </bean>
 
+  <bean id="organisation" factory-bean="persistenceService" factory-method="getOrganisation" />
+  <bean id="appState" factory-bean="persistenceService" factory-method="getAppState" />
+
 </beans>

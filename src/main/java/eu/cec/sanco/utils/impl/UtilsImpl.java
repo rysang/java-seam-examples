@@ -6,9 +6,12 @@ import java.util.Random;
 
 import javax.faces.model.SelectItem;
 
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import eu.cec.sanco.beans.AppState;
 import eu.cec.sanco.utils.api.Utils;
 
 @Scope("singleton")
@@ -17,9 +20,33 @@ public class UtilsImpl implements Utils {
 
   private List<SelectItem> availableCountries;
 
+  @Autowired
+  private AppState appState;
+
   private static char[] ALL_CHARS = null;
 
   private static final Random RANDOM = new Random(System.currentTimeMillis());
+
+  public String rebuildString(String str) {
+    String[] split = str.replaceAll("[^A-Za-z]", " ").split("\\s");
+    StringBuilder ret = new StringBuilder();
+    List<String> tmp = new ArrayList<String>(split.length);
+
+    for (String s : split) {
+      if (!StringUtils.isEmpty(s.trim())) {
+        tmp.add(s.trim().toLowerCase());
+      }
+    }
+
+    for (int i = 0; i < tmp.size(); i++) {
+      ret.append(tmp.get(i));
+      if (i < (tmp.size() - 1)) {
+        ret.append('.');
+      }
+    }
+
+    return ret.toString();
+  }
 
   public List<SelectItem> getAvailableCountries() {
     if (availableCountries == null) {
@@ -249,5 +276,9 @@ public class UtilsImpl implements Utils {
 
   public static void main(String[] args) {
     System.out.println(new UtilsImpl().getKeys("EE-V1-z38"));
+  }
+
+  public String getVersion() {
+    return appState.getVersion();
   }
 }
