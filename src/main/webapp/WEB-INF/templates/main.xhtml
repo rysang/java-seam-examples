@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<f:view locale="#{localeService.currentLocale}">
+	<h:head>
+		<ui:include src="/WEB-INF/includes/styles.xhtml" />
+	</h:head>
+	<h:body>
+
+		<h:form id="toolbarForm">
+			<p:toolbar>
+				<p:toolbarGroup align="right">
+					<h:panelGrid columns="6">
+						<h:outputText style="font-size: 12px; color: white"
+							value="#{ctrlm['more.translations.version']} #{utils.version}" />
+
+						<h:outputLink
+							value="http://ec.europa.eu/consumers/complaints/policy_framework_en.htm"
+							target="_blank">
+							<h:outputText style="font-size: 12px"
+								value="#{ctrlm['more.translations.recommendation']}" />
+						</h:outputLink>
+						<h:outputLink
+							value="http://ec.europa.eu/consumers/complaints/policy_framework_en.htm"
+							target="_blank">
+							<h:outputText style="font-size: 12px"
+								value="#{ctrlm['more.translations.help']}" />
+						</h:outputLink>
+						<h:outputLink
+							value="http://ec.europa.eu/consumers/complaints/policy_framework_en.htm"
+							target="_blank">
+							<h:outputText style="font-size: 12px"
+								value="#{ctrlm['more.translations.mou']}" />
+						</h:outputLink>
+						<p:selectOneMenu value="#{localeService.currentLocale}">
+							<f:selectItem itemValue="bg" itemLabel="Bulgarian" />
+							<f:selectItem itemValue="cs" itemLabel="Czech" />
+							<f:selectItem itemValue="da" itemLabel="Danish" />
+							<f:selectItem itemValue="nl" itemLabel="Dutch" />
+							<f:selectItem itemValue="en" itemLabel="English" />
+							<f:selectItem itemValue="et" itemLabel="Estonian" />
+							<f:selectItem itemValue="fi" itemLabel="Finnish" />
+							<f:selectItem itemValue="fr" itemLabel="French" />
+							<f:selectItem itemValue="de" itemLabel="German" />
+							<f:selectItem itemValue="el" itemLabel="Greek" />
+							<f:selectItem itemValue="hu" itemLabel="Hungarian" />
+							<f:selectItem itemValue="it" itemLabel="Italian" />
+							<f:selectItem itemValue="lv" itemLabel="Latvian" />
+							<f:selectItem itemValue="lt" itemLabel="Lithuanian" />
+							<f:selectItem itemValue="mt" itemLabel="Maltese" />
+							<f:selectItem itemValue="pl" itemLabel="Polish" />
+							<f:selectItem itemValue="pt" itemLabel="Portuguese" />
+							<f:selectItem itemValue="ro" itemLabel="Romanian" />
+							<f:selectItem itemValue="sk" itemLabel="Slovak" />
+							<f:selectItem itemValue="sl" itemLabel="Slovenian" />
+							<f:selectItem itemValue="es" itemLabel="Spanish" />
+							<f:selectItem itemValue="sv" itemLabel="Swedish" />
+							<p:ajax event="change" update=":toolbarForm :mainCenterPanel" />
+						</p:selectOneMenu>
+					</h:panelGrid>
+				</p:toolbarGroup>
+			</p:toolbar>
+		</h:form>
+
+		<br />
+
+		<p:panel id="mainCenterPanel">
+			<ui:insert name="center">
+			</ui:insert>
+		</p:panel>
+	</h:body>
+</f:view>
+</html>

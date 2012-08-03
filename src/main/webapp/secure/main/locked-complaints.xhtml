@@ -46,7 +46,8 @@
 					<h:outputText value="#{complaint.sector}" />
 				</p:column>
 
-				<p:column id="typesColumn" sortBy="#{complaintActions.transfComplTypes(complaint)}"
+				<p:column id="typesColumn"
+					sortBy="#{complaintActions.transfComplTypes(complaint)}"
 					headerText="#{ctrlm['list.of.complaints.type.of.complaint']}"
 					filterMatchMode="contains">
 					<h:outputText
@@ -57,7 +58,7 @@
 				<p:column>
 					<p:commandLink value="Edit" onclick="editDialogVar.show()" />
 					<p:dialog id="editDialog" header="Edit" widgetVar="editDialogVar"
-						modal="true">
+						resizable="false" modal="true">
 						<h:outputText value="Resistance to PrimeFaces is futile!" />
 					</p:dialog>
 				</p:column>
@@ -69,9 +70,11 @@
 				<p:column>
 					<h:selectBooleanCheckbox title="Select" />
 				</p:column>
-
-
 			</p:dataTable>
+			<p:blockUI block="lockedComplDt" trigger="lockedComplDt">  
+        			LOADING
+			</p:blockUI>
+
 
 		</h:form>
 
