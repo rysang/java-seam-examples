@@ -4,10 +4,20 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 
+
 	<p:panel id="panelComplaints"
 		header="#{ctrlm['list.of.complaints.title.open.complaints']}"
-		style="margin-bottom:10px;">
+		style="margin-bottom:10px;width: 100%">
 		<h:form>
+
+			<p:toolbar>
+				<p:toolbarGroup align="right">
+					<h:panelGrid columns="6">
+						<p:commandButton value="#{ctrlm['list.of.complaints.new.complaint']}" ajax="false" />
+					</h:panelGrid>
+				</p:toolbarGroup>
+			</p:toolbar>
+
 			<p:dataTable id="unlockedComplDt" var="complaint"
 				value="#{complaintActions.unlockedComplaints}"
 				widgetVar="complaintTable"
@@ -72,7 +82,7 @@
 				</p:column>
 			</p:dataTable>
 			<p:blockUI block="unlockedComplDt" trigger="unlockedComplDt">  
-        			LOADING
+        			<h:outputText value="#{ctrlm['submissions.loading']}" />
 			</p:blockUI>
 
 		</h:form>

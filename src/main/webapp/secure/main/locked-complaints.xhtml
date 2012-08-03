@@ -71,8 +71,8 @@
 					<h:selectBooleanCheckbox title="Select" />
 				</p:column>
 			</p:dataTable>
-			<p:blockUI block="lockedComplDt" trigger="lockedComplDt">  
-        			LOADING
+			<p:blockUI block="lockedComplDt" trigger="lockedComplDt">
+				<h:outputText value="#{ctrlm['submissions.loading']}" />
 			</p:blockUI>
 
 
