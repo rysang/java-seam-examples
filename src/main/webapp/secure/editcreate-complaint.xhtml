@@ -1,0 +1,150 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/main.xhtml">
+	<ui:define name="center">
+		<p:panel header="#{ctrlm['complaint.form.contact.informations']}">
+			<p:panelGrid style="width:100%" styleClass="noBorder">
+				<p:row>
+					<p:column>
+						<p:fieldset legend="#{ctrlm['complaint.form.full.name']}">
+							<p:inputText id="contact_name"
+								value="#{complaintActions.currentEntry.complaintSet.contact_name}"
+								style="width:100%" />
+						</p:fieldset>
+					</p:column>
+					<p:column>
+						<p:fieldset legend="#{ctrlm['complaint.form.email']}">
+							<p:inputText id="contact_email"
+								value="#{complaintActions.currentEntry.complaintSet.contact_email}"
+								style="width:100%" />
+						</p:fieldset>
+					</p:column>
+					<p:column>
+						<p:fieldset legend="#{ctrlm['complaint.form.tel']}">
+							<p:inputText id="contact_tel"
+								value="#{complaintActions.currentEntry.complaintSet.contact_tel}"
+								style="width:100%" />
+						</p:fieldset>
+					</p:column>
+					<p:column>
+						<p:fieldset legend="#{ctrlm['complaint.form.fax']}">
+							<p:inputText id="contact_fax"
+								value="#{complaintActions.currentEntry.complaintSet.contact_fax}"
+								style="width:100%" />
+						</p:fieldset>
+					</p:column>
+				</p:row>
+
+
+				<p:row>
+					<p:column colspan="2">
+						<p:fieldset legend="#{ctrlm['complaint.form.address']}">
+							<p:inputText id="contact_address"
+								value="#{complaintActions.currentEntry.complaintSet.contact_address}"
+								style="width:100%" />
+						</p:fieldset>
+					</p:column>
+					<p:column>
+						<p:fieldset legend="#{ctrlm['complaint.form.town']}">
+							<p:inputText id="contact_town"
+								value="#{complaintActions.currentEntry.complaintSet.contact_town}"
+								style="width:100%" />
+						</p:fieldset>
+					</p:column>
+					<p:column>
+						<p:fieldset legend="#{ctrlm['complaint.form.postal.code']}">
+							<p:inputText id="contact_postcode"
+								value="#{complaintActions.currentEntry.complaintSet.contact_postcode}"
+								style="width:100%" />
+						</p:fieldset>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:fieldset
+							legend="#{ctrlm['complaint.form.country.of.the.consumer']}">
+							<p:selectOneMenu id="consumer_country"
+								value="#{complaintActions.currentEntry.complaintSet.consumer_country}">
+								<f:selectItems value="#{utils.availableCountries}" />
+							</p:selectOneMenu>
+						</p:fieldset>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</p:panel>
+		<br />
+		<p:panel header="#{ctrlm['complaint.form.general.informations']}">
+			<p:panelGrid style="width:100%" styleClass="noBorder">
+				<p:row>
+					<p:column>
+						<p:fieldset legend="#{ctrlm['complaint.form.reference']}">
+							<p:inputText id="reference"
+								value="#{complaintActions.currentEntry.complaintSet.reference}"
+								disabled="true" style="width:100%" />
+						</p:fieldset>
+					</p:column>
+					<p:column>
+						<p:fieldset legend="#{ctrlm['complaint.form.complaint.date']}">
+							<p:calendar
+								value="#{complaintActions.currentEntry.complaintSet.modification_date}"
+								id="modification_date" showOn="button" maxdate="#{utils.now}" />
+						</p:fieldset>
+					</p:column>
+					<p:column>
+						<p:fieldset legend="#{ctrlm['complaint.form.organisation.id']}">
+							<p:inputText id="organisation_id"
+								value="#{complaintActions.currentEntry.complaintSet.organisation_id}"
+								disabled="true" style="width:100%" />
+						</p:fieldset>
+					</p:column>
+					<p:column>
+						<p:fieldset legend="#{ctrlm['complaint.form.reason.for.contact']}">
+							<p:selectOneMenu id="distinction"
+								value="#{complaintActions.currentEntry.complaintSet.distinction}">
+								<f:selectItem
+									itemLabel="#{appmsg['distinction.name.complaint']}"
+									itemValue="Complaint" />
+								<f:selectItem itemLabel="#{appmsg['distinction.name.enquiry']}"
+									itemValue="Enquiry" />
+							</p:selectOneMenu>
+						</p:fieldset>
+					</p:column>
+				</p:row>
+
+				<p:row>
+					<p:column>
+						<p:fieldset legend="#{ctrlm['complaint.form.trader.name']}">
+							<p:inputText id="trader_name"
+								value="#{complaintActions.currentEntry.complaintSet.trader_name}"
+								style="width:100%" />
+						</p:fieldset>
+					</p:column>
+					<p:column>
+						<p:fieldset
+							legend="#{ctrlm['complaint.form.country.of.the.trader']}">
+							<p:selectOneMenu id="trader_country"
+								value="#{complaintActions.currentEntry.complaintSet.trader_country}">
+								<f:selectItems value="#{utils.availableCountries}" />
+							</p:selectOneMenu>
+						</p:fieldset>
+					</p:column>
+					<p:column colspan="2">
+						<p:fieldset legend="#{ctrlm['complaint.form.advertising.method']}">
+							<p:selectOneMenu id="advertising_method"
+								value="#{complaintActions.currentEntry.complaintSet.advertising_method}">
+								<f:selectItem
+									itemLabel="#{appmsg['selling.method.face.to.face']}"
+									itemValue="Face-to-face" />
+								<f:selectItem
+									itemLabel="#{appmsg['selling.method.face.to.face.supermarket.hypermarket']}"
+									itemValue="Face-to-face: Supermarket, hypermarket" />
+							</p:selectOneMenu>
+						</p:fieldset>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</p:panel>
+	</ui:define>
+</ui:composition>

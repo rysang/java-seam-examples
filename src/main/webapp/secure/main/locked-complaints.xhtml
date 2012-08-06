@@ -8,7 +8,7 @@
 		header="#{ctrlm['list.of.complaints.title.open.complaints']}"
 		style="margin-bottom:10px;">
 		<h:form>
-			<p:dataTable id="lockedComplDt" var="complaint"
+			<p:dataTable id="lockedComplDt" var="entry"
 				value="#{complaintActions.lockedComplaints}"
 				widgetVar="complaintLockedTable"
 				emptyMessage="No complaints found with given criteria"
@@ -16,42 +16,42 @@
 				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 				rowsPerPageTemplate="5,10,15">
 
-				<p:column id="refColumn" sortBy="#{complaint.reference}"
+				<p:column id="refColumn" sortBy="#{entry.complaintSet.reference}"
 					headerText="#{ctrlm['list.of.complaints.reference']}"
 					filterMatchMode="contains">
-					<h:outputText value="#{complaint.reference}" />
+					<h:outputText value="#{entry.complaintSet.reference}" />
 				</p:column>
 
-				<p:column id="dateColumn" sortBy="#{complaint.modifDate}"
+				<p:column id="dateColumn" sortBy="#{entry.complaintSet.modification_date}"
 					headerText="#{ctrlm['list.of.complaints.date']}"
 					filterMatchMode="contains">
-					<h:outputText value="#{complaint.modifDate}" />
+					<h:outputText value="#{entry.complaintSet.modification_date}" />
 				</p:column>
 
-				<p:column id="consNameColumn" sortBy="#{complaint.contact_name}"
+				<p:column id="consNameColumn" sortBy="#{entry.complaintSet.contact_name}"
 					headerText="#{ctrlm['list.of.complaints.consumer.name']}"
 					filterMatchMode="contains">
-					<h:outputText value="#{complaint.contact_name}" />
+					<h:outputText value="#{entry.complaintSet.contact_name}" />
 				</p:column>
 
-				<p:column id="distinctionColumn" sortBy="#{complaint.distinction}"
+				<p:column id="distinctionColumn" sortBy="#{entry.complaintSet.distinction}"
 					headerText="#{ctrlm['list.of.complaints.distinction']}"
 					filterMatchMode="contains">
-					<h:outputText value="#{complaint.distinction}" />
+					<h:outputText value="#{entry.complaintSet.distinction}" />
 				</p:column>
 
-				<p:column id="sectorColumn" sortBy="#{complaint.sector}"
+				<p:column id="sectorColumn" sortBy="#{entry.complaintSet.sector}"
 					headerText="#{ctrlm['list.of.complaints.sector']}"
 					filterMatchMode="contains">
-					<h:outputText value="#{complaint.sector}" />
+					<h:outputText value="#{entry.complaintSet.sector}" />
 				</p:column>
 
 				<p:column id="typesColumn"
-					sortBy="#{complaintActions.transfComplTypes(complaint)}"
+					sortBy="#{complaintActions.transfComplTypes(entry.complaintSet)}"
 					headerText="#{ctrlm['list.of.complaints.type.of.complaint']}"
 					filterMatchMode="contains">
 					<h:outputText
-						value="#{complaintActions.transfComplTypes(complaint)}"
+						value="#{complaintActions.transfComplTypes(entry.complaintSet)}"
 						escape="false" />
 				</p:column>
 

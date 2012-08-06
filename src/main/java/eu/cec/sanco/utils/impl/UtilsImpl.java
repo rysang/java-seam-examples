@@ -1,9 +1,12 @@
 package eu.cec.sanco.utils.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.ResourceBundle;
 
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import org.apache.commons.lang.StringUtils;
@@ -47,43 +50,65 @@ public class UtilsImpl implements Utils {
 
     return ret.toString();
   }
+  
+  public Date getNow() {
+    return new Date();
+  }
 
   public List<SelectItem> getAvailableCountries() {
-    if (availableCountries == null) {
-      availableCountries = new ArrayList<SelectItem>(20);
+    // if (availableCountries == null) {
+    availableCountries = new ArrayList<SelectItem>(20);
 
-      availableCountries.add(new SelectItem("Austria"));
-      availableCountries.add(new SelectItem("Belgium"));
-      availableCountries.add(new SelectItem("Bulgaria"));
-      availableCountries.add(new SelectItem("Cyprus"));
-      availableCountries.add(new SelectItem("Czech Republic"));
-      availableCountries.add(new SelectItem("Denmark"));
-      availableCountries.add(new SelectItem("Estonia"));
-      availableCountries.add(new SelectItem("Finland"));
-      availableCountries.add(new SelectItem("France"));
-      availableCountries.add(new SelectItem("Germany"));
-      availableCountries.add(new SelectItem("Greece"));
-      availableCountries.add(new SelectItem("Hungary"));
-      availableCountries.add(new SelectItem("Iceland"));
-      availableCountries.add(new SelectItem("Ireland"));
-      availableCountries.add(new SelectItem("Italy"));
-      availableCountries.add(new SelectItem("Latvia"));
-      availableCountries.add(new SelectItem("Liechtenstein"));
-      availableCountries.add(new SelectItem("Lithuania"));
-      availableCountries.add(new SelectItem("Luxembourg"));
-      availableCountries.add(new SelectItem("Malta"));
-      availableCountries.add(new SelectItem("Netherlands"));
-      availableCountries.add(new SelectItem("Norway"));
-      availableCountries.add(new SelectItem("Poland"));
-      availableCountries.add(new SelectItem("Portugal"));
-      availableCountries.add(new SelectItem("Romania"));
-      availableCountries.add(new SelectItem("Slovakia"));
-      availableCountries.add(new SelectItem("Slovenia"));
-      availableCountries.add(new SelectItem("Spain"));
-      availableCountries.add(new SelectItem("Sweden"));
-      availableCountries.add(new SelectItem("Switzerland"));
-      availableCountries.add(new SelectItem("United Kingdom"));
-    }
+    FacesContext context = FacesContext.getCurrentInstance();
+    ResourceBundle bundle = context.getApplication().getResourceBundle(context, "appmsg");
+
+    availableCountries.add(new SelectItem("AT", bundle.getString("country.name.at")));
+    availableCountries.add(new SelectItem("BE", bundle.getString("country.name.be")));
+    availableCountries.add(new SelectItem("BG", bundle.getString("country.name.bg")));
+    availableCountries.add(new SelectItem("CY", bundle.getString("country.name.cy")));
+    availableCountries.add(new SelectItem("CZ", bundle.getString("country.name.cz")));
+    availableCountries.add(new SelectItem("DK", bundle.getString("country.name.dk")));
+    availableCountries.add(new SelectItem("EE", bundle.getString("country.name.ee")));
+    availableCountries.add(new SelectItem("FI", bundle.getString("country.name.fi")));
+    availableCountries.add(new SelectItem("FR", bundle.getString("country.name.fr")));
+    availableCountries.add(new SelectItem("DE", bundle.getString("country.name.de")));
+    availableCountries.add(new SelectItem("GR", bundle.getString("country.name.gr")));
+    availableCountries.add(new SelectItem("HU", bundle.getString("country.name.hu")));
+    availableCountries.add(new SelectItem("IS", bundle.getString("country.name.is")));
+    availableCountries.add(new SelectItem("IE", bundle.getString("country.name.ie")));
+    availableCountries.add(new SelectItem("IT", bundle.getString("country.name.it")));
+    availableCountries.add(new SelectItem("LV", bundle.getString("country.name.lv")));
+    availableCountries.add(new SelectItem("LI", bundle.getString("country.name.li")));
+    availableCountries.add(new SelectItem("LT", bundle.getString("country.name.lt")));
+    availableCountries.add(new SelectItem("LU", bundle.getString("country.name.lu")));
+    availableCountries.add(new SelectItem("MT", bundle.getString("country.name.mt")));
+    availableCountries.add(new SelectItem("NL", bundle.getString("country.name.nl")));
+    availableCountries.add(new SelectItem("NO", bundle.getString("country.name.no")));
+    availableCountries.add(new SelectItem("PL", bundle.getString("country.name.pl")));
+    availableCountries.add(new SelectItem("PT", bundle.getString("country.name.pt")));
+    availableCountries.add(new SelectItem("RO", bundle.getString("country.name.ro")));
+    availableCountries.add(new SelectItem("SK", bundle.getString("country.name.sk")));
+    availableCountries.add(new SelectItem("SI", bundle.getString("country.name.si")));
+    availableCountries.add(new SelectItem("ES", bundle.getString("country.name.es")));
+    availableCountries.add(new SelectItem("SE", bundle.getString("country.name.se")));
+    availableCountries.add(new SelectItem("CH", bundle.getString("country.name.ch")));
+    availableCountries.add(new SelectItem("UK", bundle.getString("country.name.uk")));
+    availableCountries.add(new SelectItem("AU", bundle.getString("country.name.au")));
+    availableCountries.add(new SelectItem("BR", bundle.getString("country.name.br")));
+    availableCountries.add(new SelectItem("CA", bundle.getString("country.name.ca")));
+    availableCountries.add(new SelectItem("CN", bundle.getString("country.name.cn")));
+    availableCountries.add(new SelectItem("HR", bundle.getString("country.name.hr")));
+    availableCountries.add(new SelectItem("SR", bundle.getString("country.name.sr")));
+    availableCountries.add(new SelectItem("IN", bundle.getString("country.name.in")));
+    availableCountries.add(new SelectItem("MX", bundle.getString("country.name.mx")));
+    availableCountries.add(new SelectItem("RU", bundle.getString("country.name.ru")));
+    availableCountries.add(new SelectItem("ZA", bundle.getString("country.name.za")));
+    availableCountries.add(new SelectItem("TR", bundle.getString("country.name.tr")));
+    availableCountries.add(new SelectItem("US", bundle.getString("country.name.us")));
+    availableCountries.add(new SelectItem("Other", bundle.getString("country.name.other")));
+    availableCountries.add(new SelectItem("Do not know", bundle.getString("country.name.do.not.know")));
+
+    // }
 
     return availableCountries;
   }

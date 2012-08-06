@@ -43,6 +43,7 @@
     <property name="password" value="" />
   </bean>
 
+ 
   <bean id="gson" class="com.google.gson.Gson" />
 
   <bean id="persistenceService" class="eu.cec.sanco.services.impl.PersistenceServiceImpl">

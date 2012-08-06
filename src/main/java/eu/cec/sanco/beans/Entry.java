@@ -4,11 +4,16 @@ import java.util.Date;
 
 public class Entry {
   private String id;
-  private ComplaintSet complaintSet;
+  private ComplaintSet complaintSet = new ComplaintSet();
   private Date timestamp;
 
   public Entry() {
 
+  }
+
+  public Entry(String id) {
+    super();
+    this.id = id;
   }
 
   public String getId() {

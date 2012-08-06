@@ -34,24 +34,27 @@ public class ComplaintSet {
 
   }
 
-  public String getCreation_date() {
-    return creation_date;
+  public Date getCreation_date() {
+    if (creation_date == null) {
+      return null;
+    }
+    return new Date(new Long(creation_date));
   }
 
-  public void setCreation_date(String creation_date) {
-    this.creation_date = creation_date;
+  public void setCreation_date(Date creation_date) {
+    this.creation_date = String.valueOf(creation_date.getTime());
   }
 
-  public Date getModifDate() {
+  public Date getModification_date() {
+    if (modification_date == null) {
+      return null;
+    }
+
     return new Date(new Long(modification_date));
   }
 
-  public String getModification_date() {
-    return modification_date;
-  }
-
-  public void setModification_date(String modification_date) {
-    this.modification_date = modification_date;
+  public void setModification_date(Date modification_date) {
+    this.modification_date = String.valueOf(modification_date.getTime());
   }
 
   public boolean isNew_complaint() {

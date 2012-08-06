@@ -23,8 +23,25 @@
       <base-name>org.msg.i18n.controls_msg</base-name>
       <var>ctrlm</var>
     </resource-bundle>
-    
 
   </application>
+
+
+  <navigation-rule>
+    <from-view-id>/secure/home.xhtml</from-view-id>
+    <navigation-case>
+      <from-outcome>create-complaint</from-outcome>
+      <to-view-id>/secure/editcreate-complaint.xhtml</to-view-id>
+      <redirect />
+    </navigation-case>
+  </navigation-rule>
+  
+  <navigation-rule>
+    <navigation-case>
+      <from-outcome>home</from-outcome>
+      <to-view-id>/secure/home.xhtml</to-view-id>
+      <redirect />
+    </navigation-case>
+  </navigation-rule>
 
 </faces-config>

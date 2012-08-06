@@ -3,6 +3,7 @@ package eu.cec.sanco.presentation.beans;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 import javax.faces.context.FacesContext;
 
@@ -10,10 +11,12 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import eu.cec.sanco.beans.Complaint;
 import eu.cec.sanco.beans.ComplaintSet;
+import eu.cec.sanco.beans.Entry;
 import eu.cec.sanco.services.api.PersistenceService;
 import eu.cec.sanco.utils.api.Utils;
 
@@ -22,8 +25,8 @@ import eu.cec.sanco.utils.api.Utils;
 @Qualifier("complaintActions")
 public class ComplaintActions implements Serializable {
 
-  private List<ComplaintSet> complaints;
-  private List<ComplaintSet> lockedComplaints;
+  private List<Entry> complaints;
+  private List<Entry> lockedComplaints;
   private static final transient Logger LOG = Logger.getLogger(ComplaintActions.class);
 
   @Autowired
@@ -32,11 +35,16 @@ public class ComplaintActions implements Serializable {
   @Autowired
   private transient Utils utils;
 
+  @Autowired
+  private transient UserDetails userDetails;
+
+  private Entry currentEntry;
+
   public ComplaintActions() {
 
   }
 
-  public List<ComplaintSet> getUnlockedComplaints() {
+  public List<Entry> getUnlockedComplaints() {
     if (complaints == null) {
       complaints = persistenceService.getUnlockedComplaints();
     }
@@ -44,16 +52,12 @@ public class ComplaintActions implements Serializable {
     return complaints;
   }
 
-  public List<ComplaintSet> getLockedComplaints() {
+  public List<Entry> getLockedComplaints() {
     if (lockedComplaints == null) {
       lockedComplaints = persistenceService.getLockedComplaints();
     }
 
     return lockedComplaints;
-  }
-
-  public void setComplaints(List<ComplaintSet> complaints) {
-    this.complaints = complaints;
   }
 
   public String transfComplTypes(ComplaintSet complaintSet) {
@@ -79,4 +83,18 @@ public class ComplaintActions implements Serializable {
     return types.toString();
   }
 
+  public String createComplaint() {
+    currentEntry = new Entry();
+    currentEntry.getComplaintSet().setOrganisation_id(userDetails.getUsername());
+    currentEntry.getComplaintSet().setReference(String.valueOf(UUID.randomUUID().hashCode()).substring(3));
+    return "create-complaint";
+  }
+
+  public void setCurrentEntry(Entry currentEntry) {
+    this.currentEntry = currentEntry;
+  }
+
+  public Entry getCurrentEntry() {
+    return currentEntry;
+  }
 }

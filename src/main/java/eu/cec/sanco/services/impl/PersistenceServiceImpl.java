@@ -96,26 +96,26 @@ public class PersistenceServiceImpl implements PersistenceService {
         });
   }
 
-  public List<ComplaintSet> getUnlockedComplaints() {
+  public List<Entry> getUnlockedComplaints() {
     List<Entry> allEntries = getEntries();
-    ArrayList<ComplaintSet> unlockedEntries = new ArrayList<ComplaintSet>(allEntries.size());
+    ArrayList<Entry> unlockedEntries = new ArrayList<Entry>(allEntries.size());
 
     for (Entry e : allEntries) {
       if (!"true".equals(e.getComplaintSet().getLocked())) {
-        unlockedEntries.add(e.getComplaintSet());
+        unlockedEntries.add(e);
       }
     }
 
     return unlockedEntries;
   }
-  
-  public List<ComplaintSet> getLockedComplaints() {
+
+  public List<Entry> getLockedComplaints() {
     List<Entry> allEntries = getEntries();
-    ArrayList<ComplaintSet> lockedEntries = new ArrayList<ComplaintSet>(allEntries.size());
+    ArrayList<Entry> lockedEntries = new ArrayList<Entry>(allEntries.size());
 
     for (Entry e : allEntries) {
       if (!"false".equals(e.getComplaintSet().getLocked())) {
-        lockedEntries.add(e.getComplaintSet());
+        lockedEntries.add(e);
       }
     }
 
