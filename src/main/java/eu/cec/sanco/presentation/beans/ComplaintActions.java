@@ -87,6 +87,8 @@ public class ComplaintActions implements Serializable {
     currentEntry = new Entry();
     currentEntry.getComplaintSet().setOrganisation_id(userDetails.getUsername());
     currentEntry.getComplaintSet().setReference(String.valueOf(UUID.randomUUID().hashCode()).substring(3));
+
+    currentEntry.getComplaintSet().getComplaints().add(new Complaint());
     return "create-complaint";
   }
 

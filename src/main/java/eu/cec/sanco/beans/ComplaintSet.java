@@ -4,6 +4,9 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+import org.primefaces.component.log.Log;
+
 public class ComplaintSet {
   private String creation_date;
   private String modification_date;
@@ -29,6 +32,8 @@ public class ComplaintSet {
   private String sector;
   private String market;
   private List<Complaint> complaints = new LinkedList<Complaint>();
+
+  private static final transient Logger LOG = Logger.getLogger(ComplaintSet.class);
 
   public ComplaintSet() {
 
@@ -226,6 +231,8 @@ public class ComplaintSet {
   }
 
   public List<Complaint> getComplaints() {
+    LOG.info("Getting :" + complaints.size());
+
     return complaints;
   }
 
