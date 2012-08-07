@@ -18,7 +18,7 @@
 				<!-- 				</p:toolbarGroup> -->
 
 				<p:toolbarGroup align="right">
-					<h:panelGrid columns="6">
+					<h:panelGrid columns="7">
 						<h:outputText style="font-size: 12px; color: white"
 							value="#{ctrlm['more.translations.version']} #{utils.version}" />
 
@@ -39,6 +39,9 @@
 							target="_blank">
 							<h:outputText style="font-size: 12px"
 								value="#{ctrlm['more.translations.mou']}" />
+						</h:outputLink>
+						<h:outputLink value="logout">
+							<h:outputText value="#{ctrlm['more.translations.logout']}" />
 						</h:outputLink>
 						<p:selectOneMenu value="#{localeService.currentLocale}">
 							<f:selectItem itemValue="bg" itemLabel="Bulgarian" />
