@@ -30,7 +30,7 @@
   <navigation-rule>
     <from-view-id>/secure/home.xhtml</from-view-id>
     <navigation-case>
-      <from-outcome>create-complaint</from-outcome>
+      <from-outcome>editcreate-complaint</from-outcome>
       <to-view-id>/secure/editcreate-complaint.xhtml</to-view-id>
       <redirect />
     </navigation-case>

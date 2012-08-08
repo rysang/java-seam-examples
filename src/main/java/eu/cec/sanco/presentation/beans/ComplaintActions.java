@@ -89,7 +89,23 @@ public class ComplaintActions implements Serializable {
     currentEntry.getComplaintSet().setReference(String.valueOf(UUID.randomUUID().hashCode()).substring(3));
 
     currentEntry.getComplaintSet().getComplaints().add(new Complaint());
-    return "create-complaint";
+    return "editcreate-complaint";
+  }
+
+  public String editComplaint(Entry entry) {
+    currentEntry = entry;
+    
+    return "editcreate-complaint";
+  }
+
+  public void addComplaint() {
+    LOG.info("Adding new Complaint");
+    currentEntry.getComplaintSet().getComplaints().add(new Complaint());
+  }
+
+  public void deleteComplaint(Complaint complaint) {
+    LOG.info("Deleting complaint.");
+    currentEntry.getComplaintSet().getComplaints().remove(complaint);
   }
 
   public void setCurrentEntry(Entry currentEntry) {

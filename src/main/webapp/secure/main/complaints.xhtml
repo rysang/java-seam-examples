@@ -66,11 +66,7 @@
 				</p:column>
 
 				<p:column>
-					<p:commandLink value="Edit" onclick="editDialogVar.show()" />
-					<p:dialog id="editDialog" header="Edit" widgetVar="editDialogVar"
-						resizable="false" modal="true">
-						<h:outputText value="Resistance to PrimeFaces is futile!" />
-					</p:dialog>
+					<p:commandLink value="Edit" action="#{complaintActions.editComplaint(entry)}" />
 				</p:column>
 
 				<p:column>

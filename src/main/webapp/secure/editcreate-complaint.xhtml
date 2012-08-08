@@ -4,7 +4,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="/WEB-INF/templates/main.xhtml">
 	<ui:define name="center">
-		<h:form>
+		<h:form id="complaintForm">
 			<p:panel header="#{ctrlm['complaint.form.contact.informations']}">
 				<p:panelGrid style="width:100%" styleClass="noBorder">
 					<p:row>
@@ -185,31 +185,118 @@
 			<br />
 			<br />
 
-			<h:panelGrid border="0" columns="1" style="width:100%">
+			<h:panelGrid border="0" columns="1" style="width:100%"
+				id="complaintsGrid">
 				<p:toolbar>
 					<p:toolbarGroup align="left">
 						<p:button value="#{ctrlm['complaint.form.complaints.row.title']}"
 							onclick="return false" />
 					</p:toolbarGroup>
 					<p:toolbarGroup align="right">
-						<p:button outcome="home"
-							value="#{ctrlm['complaint.form.add.new.complaint.for.case']}" />
+						<p:commandButton id="addComplBtn"
+							value="#{ctrlm['complaint.form.add.new.complaint.for.case']}"
+							action="#{complaintActions.addComplaint}"
+							update="complaintsTable" immediate="true" />
 					</p:toolbarGroup>
 				</p:toolbar>
 
 
-				<p:dataTable binding="#{complaintsTableBinding}"
+				<p:dataTable id="complaintsTable" styleClass="noBorderPad"
+					binding="#{complaintsTableBinding}"
 					value="#{complaintActions.currentEntry.complaintSet.complaints}"
 					var="compl" style="width:100%">
 
 					<p:column>
 						<p:panel
 							header="#{ctrlm['complaint.form.complaint.row']} #{complaintsTableBinding.rowIndex + 1}">
-							<h:outputText value="#{compl.level_1}" />
+							<p:panelGrid style="width:100%" styleClass="noBorder">
+								<p:row>
+									<p:column colspan="5">
+										<p:fieldset legend="#{ctrlm['complaint.form.level.1']}">
+											<p:selectOneMenu id="level_1" value="#{compl.level_1}">
+												<f:selectItems value="#{utils.level1Classifications}" />
+												<p:ajax event="change" update="level_2" />
+											</p:selectOneMenu>
+										</p:fieldset>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column colspan="5">
+										<p:fieldset legend="#{ctrlm['complaint.form.level.2']}">
+											<p:selectOneMenu id="level_2" value="#{compl.level_2}">
+												<f:selectItems
+													value="#{utils.getLevel2Classifications(compl.level_1)}" />
+											</p:selectOneMenu>
+										</p:fieldset>
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>
+										<p:fieldset
+											legend="#{ctrlm['complaint.form.transaction.value']}">
+											<p:inputText id="transaction_value"
+												value="#{compl.transaction_value}" style="width:100%" />
+										</p:fieldset>
+									</p:column>
+									<p:column>
+										<p:fieldset
+											legend="#{ctrlm['complaint.form.transaction.currency']}">
+											<p:selectOneMenu id="transaction_currency"
+												value="#{compl.transaction_currency}">
+												<f:selectItems value="#{utils.currencies}" />
+											</p:selectOneMenu>
+										</p:fieldset>
+									</p:column>
+									<p:column>
+										<p:fieldset legend="#{ctrlm['complaint.form.loss.value']}">
+											<p:inputText id="loss_value" value="#{compl.loss_value}"
+												style="width:100%" />
+										</p:fieldset>
+									</p:column>
+									<p:column>
+										<p:fieldset legend="#{ctrlm['complaint.form.loss.currency']}">
+											<p:selectOneMenu id="loss_currency"
+												value="#{compl.loss_currency}">
+												<f:selectItems value="#{utils.currencies}" />
+											</p:selectOneMenu>
+										</p:fieldset>
+									</p:column>
+									<p:column>
+										<p:fieldset legend="#{ctrlm['complaint.form.payment.means']}">
+											<p:selectOneMenu id="payment_means"
+												value="#{compl.payment_means}">
+												<f:selectItems value="#{utils.paymentMeans}" />
+											</p:selectOneMenu>
+										</p:fieldset>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column>
+										<p:commandButton value="#{ctrlm['more.translations.delete']}"
+											id="delComplBtn"
+											action="#{complaintActions.deleteComplaint(compl)}"
+											update=":complaintForm" immediate="true" />
+									</p:column>
+								</p:row>
+							</p:panelGrid>
 						</p:panel>
 					</p:column>
 				</p:dataTable>
 			</h:panelGrid>
+
+			<br />
+			<p:panel header="#{ctrlm['complaint.form.notes']}">
+				<p:panelGrid style="width:100%" styleClass="noBorder">
+					<p:row>
+						<p:column>
+							<p:editor id="user_notes"
+								value="#{complaintActions.currentEntry.complaintSet.user_notes}"
+								style="width: auto" />
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</p:panel>
 		</h:form>
 	</ui:define>
 </ui:composition>

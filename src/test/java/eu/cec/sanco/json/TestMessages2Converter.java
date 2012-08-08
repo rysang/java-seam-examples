@@ -31,7 +31,7 @@ public class TestMessages2Converter extends TestCase {
   }
 
   public static final String rebuildString(String str) {
-    String[] split = str.replaceAll("[^A-Za-z]", " ").split("\\s");
+    String[] split = str.replaceAll("[^A-Za-z0-9]", " ").split("\\s");
     StringBuilder ret = new StringBuilder();
     List<String> tmp = new ArrayList<String>(split.length);
 

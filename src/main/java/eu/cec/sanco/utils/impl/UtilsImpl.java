@@ -57,6 +57,282 @@ public class UtilsImpl implements Utils {
     return new Date();
   }
 
+  public List<SelectItem> getPaymentMeans() {
+    FacesContext context = FacesContext.getCurrentInstance();
+    ResourceBundle appmsgBundle = context.getApplication().getResourceBundle(context, "appmsg");
+
+    ArrayList<SelectItem> paymentMeans = new ArrayList<SelectItem>(20);
+    paymentMeans.add(new SelectItem("Cash", appmsgBundle.getString("payment.means.cash")));
+    paymentMeans.add(new SelectItem("Debit card", appmsgBundle.getString("payment.means.debit.card")));
+    paymentMeans.add(new SelectItem("Credit card", appmsgBundle.getString("payment.means.credit.card")));
+    paymentMeans.add(new SelectItem("Paper cheque, paper-based vouchers and paper-based traveller's cheques",
+        appmsgBundle.getString("payment.means.paper.cheque.paper.based.vouchers.and.paper.based.traveller.s.cheques")));
+    paymentMeans.add(new SelectItem("Credit transfer", appmsgBundle.getString("payment.means.credit.transfer")));
+    paymentMeans.add(new SelectItem("Direct debit", appmsgBundle.getString("payment.means.direct.debit")));
+    paymentMeans.add(new SelectItem("Electronic money", appmsgBundle.getString("payment.means.electronic.money")));
+    paymentMeans.add(new SelectItem("Money remittance", appmsgBundle.getString("payment.means.money.remittance")));
+    paymentMeans.add(new SelectItem("Pre-paid cards", appmsgBundle.getString("payment.means.pre.paid.cards")));
+    paymentMeans.add(new SelectItem("Mobile payments (e.g. SMS)", appmsgBundle
+        .getString("payment.means.mobile.payments.e.g.sms")));
+    paymentMeans.add(new SelectItem("Other", appmsgBundle.getString("payment.means.other")));
+    paymentMeans.add(new SelectItem("Do not know", appmsgBundle.getString("payment.means.do.not.know")));
+
+    return paymentMeans;
+  }
+
+  public List<SelectItem> getCurrencies() {
+    FacesContext context = FacesContext.getCurrentInstance();
+    ResourceBundle appmsgBundle = context.getApplication().getResourceBundle(context, "appmsg");
+
+    ArrayList<SelectItem> currencies = new ArrayList<SelectItem>(20);
+    currencies.add(new SelectItem("EUR", appmsgBundle.getString("transaction.currency.eur")));
+    currencies.add(new SelectItem("BRL", appmsgBundle.getString("transaction.currency.brl")));
+    currencies.add(new SelectItem("CZK", appmsgBundle.getString("transaction.currency.czk")));
+    currencies.add(new SelectItem("DKK", appmsgBundle.getString("transaction.currency.dkk")));
+    currencies.add(new SelectItem("EEK", appmsgBundle.getString("transaction.currency.eek")));
+    currencies.add(new SelectItem("HUF", appmsgBundle.getString("transaction.currency.huf")));
+    currencies.add(new SelectItem("LVL", appmsgBundle.getString("transaction.currency.lvl")));
+    currencies.add(new SelectItem("LTL", appmsgBundle.getString("transaction.currency.ltl")));
+    currencies.add(new SelectItem("PLN", appmsgBundle.getString("transaction.currency.pln")));
+    currencies.add(new SelectItem("RON", appmsgBundle.getString("transaction.currency.ron")));
+    currencies.add(new SelectItem("SEK", appmsgBundle.getString("transaction.currency.sek")));
+    currencies.add(new SelectItem("GBP", appmsgBundle.getString("transaction.currency.gbp")));
+    currencies.add(new SelectItem("ISK", appmsgBundle.getString("transaction.currency.isk")));
+    currencies.add(new SelectItem("CHF", appmsgBundle.getString("transaction.currency.chf")));
+    currencies.add(new SelectItem("NOK", appmsgBundle.getString("transaction.currency.nok")));
+    currencies.add(new SelectItem("USD", appmsgBundle.getString("transaction.currency.usd")));
+    currencies.add(new SelectItem("Other", appmsgBundle.getString("transaction.currency.other")));
+
+    return currencies;
+  }
+
+  public List<SelectItem> getLevel1Classifications() {
+    FacesContext context = FacesContext.getCurrentInstance();
+    ResourceBundle appmsgBundle = context.getApplication().getResourceBundle(context, "appmsg");
+
+    ArrayList<SelectItem> level1 = new ArrayList<SelectItem>(20);
+    level1.add(new SelectItem("Quality of goods and services", appmsgBundle
+        .getString("levels.quality.of.goods.and.services.value")));
+    level1.add(new SelectItem("Delivery of goods/ Provision of services", appmsgBundle
+        .getString("levels.delivery.of.goods.provision.of.services.value")));
+    level1.add(new SelectItem("Price / Tariff", appmsgBundle.getString("levels.price.tariff.value")));
+    level1.add(new SelectItem("Invoicing / billing and debt collection", appmsgBundle
+        .getString("levels.invoicing.billing.and.debt.collection.value")));
+    level1.add(new SelectItem("Warranty / statutory guarantee and commercial guarantees", appmsgBundle
+        .getString("levels.warranty.statutory.guarantee.and.commercial.guarantees.value")));
+    level1.add(new SelectItem("Redress", appmsgBundle.getString("levels.redress.value")));
+    level1.add(new SelectItem("Unfair Commercial Practices", appmsgBundle
+        .getString("levels.unfair.commercial.practices.value")));
+    level1.add(new SelectItem("Contracts and sales", appmsgBundle.getString("levels.contracts.and.sales.value")));
+    level1.add(new SelectItem("Provider change / switching", appmsgBundle
+        .getString("levels.provider.change.switching.value")));
+    level1.add(new SelectItem("Safety - covers both goods (including food) and services", appmsgBundle
+        .getString("levels.safety.covers.both.goods.including.food.and.services.value")));
+    level1.add(new SelectItem("Privacy and data protection", appmsgBundle
+        .getString("levels.privacy.and.data.protection.value")));
+    level1.add(new SelectItem("Other issues", appmsgBundle.getString("levels.other.issues.value")));
+
+    return level1;
+  }
+
+  public List<SelectItem> getLevel2Classifications(String level1) {
+
+    FacesContext context = FacesContext.getCurrentInstance();
+    ResourceBundle appmsgBundle = context.getApplication().getResourceBundle(context, "appmsg");
+
+    ArrayList<SelectItem> level2 = new ArrayList<SelectItem>(20);
+
+    if (StringUtils.isEmpty(level1) || level1.equals("Quality of goods and services")) {
+      level2.add(new SelectItem("Defective, caused damage", appmsgBundle
+          .getString("levels.quality.of.goods.and.services.defective.caused.damage")));
+      level2.add(new SelectItem("Not in conformity with order", appmsgBundle
+          .getString("levels.quality.of.goods.and.services.not.in.conformity.with.order")));
+      level2.add(new SelectItem("Not fit for particular purpose", appmsgBundle
+          .getString("levels.quality.of.goods.and.services.not.fit.for.particular.purpose")));
+      level2.add(new SelectItem("Other issues", appmsgBundle
+          .getString("levels.quality.of.goods.and.services.other.issues")));
+    }
+
+    else if (level1.equals("Delivery of goods/ Provision of services")) {
+      level2.add(new SelectItem("Not delivered / not provided", appmsgBundle
+          .getString("levels.delivery.of.goods.provision.of.services.not.delivered.not.provided")));
+      level2.add(new SelectItem("Partially delivered / partially provided", appmsgBundle
+          .getString("levels.delivery.of.goods.provision.of.services.partially.delivered.partially.provided")));
+      level2
+          .add(new SelectItem("Delay", appmsgBundle.getString("levels.delivery.of.goods.provision.of.services.delay")));
+      level2.add(new SelectItem("Not available / No access", appmsgBundle
+          .getString("levels.delivery.of.goods.provision.of.services.not.available.no.access")));
+      level2.add(new SelectItem("Refusal to sell / provide a good or a service", appmsgBundle
+          .getString("levels.delivery.of.goods.provision.of.services.refusal.to.sell.provide.a.good.or.a.service")));
+      level2
+          .add(new SelectItem(
+              "Suspension of the delivery of a good or the provision of a service without prior notice",
+              appmsgBundle
+                  .getString("levels.delivery.of.goods.provision.of.services.suspension.of.the.delivery.of.a.good.or.the.provision.of.a.service.without.prior.notice")));
+      level2.add(new SelectItem("Opening hours", appmsgBundle
+          .getString("levels.delivery.of.goods.provision.of.services.opening.hours")));
+      level2.add(new SelectItem("Customer service", appmsgBundle
+          .getString("levels.delivery.of.goods.provision.of.services.customer.service")));
+      level2.add(new SelectItem("After-sales service/assistance", appmsgBundle
+          .getString("levels.delivery.of.goods.provision.of.services.after.sales.service.assistance")));
+      level2
+          .add(new SelectItem(
+              "Other issues related to the delivery of goods/provisions of services",
+              appmsgBundle
+                  .getString("levels.delivery.of.goods.provision.of.services.other.issues.related.to.the.delivery.of.goods.provisions.of.services")));
+
+    }
+
+    else if (level1.equals("Price / Tariff")) {
+
+      level2.add(new SelectItem("Price / tariff change", appmsgBundle
+          .getString("levels.price.tariff.price.tariff.change")));
+      level2.add(new SelectItem("Price discrimination", appmsgBundle
+          .getString("levels.price.tariff.price.discrimination")));
+      level2.add(new SelectItem("Tariff transparency (unclear, complex)", appmsgBundle
+          .getString("levels.price.tariff.tariff.transparency.unclear.complex")));
+      level2.add(new SelectItem("Other issues related to price/tariff", appmsgBundle
+          .getString("levels.price.tariff.other.issues.related.to.price.tariff")));
+    }
+
+    else if (level1.equals("Invoicing / billing and debt collection")) {
+      level2.add(new SelectItem("Incorrect invoice / bill", appmsgBundle
+          .getString("levels.invoicing.billing.and.debt.collection.incorrect.invoice.bill")));
+      level2.add(new SelectItem("Unclear invoice / bill", appmsgBundle
+          .getString("levels.invoicing.billing.and.debt.collection.unclear.invoice.bill")));
+      level2
+          .add(new SelectItem(
+              "Non-issue of invoice or difficult access to invoice/monthly statement",
+              appmsgBundle
+                  .getString("levels.invoicing.billing.and.debt.collection.non.issue.of.invoice.or.difficult.access.to.invoice.monthly.statement")));
+      level2.add(new SelectItem("Unjustified invoicing / billing", appmsgBundle
+          .getString("levels.invoicing.billing.and.debt.collection.unjustified.invoicing.billing")));
+      level2.add(new SelectItem("Debt collection", appmsgBundle
+          .getString("levels.invoicing.billing.and.debt.collection.debt.collection")));
+      level2
+          .add(new SelectItem(
+              "Other issues related to invoicing/billing and debt collection",
+              appmsgBundle
+                  .getString("levels.invoicing.billing.and.debt.collection.other.issues.related.to.invoicing.billing.and.debt.collection")));
+    }
+
+    else if (level1.equals("Warranty / statutory guarantee and commercial guarantees")) {
+
+      level2
+          .add(new SelectItem(
+              "Warranty / statutory guarantee not honoured",
+              appmsgBundle
+                  .getString("levels.warranty.statutory.guarantee.and.commercial.guarantees.warranty.statutory.guarantee.not.honoured")));
+      level2
+          .add(new SelectItem(
+              "Commercial guarantee not honoured",
+              appmsgBundle
+                  .getString("levels.warranty.statutory.guarantee.and.commercial.guarantees.commercial.guarantee.not.honoured")));
+      level2.add(new SelectItem("Other issues", appmsgBundle
+          .getString("levels.warranty.statutory.guarantee.and.commercial.guarantees.other.issues")));
+
+    }
+
+    else if (level1.equals("Redress")) {
+      level2.add(new SelectItem("Difficult access to redress", appmsgBundle
+          .getString("levels.redress.difficult.access.to.redress")));
+      level2.add(new SelectItem("No redress", appmsgBundle.getString("levels.redress.no.redress")));
+      level2.add(new SelectItem("Part or incorrect redress", appmsgBundle
+          .getString("levels.redress.part.or.incorrect.redress")));
+      level2.add(new SelectItem("Delayed redress", appmsgBundle.getString("levels.redress.delayed.redress")));
+      level2.add(new SelectItem("Other issues related to redress", appmsgBundle
+          .getString("levels.redress.other.issues.related.to.redress")));
+
+    }
+
+    else if (level1.equals("Unfair Commercial Practices")) {
+
+      level2.add(new SelectItem("Misleading contractual terms and conditions", appmsgBundle
+          .getString("levels.unfair.commercial.practices.misleading.contractual.terms.and.conditions")));
+      level2
+          .add(new SelectItem(
+              "Incorrect or misleading indication of prices / tariffs and labelling",
+              appmsgBundle
+                  .getString("levels.unfair.commercial.practices.incorrect.or.misleading.indication.of.prices.tariffs.and.labelling")));
+      level2.add(new SelectItem("Misleading advertising", appmsgBundle
+          .getString("levels.unfair.commercial.practices.misleading.advertising")));
+      level2.add(new SelectItem("Unsolicited advertising", appmsgBundle
+          .getString("levels.unfair.commercial.practices.unsolicited.advertising")));
+      level2.add(new SelectItem("Unsolicited goods or services", appmsgBundle
+          .getString("levels.unfair.commercial.practices.unsolicited.goods.or.services")));
+      level2.add(new SelectItem("Aggressive selling practices", appmsgBundle
+          .getString("levels.unfair.commercial.practices.aggressive.selling.practices")));
+      level2.add(new SelectItem("Fraudulent practices", appmsgBundle
+          .getString("levels.unfair.commercial.practices.fraudulent.practices")));
+      level2.add(new SelectItem("Other unfair commercial practices", appmsgBundle
+          .getString("levels.unfair.commercial.practices.other.unfair.commercial.practices")));
+
+    }
+
+    else if (level1.equals("Contracts and sales")) {
+
+      level2.add(new SelectItem("Unfair contractual terms / change of contractual terms", appmsgBundle
+          .getString("levels.contracts.and.sales.unfair.contractual.terms.change.of.contractual.terms")));
+      level2.add(new SelectItem("Lack of information", appmsgBundle
+          .getString("levels.contracts.and.sales.lack.of.information")));
+      level2.add(new SelectItem("Order confirmation (not received/wrong)", appmsgBundle
+          .getString("levels.contracts.and.sales.order.confirmation.not.received.wrong")));
+      level2.add(new SelectItem("Cooling-off period / Right of withdrawal", appmsgBundle
+          .getString("levels.contracts.and.sales.cooling.off.period.right.of.withdrawal")));
+      level2.add(new SelectItem("Payments (e.g. prepayments and instalments)", appmsgBundle
+          .getString("levels.contracts.and.sales.payments.e.g.prepayments.and.instalments")));
+      level2.add(new SelectItem("Rescission of contract", appmsgBundle
+          .getString("levels.contracts.and.sales.rescission.of.contract")));
+      level2.add(new SelectItem("Minimum contractual period", appmsgBundle
+          .getString("levels.contracts.and.sales.minimum.contractual.period")));
+      level2.add(new SelectItem("Other issues related to contracts and sales", appmsgBundle
+          .getString("levels.contracts.and.sales.other.issues.related.to.contracts.and.sales")));
+
+    }
+
+    else if (level1.equals("Provider change / switching")) {
+      level2.add(new SelectItem("Provider change / switching", appmsgBundle
+          .getString("levels.provider.change.switching.provider.change.switching")));
+      level2
+          .add(new SelectItem("Other issues", appmsgBundle.getString("levels.provider.change.switching.other.issues")));
+    }
+
+    else if (level1.equals("Safety - covers both goods (including food) and services")) {
+
+      level2
+          .add(new SelectItem(
+              "Product safety - covers both goods (including food) and services",
+              appmsgBundle
+                  .getString("levels.safety.covers.both.goods.including.food.and.services.product.safety.covers.both.goods.including.food.and.services")));
+      level2
+          .add(new SelectItem(
+              "Package, labelling and instructions - covers both goods (including food) and services",
+              appmsgBundle
+                  .getString("levels.safety.covers.both.goods.including.food.and.services.package.labelling.and.instructions.covers.both.goods.including.food.and.services")));
+      level2.add(new SelectItem("Other issues", appmsgBundle
+          .getString("levels.safety.covers.both.goods.including.food.and.services.other.issues")));
+
+    }
+
+    else if (level1.equals("Privacy and data protection")) {
+
+      level2.add(new SelectItem("Data protection", appmsgBundle
+          .getString("levels.privacy.and.data.protection.data.protection")));
+      level2.add(new SelectItem("Privacy", appmsgBundle.getString("levels.privacy.and.data.protection.privacy")));
+      level2.add(new SelectItem("Other issues related to privacy and data protection", appmsgBundle
+          .getString("levels.privacy.and.data.protection.other.issues.related.to.privacy.and.data.protection")));
+
+    }
+
+    else if (level1.equals("Other issues")) {
+
+      level2.add(new SelectItem("Other issues", appmsgBundle.getString("levels.other.issues.other.issues")));
+
+    }
+
+    return level2;
+  }
+
   public List<SelectItem> getSectors() {
     FacesContext context = FacesContext.getCurrentInstance();
     ResourceBundle appmsgBundle = context.getApplication().getResourceBundle(context, "appmsg");

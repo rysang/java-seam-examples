@@ -43,7 +43,7 @@
 						<h:outputLink value="logout">
 							<h:outputText value="#{ctrlm['more.translations.logout']}" />
 						</h:outputLink>
-						<p:selectOneMenu value="#{localeService.currentLocale}">
+						<p:selectOneMenu id="languageSelect" value="#{localeService.currentLocale}">
 							<f:selectItem itemValue="bg" itemLabel="Bulgarian" />
 							<f:selectItem itemValue="cs" itemLabel="Czech" />
 							<f:selectItem itemValue="da" itemLabel="Danish" />

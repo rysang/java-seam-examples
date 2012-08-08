@@ -6,12 +6,20 @@ import java.util.List;
 import javax.faces.model.SelectItem;
 
 public interface Utils {
+  public List<SelectItem> getLevel1Classifications();
+
+  public List<SelectItem> getCurrencies();
+  
+  public List<SelectItem> getPaymentMeans();
+
+  public List<SelectItem> getLevel2Classifications(String level1);
+
   public List<SelectItem> getAvailableCountries();
 
   public List<SelectItem> getSellingMethods();
 
   public List<SelectItem> getSectors();
-  
+
   public List<SelectItem> getMarkets(String sector);
 
   public List<SelectItem> getAdvertisingMethods();
