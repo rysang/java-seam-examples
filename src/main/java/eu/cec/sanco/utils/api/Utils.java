@@ -9,7 +9,7 @@ public interface Utils {
   public List<SelectItem> getLevel1Classifications();
 
   public List<SelectItem> getCurrencies();
-  
+
   public List<SelectItem> getPaymentMeans();
 
   public List<SelectItem> getLevel2Classifications(String level1);
@@ -33,4 +33,12 @@ public interface Utils {
   public String rebuildString(String str);
 
   public Date getNow();
+
+  public List<SelectItem> getYears();
+
+  public String getVersion();
+
+  public String getCountry();
+  
+  public void reset();
 }

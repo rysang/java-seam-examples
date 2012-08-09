@@ -17,6 +17,10 @@ public interface PersistenceService {
   public Organisation getOrganisation();
 
   public List<Entry> getUnlockedComplaints();
-  
+
   public List<Entry> getLockedComplaints();
+
+  public int saveEntry(Entry entry);
+
+  public int updateEntry(Entry entry);
 }

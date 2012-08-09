@@ -4,7 +4,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="/WEB-INF/templates/main.xhtml">
 	<ui:define name="center">
-		<p:tabView id="tabView" dynamic="true">
+		<p:tabView id="tabView" dynamic="true" cache="false">
 
 			<p:tab id="tab1" title="#{ctrlm['header.complaints.menu']}">
 				<ui:include src="main/complaints.xhtml" />
@@ -15,8 +15,13 @@
 			</p:tab>
 
 			<p:tab id="tab3" title="#{ctrlm['header.submitted.menu']}">
+				<ui:include src="main/submissions.xhtml" />
 			</p:tab>
 
 		</p:tabView>
+
+		<p:blockUI block="tabView" trigger="tabView">
+			<h:outputText value="#{ctrlm['submissions.loading']}" />
+		</p:blockUI>
 	</ui:define>
 </ui:composition>

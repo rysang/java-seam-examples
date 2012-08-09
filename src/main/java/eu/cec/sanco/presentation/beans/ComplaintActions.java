@@ -1,6 +1,7 @@
 package eu.cec.sanco.presentation.beans;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.UUID;
@@ -94,8 +95,28 @@ public class ComplaintActions implements Serializable {
 
   public String editComplaint(Entry entry) {
     currentEntry = entry;
-    
     return "editcreate-complaint";
+  }
+
+  public String saveComplaint() {
+    if (currentEntry.getId() != null) {
+      LOG.info("Creating entry.");
+      currentEntry.setId(UUID.randomUUID().toString());
+      currentEntry.setTimestamp(new Date());
+
+      persistenceService.saveEntry(currentEntry);
+    } else {
+      LOG.info("Updating entry.");
+
+      currentEntry.setTimestamp(new Date());
+      persistenceService.updateEntry(currentEntry);
+    }
+    return "home";
+  }
+
+  public String close() {
+
+    return "home";
   }
 
   public void addComplaint() {

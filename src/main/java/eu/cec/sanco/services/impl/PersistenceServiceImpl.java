@@ -13,6 +13,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.google.gson.Gson;
+import com.googlecode.ehcache.annotations.Cacheable;
+import com.googlecode.ehcache.annotations.TriggersRemove;
+import com.googlecode.ehcache.annotations.When;
 
 import eu.cec.sanco.beans.AppState;
 import eu.cec.sanco.beans.ComplaintSet;
@@ -42,6 +45,23 @@ public class PersistenceServiceImpl implements PersistenceService {
     jdbcTemplate = new JdbcTemplate(dataSource);
   }
 
+  @TriggersRemove(cacheName = "eu.cec.sanco.eccrs.persistence", when = When.AFTER_METHOD_INVOCATION, removeAll = true)
+  public int saveEntry(Entry entry) {
+    int ret = this.jdbcTemplate.update("insert into complaints(id,value,timestamp) values (?,?,?)", new Object[] {
+        entry.getId(), gson.toJson(entry.getComplaintSet()), entry.getTimestamp().getTime() });
+
+    return ret;
+  }
+
+  @TriggersRemove(cacheName = "eu.cec.sanco.eccrs.persistence", when = When.AFTER_METHOD_INVOCATION, removeAll = true)
+  public int updateEntry(Entry entry) {
+    int ret = this.jdbcTemplate.update("update t_organisation set  value = ?, timestamp = ? where id = ?",
+        new Object[] { gson.toJson(entry.getComplaintSet()), entry.getTimestamp().getTime(), entry.getId() });
+
+    return ret;
+  }
+
+  @Cacheable(cacheName = "eu.cec.sanco.eccrs.persistence")
   public Entry getEntry(String id) {
     LOG.info("Searching for : " + id);
     return jdbcTemplate.queryForObject("select * from complaints c where c.id = ?", new Object[] { id },
@@ -57,6 +77,7 @@ public class PersistenceServiceImpl implements PersistenceService {
         });
   }
 
+  @Cacheable(cacheName = "eu.cec.sanco.eccrs.persistence")
   public AppState getAppState() {
     LOG.info("Searching for appstate.");
     return jdbcTemplate.queryForObject("select * from complaints c where c.id = ?", new Object[] { "app_state" },
@@ -68,6 +89,7 @@ public class PersistenceServiceImpl implements PersistenceService {
         });
   }
 
+  @Cacheable(cacheName = "eu.cec.sanco.eccrs.persistence")
   public Organisation getOrganisation() {
     LOG.info("Searching for organisation.");
     return jdbcTemplate.queryForObject("select * from complaints c where c.id = ?", new Object[] { "organisation" },
@@ -79,6 +101,7 @@ public class PersistenceServiceImpl implements PersistenceService {
         });
   }
 
+  @Cacheable(cacheName = "eu.cec.sanco.eccrs.persistence")
   public List<Entry> getEntries() {
     LOG.info("Getting all entries.");
 
@@ -96,6 +119,7 @@ public class PersistenceServiceImpl implements PersistenceService {
         });
   }
 
+  @Cacheable(cacheName = "eu.cec.sanco.eccrs.persistence")
   public List<Entry> getUnlockedComplaints() {
     List<Entry> allEntries = getEntries();
     ArrayList<Entry> unlockedEntries = new ArrayList<Entry>(allEntries.size());
@@ -109,6 +133,7 @@ public class PersistenceServiceImpl implements PersistenceService {
     return unlockedEntries;
   }
 
+  @Cacheable(cacheName = "eu.cec.sanco.eccrs.persistence")
   public List<Entry> getLockedComplaints() {
     List<Entry> allEntries = getEntries();
     ArrayList<Entry> lockedEntries = new ArrayList<Entry>(allEntries.size());

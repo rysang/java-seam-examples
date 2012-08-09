@@ -5,6 +5,19 @@
 	template="/WEB-INF/templates/main.xhtml">
 	<ui:define name="center">
 		<h:form id="complaintForm">
+			<h:panelGrid border="0" columns="1" style="width:100%">
+				<p:toolbar>
+					<p:toolbarGroup align="right">
+						<p:commandButton value="#{ctrlm['complaint.form.save.complaint']}"
+							action="#{complaintActions.saveComplaint}" ajax="false" />
+						<p:commandButton
+							value="#{ctrlm['complaint.form.close.complaint']}"
+							action="#{complaintActions.close}" ajax="false" />
+					</p:toolbarGroup>
+				</p:toolbar>
+			</h:panelGrid>
+			<br />
+
 			<p:panel header="#{ctrlm['complaint.form.contact.informations']}">
 				<p:panelGrid style="width:100%" styleClass="noBorder">
 					<p:row>
@@ -200,7 +213,7 @@
 					</p:toolbarGroup>
 				</p:toolbar>
 
-
+				<br/>
 				<p:dataTable id="complaintsTable" styleClass="noBorderPad"
 					binding="#{complaintsTableBinding}"
 					value="#{complaintActions.currentEntry.complaintSet.complaints}"
@@ -297,6 +310,19 @@
 					</p:row>
 				</p:panelGrid>
 			</p:panel>
+
+			<br />
+			<h:panelGrid border="0" columns="1" style="width:100%">
+				<p:toolbar>
+					<p:toolbarGroup align="right">
+						<p:commandButton value="#{ctrlm['complaint.form.save.complaint']}"
+							action="#{complaintActions.saveComplaint}" ajax="false" />
+						<p:commandButton
+							value="#{ctrlm['complaint.form.close.complaint']}"
+							action="#{complaintActions.close}" ajax="false" />
+					</p:toolbarGroup>
+				</p:toolbar>
+			</h:panelGrid>
 		</h:form>
 	</ui:define>
 </ui:composition>

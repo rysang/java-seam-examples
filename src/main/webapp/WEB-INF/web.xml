@@ -18,12 +18,19 @@
   <listener>
     <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
   </listener>
+  <listener>
+    <listener-class>eu.cec.sanco.listeners.ApplicationListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>eu.cec.sanco.listeners.SessionListener</listener-class>
+  </listener>
 
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>
       classpath:application-context.xml
       classpath:security-context.xml
+      classpath:tpl-context.xml
     </param-value>
   </context-param>
 

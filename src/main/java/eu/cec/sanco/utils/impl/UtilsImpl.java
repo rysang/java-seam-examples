@@ -10,19 +10,29 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.googlecode.ehcache.annotations.Cacheable;
+import com.googlecode.ehcache.annotations.TriggersRemove;
+import com.googlecode.ehcache.annotations.When;
+
 import eu.cec.sanco.beans.AppState;
+import eu.cec.sanco.beans.Organisation;
 import eu.cec.sanco.utils.api.Utils;
 
 @Scope("singleton")
 @Component("utils")
 public class UtilsImpl implements Utils {
+  private static final transient Logger LOG = Logger.getLogger(UtilsImpl.class);
 
   @Autowired
   private AppState appState;
+
+  @Autowired
+  private Organisation organisation;
 
   private static char[] ALL_CHARS = null;
 
@@ -57,6 +67,24 @@ public class UtilsImpl implements Utils {
     return new Date();
   }
 
+  @TriggersRemove(cacheName = "eu.cec.sanco.eccrs.persistence", when = When.AFTER_METHOD_INVOCATION, removeAll = true)
+  public void reset() {
+    LOG.info("Resetting caches.");
+  }
+
+  @Cacheable(cacheName = "eu.cec.sanco.eccrs.selects")
+  public List<SelectItem> getYears() {
+    ArrayList<SelectItem> years = new ArrayList<SelectItem>(20);
+    int currentYear = new Date().getYear() + 1900;
+
+    for (int i = 2010; i <= currentYear; i++) {
+      years.add(new SelectItem(i, String.valueOf(i)));
+    }
+
+    return years;
+  }
+
+  @Cacheable(cacheName = "eu.cec.sanco.eccrs.selects")
   public List<SelectItem> getPaymentMeans() {
     FacesContext context = FacesContext.getCurrentInstance();
     ResourceBundle appmsgBundle = context.getApplication().getResourceBundle(context, "appmsg");
@@ -80,6 +108,7 @@ public class UtilsImpl implements Utils {
     return paymentMeans;
   }
 
+  @Cacheable(cacheName = "eu.cec.sanco.eccrs.selects")
   public List<SelectItem> getCurrencies() {
     FacesContext context = FacesContext.getCurrentInstance();
     ResourceBundle appmsgBundle = context.getApplication().getResourceBundle(context, "appmsg");
@@ -106,6 +135,7 @@ public class UtilsImpl implements Utils {
     return currencies;
   }
 
+  @Cacheable(cacheName = "eu.cec.sanco.eccrs.selects")
   public List<SelectItem> getLevel1Classifications() {
     FacesContext context = FacesContext.getCurrentInstance();
     ResourceBundle appmsgBundle = context.getApplication().getResourceBundle(context, "appmsg");
@@ -135,6 +165,7 @@ public class UtilsImpl implements Utils {
     return level1;
   }
 
+  @Cacheable(cacheName = "eu.cec.sanco.eccrs.selects")
   public List<SelectItem> getLevel2Classifications(String level1) {
 
     FacesContext context = FacesContext.getCurrentInstance();
@@ -333,6 +364,7 @@ public class UtilsImpl implements Utils {
     return level2;
   }
 
+  @Cacheable(cacheName = "eu.cec.sanco.eccrs.selects")
   public List<SelectItem> getSectors() {
     FacesContext context = FacesContext.getCurrentInstance();
     ResourceBundle appmsgBundle = context.getApplication().getResourceBundle(context, "appmsg");
@@ -354,6 +386,7 @@ public class UtilsImpl implements Utils {
     return sectors;
   }
 
+  @Cacheable(cacheName = "eu.cec.sanco.eccrs.selects")
   public List<SelectItem> getMarkets(String sector) {
 
     FacesContext context = FacesContext.getCurrentInstance();
@@ -585,6 +618,7 @@ public class UtilsImpl implements Utils {
     return markets;
   }
 
+  @Cacheable(cacheName = "eu.cec.sanco.eccrs.selects")
   public List<SelectItem> getSellingMethods() {
     FacesContext context = FacesContext.getCurrentInstance();
     ResourceBundle appmsgBundle = context.getApplication().getResourceBundle(context, "appmsg");
@@ -643,6 +677,7 @@ public class UtilsImpl implements Utils {
     return sellingMethods;
   }
 
+  @Cacheable(cacheName = "eu.cec.sanco.eccrs.selects")
   public List<SelectItem> getAdvertisingMethods() {
     FacesContext context = FacesContext.getCurrentInstance();
     ResourceBundle appmsgBundle = context.getApplication().getResourceBundle(context, "appmsg");
@@ -673,6 +708,7 @@ public class UtilsImpl implements Utils {
     return advertisingMethods;
   }
 
+  @Cacheable(cacheName = "eu.cec.sanco.eccrs.selects")
   public List<SelectItem> getAvailableCountries() {
     FacesContext context = FacesContext.getCurrentInstance();
     ResourceBundle appmsgBundle = context.getApplication().getResourceBundle(context, "appmsg");
@@ -922,5 +958,9 @@ public class UtilsImpl implements Utils {
 
   public String getVersion() {
     return appState.getVersion();
+  }
+
+  public String getCountry() {
+    return organisation.getCountry();
   }
 }

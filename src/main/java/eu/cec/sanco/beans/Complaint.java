@@ -1,6 +1,8 @@
 package eu.cec.sanco.beans;
 
-public class Complaint {
+import java.io.Serializable;
+
+public class Complaint implements Serializable{
   private String level_1;
   private String level_2;
   private String transaction_value;

@@ -1,13 +1,11 @@
 package eu.cec.sanco.beans;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-import org.primefaces.component.log.Log;
-
-public class ComplaintSet {
+public class ComplaintSet implements Serializable {
   private String creation_date;
   private String modification_date;
   private boolean new_complaint;
@@ -33,8 +31,6 @@ public class ComplaintSet {
   private String market;
   private List<Complaint> complaints = new LinkedList<Complaint>();
 
-  private static final transient Logger LOG = Logger.getLogger(ComplaintSet.class);
-
   public ComplaintSet() {
 
   }
@@ -47,7 +43,8 @@ public class ComplaintSet {
   }
 
   public void setCreation_date(Date creation_date) {
-    this.creation_date = String.valueOf(creation_date.getTime());
+    if (creation_date != null)
+      this.creation_date = String.valueOf(creation_date.getTime());
   }
 
   public Date getModification_date() {
@@ -59,7 +56,8 @@ public class ComplaintSet {
   }
 
   public void setModification_date(Date modification_date) {
-    this.modification_date = String.valueOf(modification_date.getTime());
+    if (modification_date != null)
+      this.modification_date = String.valueOf(modification_date.getTime());
   }
 
   public boolean isNew_complaint() {
@@ -231,8 +229,6 @@ public class ComplaintSet {
   }
 
   public List<Complaint> getComplaints() {
-    LOG.info("Getting :" + complaints.size());
-
     return complaints;
   }
 
