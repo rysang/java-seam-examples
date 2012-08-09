@@ -39,6 +39,10 @@ public interface Utils {
   public String getVersion();
 
   public String getCountry();
-  
+
   public void reset();
+
+  public void setTheme(String theme);
+
+  public String getTheme();
 }

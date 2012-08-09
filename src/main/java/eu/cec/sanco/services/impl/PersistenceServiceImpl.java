@@ -55,10 +55,29 @@ public class PersistenceServiceImpl implements PersistenceService {
 
   @TriggersRemove(cacheName = "eu.cec.sanco.eccrs.persistence", when = When.AFTER_METHOD_INVOCATION, removeAll = true)
   public int updateEntry(Entry entry) {
-    int ret = this.jdbcTemplate.update("update t_organisation set  value = ?, timestamp = ? where id = ?",
-        new Object[] { gson.toJson(entry.getComplaintSet()), entry.getTimestamp().getTime(), entry.getId() });
+    int ret = this.jdbcTemplate.update("update complaints set  value = ?, timestamp = ? where id = ?", new Object[] {
+        gson.toJson(entry.getComplaintSet()), entry.getTimestamp().getTime(), entry.getId() });
 
     return ret;
+  }
+
+  @TriggersRemove(cacheName = "eu.cec.sanco.eccrs.persistence", when = When.AFTER_METHOD_INVOCATION, removeAll = true)
+  public int removeEntries(List<String> ids) {
+    if (ids.isEmpty()) {
+      LOG.info("No entries to delete.");
+      return -1;
+    }
+
+    LOG.info("Deleting entries:" + ids);
+    StringBuilder query = new StringBuilder("delete from complaints where id = ? ");
+    for (int i = 1; i < ids.size(); i++) {
+      query.append(" or id = ? ");
+    }
+
+    int ret = this.jdbcTemplate.update(query.toString(), ids.toArray());
+    LOG.info("Ret: " + ret);
+    return ret;
+
   }
 
   @Cacheable(cacheName = "eu.cec.sanco.eccrs.persistence")
@@ -120,12 +139,12 @@ public class PersistenceServiceImpl implements PersistenceService {
   }
 
   @Cacheable(cacheName = "eu.cec.sanco.eccrs.persistence")
-  public List<Entry> getUnlockedComplaints() {
+  public List<Entry> getUnlockedComplaints(String orgId) {
     List<Entry> allEntries = getEntries();
     ArrayList<Entry> unlockedEntries = new ArrayList<Entry>(allEntries.size());
 
     for (Entry e : allEntries) {
-      if (!"true".equals(e.getComplaintSet().getLocked())) {
+      if (!"true".equals(e.getComplaintSet().getLocked()) && e.getComplaintSet().getOrganisation_id().equals(orgId)) {
         unlockedEntries.add(e);
       }
     }
@@ -134,12 +153,12 @@ public class PersistenceServiceImpl implements PersistenceService {
   }
 
   @Cacheable(cacheName = "eu.cec.sanco.eccrs.persistence")
-  public List<Entry> getLockedComplaints() {
+  public List<Entry> getLockedComplaints(String orgId) {
     List<Entry> allEntries = getEntries();
     ArrayList<Entry> lockedEntries = new ArrayList<Entry>(allEntries.size());
 
     for (Entry e : allEntries) {
-      if (!"false".equals(e.getComplaintSet().getLocked())) {
+      if (!"false".equals(e.getComplaintSet().getLocked()) && e.getComplaintSet().getOrganisation_id().equals(orgId)) {
         lockedEntries.add(e);
       }
     }

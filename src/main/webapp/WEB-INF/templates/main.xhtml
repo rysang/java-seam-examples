@@ -43,7 +43,8 @@
 						<h:outputLink value="logout">
 							<h:outputText value="#{ctrlm['more.translations.logout']}" />
 						</h:outputLink>
-						<p:selectOneMenu id="languageSelect" value="#{localeService.currentLocale}">
+						<p:selectOneMenu id="languageSelect"
+							value="#{localeService.currentLocale}">
 							<f:selectItem itemValue="bg" itemLabel="Bulgarian" />
 							<f:selectItem itemValue="cs" itemLabel="Czech" />
 							<f:selectItem itemValue="da" itemLabel="Danish" />
@@ -67,6 +68,18 @@
 							<f:selectItem itemValue="es" itemLabel="Spanish" />
 							<f:selectItem itemValue="sv" itemLabel="Swedish" />
 							<p:ajax event="change" update=":toolbarForm :mainCenterPanel" />
+						</p:selectOneMenu>
+
+						<p:selectOneMenu id="themeSelect" value="#{utils.theme}">
+							<f:selectItem itemValue="mint-choc" itemLabel="mint-choc" />
+							<f:selectItem itemValue="excite-bike" itemLabel="excite-bike" />
+							<f:selectItem itemValue="midnight" itemLabel="midnight" />
+							<f:selectItem itemValue="south-street" itemLabel="south-street" />
+							<f:selectItem itemValue="pepper-grinder"
+								itemLabel="pepper-grinder" />
+							<f:selectItem itemValue="sam" itemLabel="sam" />
+							<p:ajax event="change" update=":toolbarForm :mainCenterPanel"
+								oncomplete="window.location.reload()" />
 						</p:selectOneMenu>
 					</h:panelGrid>
 				</p:toolbarGroup>

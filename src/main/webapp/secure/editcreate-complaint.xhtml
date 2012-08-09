@@ -5,6 +5,7 @@
 	template="/WEB-INF/templates/main.xhtml">
 	<ui:define name="center">
 		<h:form id="complaintForm">
+			<p:messages id="messages" showDetail="true" />
 			<h:panelGrid border="0" columns="1" style="width:100%">
 				<p:toolbar>
 					<p:toolbarGroup align="right">
@@ -12,7 +13,7 @@
 							action="#{complaintActions.saveComplaint}" ajax="false" />
 						<p:commandButton
 							value="#{ctrlm['complaint.form.close.complaint']}"
-							action="#{complaintActions.close}" ajax="false" />
+							action="#{complaintActions.close}" ajax="false" immediate="true" />
 					</p:toolbarGroup>
 				</p:toolbar>
 			</h:panelGrid>
@@ -103,7 +104,10 @@
 							<p:fieldset legend="#{ctrlm['complaint.form.complaint.date']}">
 								<p:calendar
 									value="#{complaintActions.currentEntry.complaintSet.modification_date}"
-									id="modification_date" showOn="button" maxdate="#{utils.now}" />
+									id="modification_date" showOn="button" maxdate="#{utils.now}"
+									required="true"
+									validatorMessage="#{ctrlm['validator.required']}" />
+								<p:message id="modification_dateMessage" for="modification_date" />
 							</p:fieldset>
 						</p:column>
 						<p:column>
@@ -213,7 +217,7 @@
 					</p:toolbarGroup>
 				</p:toolbar>
 
-				<br/>
+				<br />
 				<p:dataTable id="complaintsTable" styleClass="noBorderPad"
 					binding="#{complaintsTableBinding}"
 					value="#{complaintActions.currentEntry.complaintSet.complaints}"
@@ -319,7 +323,7 @@
 							action="#{complaintActions.saveComplaint}" ajax="false" />
 						<p:commandButton
 							value="#{ctrlm['complaint.form.close.complaint']}"
-							action="#{complaintActions.close}" ajax="false" />
+							action="#{complaintActions.close}" ajax="false" immediate="true" />
 					</p:toolbarGroup>
 				</p:toolbar>
 			</h:panelGrid>

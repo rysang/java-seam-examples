@@ -43,7 +43,7 @@ public class ApplicationListener implements ServletContextListener, Runnable {
     }
 
     try {
-      URI uri = new URI("http://localhost:8080/eccrs-ittool");
+      URI uri = new URI("http://localhost:8080");
       desktop.browse(uri);
     } catch (Exception e) {
       LOG.fatal("Error", e);

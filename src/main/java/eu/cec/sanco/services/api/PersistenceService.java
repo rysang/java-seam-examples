@@ -16,11 +16,13 @@ public interface PersistenceService {
 
   public Organisation getOrganisation();
 
-  public List<Entry> getUnlockedComplaints();
+  public List<Entry> getUnlockedComplaints(String orgId);
 
-  public List<Entry> getLockedComplaints();
+  public List<Entry> getLockedComplaints(String orgId);
 
   public int saveEntry(Entry entry);
 
   public int updateEntry(Entry entry);
+
+  public int removeEntries(List<String> ids);
 }

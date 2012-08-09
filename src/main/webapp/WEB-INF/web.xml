@@ -41,7 +41,7 @@
 
   <context-param>
     <param-name>primefaces.THEME</param-name>
-    <param-value>mint-choc</param-value>
+    <param-value>#{utils.theme}</param-value>
   </context-param>
 
   <filter>

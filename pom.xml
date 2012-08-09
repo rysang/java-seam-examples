@@ -41,6 +41,36 @@
     </dependency>
 
     <dependency>
+      <groupId>org.primefaces.themes</groupId>
+      <artifactId>excite-bike</artifactId>
+      <version>1.0.6</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.primefaces.themes</groupId>
+      <artifactId>midnight</artifactId>
+      <version>1.0.6</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.primefaces.themes</groupId>
+      <artifactId>pepper-grinder</artifactId>
+      <version>1.0.6</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.primefaces.themes</groupId>
+      <artifactId>sam</artifactId>
+      <version>1.0.6</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.primefaces.themes</groupId>
+      <artifactId>south-street</artifactId>
+      <version>1.0.6</version>
+    </dependency>
+
+    <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
       <version>2.2.2</version>

@@ -1,11 +1,13 @@
 package eu.cec.sanco.beans;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Entry {
+public class Entry implements Serializable {
   private String id;
   private ComplaintSet complaintSet = new ComplaintSet();
   private Date timestamp;
+  private transient boolean selected;
 
   public Entry() {
 
@@ -40,9 +42,18 @@ public class Entry {
     this.timestamp = timestamp;
   }
 
+  public void setSelected(boolean selected) {
+    this.selected = selected;
+  }
+
+  public boolean isSelected() {
+    return selected;
+  }
+
   @Override
   public String toString() {
-    return String.format("Entry [id=%s, complaintSet=%s, timestamp=%s]", id, complaintSet, timestamp);
+    return String.format("Entry [id=%s, complaintSet=%s, timestamp=%s, selected=%s]", id, complaintSet, timestamp,
+        selected);
   }
 
 }

@@ -34,6 +34,8 @@ public class UtilsImpl implements Utils {
   @Autowired
   private Organisation organisation;
 
+  private String theme = "mint-choc";
+
   private static char[] ALL_CHARS = null;
 
   private static final Random RANDOM = new Random(System.currentTimeMillis());
@@ -962,5 +964,13 @@ public class UtilsImpl implements Utils {
 
   public String getCountry() {
     return organisation.getCountry();
+  }
+
+  public void setTheme(String theme) {
+    this.theme = theme;
+  }
+
+  public String getTheme() {
+    return theme;
   }
 }

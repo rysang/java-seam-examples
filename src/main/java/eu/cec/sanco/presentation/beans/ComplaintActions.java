@@ -1,11 +1,13 @@
 package eu.cec.sanco.presentation.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.UUID;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 import org.apache.log4j.Logger;
@@ -45,17 +47,22 @@ public class ComplaintActions implements Serializable {
 
   }
 
-  public List<Entry> getUnlockedComplaints() {
+  public void reset() {
+    complaints = null;
+    lockedComplaints = null;
+  }
+
+  public List<Entry> getUnlockedComplaints(String orgId) {
     if (complaints == null) {
-      complaints = persistenceService.getUnlockedComplaints();
+      complaints = persistenceService.getUnlockedComplaints(orgId);
     }
 
     return complaints;
   }
 
-  public List<Entry> getLockedComplaints() {
+  public List<Entry> getLockedComplaints(String orgId) {
     if (lockedComplaints == null) {
-      lockedComplaints = persistenceService.getLockedComplaints();
+      lockedComplaints = persistenceService.getLockedComplaints(orgId);
     }
 
     return lockedComplaints;
@@ -93,13 +100,33 @@ public class ComplaintActions implements Serializable {
     return "editcreate-complaint";
   }
 
+  public void deleteSelComplaints() {
+    LOG.info("Delete complaints.");
+    List<String> ids = new ArrayList<String>(complaints.size());
+
+    for (Entry e : complaints) {
+      if (e.isSelected()) {
+        ids.add(e.getId());
+      }
+    }
+
+    persistenceService.removeEntries(ids);
+    reset();
+  }
+
   public String editComplaint(Entry entry) {
     currentEntry = entry;
     return "editcreate-complaint";
   }
 
   public String saveComplaint() {
-    if (currentEntry.getId() != null) {
+    if (currentEntry == null || currentEntry.getComplaintSet().getComplaints().isEmpty()) {
+      FacesContext.getCurrentInstance().addMessage(null,
+          new FacesMessage(FacesMessage.SEVERITY_ERROR, "Attention", "There should be at least one complaint."));
+      return null;
+    }
+
+    if (currentEntry.getId() == null) {
       LOG.info("Creating entry.");
       currentEntry.setId(UUID.randomUUID().toString());
       currentEntry.setTimestamp(new Date());
@@ -111,11 +138,12 @@ public class ComplaintActions implements Serializable {
       currentEntry.setTimestamp(new Date());
       persistenceService.updateEntry(currentEntry);
     }
+
+    reset();
     return "home";
   }
 
   public String close() {
-
     return "home";
   }
 

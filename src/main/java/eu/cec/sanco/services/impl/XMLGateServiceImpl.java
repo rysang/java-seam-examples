@@ -121,7 +121,7 @@ public class XMLGateServiceImpl implements XMLGateService {
     }
 
     LOG.info("Buffer size: " + ((bos.size() / 1024) / 1024) + " MB");
-    LOG.info(bos);
+    // LOG.info(bos);
     EntityUtils.consume(entity);
 
     return new String(bos.toByteArray(), Charset.forName("UTF-8"));
