@@ -78,7 +78,8 @@
 				</p:column>
 
 				<p:column>
-					<h:commandLink value="Delete" action="#" />
+					<p:commandLink value="Delete"
+						action="#{complaintActions.deleteComplaint(entry)}" update="@form" />
 				</p:column>
 
 				<p:column>

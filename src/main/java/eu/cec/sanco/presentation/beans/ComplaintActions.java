@@ -102,10 +102,16 @@ public class ComplaintActions implements Serializable {
     return types.toString();
   }
 
+  public static final String getNextReference() {
+    String ret = String.valueOf(Math.abs(UUID.randomUUID().hashCode()));
+    ret = ret.substring(0, 7);
+    return ret;
+  }
+
   public String createComplaint() {
     currentEntry = new Entry();
     currentEntry.getComplaintSet().setOrganisation_id(userDetails.getUsername());
-    currentEntry.getComplaintSet().setReference(String.valueOf(UUID.randomUUID().hashCode()).substring(3));
+    currentEntry.getComplaintSet().setReference(getNextReference());
 
     currentEntry.getComplaintSet().getComplaints().add(new Complaint());
     return "editcreate-complaint";
@@ -120,6 +126,15 @@ public class ComplaintActions implements Serializable {
         ids.add(e.getId());
       }
     }
+
+    persistenceService.removeEntries(ids);
+    reset();
+  }
+
+  public void deleteComplaint(Entry entry) {
+    LOG.info("Delete complaint: " + entry);
+    List<String> ids = new ArrayList<String>(1);
+    ids.add(entry.getId());
 
     persistenceService.removeEntries(ids);
     reset();
