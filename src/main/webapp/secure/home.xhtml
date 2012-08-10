@@ -4,17 +4,19 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="/WEB-INF/templates/main.xhtml">
 	<ui:define name="center">
-		<p:tabView id="tabView" dynamic="true" cache="false">
+		<p:tabView id="tabView" dynamic="false" cache="true"
+			activeIndex="#{complaintActions.tabIndex}">
+			<p:ajax event="tabChange" listener="#{complaintActions.onTabChange}" />
 
-			<p:tab id="tab1" title="#{ctrlm['header.complaints.menu']}">
+			<p:tab id="tab0" title="#{ctrlm['header.complaints.menu']}">
 				<ui:include src="main/complaints.xhtml" />
 			</p:tab>
 
-			<p:tab id="tab2" title="#{ctrlm['header.closed.complaints.menu']}">
+			<p:tab id="tab1" title="#{ctrlm['header.closed.complaints.menu']}">
 				<ui:include src="main/locked-complaints.xhtml" />
 			</p:tab>
 
-			<p:tab id="tab3" title="#{ctrlm['header.submitted.menu']}">
+			<p:tab id="tab2" title="#{ctrlm['header.submitted.menu']}">
 				<ui:include src="main/submissions.xhtml" />
 			</p:tab>
 

@@ -1,0 +1,341 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/main.xhtml">
+	<ui:define name="center">
+		<h:form id="complaintForm">
+			<p:messages id="messages" showDetail="true" />
+			<h:panelGrid border="0" columns="1" style="width:100%">
+				<p:toolbar>
+					<p:toolbarGroup align="right">
+						<p:commandButton value="#{ctrlm['complaint.form.save.complaint']}"
+							rendered="#{rendered}" action="#{complaintActions.saveComplaint}"
+							ajax="false" />
+						<p:commandButton
+							value="#{ctrlm['complaint.form.close.complaint']}"
+							action="#{complaintActions.close}" ajax="false" immediate="true" />
+					</p:toolbarGroup>
+				</p:toolbar>
+			</h:panelGrid>
+			<br />
+
+			<p:panel header="#{ctrlm['complaint.form.contact.informations']}">
+				<p:panelGrid style="width:100%" styleClass="noBorder">
+					<p:row>
+						<p:column>
+							<p:fieldset legend="#{ctrlm['complaint.form.full.name']}">
+								<p:inputText id="contact_name"
+									value="#{currentEntry.complaintSet.contact_name}"
+									style="width:100%" disabled="#{disabled}" />
+							</p:fieldset>
+						</p:column>
+						<p:column>
+							<p:fieldset legend="#{ctrlm['complaint.form.email']}">
+								<p:inputText id="contact_email"
+									value="#{currentEntry.complaintSet.contact_email}"
+									style="width:100%" disabled="#{disabled}">
+									<f:validateRegex validatorMessage="Email is not valid"
+										pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+								</p:inputText>
+								<p:message id="contact_emailMessage" for="contact_email" />
+							</p:fieldset>
+						</p:column>
+						<p:column>
+							<p:fieldset legend="#{ctrlm['complaint.form.tel']}">
+								<p:inputText id="contact_tel"
+									value="#{currentEntry.complaintSet.contact_tel}"
+									style="width:100%" disabled="#{disabled}" />
+							</p:fieldset>
+						</p:column>
+						<p:column>
+							<p:fieldset legend="#{ctrlm['complaint.form.fax']}">
+								<p:inputText id="contact_fax"
+									value="#{currentEntry.complaintSet.contact_fax}"
+									style="width:100%" disabled="#{disabled}" />
+							</p:fieldset>
+						</p:column>
+					</p:row>
+
+
+					<p:row>
+						<p:column colspan="2">
+							<p:fieldset legend="#{ctrlm['complaint.form.address']}">
+								<p:inputText id="contact_address"
+									value="#{currentEntry.complaintSet.contact_address}"
+									style="width:100%" disabled="#{disabled}" />
+							</p:fieldset>
+						</p:column>
+						<p:column>
+							<p:fieldset legend="#{ctrlm['complaint.form.town']}">
+								<p:inputText id="contact_town"
+									value="#{currentEntry.complaintSet.contact_town}"
+									style="width:100%" disabled="#{disabled}" />
+							</p:fieldset>
+						</p:column>
+						<p:column>
+							<p:fieldset legend="#{ctrlm['complaint.form.postal.code']}">
+								<p:inputText id="contact_postcode"
+									value="#{currentEntry.complaintSet.contact_postcode}"
+									style="width:100%" disabled="#{disabled}" />
+							</p:fieldset>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:fieldset
+								legend="#{ctrlm['complaint.form.country.of.the.consumer']}">
+								<p:selectOneMenu id="consumer_country"
+									value="#{currentEntry.complaintSet.consumer_country}"
+									disabled="#{disabled}">
+									<f:selectItems value="#{utils.availableCountries}" />
+								</p:selectOneMenu>
+							</p:fieldset>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</p:panel>
+			<br />
+			<p:panel header="#{ctrlm['complaint.form.general.informations']}">
+				<p:panelGrid style="width:100%" styleClass="noBorder">
+					<p:row>
+						<p:column>
+							<p:fieldset legend="#{ctrlm['complaint.form.reference']}">
+								<p:inputText id="reference"
+									value="#{currentEntry.complaintSet.reference}" disabled="true"
+									style="width:100%" />
+							</p:fieldset>
+						</p:column>
+						<p:column>
+							<p:fieldset legend="#{ctrlm['complaint.form.complaint.date']}">
+								<p:calendar disabled="#{disabled}"
+									value="#{currentEntry.complaintSet.modification_date}"
+									id="modification_date" showOn="button" maxdate="#{utils.now}"
+									required="true"
+									validatorMessage="#{ctrlm['validator.required']}" />
+								<p:message id="modification_dateMessage" for="modification_date" />
+							</p:fieldset>
+						</p:column>
+						<p:column>
+							<p:fieldset legend="#{ctrlm['complaint.form.organisation.id']}">
+								<p:inputText id="organisation_id"
+									value="#{currentEntry.complaintSet.organisation_id}"
+									disabled="true" style="width:100%" />
+							</p:fieldset>
+						</p:column>
+						<p:column>
+							<p:fieldset
+								legend="#{ctrlm['complaint.form.reason.for.contact']}">
+								<p:selectOneMenu id="distinction" disabled="#{disabled}"
+									value="#{currentEntry.complaintSet.distinction}">
+									<f:selectItem
+										itemLabel="#{appmsg['distinction.name.complaint']}"
+										itemValue="Complaint" />
+									<f:selectItem itemLabel="#{appmsg['distinction.name.enquiry']}"
+										itemValue="Enquiry" />
+								</p:selectOneMenu>
+							</p:fieldset>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<p:fieldset legend="#{ctrlm['complaint.form.trader.name']}">
+								<p:inputText id="trader_name" disabled="#{disabled}"
+									value="#{currentEntry.complaintSet.trader_name}"
+									style="width:100%" />
+							</p:fieldset>
+						</p:column>
+						<p:column>
+							<p:fieldset
+								legend="#{ctrlm['complaint.form.country.of.the.trader']}">
+								<p:selectOneMenu id="trader_country" disabled="#{disabled}"
+									value="#{currentEntry.complaintSet.trader_country}">
+									<f:selectItems value="#{utils.availableCountries}" />
+								</p:selectOneMenu>
+							</p:fieldset>
+						</p:column>
+						<p:column colspan="2">
+							<p:fieldset
+								legend="#{ctrlm['complaint.form.advertising.method']}">
+								<p:selectOneMenu id="advertising_method" disabled="#{disabled}"
+									value="#{currentEntry.complaintSet.advertising_method}">
+									<f:selectItems value="#{utils.advertisingMethods}" />
+								</p:selectOneMenu>
+							</p:fieldset>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column colspan="4">
+							<p:fieldset legend="#{ctrlm['complaint.form.selling.method']}">
+								<p:selectOneMenu id="selling_method" disabled="#{disabled}"
+									value="#{currentEntry.complaintSet.selling_method}">
+									<f:selectItems value="#{utils.sellingMethods}" />
+								</p:selectOneMenu>
+							</p:fieldset>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</p:panel>
+			<br />
+			<p:panel header="#{ctrlm['complaint.form.sector']}">
+				<p:panelGrid style="width:100%" styleClass="noBorder">
+					<p:row>
+						<p:column colspan="4">
+							<p:fieldset legend="#{ctrlm['complaint.form.sector']}">
+								<p:selectOneMenu id="sector" disabled="#{disabled}"
+									value="#{currentEntry.complaintSet.sector}">
+									<f:selectItems value="#{utils.sectors}" />
+									<p:ajax event="change" update="market" />
+								</p:selectOneMenu>
+							</p:fieldset>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column colspan="4">
+							<p:fieldset legend="#{ctrlm['complaint.form.market']}">
+								<p:selectOneMenu id="market" disabled="#{disabled}"
+									value="#{currentEntry.complaintSet.market}">
+									<f:selectItems
+										value="#{utils.getMarkets(currentEntry.complaintSet.sector)}" />
+								</p:selectOneMenu>
+							</p:fieldset>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</p:panel>
+			<br />
+			<br />
+
+			<h:panelGrid border="0" columns="1" style="width:100%"
+				id="complaintsGrid">
+				<p:toolbar rendered="#{rendered}">
+					<p:toolbarGroup align="left">
+						<p:button value="#{ctrlm['complaint.form.complaints.row.title']}"
+							onclick="return false" />
+					</p:toolbarGroup>
+					<p:toolbarGroup align="right">
+						<p:commandButton id="addComplBtn"
+							value="#{ctrlm['complaint.form.add.new.complaint.for.case']}"
+							action="#{complaintActions.addComplaint}"
+							update="complaintsTable" immediate="true" />
+					</p:toolbarGroup>
+				</p:toolbar>
+
+				<br />
+				<p:dataTable id="complaintsTable" styleClass="noBorderPad"
+					binding="#{complaintsTableBinding}"
+					value="#{currentEntry.complaintSet.complaints}" var="compl"
+					style="width:100%">
+
+					<p:column>
+						<p:panel
+							header="#{ctrlm['complaint.form.complaint.row']} #{complaintsTableBinding.rowIndex + 1}">
+							<p:panelGrid style="width:100%" styleClass="noBorder">
+								<p:row>
+									<p:column colspan="5">
+										<p:fieldset legend="#{ctrlm['complaint.form.level.1']}">
+											<p:selectOneMenu id="level_1" value="#{compl.level_1}"
+												disabled="#{disabled}">
+												<f:selectItems value="#{utils.level1Classifications}" />
+												<p:ajax event="change" update="level_2" />
+											</p:selectOneMenu>
+										</p:fieldset>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column colspan="5">
+										<p:fieldset legend="#{ctrlm['complaint.form.level.2']}">
+											<p:selectOneMenu id="level_2" value="#{compl.level_2}"
+												disabled="#{disabled}">
+												<f:selectItems
+													value="#{utils.getLevel2Classifications(compl.level_1)}" />
+											</p:selectOneMenu>
+										</p:fieldset>
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>
+										<p:fieldset
+											legend="#{ctrlm['complaint.form.transaction.value']}">
+											<p:inputText id="transaction_value" disabled="#{disabled}"
+												value="#{compl.transaction_value}" style="width:100%" />
+										</p:fieldset>
+									</p:column>
+									<p:column>
+										<p:fieldset
+											legend="#{ctrlm['complaint.form.transaction.currency']}">
+											<p:selectOneMenu id="transaction_currency"
+												disabled="#{disabled}" value="#{compl.transaction_currency}">
+												<f:selectItems value="#{utils.currencies}" />
+											</p:selectOneMenu>
+										</p:fieldset>
+									</p:column>
+									<p:column>
+										<p:fieldset legend="#{ctrlm['complaint.form.loss.value']}">
+											<p:inputText id="loss_value" value="#{compl.loss_value}"
+												disabled="#{disabled}" style="width:100%" />
+										</p:fieldset>
+									</p:column>
+									<p:column>
+										<p:fieldset legend="#{ctrlm['complaint.form.loss.currency']}">
+											<p:selectOneMenu id="loss_currency" disabled="#{disabled}"
+												value="#{compl.loss_currency}">
+												<f:selectItems value="#{utils.currencies}" />
+											</p:selectOneMenu>
+										</p:fieldset>
+									</p:column>
+									<p:column>
+										<p:fieldset legend="#{ctrlm['complaint.form.payment.means']}">
+											<p:selectOneMenu id="payment_means" disabled="#{disabled}"
+												value="#{compl.payment_means}">
+												<f:selectItems value="#{utils.paymentMeans}" />
+											</p:selectOneMenu>
+										</p:fieldset>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column>
+										<p:commandButton value="#{ctrlm['more.translations.delete']}"
+											rendered="#{false}" id="delComplBtn"
+											action="#{complaintActions.deleteComplaint(compl)}"
+											update=":complaintForm" immediate="true" />
+									</p:column>
+								</p:row>
+							</p:panelGrid>
+						</p:panel>
+					</p:column>
+				</p:dataTable>
+			</h:panelGrid>
+
+			<br />
+			<p:panel header="#{ctrlm['complaint.form.notes']}">
+				<p:panelGrid style="width:100%" styleClass="noBorder">
+					<p:row>
+						<p:column>
+							<p:editor id="user_notes" disabled="#{disabled}"
+								value="#{currentEntry.complaintSet.user_notes}"
+								style="width: auto" />
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</p:panel>
+
+			<br />
+			<h:panelGrid border="0" columns="1" style="width:100%">
+				<p:toolbar>
+					<p:toolbarGroup align="right">
+						<p:commandButton value="#{ctrlm['complaint.form.save.complaint']}"
+							action="#{complaintActions.saveComplaint}" ajax="false"
+							rendered="#{rendered}" />
+						<p:commandButton
+							value="#{ctrlm['complaint.form.close.complaint']}"
+							action="#{complaintActions.close}" ajax="false" immediate="true" />
+					</p:toolbarGroup>
+				</p:toolbar>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

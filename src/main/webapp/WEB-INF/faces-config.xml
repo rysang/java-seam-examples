@@ -35,11 +35,19 @@
       <redirect />
     </navigation-case>
   </navigation-rule>
-  
+
   <navigation-rule>
     <navigation-case>
       <from-outcome>home</from-outcome>
       <to-view-id>/secure/home.xhtml</to-view-id>
+      <redirect />
+    </navigation-case>
+  </navigation-rule>
+
+  <navigation-rule>
+    <navigation-case>
+      <from-outcome>view-complaint</from-outcome>
+      <to-view-id>/secure/view-complaint.xhtml</to-view-id>
       <redirect />
     </navigation-case>
   </navigation-rule>

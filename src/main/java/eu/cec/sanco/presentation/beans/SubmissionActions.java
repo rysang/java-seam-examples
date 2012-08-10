@@ -9,6 +9,7 @@ import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.log4j.Logger;
+import org.primefaces.event.SelectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
@@ -41,6 +42,7 @@ public class SubmissionActions implements Serializable {
   private transient XMLGateService xmlGateService;
 
   private String currentYear;
+  private String tmpYear;
 
   public SubmissionActions() {
 
@@ -65,7 +67,15 @@ public class SubmissionActions implements Serializable {
 
   public void setCurrentYear(String currentYear) {
     this.currentYear = currentYear;
-    searchResult = null;
+  }
+
+  public void handleYearChange() {
+    LOG.info(currentYear);
+    if (!String.valueOf(currentYear).equals(tmpYear)) {
+      searchResult = null;
+    }
+
+    tmpYear = currentYear;
   }
 
   public String getCurrentYear() {

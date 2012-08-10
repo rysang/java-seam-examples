@@ -11,13 +11,12 @@
 			<p:toolbar>
 				<p:toolbarGroup align="left">
 					<h:panelGrid columns="6">
-						<h:outputText value="#{ctrlm['submissions.submissions.title']}"
+						<h:outputText value="#{ctrlm['submissions.submissions.title']}: "
 							style="color: white" />
-						<br />
 						<p:selectOneMenu id="submissionsYear"
 							value="#{submissionActions.currentYear}">
 							<f:selectItems value="#{utils.years}" />
-							<p:ajax event="change" update="submissionsTable" />
+							<p:ajax event="change" update="submissionsTable" listener="#{submissionActions.handleYearChange()}"/>
 						</p:selectOneMenu>
 					</h:panelGrid>
 				</p:toolbarGroup>

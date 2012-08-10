@@ -11,6 +11,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 import org.apache.log4j.Logger;
+import org.primefaces.component.datatable.DataTable;
+import org.primefaces.event.TabChangeEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
@@ -43,8 +45,17 @@ public class ComplaintActions implements Serializable {
 
   private Entry currentEntry;
 
+  private Entry currentViewEntry;
+
+  private int tabIndex;
+
   public ComplaintActions() {
 
+  }
+
+  public void onTabChange(TabChangeEvent event) {
+    tabIndex = new Integer(event.getTab().getId().substring(3));
+    LOG.info("Tab changed to: " + tabIndex);
   }
 
   public void reset() {
@@ -147,6 +158,13 @@ public class ComplaintActions implements Serializable {
     return "home";
   }
 
+  public String viewEntry(Entry entry) {
+    LOG.info("Viewing entry.");
+    currentViewEntry = entry;
+
+    return "view-complaint";
+  }
+
   public void addComplaint() {
     LOG.info("Adding new Complaint");
     currentEntry.getComplaintSet().getComplaints().add(new Complaint());
@@ -163,5 +181,21 @@ public class ComplaintActions implements Serializable {
 
   public Entry getCurrentEntry() {
     return currentEntry;
+  }
+
+  public void setCurrentViewEntry(Entry currentViewEntry) {
+    this.currentViewEntry = currentViewEntry;
+  }
+
+  public Entry getCurrentViewEntry() {
+    return currentViewEntry;
+  }
+
+  public void setTabIndex(int tabIndex) {
+    this.tabIndex = tabIndex;
+  }
+
+  public int getTabIndex() {
+    return tabIndex;
   }
 }

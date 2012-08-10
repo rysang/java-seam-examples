@@ -3,8 +3,6 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-
-
 	<p:panel id="panelComplaints"
 		header="#{ctrlm['list.of.complaints.title.open.complaints']}"
 		style="margin-bottom:10px;width: 100%">
@@ -16,7 +14,8 @@
 						<p:commandButton
 							value="#{ctrlm['list.of.complaints.new.complaint']}" ajax="false"
 							action="#{complaintActions.createComplaint}" />
-						<p:commandButton id="delBtn" value="#{ctrlm['more.translations.delete']}"
+						<p:commandButton id="delBtn"
+							value="#{ctrlm['more.translations.delete']}"
 							action="#{complaintActions.deleteSelComplaints}"
 							update="formComplaints" />
 					</h:panelGrid>
@@ -29,7 +28,7 @@
 				emptyMessage="No complaints found with given criteria"
 				paginator="true" rows="10" paginatorPosition="bottom"
 				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-				rowsPerPageTemplate="5,10,15">
+				rowsPerPageTemplate="5,10,15" paginatorAlwaysVisible="false">
 
 				<p:column id="refColumn" sortBy="#{entry.complaintSet.reference}"
 					headerText="#{ctrlm['list.of.complaints.reference']}"
