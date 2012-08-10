@@ -103,7 +103,8 @@ public class ComplaintActions implements Serializable {
   }
 
   public static final String getNextReference() {
-    String ret = String.valueOf(Math.abs(UUID.randomUUID().hashCode()));
+    String ret = String.valueOf(Math.abs(UUID.randomUUID().hashCode()))
+        + String.valueOf(Math.abs(UUID.randomUUID().hashCode()));
     ret = ret.substring(0, 7);
     return ret;
   }
