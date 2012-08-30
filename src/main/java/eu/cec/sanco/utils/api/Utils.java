@@ -45,4 +45,6 @@ public interface Utils {
   public void setTheme(String theme);
 
   public String getTheme();
+  
+  public long getNextCid();
 }

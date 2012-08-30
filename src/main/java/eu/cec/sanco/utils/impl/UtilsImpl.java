@@ -40,8 +40,14 @@ public class UtilsImpl implements Utils {
 
   private static final Random RANDOM = new Random(System.currentTimeMillis());
 
+  private static long cidCounter = 0;
+
   public UtilsImpl() {
 
+  }
+
+  public long getNextCid() {
+    return Math.abs(++cidCounter);
   }
 
   public String rebuildString(String str) {
