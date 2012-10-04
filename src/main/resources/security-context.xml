@@ -12,12 +12,12 @@
     http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 
 
-  <context:component-scan base-package="com.penteker.auction" />
+  <context:component-scan base-package="ro.penteker.auktion" />
   <!-- Security -->
 
   <bean id="loggerListener" class="org.springframework.security.authentication.event.LoggerListener" />
 
-  <bean id="currentUser" scope="session" class="com.penteker.auction.security.SecurityContext" lazy-init="true"
+  <bean id="currentUser" scope="session" class="ro.penteker.auktion.security.SecurityContext" lazy-init="true"
     factory-method="getCurrentUser" />
 
   <security:http auto-config="true">
@@ -32,19 +32,19 @@
 
   <security:global-method-security secured-annotations="enabled" jsr250-annotations="disabled" />
 
-  <bean id="userDetailsService0" class="com.penteker.auction.security.UserAuthenticationService">
+  <bean id="userDetailsService0" class="ro.penteker.auktion.security.UserAuthenticationService">
     <property name="passwordIndex" value="0" />
   </bean>
-  <bean id="userDetailsService1" class="com.penteker.auction.security.UserAuthenticationService">
+  <bean id="userDetailsService1" class="ro.penteker.auktion.security.UserAuthenticationService">
     <property name="passwordIndex" value="1" />
   </bean>
-  <bean id="userDetailsService2" class="com.penteker.auction.security.UserAuthenticationService">
+  <bean id="userDetailsService2" class="ro.penteker.auktion.security.UserAuthenticationService">
     <property name="passwordIndex" value="2" />
   </bean>
-  <bean id="userDetailsService3" class="com.penteker.auction.security.UserAuthenticationService">
+  <bean id="userDetailsService3" class="ro.penteker.auktion.security.UserAuthenticationService">
     <property name="passwordIndex" value="3" />
   </bean>
-  <bean id="userDetailsService4" class="com.penteker.auction.security.UserAuthenticationService">
+  <bean id="userDetailsService4" class="ro.penteker.auktion.security.UserAuthenticationService">
     <property name="passwordIndex" value="4" />
   </bean>
 

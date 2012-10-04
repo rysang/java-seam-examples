@@ -9,9 +9,9 @@
   <defaultCache eternal="false" maxElementsInMemory="1000" overflowToDisk="false" diskPersistent="false"
     timeToIdleSeconds="86400" timeToLiveSeconds="0" memoryStoreEvictionPolicy="LRU" />
 
-  <cache name="com.penteker.auction.eccrs.selects" eternal="false" maxElementsInMemory="100" overflowToDisk="true"
+  <cache name="ro.penteker.auktion.eccrs.selects" eternal="false" maxElementsInMemory="100" overflowToDisk="true"
     diskPersistent="true" timeToIdleSeconds="86400" timeToLiveSeconds="0" memoryStoreEvictionPolicy="LRU" />
 
-  <cache name="com.penteker.auction.eccrs.persistence" eternal="false" maxElementsInMemory="100" overflowToDisk="true"
+  <cache name="ro.penteker.auktion.eccrs.persistence" eternal="false" maxElementsInMemory="100" overflowToDisk="true"
     diskPersistent="true" timeToIdleSeconds="86400" timeToLiveSeconds="0" memoryStoreEvictionPolicy="LRU" />
 </ehcache>
