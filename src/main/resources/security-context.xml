@@ -20,12 +20,22 @@
   <bean id="currentUser" scope="session" class="ro.penteker.auktion.security.SecurityContext" lazy-init="true"
     factory-method="getCurrentUser" />
 
+  <bean id="anonymousAuthFilter" class="org.springframework.security.web.authentication.AnonymousAuthenticationFilter">
+    <property name="key" value="anonymous" />
+    <property name="userAttribute" value="anonymousUser,ROLE_ANONYMOUS" />
+  </bean>
+
+  <bean id="anonymousAuthenticationProvider" class="org.springframework.security.authentication.AnonymousAuthenticationProvider">
+    <property name="key" value="anonymous" />
+  </bean>
+
   <security:http auto-config="true">
     <security:access-denied-handler error-page="/access_denied.xhtml" />
 
     <security:form-login login-page="/login.xhtml" login-processing-url="/j_spring_security_check"
       authentication-failure-url="/login.xhtml" default-target-url="/secure/home.xhtml" />
     <security:intercept-url pattern="/secure/**" access="ROLE_USER" />
+    <security:intercept-url pattern="/public/**" access="ROLE_ANONYMOUS,ROLE_USER" />
     <security:logout invalidate-session="true" logout-url="/secure/logout" logout-success-url="/login.xhtml" />
     <security:session-management invalid-session-url="/login.xhtml" />
   </security:http>

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
+<html xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <f:view locale="#{localeService.currentLocale}">
@@ -19,32 +17,21 @@
 
 				<p:toolbarGroup align="right">
 					<h:panelGrid columns="7">
-						<h:outputText style="font-size: 12px; color: white"
-							value="#{ctrlm['more.translations.version']} #{utils.version}" />
+						<h:outputText style="font-size: 12px; color: white" value="#{ctrlm['more.translations.version']} #{utils.version}" />
 
-						<h:outputLink
-							value="http://ec.europa.eu/consumers/complaints/policy_framework_en.htm"
-							target="_blank">
-							<h:outputText style="font-size: 12px"
-								value="#{ctrlm['more.translations.recommendation']}" />
+						<h:outputLink value="http://ec.europa.eu/consumers/complaints/policy_framework_en.htm" target="_blank">
+							<h:outputText style="font-size: 12px" value="#{ctrlm['more.translations.recommendation']}" />
 						</h:outputLink>
-						<h:outputLink
-							value="http://ec.europa.eu/consumers/complaints/policy_framework_en.htm"
-							target="_blank">
-							<h:outputText style="font-size: 12px"
-								value="#{ctrlm['more.translations.help']}" />
+						<h:outputLink value="http://ec.europa.eu/consumers/complaints/policy_framework_en.htm" target="_blank">
+							<h:outputText style="font-size: 12px" value="#{ctrlm['more.translations.help']}" />
 						</h:outputLink>
-						<h:outputLink
-							value="http://ec.europa.eu/consumers/complaints/policy_framework_en.htm"
-							target="_blank">
-							<h:outputText style="font-size: 12px"
-								value="#{ctrlm['more.translations.mou']}" />
+						<h:outputLink value="http://ec.europa.eu/consumers/complaints/policy_framework_en.htm" target="_blank">
+							<h:outputText style="font-size: 12px" value="#{ctrlm['more.translations.mou']}" />
 						</h:outputLink>
 						<h:outputLink value="logout">
 							<h:outputText value="#{ctrlm['more.translations.logout']}" />
 						</h:outputLink>
-						<p:selectOneMenu id="languageSelect"
-							value="#{localeService.currentLocale}">
+						<p:selectOneMenu id="languageSelect" value="#{localeService.currentLocale}">
 							<f:selectItem itemValue="bg" itemLabel="Bulgarian" />
 							<f:selectItem itemValue="cs" itemLabel="Czech" />
 							<f:selectItem itemValue="da" itemLabel="Danish" />
@@ -75,11 +62,9 @@
 							<f:selectItem itemValue="excite-bike" itemLabel="excite-bike" />
 							<f:selectItem itemValue="midnight" itemLabel="midnight" />
 							<f:selectItem itemValue="south-street" itemLabel="south-street" />
-							<f:selectItem itemValue="pepper-grinder"
-								itemLabel="pepper-grinder" />
+							<f:selectItem itemValue="pepper-grinder" itemLabel="pepper-grinder" />
 							<f:selectItem itemValue="sam" itemLabel="sam" />
-							<p:ajax event="change" update=":toolbarForm :mainCenterPanel"
-								oncomplete="window.location.reload()" />
+							<p:ajax event="change" update=":toolbarForm :mainCenterPanel" oncomplete="window.location.reload()" />
 						</p:selectOneMenu>
 					</h:panelGrid>
 				</p:toolbarGroup>

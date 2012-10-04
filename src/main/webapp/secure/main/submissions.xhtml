@@ -1,57 +1,42 @@
-<div xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
+<div xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-	<p:panel id="panelSubmissions"
-		header="#{ctrlm['header.submitted.menu']}"
-		style="margin-bottom:10px;width: 100%">
+	<p:panel id="panelSubmissions" header="#{ctrlm['header.submitted.menu']}" style="margin-bottom:10px;width: 100%">
 		<h:form id="submissionsForm">
 
 			<p:toolbar>
 				<p:toolbarGroup align="right">
 					<h:panelGrid columns="6">
-						<h:outputText value="#{ctrlm['submissions.submissions.title']}: "
-							style="color: white" />
-						<p:selectOneMenu id="submissionsYear"
-							value="#{submissionActions.currentYear}">
+						<h:outputText value="#{ctrlm['submissions.submissions.title']}: " style="color: white" />
+						<p:selectOneMenu id="submissionsYear" value="#{submissionActions.currentYear}">
 							<f:selectItems value="#{utils.years}" />
-							<p:ajax event="change" update="submissionsTable"
-								listener="#{submissionActions.handleYearChange()}" />
+							<p:ajax event="change" update="submissionsTable" listener="#{submissionActions.handleYearChange()}" />
 						</p:selectOneMenu>
 					</h:panelGrid>
 				</p:toolbarGroup>
 			</p:toolbar>
 
 
-			<p:dataTable id="submissionsTable" var="submission"
-				value="#{submissionActions.submissions}" widgetVar="submissionTable"
-				emptyMessage="No submissions found with given criteria"
-				paginator="true" rows="10" paginatorPosition="bottom"
+			<p:dataTable id="submissionsTable" var="submission" value="#{submissionActions.submissions}"
+				widgetVar="submissionTable" emptyMessage="No submissions found with given criteria" paginator="true" rows="10"
+				paginatorPosition="bottom"
 				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 				rowsPerPageTemplate="5,10,15">
 
-				<p:column id="submission_number"
-					sortBy="#{submission.submission_number}"
-					headerText="#{ctrlm['more.translations.submission.number']}"
-					filterMatchMode="contains">
+				<p:column id="submission_number" sortBy="#{submission.submission_number}"
+					headerText="#{ctrlm['more.translations.submission.number']}" filterMatchMode="contains">
 					<h:outputText value="#{submission.submission_number}" />
 				</p:column>
-				<p:column id="submission_date"
-					sortBy="#{submission.submission_date}"
-					headerText="#{ctrlm['more.translations.submission.date']}"
-					filterMatchMode="contains">
+				<p:column id="submission_date" sortBy="#{submission.submission_date}"
+					headerText="#{ctrlm['more.translations.submission.date']}" filterMatchMode="contains">
 					<h:outputText value="#{submission.submission_date}" />
 				</p:column>
-				<p:column id="number_complaints"
-					sortBy="#{submission.number_complaints}"
-					headerText="#{ctrlm['more.translations.number.of.complaints']}"
-					filterMatchMode="contains">
+				<p:column id="number_complaints" sortBy="#{submission.number_complaints}"
+					headerText="#{ctrlm['more.translations.number.of.complaints']}" filterMatchMode="contains">
 					<h:outputText value="#{submission.number_complaints}" />
 				</p:column>
 			</p:dataTable>
-			<p:blockUI block="submissionsForm"
-				trigger="submissionsTable,submissionsYear">
+			<p:blockUI block="submissionsForm" trigger="submissionsTable,submissionsYear">
 				<h:outputText value="#{ctrlm['submissions.loading']}" />
 			</p:blockUI>
 
