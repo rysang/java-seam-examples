@@ -54,7 +54,6 @@
     <param-value>/WEB-INF/springsecurity.taglib.xml</param-value>
   </context-param>
 
-
   <filter>
     <filter-name>encoding-filter</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
