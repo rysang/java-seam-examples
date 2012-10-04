@@ -7,23 +7,23 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-public class SimpleUser implements UserDetails, Serializable {
+public class AuktionUser implements UserDetails, Serializable {
   private static final long serialVersionUID = 1L;
 
   private ArrayList<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-  private String username;
+  private String username = "USER_ANONYMOUS";
   private String password;
 
-  public SimpleUser() {
+  public AuktionUser() {
 
   }
 
-  public SimpleUser(String username, String password) {
+  public AuktionUser(String username, String password) {
     setUsername(username);
     setPassword(password);
   }
 
-  public SimpleUser(String username, String password, Collection<GrantedAuthority> authorities) {
+  public AuktionUser(String username, String password, Collection<GrantedAuthority> authorities) {
     setUsername(username);
     setPassword(password);
     setAuthorities(authorities);
@@ -71,7 +71,7 @@ public class SimpleUser implements UserDetails, Serializable {
 
   @Override
   public String toString() {
-    return String.format("SimpleUser [authorities=%s, username=%s, password=%s]", authorities, username, password);
+    return String.format("AuktionUser [authorities=%s, username=%s, password=%s]", authorities, username, password);
   }
 
 }

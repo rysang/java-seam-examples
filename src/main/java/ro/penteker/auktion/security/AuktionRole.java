@@ -4,16 +4,16 @@ import java.io.Serializable;
 
 import org.springframework.security.core.GrantedAuthority;
 
-public class SimpleRole implements GrantedAuthority, Serializable {
+public class AuktionRole implements GrantedAuthority, Serializable {
 
   private static final long serialVersionUID = 1L;
-  private String authority;
+  private String authority = "ROLE_ANONYMOUS";
 
-  public SimpleRole() {
+  public AuktionRole() {
 
   }
 
-  public SimpleRole(String authority) {
+  public AuktionRole(String authority) {
     setAuthority(authority);
   }
 
@@ -22,11 +22,12 @@ public class SimpleRole implements GrantedAuthority, Serializable {
   }
 
   public String getAuthority() {
-    return authority == null ? "ROLE_ANONYMOUS" : authority;
+    return authority;
   }
 
   @Override
   public String toString() {
-    return String.format("SimpleRole [authority=%s]", authority);
+    return String.format("AuktionRole [authority=%s]", authority);
   }
+
 }

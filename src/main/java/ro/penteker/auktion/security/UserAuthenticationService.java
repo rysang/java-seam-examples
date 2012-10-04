@@ -23,8 +23,8 @@ public class UserAuthenticationService implements UserDetailsService {
   private int passwordIndex = 0;
 
   public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException, DataAccessException {
-    SimpleUser user = new SimpleUser(userName,utils.getKeys(userName).get(passwordIndex));
-    SimpleRole role = new SimpleRole("ROLE_USER");
+    AuktionUser user = new AuktionUser(userName,utils.getKeys(userName).get(passwordIndex));
+    AuktionRole role = new AuktionRole("ROLE_USER");
     
     user.getAuthorities().add(role);
     return user;
