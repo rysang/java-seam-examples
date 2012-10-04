@@ -14,7 +14,7 @@
     http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring/ehcache-spring-1.1.xsd">
 
 
-  <context:component-scan base-package="eu.cec.sanco" />
+  <context:component-scan base-package="com.penteker.auction" />
 
 
   <bean id="xmlGateService" class="eu.cec.sanco.services.impl.XMLGateServiceImpl" init-method="init">

@@ -2,12 +2,12 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>eu.cec.sanco</groupId>
-  <artifactId>eccrs-ext</artifactId>
+  <groupId>com.penteker.auction</groupId>
+  <artifactId>auction</artifactId>
   <packaging>war</packaging>
   <version>1.0</version>
 
-  <name>eccrs-ext</name>
+  <name>auction</name>
   <url>http://maven.apache.org</url>
 
   <properties>

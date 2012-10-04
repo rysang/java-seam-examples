@@ -14,7 +14,7 @@
     http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring/ehcache-spring-1.1.xsd">
 
 
-  <context:component-scan base-package="eu.cec.sanco" />
+  <context:component-scan base-package="com.penteker.auction" />
 
   <!-- Db stuff -->
 
@@ -55,7 +55,7 @@
 
   <bean id="persistenceService" parent="baseTransactionProxy">
     <property name="target">
-      <bean class="eu.cec.sanco.services.impl.PersistenceServiceImpl">
+      <bean class="com.penteker.auction.services.impl.PersistenceServiceImpl">
         <property name="dataSource" ref="dataSource" />
         <property name="gson" ref="gson" />
       </bean>

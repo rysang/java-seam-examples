@@ -19,10 +19,10 @@
     <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
   </listener>
   <listener>
-    <listener-class>eu.cec.sanco.listeners.ApplicationListener</listener-class>
+    <listener-class>com.penteker.auction.listeners.ApplicationListener</listener-class>
   </listener>
   <listener>
-    <listener-class>eu.cec.sanco.listeners.SessionListener</listener-class>
+    <listener-class>com.penteker.auction.listeners.SessionListener</listener-class>
   </listener>
 
   <context-param>
