@@ -31,6 +31,37 @@
     </property>
   </bean>
 
+  <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+    <property name="dataSource" ref="dataSource" />
+    <property name="packagesToScan">
+      <list>
+        <value>ro.penteker.auktion.dao</value>
+        <value>ro.penteker.auktion.dao.security</value>
+      </list>
+    </property>
+    <property name="hibernateProperties">
+      <props>
+        <prop key="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</prop>
+        <prop key="hibernate.hbm2ddl.auto">validate</prop>
+        <prop key="hibernate.generate_statistics">true</prop>
+
+        <prop key="hibernate.cache.use_second_level_cache">true</prop>
+        <prop key="hibernate.cache.use_query_cache">true</prop>
+        <prop key="hibernate.max_fetch_depth">4</prop>
+        <prop key="hibernate.cache.use_query_cache">true</prop>
+        <prop key="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.EhCacheRegionFactory</prop>
+        <prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+      </props>
+    </property>
+    <property name="eventListeners">
+      <map>
+        <entry key="merge">
+          <bean class="org.springframework.orm.hibernate3.support.IdTransferringMergeEventListener" />
+        </entry>
+      </map>
+    </property>
+  </bean>
+
   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
     <property name="dataSource" ref="dataSource" />
     <property name="defaultTimeout" value="100" />

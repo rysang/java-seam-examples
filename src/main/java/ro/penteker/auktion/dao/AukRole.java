@@ -13,14 +13,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -29,24 +30,23 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author pricecr
  */
 @Entity
-@Table(name = "auk_category", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"name"})})
+@Table(name = "auk_role")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "AukCategory.findAll", query = "SELECT a FROM AukCategory a"),
-    @NamedQuery(name = "AukCategory.findById", query = "SELECT a FROM AukCategory a WHERE a.id = :id"),
-    @NamedQuery(name = "AukCategory.findByName", query = "SELECT a FROM AukCategory a WHERE a.name = :name"),
-    @NamedQuery(name = "AukCategory.findByCreatedDate", query = "SELECT a FROM AukCategory a WHERE a.createdDate = :createdDate"),
-    @NamedQuery(name = "AukCategory.findByCreatedBy", query = "SELECT a FROM AukCategory a WHERE a.createdBy = :createdBy")})
-public class AukCategory implements Serializable {
+    @NamedQuery(name = "AukRole.findAll", query = "SELECT a FROM AukRole a"),
+    @NamedQuery(name = "AukRole.findById", query = "SELECT a FROM AukRole a WHERE a.id = :id"),
+    @NamedQuery(name = "AukRole.findByAuthority", query = "SELECT a FROM AukRole a WHERE a.authority = :authority"),
+    @NamedQuery(name = "AukRole.findByCreatedDate", query = "SELECT a FROM AukRole a WHERE a.createdDate = :createdDate"),
+    @NamedQuery(name = "AukRole.findByCreatedBy", query = "SELECT a FROM AukRole a WHERE a.createdBy = :createdBy")})
+public class AukRole implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "id", nullable = false)
     private Long id;
     @Basic(optional = false)
-    @Column(name = "name", nullable = false, length = 120)
-    private String name;
+    @Column(name = "authority", nullable = false, length = 145)
+    private String authority;
     @Basic(optional = false)
     @Column(name = "created_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -54,22 +54,24 @@ public class AukCategory implements Serializable {
     @Basic(optional = false)
     @Column(name = "created_by", nullable = false, length = 120)
     private String createdBy;
-    @Lob
-    @Column(name = "description", length = 2147483647)
-    private String description;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryId", fetch = FetchType.LAZY)
-    private List<AukType> aukTypeList;
+    @JoinTable(name = "auk_role_2_user", joinColumns = {
+        @JoinColumn(name = "id_role", referencedColumnName = "id", nullable = false)}, inverseJoinColumns = {
+        @JoinColumn(name = "id_user", referencedColumnName = "id", nullable = false)})
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<AukUser> aukUserList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "roleId", fetch = FetchType.LAZY)
+    private List<AukRight> aukRightList;
 
-    public AukCategory() {
+    public AukRole() {
     }
 
-    public AukCategory(Long id) {
+    public AukRole(Long id) {
         this.id = id;
     }
 
-    public AukCategory(Long id, String name, Date createdDate, String createdBy) {
+    public AukRole(Long id, String authority, Date createdDate, String createdBy) {
         this.id = id;
-        this.name = name;
+        this.authority = authority;
         this.createdDate = createdDate;
         this.createdBy = createdBy;
     }
@@ -82,12 +84,12 @@ public class AukCategory implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getAuthority() {
+        return authority;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAuthority(String authority) {
+        this.authority = authority;
     }
 
     public Date getCreatedDate() {
@@ -106,21 +108,22 @@ public class AukCategory implements Serializable {
         this.createdBy = createdBy;
     }
 
-    public String getDescription() {
-        return description;
+    @XmlTransient
+    public List<AukUser> getAukUserList() {
+        return aukUserList;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setAukUserList(List<AukUser> aukUserList) {
+        this.aukUserList = aukUserList;
     }
 
     @XmlTransient
-    public List<AukType> getAukTypeList() {
-        return aukTypeList;
+    public List<AukRight> getAukRightList() {
+        return aukRightList;
     }
 
-    public void setAukTypeList(List<AukType> aukTypeList) {
-        this.aukTypeList = aukTypeList;
+    public void setAukRightList(List<AukRight> aukRightList) {
+        this.aukRightList = aukRightList;
     }
 
     @Override
@@ -133,10 +136,10 @@ public class AukCategory implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof AukCategory)) {
+        if (!(object instanceof AukRole)) {
             return false;
         }
-        AukCategory other = (AukCategory) object;
+        AukRole other = (AukRole) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -145,7 +148,7 @@ public class AukCategory implements Serializable {
 
     @Override
     public String toString() {
-        return "ro.penteker.auktion.dao.AukCategory[ id=" + id + " ]";
+        return "ro.penteker.auktion.dao.AukRole[ id=" + id + " ]";
     }
     
 }
