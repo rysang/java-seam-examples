@@ -22,21 +22,20 @@
     <!-- <property name="ignoreUnresolvablePlaceholders" value="true" /> -->
   </bean>
 
-  <bean id="securityServiceNoTx" class="ro.penteker.auktion.services.impl.SecurityServiceImpl">
-    <property name="sessionFactory" ref="sessionFactory" />
-  </bean>
-
-
   <bean id="gson" class="com.google.gson.Gson" />
 
   <bean id="securityService" parent="baseTransactionProxy">
     <property name="target">
-      <ref bean="securityServiceNoTx" />
+      <bean class="ro.penteker.auktion.services.impl.SecurityServiceImpl">
+        <property name="securityPersistenceService" ref="securityPersistenceService" />
+      </bean>
     </property>
   </bean>
 
-  <!-- <bean id="organisation" factory-bean="persistenceService" factory-method="getOrganisation" /> -->
-  <!-- <bean id="appState" factory-bean="persistenceService" factory-method="getAppState" /> -->
+  <bean id="securityPersistenceService" class="ro.penteker.auktion.services.impl.SecurityPersistenceServiceImpl">
+    <property name="sessionFactory" ref="sessionFactory" />
+  </bean>
+
 
   <!-- ehcache -->
   <ehcache:annotation-driven cache-manager="ehCacheManager" />

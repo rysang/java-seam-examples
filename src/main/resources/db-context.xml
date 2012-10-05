@@ -22,11 +22,22 @@
     <property name="transactionAttributes">
       <props>
         <prop key="insert*">PROPAGATION_REQUIRED,ISOLATION_READ_COMMITTED, -Exception</prop>
+        <prop key="create*">PROPAGATION_REQUIRED,ISOLATION_READ_COMMITTED, -Exception</prop>
         <prop key="update*">PROPAGATION_REQUIRED,ISOLATION_READ_COMMITTED, -Exception</prop>
         <prop key="save*">PROPAGATION_REQUIRED,ISOLATION_READ_COMMITTED, -Exception</prop>
         <prop key="remove*">PROPAGATION_REQUIRED,ISOLATION_READ_COMMITTED, -Exception</prop>
         <prop key="import*">PROPAGATION_REQUIRED,ISOLATION_READ_COMMITTED, -Exception</prop>
         <prop key="*">PROPAGATION_REQUIRED, -Exception, readOnly</prop>
+      </props>
+    </property>
+  </bean>
+
+  <bean id="baseReadOnlyTransactionProxy" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+    abstract="true">
+    <property name="transactionManager" ref="transactionManager" />
+    <property name="transactionAttributes">
+      <props>
+        <prop key="get*">PROPAGATION_REQUIRED, -Exception, readOnly</prop>
       </props>
     </property>
   </bean>
@@ -44,7 +55,7 @@
         <prop key="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</prop>
         <prop key="hibernate.hbm2ddl.auto">validate</prop>
         <prop key="hibernate.generate_statistics">true</prop>
-
+       
         <prop key="hibernate.cache.use_second_level_cache">true</prop>
         <prop key="hibernate.cache.use_query_cache">true</prop>
         <prop key="hibernate.max_fetch_depth">4</prop>

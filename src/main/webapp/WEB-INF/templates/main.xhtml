@@ -52,7 +52,7 @@
 							<f:selectItem itemValue="sl" itemLabel="Slovenian" />
 							<f:selectItem itemValue="es" itemLabel="Spanish" />
 							<f:selectItem itemValue="sv" itemLabel="Swedish" />
-							<p:ajax event="change" update=":toolbarForm :mainCenterPanel" />
+							<p:ajax event="change" update="@form :mainCenterPanel" oncomplete="window.location.reload()" />
 						</p:selectOneMenu>
 
 						<p:selectOneMenu id="themeSelect" value="#{utils.theme}">
@@ -62,7 +62,7 @@
 							<f:selectItem itemValue="south-street" itemLabel="south-street" />
 							<f:selectItem itemValue="pepper-grinder" itemLabel="pepper-grinder" />
 							<f:selectItem itemValue="sam" itemLabel="sam" />
-							<p:ajax event="change" update=":toolbarForm :mainCenterPanel" oncomplete="window.location.reload()" />
+							<p:ajax event="change" update="@form :mainCenterPanel" oncomplete="window.location.reload()" />
 						</p:selectOneMenu>
 					</h:panelGrid>
 				</p:toolbarGroup>
@@ -72,8 +72,16 @@
 		<br />
 
 		<p:panel id="mainCenterPanel">
-			<ui:insert name="center">
-			</ui:insert>
+			<p:layout style="min-width:400px;min-height:80%;">
+				<p:layoutUnit position="west" size="200" maxSize="300" resizable="true">
+
+				</p:layoutUnit>
+				<p:layoutUnit position="center">
+					<ui:insert name="center">
+						
+					</ui:insert>
+				</p:layoutUnit>
+			</p:layout>
 		</p:panel>
 	</h:body>
 </f:view>

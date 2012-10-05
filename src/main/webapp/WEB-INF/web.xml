@@ -24,6 +24,9 @@
   <listener>
     <listener-class>ro.penteker.auktion.listeners.SessionListener</listener-class>
   </listener>
+  <listener>
+    <listener-class>ro.penteker.auktion.listeners.DefaultDbListener</listener-class>
+  </listener>
 
   <context-param>
     <param-name>contextConfigLocation</param-name>

@@ -4,7 +4,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit38.AbstractJUnit38SpringContextTests;
-import org.springframework.transaction.annotation.Transactional;
 
 import ro.penteker.auktion.dao.AukUser;
 import ro.penteker.auktion.services.api.SecurityService;
@@ -22,9 +21,13 @@ public class TestSQLite extends AbstractJUnit38SpringContextTests {
     super.setUp();
   }
 
-  @Transactional
   public void testSQLite() throws Exception {
-    AukUser aukUser = securityService.getUser("asda");
+    securityService.createDefaultRoles();
+    
+    AukUser aukUser = securityService.getUser("admin");
+    LOG.info("User: " + aukUser);
+
+    aukUser = securityService.createUser("Test", "admin", "admin", true);
     LOG.info("User: " + aukUser);
   }
 }

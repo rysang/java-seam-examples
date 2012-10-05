@@ -35,28 +35,12 @@
 
   <security:global-method-security secured-annotations="enabled" jsr250-annotations="disabled" />
 
-  <bean id="userDetailsService0" class="ro.penteker.auktion.security.UserAuthenticationService">
-    <property name="passwordIndex" value="0" />
-  </bean>
-  <bean id="userDetailsService1" class="ro.penteker.auktion.security.UserAuthenticationService">
-    <property name="passwordIndex" value="1" />
-  </bean>
-  <bean id="userDetailsService2" class="ro.penteker.auktion.security.UserAuthenticationService">
-    <property name="passwordIndex" value="2" />
-  </bean>
-  <bean id="userDetailsService3" class="ro.penteker.auktion.security.UserAuthenticationService">
-    <property name="passwordIndex" value="3" />
-  </bean>
-  <bean id="userDetailsService4" class="ro.penteker.auktion.security.UserAuthenticationService">
-    <property name="passwordIndex" value="4" />
+  <bean id="userDetailsService" class="ro.penteker.auktion.security.UserAuthenticationService">
+    
   </bean>
 
   <security:authentication-manager alias="authenticationManager">
-    <security:authentication-provider user-service-ref="userDetailsService0" />
-    <security:authentication-provider user-service-ref="userDetailsService1" />
-    <security:authentication-provider user-service-ref="userDetailsService2" />
-    <security:authentication-provider user-service-ref="userDetailsService3" />
-    <security:authentication-provider user-service-ref="userDetailsService4" />
+    <security:authentication-provider user-service-ref="userDetailsService" />
   </security:authentication-manager>
 
 </beans>

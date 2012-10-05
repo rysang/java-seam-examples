@@ -8,36 +8,19 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import ro.penteker.auktion.dao.security.AuktionRole;
-import ro.penteker.auktion.dao.security.AuktionUser;
-import ro.penteker.auktion.utils.api.Utils;
-
-
+import ro.penteker.auktion.services.api.SecurityService;
 
 public class UserAuthenticationService implements UserDetailsService {
 
   private static final Logger LOG = Logger.getLogger("userDetailsService");
 
   @Autowired
-  @Qualifier("utils")
-  private Utils utils;
-  
-  private int passwordIndex = 0;
+  @Qualifier("securityService")
+  private SecurityService securityService;
 
   public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException, DataAccessException {
-    AuktionUser user = new AuktionUser(userName,utils.getKeys(userName).get(passwordIndex));
-    AuktionRole role = new AuktionRole("ROLE_USER");
-    
-    user.getAuthorities().add(role);
-    return user;
-  }
-
-  public void setPasswordIndex(int passwordIndex) {
-    this.passwordIndex = passwordIndex;
-  }
-
-  public int getPasswordIndex() {
-    return passwordIndex;
+    LOG.info("Authenticating: " + userName);
+    return securityService.getUser(userName);
   }
 
 }
