@@ -27,7 +27,7 @@
       authentication-failure-url="/login.xhtml" default-target-url="/secure/home.xhtml" />
     <security:intercept-url pattern="/secure/**" access="ROLE_USER" />
     <security:intercept-url pattern="/public/**" access="IS_AUTHENTICATED_ANONYMOUSLY,ROLE_USER" />
-     <security:intercept-url pattern="/index.xhtml" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+    <security:intercept-url pattern="/index.xhtml" access="IS_AUTHENTICATED_ANONYMOUSLY" />
     <security:logout invalidate-session="true" logout-url="/secure/logout" logout-success-url="/login.xhtml" />
     <security:session-management invalid-session-url="/public/home.xhtml" />
     <security:anonymous />

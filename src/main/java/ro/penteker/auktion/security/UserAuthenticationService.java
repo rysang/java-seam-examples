@@ -8,6 +8,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import ro.penteker.auktion.dao.security.AuktionRole;
+import ro.penteker.auktion.dao.security.AuktionUser;
 import ro.penteker.auktion.utils.api.Utils;
 
 

@@ -36,9 +36,7 @@ public interface Utils {
 
   public List<SelectItem> getYears();
 
-  public String getVersion();
 
-  public String getCountry();
 
   public void reset();
 

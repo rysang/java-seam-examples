@@ -31,6 +31,7 @@
       classpath:application-context.xml
       classpath:security-context.xml
       classpath:tpl-context.xml
+      classpath:db-context.xml
     </param-value>
   </context-param>
 

@@ -11,29 +11,19 @@ import javax.faces.model.SelectItem;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import ro.penteker.auktion.beans.AppState;
-import ro.penteker.auktion.beans.Organisation;
 import ro.penteker.auktion.utils.api.Utils;
 
 import com.googlecode.ehcache.annotations.Cacheable;
 import com.googlecode.ehcache.annotations.TriggersRemove;
 import com.googlecode.ehcache.annotations.When;
 
-
 @Scope("singleton")
 @Component("utils")
 public class UtilsImpl implements Utils {
   private static final transient Logger LOG = Logger.getLogger(UtilsImpl.class);
-
-  @Autowired
-  private AppState appState;
-
-  @Autowired
-  private Organisation organisation;
 
   private String theme = "mint-choc";
 
@@ -963,14 +953,6 @@ public class UtilsImpl implements Utils {
 
   public static void main(String[] args) {
     System.out.println(new UtilsImpl().getKeys("EE-V1-z38"));
-  }
-
-  public String getVersion() {
-    return appState.getVersion();
-  }
-
-  public String getCountry() {
-    return organisation.getCountry();
   }
 
   public void setTheme(String theme) {

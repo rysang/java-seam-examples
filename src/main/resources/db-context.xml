@@ -16,10 +16,31 @@
 
   <context:component-scan base-package="ro.penteker.auktion" />
 
-  <!-- Freemarker -->
-  <bean id="freemarkerConfiguration" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
-    <property name="templateLoaderPath" value="/WEB-INF/templates/" />
-    <property name="defaultEncoding" value="UTF-8" />
+  <bean id="baseTransactionProxy" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+    abstract="true">
+    <property name="transactionManager" ref="transactionManager" />
+    <property name="transactionAttributes">
+      <props>
+        <prop key="insert*">PROPAGATION_REQUIRED,ISOLATION_READ_COMMITTED, -Exception</prop>
+        <prop key="update*">PROPAGATION_REQUIRED,ISOLATION_READ_COMMITTED, -Exception</prop>
+        <prop key="save*">PROPAGATION_REQUIRED,ISOLATION_READ_COMMITTED, -Exception</prop>
+        <prop key="remove*">PROPAGATION_REQUIRED,ISOLATION_READ_COMMITTED, -Exception</prop>
+        <prop key="import*">PROPAGATION_REQUIRED,ISOLATION_READ_COMMITTED, -Exception</prop>
+        <prop key="*">PROPAGATION_REQUIRED, -Exception, readOnly</prop>
+      </props>
+    </property>
+  </bean>
+
+  <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="dataSource" />
+    <property name="defaultTimeout" value="100" />
+  </bean>
+
+  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+    <property name="url" value="jdbc:mysql://localhost:3306/auktion" />
+    <property name="username" value="root" />
+    <property name="password" value="hidden" />
   </bean>
 
 </beans>

@@ -1,4 +1,4 @@
-package ro.penteker.auktion.security;
+package ro.penteker.auktion.dao.security;
 
 import java.io.Serializable;
 

@@ -2,16 +2,13 @@ package ro.penteker.auktion.presentation.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.UUID;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 import org.apache.log4j.Logger;
-import org.primefaces.component.datatable.DataTable;
 import org.primefaces.event.TabChangeEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -22,10 +19,7 @@ import org.springframework.stereotype.Component;
 import ro.penteker.auktion.beans.Complaint;
 import ro.penteker.auktion.beans.ComplaintSet;
 import ro.penteker.auktion.beans.Entry;
-import ro.penteker.auktion.services.api.PersistenceService;
 import ro.penteker.auktion.utils.api.Utils;
-
-
 
 @Component
 @Scope("session")
@@ -35,9 +29,6 @@ public class ComplaintActions implements Serializable {
   private List<Entry> complaints;
   private List<Entry> lockedComplaints;
   private static final transient Logger LOG = Logger.getLogger(ComplaintActions.class);
-
-  @Autowired
-  private transient PersistenceService persistenceService;
 
   @Autowired
   private transient Utils utils;
@@ -67,7 +58,7 @@ public class ComplaintActions implements Serializable {
 
   public List<Entry> getUnlockedComplaints(String orgId) {
     if (complaints == null) {
-      complaints = persistenceService.getUnlockedComplaints(orgId);
+      complaints = new ArrayList<Entry>();
     }
 
     return complaints;
@@ -75,7 +66,7 @@ public class ComplaintActions implements Serializable {
 
   public List<Entry> getLockedComplaints(String orgId) {
     if (lockedComplaints == null) {
-      lockedComplaints = persistenceService.getLockedComplaints(orgId);
+      lockedComplaints = new ArrayList<Entry>();
     }
 
     return lockedComplaints;
@@ -121,25 +112,12 @@ public class ComplaintActions implements Serializable {
   }
 
   public void deleteSelComplaints() {
-    LOG.info("Delete complaints.");
-    List<String> ids = new ArrayList<String>(complaints.size());
 
-    for (Entry e : complaints) {
-      if (e.isSelected()) {
-        ids.add(e.getId());
-      }
-    }
-
-    persistenceService.removeEntries(ids);
     reset();
   }
 
   public void deleteComplaint(Entry entry) {
-    LOG.info("Delete complaint: " + entry);
-    List<String> ids = new ArrayList<String>(1);
-    ids.add(entry.getId());
 
-    persistenceService.removeEntries(ids);
     reset();
   }
 
@@ -149,26 +127,7 @@ public class ComplaintActions implements Serializable {
   }
 
   public String saveComplaint() {
-    if (currentEntry == null || currentEntry.getComplaintSet().getComplaints().isEmpty()) {
-      FacesContext.getCurrentInstance().addMessage(null,
-          new FacesMessage(FacesMessage.SEVERITY_ERROR, "Attention", "There should be at least one complaint."));
-      return null;
-    }
 
-    if (currentEntry.getId() == null) {
-      LOG.info("Creating entry.");
-      currentEntry.setId(UUID.randomUUID().toString());
-      currentEntry.setTimestamp(new Date());
-
-      persistenceService.saveEntry(currentEntry);
-    } else {
-      LOG.info("Updating entry.");
-
-      currentEntry.setTimestamp(new Date());
-      persistenceService.updateEntry(currentEntry);
-    }
-
-    reset();
     return "home";
   }
 

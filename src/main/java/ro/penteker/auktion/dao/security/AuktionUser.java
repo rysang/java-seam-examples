@@ -1,4 +1,4 @@
-package ro.penteker.auktion.security;
+package ro.penteker.auktion.dao.security;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,6 +13,11 @@ public class AuktionUser implements UserDetails, Serializable {
   private ArrayList<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
   private String username = "USER_ANONYMOUS";
   private String password;
+
+  private boolean enabled = true;
+  private boolean accountNonExpired = true;
+  private boolean accountNonLocked = true;
+  private boolean credentialsNonExpired = true;
 
   public AuktionUser() {
 
@@ -54,19 +59,35 @@ public class AuktionUser implements UserDetails, Serializable {
   }
 
   public boolean isAccountNonExpired() {
-    return true;
+    return accountNonExpired;
+  }
+
+  public void setAccountNonExpired(boolean accountNonExpired) {
+    this.accountNonExpired = accountNonExpired;
   }
 
   public boolean isAccountNonLocked() {
-    return true;
+    return accountNonLocked;
+  }
+
+  public void setAccountNonLocked(boolean accountNonLocked) {
+    this.accountNonLocked = accountNonLocked;
   }
 
   public boolean isCredentialsNonExpired() {
-    return true;
+    return credentialsNonExpired;
+  }
+
+  public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+    this.credentialsNonExpired = credentialsNonExpired;
+  }
+
+  public void setEnabled(boolean enabled) {
+    this.enabled = enabled;
   }
 
   public boolean isEnabled() {
-    return true;
+    return enabled;
   }
 
   @Override
