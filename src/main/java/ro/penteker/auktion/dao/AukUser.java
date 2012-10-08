@@ -12,6 +12,7 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -63,16 +64,16 @@ public class AukUser implements UserDetails, Serializable {
   private String password;
   @Basic(optional = false)
   @Column(name = "enabled", nullable = false)
-  private boolean enabled;
+  private boolean enabled = true;
   @Basic(optional = false)
   @Column(name = "account_non_expired", nullable = false)
-  private boolean accountNonExpired;
+  private boolean accountNonExpired = true;
   @Basic(optional = false)
   @Column(name = "account_non_locked", nullable = false)
-  private boolean accountNonLocked;
+  private boolean accountNonLocked = true;
   @Basic(optional = false)
   @Column(name = "credentials_non_expired", nullable = false)
-  private boolean credentialsNonExpired;
+  private boolean credentialsNonExpired = true;
   @Basic(optional = false)
   @Column(name = "created_date", nullable = false)
   @Temporal(TemporalType.TIMESTAMP)
@@ -81,8 +82,10 @@ public class AukUser implements UserDetails, Serializable {
   @Column(name = "created_by", nullable = false, length = 120)
   private String createdBy;
 
+  private transient boolean admin = false;
+
   @JoinTable(name = "auk_role_2_user", joinColumns = { @JoinColumn(name = "id_user", referencedColumnName = "id", nullable = false) }, inverseJoinColumns = { @JoinColumn(name = "id_role", referencedColumnName = "id", nullable = false) })
-  @ManyToMany
+  @ManyToMany(fetch = FetchType.LAZY)
   private List<AukRole> aukRoleList = new ArrayList<AukRole>();
 
   public AukUser() {
@@ -211,29 +214,32 @@ public class AukUser implements UserDetails, Serializable {
     return "ro.penteker.auktion.dao.AukUser[ id=" + id + " ]";
   }
 
-  @Override
   public Collection<GrantedAuthority> getAuthorities() {
     return (List) getAukRoleList();
   }
 
-  @Override
   public boolean isAccountNonExpired() {
     return getAccountNonExpired();
   }
 
-  @Override
   public boolean isAccountNonLocked() {
     return getAccountNonLocked();
   }
 
-  @Override
   public boolean isCredentialsNonExpired() {
     return getCredentialsNonExpired();
   }
 
-  @Override
   public boolean isEnabled() {
     return getEnabled();
+  }
+
+  public void setAdmin(boolean isAdmin) {
+    this.admin = isAdmin;
+  }
+
+  public boolean isAdmin() {
+    return admin;
   }
 
 }

@@ -14,4 +14,7 @@
 
   <cache name="ro.penteker.auktion.eccrs.persistence" eternal="false" maxElementsInMemory="100" overflowToDisk="true"
     diskPersistent="true" timeToIdleSeconds="86400" timeToLiveSeconds="0" memoryStoreEvictionPolicy="LRU" />
+    
+    <cache name="ro.penteker.auktion.security.cache" eternal="false" maxElementsInMemory="100" overflowToDisk="true"
+    diskPersistent="true" timeToIdleSeconds="86400" timeToLiveSeconds="0" memoryStoreEvictionPolicy="LRU" />
 </ehcache>

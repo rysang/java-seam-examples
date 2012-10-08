@@ -1,10 +1,16 @@
 package ro.penteker.auktion.services.impl;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
+import org.primefaces.model.SortOrder;
 
 import ro.penteker.auktion.dao.AukRole;
 import ro.penteker.auktion.dao.AukUser;
@@ -27,7 +33,7 @@ public class SecurityPersistenceServiceImpl implements SecurityPersistenceServic
 
   public AukUser getUser(String username) {
     Query q = sessionFactory.getCurrentSession()
-        .createQuery("select u from AukUser u join u.aukRoleList r where u.username = :username")
+        .createQuery("select u from AukUser u join fetch u.aukRoleList r where u.username = :username")
         .setString("username", username);
     return (AukUser) q.uniqueResult();
   }
@@ -56,5 +62,27 @@ public class SecurityPersistenceServiceImpl implements SecurityPersistenceServic
 
   public void setSessionFactory(SessionFactory sessionFactory) {
     this.sessionFactory = sessionFactory;
+  }
+
+  @Override
+  public List<AukUser> getUsers(int first, int pageSize, String sortField, SortOrder sortOrder,
+      Map<String, String> filters) {
+
+    Criteria crit = sessionFactory.getCurrentSession().createCriteria(AukUser.class);
+    if (filters.size() > 0) {
+      for (Entry<String, String> e : filters.entrySet()) {
+        crit.add(Restrictions.ilike(e.getKey(), '%' + e.getValue() + '%'));
+      }
+    }
+
+    if (sortField == null) {
+      sortField = "username";
+    }
+
+    crit.addOrder(SortOrder.ASCENDING == sortOrder ? Order.asc(sortField) : Order.desc(sortField));
+    crit.setFirstResult(first);
+    crit.setMaxResults(pageSize);
+
+    return crit.list();
   }
 }

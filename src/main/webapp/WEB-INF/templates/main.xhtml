@@ -11,24 +11,23 @@
 		<h:form id="toolbarForm">
 			<p:toolbar>
 
-				<!-- 				<p:toolbarGroup align="left"> -->
-				<!-- 					<p:button outcome="home" value="Home" onclick="return confirm('#{ctrlm['complaint.form.confirm.close.complaint.question']}');"/> -->
-				<!-- 				</p:toolbarGroup> -->
+				<p:toolbarGroup align="left">
+					<h:panelGrid columns="2">
+						<h:outputLink value="#{request.contextPath}/public/home.xhtml">
+							<h:outputText style="font-size: 12px" value="#{auktion['ro.penteker.auktion.home.page']}" />
+						</h:outputLink>
+					</h:panelGrid>
+				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
 					<h:panelGrid columns="7">
-						<h:outputLink value="http://ec.europa.eu/consumers/complaints/policy_framework_en.htm" target="_blank">
-							<h:outputText style="font-size: 12px" value="#{ctrlm['more.translations.recommendation']}" />
+						<h:outputLink value="#{request.contextPath}/secure/home.xhtml">
+							<h:outputText style="font-size: 12px" value="#{auktion['ro.penteker.auktion.admin.page']}" />
 						</h:outputLink>
-						<h:outputLink value="http://ec.europa.eu/consumers/complaints/policy_framework_en.htm" target="_blank">
-							<h:outputText style="font-size: 12px" value="#{ctrlm['more.translations.help']}" />
+						<h:outputLink value="#{request.contextPath}/secure/logout">
+							<h:outputText style="font-size: 12px" value="#{auktion['ro.penteker.auktion.logout.page']}" />
 						</h:outputLink>
-						<h:outputLink value="http://ec.europa.eu/consumers/complaints/policy_framework_en.htm" target="_blank">
-							<h:outputText style="font-size: 12px" value="#{ctrlm['more.translations.mou']}" />
-						</h:outputLink>
-						<h:outputLink value="logout">
-							<h:outputText value="#{ctrlm['more.translations.logout']}" />
-						</h:outputLink>
+
 						<p:selectOneMenu id="languageSelect" value="#{localeService.currentLocale}">
 							<f:selectItem itemValue="bg" itemLabel="Bulgarian" />
 							<f:selectItem itemValue="cs" itemLabel="Czech" />
@@ -71,18 +70,24 @@
 
 		<br />
 
-		<p:panel id="mainCenterPanel">
-			<p:layout style="min-width:400px;min-height:80%;">
-				<p:layoutUnit position="west" size="200" maxSize="300" resizable="true">
 
-				</p:layoutUnit>
-				<p:layoutUnit position="center">
-					<ui:insert name="center">
-						
-					</ui:insert>
-				</p:layoutUnit>
-			</p:layout>
+		<p:panel id="mainCenterPanel">
+			<ui:insert name="center">
+				<p:layout style="min-width:400px;min-height:80%;">
+					<p:layoutUnit position="west" size="200" maxSize="300" resizable="true">
+						<ui:insert name="left">
+
+						</ui:insert>
+					</p:layoutUnit>
+					<p:layoutUnit position="center">
+						<ui:insert name="right">
+
+						</ui:insert>
+					</p:layoutUnit>
+				</p:layout>
+			</ui:insert>
 		</p:panel>
+
 	</h:body>
 </f:view>
 </html>

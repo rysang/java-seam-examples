@@ -1,29 +1,21 @@
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	template="/WEB-INF/templates/main.xhtml">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" template="/WEB-INF/templates/main.xhtml">
 	<ui:define name="center">
-		<p:tabView id="tabView" dynamic="false" cache="true"
-			activeIndex="#{complaintActions.tabIndex}">
-			<p:ajax event="tabChange" listener="#{complaintActions.onTabChange}" />
+		<p:tabView id="tabView" dynamic="false" cache="true" activeIndex="#{securityActions.tabIndex}">
+			<p:ajax event="tabChange" listener="#{securityActions.onTabChange}" />
 
-			<p:tab id="tab0" title="#{ctrlm['header.complaints.menu']}">
-				
+			<p:tab id="tab0" title="#{auktion['ro.penteker.auktion.user.role.management']}">
+				<ui:include src="main/user-role-management.xhtml" />
 			</p:tab>
 
-			<p:tab id="tab1" title="#{ctrlm['header.closed.complaints.menu']}">
-				
-			</p:tab>
+			<p:tab id="tab1" title="#{auktion['ro.penteker.auktion.category.types.management']}">
 
-			<p:tab id="tab2" title="#{ctrlm['header.submitted.menu']}">
-				
 			</p:tab>
 
 		</p:tabView>
 
 		<p:blockUI block="tabView" trigger="tabView">
-			<h:outputText value="#{ctrlm['submissions.loading']}" />
+			<h:outputText value="#{auktion['ro.penteker.auktion.loading.message']}" />
 		</p:blockUI>
 	</ui:define>
 </ui:composition>

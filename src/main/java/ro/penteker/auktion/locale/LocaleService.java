@@ -1,5 +1,6 @@
 package ro.penteker.auktion.locale;
 
+import java.io.Serializable;
 import java.util.Locale;
 
 import javax.faces.context.FacesContext;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope("session")
 @Qualifier("localeServicex")
-public class LocaleService {
+public class LocaleService implements Serializable {
 
   private static final transient Logger LOG = Logger.getLogger(LocaleService.class);
   private String currentLocale = "en";
