@@ -36,6 +36,16 @@
     <property name="sessionFactory" ref="sessionFactory" />
   </bean>
 
+  <!-- Validators and converters -->
+  <bean id="userValidator" class="ro.penteker.auktion.presentation.beans.validators.UserValidator">
+    <property name="securityService" ref="securityService" />
+  </bean>
+
+  <bean id="roleConverter" scope="session" class="ro.penteker.auktion.presentation.beans.admin.converters.RoleConverter"
+    lazy-init="true">
+    <property name="securityActions" ref="securityActions" />
+  </bean>
+  <!-- End validators and converters -->
 
   <!-- ehcache -->
   <ehcache:annotation-driven cache-manager="ehCacheManager" />

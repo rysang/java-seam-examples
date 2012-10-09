@@ -1,20 +1,26 @@
 package ro.penteker.auktion.presentation.beans.admin;
 
 import java.io.Serializable;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.primefaces.event.TabChangeEvent;
+import org.primefaces.event.TransferEvent;
+import org.primefaces.model.DualListModel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
+import ro.penteker.auktion.dao.AukRole;
 import ro.penteker.auktion.dao.AukUser;
-import ro.penteker.auktion.security.SecurityContext;
 import ro.penteker.auktion.services.api.SecurityService;
 
-@SessionScoped
-@ManagedBean(name = "securityActions")
+@Scope("session")
+@Component("securityActions")
 public class SecurityActions implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -23,11 +29,18 @@ public class SecurityActions implements Serializable {
 
   private AukUser currentUser;
 
-  @ManagedProperty("#{securityService}")
+  @Autowired
+  @Qualifier("securityService")
   private transient SecurityService securityService;
 
-  @ManagedProperty("#{securityContext}")
-  private transient SecurityContext securityContext;
+  @Autowired
+  @Qualifier("currentUser")
+  private UserDetails loggedInUser;
+
+  private List<AukRole> sourceRoles = null;
+  private List<AukRole> targetRoles = null;
+
+  private DualListModel<AukRole> roleDualListModel;
 
   public SecurityActions() {
 
@@ -46,20 +59,59 @@ public class SecurityActions implements Serializable {
     return tabIndex;
   }
 
+  protected void reset() {
+    roleDualListModel = null;
+    sourceRoles = null;
+    targetRoles = null;
+  }
+
+  public void onTransfer(TransferEvent event) {
+    for (AukRole item : (List<AukRole>) event.getItems()) {
+      if (event.isAdd()) {
+        LOG.info("Adding roles: " + event.getItems());
+        getTargetRoles().add(item);
+        getSourceRoles().remove(item);
+      } else if (event.isRemove()) {
+        LOG.info("Removing roles: " + event.getItems());
+        getSourceRoles().add(item);
+        getTargetRoles().remove(item);
+      }
+    }
+  }
+
+  public void deleteUser(AukUser user) {
+    securityService.deleteUser(user);
+  }
+
+  public String editUser(AukUser user) {
+    reset();
+
+    setCurrentUser(securityService.getUser(user.getUsername()));
+    return "edit-user";
+  }
+
   public String createUser() {
+    reset();
+
     setCurrentUser(new AukUser());
-    return "create-edit-user";
+    return "create-user";
   }
 
   public String saveUser() {
-    currentUser = securityService.createUser(securityContext.getCurrentUser().getUsername(), currentUser.getUsername(),
-        currentUser.getPassword(), currentUser.isAdmin());
+    if (currentUser.getId() == null) {
+      currentUser = securityService.createUser(loggedInUser.getUsername(), currentUser.getUsername(),
+          currentUser.getPassword(), currentUser.getEnabled(), getTargetRoles());
+    } else {
+      currentUser.getAukRoleList().clear();
+      currentUser.getAukRoleList().addAll(getTargetRoles());
+      securityService.updateUser(currentUser);
+    }
 
-    return "homesecure";
+    return "home-secure";
   }
 
   public String closeUserEditCreate() {
-    return "homesecure";
+    return "home-secure";
   }
 
   public void setCurrentUser(AukUser currentUser) {
@@ -70,19 +122,40 @@ public class SecurityActions implements Serializable {
     return currentUser;
   }
 
-  public void setSecurityService(SecurityService securityService) {
-    this.securityService = securityService;
+  public List<AukRole> getSourceRoles() {
+    if (sourceRoles == null) {
+      sourceRoles = securityService.getPublicRoles();
+    }
+
+    return sourceRoles;
   }
 
-  public SecurityService getSecurityService() {
-    return securityService;
+  public List<AukRole> getTargetRoles() {
+    if (targetRoles == null) {
+      targetRoles = new ArrayList<AukRole>(currentUser.getAukRoleList());
+    }
+
+    return targetRoles;
   }
 
-  public void setSecurityContext(SecurityContext securityContext) {
-    this.securityContext = securityContext;
+  public void setRoleDualListModel(DualListModel<AukRole> roleDualListModel) {
+    this.roleDualListModel = roleDualListModel;
   }
 
-  public SecurityContext getSecurityContext() {
-    return securityContext;
+  public DualListModel<AukRole> getRoleDualListModel() {
+    if (roleDualListModel == null) {
+      Iterator<AukRole> srcRolesIt = getSourceRoles().iterator();
+      while (srcRolesIt.hasNext()) {
+        AukRole r = srcRolesIt.next();
+        if (getTargetRoles().contains(r)) {
+          srcRolesIt.remove();
+        }
+      }
+
+      roleDualListModel = new DualListModel<AukRole>(getSourceRoles(), getTargetRoles());
+    }
+
+    return roleDualListModel;
   }
+
 }

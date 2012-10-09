@@ -31,9 +31,15 @@ public class SecurityPersistenceServiceImpl implements SecurityPersistenceServic
     return q.list();
   }
 
+  @SuppressWarnings("unchecked")
+  public List<AukRole> getPublicRoles() {
+    Query q = sessionFactory.getCurrentSession().createQuery("select r from AukRole r where r.isPrivate = false");
+    return q.list();
+  }
+
   public AukUser getUser(String username) {
     Query q = sessionFactory.getCurrentSession()
-        .createQuery("select u from AukUser u join fetch u.aukRoleList r where u.username = :username")
+        .createQuery("select u from AukUser u left join fetch u.aukRoleList r where u.username = :username")
         .setString("username", username);
     return (AukUser) q.uniqueResult();
   }
@@ -58,6 +64,14 @@ public class SecurityPersistenceServiceImpl implements SecurityPersistenceServic
 
   public void updateRole(AukRole role) {
     sessionFactory.getCurrentSession().update(role);
+  }
+
+  // delete Customer c where c.name = :oldName
+  @Override
+  public void deleteUser(AukUser user) {
+    Query q = sessionFactory.getCurrentSession().createQuery("delete AukUser u where u.id = :id")
+        .setLong("id", user.getId());
+    q.executeUpdate();
   }
 
   public void setSessionFactory(SessionFactory sessionFactory) {

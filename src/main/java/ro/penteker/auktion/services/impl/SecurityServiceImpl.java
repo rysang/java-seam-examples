@@ -25,12 +25,22 @@ public class SecurityServiceImpl implements SecurityService {
 
   }
 
-  @Cacheable(cacheName = "ro.penteker.auktion.security.cache")
+  // @Cacheable(cacheName = "ro.penteker.auktion.security.cache")
   public AukUser getUser(String username) {
     return securityPersistenceService.getUser(username);
   }
 
-  public void createDefaultRoles() {
+  @Override
+  public List<AukRole> getPublicRoles() {
+    return securityPersistenceService.getPublicRoles();
+  }
+
+  @Override
+  public void deleteUser(AukUser user) {
+    securityPersistenceService.deleteUser(user);
+  }
+
+  public List<AukRole> createDefaultRoles() {
     LOG.info("Creating default roles.");
 
     AukRole admin = new AukRole(new Long(1), "ROLE_ADMIN", new Date(), "system");
@@ -40,26 +50,26 @@ public class SecurityServiceImpl implements SecurityService {
     securityPersistenceService.saveRole(admin);
     securityPersistenceService.saveRole(user);
     securityPersistenceService.saveRole(anonymous);
+
+    return securityPersistenceService.getPublicRoles();
+
   }
 
-  @TriggersRemove(cacheName = "ro.penteker.auktion.security.cache", when = When.AFTER_METHOD_INVOCATION, removeAll = true)
-  public AukUser createUser(String createdBy, String username, String password, boolean isAdmin) {
+  // @TriggersRemove(cacheName = "ro.penteker.auktion.security.cache", when = When.AFTER_METHOD_INVOCATION, removeAll =
+  // true)
+  public void updateUser(AukUser user) {
+    securityPersistenceService.updateUser(user);
+  }
+
+  // @TriggersRemove(cacheName = "ro.penteker.auktion.security.cache", when = When.AFTER_METHOD_INVOCATION, removeAll =
+  // true)
+  public AukUser createUser(String createdBy, String username, String password, boolean enabled, List<AukRole> roles) {
     AukUser user = new AukUser();
     user.setCreatedBy(createdBy);
     user.setUsername(username);
     user.setPassword(password);
     user.setCreatedDate(new Date());
-
-    List<AukRole> roles = securityPersistenceService.getRoles();
-
-    if (!isAdmin) {
-      for (AukRole r : roles) {
-        if ("ROLE_ADMIN".equals(r.getAuthority())) {
-          roles.remove(r);
-          break;
-        }
-      }
-    }
+    user.setEnabled(enabled);
 
     user.getAukRoleList().addAll(roles);
 
@@ -74,10 +84,14 @@ public class SecurityServiceImpl implements SecurityService {
   }
 
   @Override
-  @Cacheable(cacheName = "ro.penteker.auktion.security.cache")
+  // @Cacheable(cacheName = "ro.penteker.auktion.security.cache")
   public List<AukUser> getUsers(int first, int pageSize, String sortField, SortOrder sortOrder,
       Map<String, String> filters) {
     return securityPersistenceService.getUsers(first, pageSize, sortField, sortOrder, filters);
+  }
+
+  public static void main(String[] args) {
+    System.out.println(System.getProperty("java.io.tmpdir"));
   }
 
 }

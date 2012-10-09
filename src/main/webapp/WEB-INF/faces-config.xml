@@ -19,22 +19,29 @@
       <base-name>org.msg.i18n.auktion</base-name>
       <var>auktion</var>
     </resource-bundle>
-
   </application>
-
 
   <navigation-rule>
     <from-view-id>/secure/home.xhtml</from-view-id>
     <navigation-case>
-      <from-outcome>create-edit-user</from-outcome>
-      <to-view-id>/secure/create-edit-user.xhtml</to-view-id>
+      <from-outcome>create-user</from-outcome>
+      <to-view-id>/secure/create-user.xhtml</to-view-id>
+      <redirect include-view-params="true" />
+    </navigation-case>
+  </navigation-rule>
+
+  <navigation-rule>
+    <from-view-id>/secure/home.xhtml</from-view-id>
+    <navigation-case>
+      <from-outcome>edit-user</from-outcome>
+      <to-view-id>/secure/edit-user.xhtml</to-view-id>
       <redirect include-view-params="true" />
     </navigation-case>
   </navigation-rule>
 
   <navigation-rule>
     <navigation-case>
-      <from-outcome>homesecure</from-outcome>
+      <from-outcome>home-secure</from-outcome>
       <to-view-id>/secure/home.xhtml</to-view-id>
       <redirect include-view-params="true" />
     </navigation-case>

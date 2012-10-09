@@ -14,8 +14,12 @@ public interface SecurityPersistenceService {
   public AukRole getRole(String roleName);
 
   public List<AukRole> getRoles();
+  
+  public List<AukRole> getPublicRoles();
 
   public Long saveUser(AukUser user);
+  
+  public void deleteUser(AukUser user);
 
   public Long saveRole(AukRole role);
 

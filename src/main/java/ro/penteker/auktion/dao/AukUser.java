@@ -82,8 +82,6 @@ public class AukUser implements UserDetails, Serializable {
   @Column(name = "created_by", nullable = false, length = 120)
   private String createdBy;
 
-  private transient boolean admin = false;
-
   @JoinTable(name = "auk_role_2_user", joinColumns = { @JoinColumn(name = "id_user", referencedColumnName = "id", nullable = false) }, inverseJoinColumns = { @JoinColumn(name = "id_role", referencedColumnName = "id", nullable = false) })
   @ManyToMany(fetch = FetchType.LAZY)
   private List<AukRole> aukRoleList = new ArrayList<AukRole>();
@@ -232,14 +230,6 @@ public class AukUser implements UserDetails, Serializable {
 
   public boolean isEnabled() {
     return getEnabled();
-  }
-
-  public void setAdmin(boolean isAdmin) {
-    this.admin = isAdmin;
-  }
-
-  public boolean isAdmin() {
-    return admin;
   }
 
 }

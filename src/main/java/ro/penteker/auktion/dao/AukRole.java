@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,8 +16,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -24,6 +23,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -34,7 +34,7 @@ import org.springframework.security.core.GrantedAuthority;
  * @author pricecr
  */
 @Entity
-@Table(name = "auk_role")
+@Table(name = "auk_role", uniqueConstraints = { @UniqueConstraint(columnNames = { "authority" }) })
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "AukRole.findAll", query = "SELECT a FROM AukRole a"),
@@ -64,6 +64,10 @@ public class AukRole implements GrantedAuthority, Serializable {
   private List<AukUser> aukUserList;
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "roleId")
   private List<AukRight> aukRightList = new ArrayList<AukRight>();
+
+  @Basic(optional = false)
+  @Column(name = "private", nullable = false)
+  private boolean isPrivate = false;
 
   public AukRole() {
   }
@@ -152,6 +156,14 @@ public class AukRole implements GrantedAuthority, Serializable {
   @Override
   public String toString() {
     return "ro.penteker.auktion.dao.AukRole[ id=" + id + " ]";
+  }
+
+  public void setPrivate(boolean isPrivate) {
+    this.isPrivate = isPrivate;
+  }
+
+  public boolean isPrivate() {
+    return isPrivate;
   }
 
 }

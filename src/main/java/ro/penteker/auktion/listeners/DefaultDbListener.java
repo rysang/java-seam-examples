@@ -1,5 +1,7 @@
 package ro.penteker.auktion.listeners;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
@@ -7,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import ro.penteker.auktion.dao.AukRole;
 import ro.penteker.auktion.dao.AukUser;
 import ro.penteker.auktion.services.api.SecurityService;
 
@@ -28,8 +31,8 @@ public class DefaultDbListener implements HttpSessionListener {
       AukUser admin = securityService.getUser("admin");
       if (admin == null) {
         LOG.warn("Admin user does not exist, creating a new one.");
-        securityService.createDefaultRoles();
-        securityService.createUser("system", "admin", "admin", true);
+        List<AukRole> roles = securityService.createDefaultRoles();
+        securityService.createUser("system", "admin", "admin", true, roles);
       }
     } else {
       LOG.error("No bean securityService.");

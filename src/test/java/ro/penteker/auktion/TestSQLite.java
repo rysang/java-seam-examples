@@ -1,6 +1,10 @@
 package ro.penteker.auktion;
 
+import java.util.List;
+import java.util.TreeMap;
+
 import org.apache.log4j.Logger;
+import org.primefaces.model.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit38.AbstractJUnit38SpringContextTests;
@@ -23,11 +27,12 @@ public class TestSQLite extends AbstractJUnit38SpringContextTests {
 
   public void testSQLite() throws Exception {
     securityService.createDefaultRoles();
-    
-    AukUser aukUser = securityService.getUser("admin");
-    LOG.info("User: " + aukUser);
 
-    aukUser = securityService.createUser("Test", "admin", "admin", true);
+    List<AukUser> aukUser = securityService.getUsers(0, 15, "enabled", SortOrder.ASCENDING,
+        new TreeMap<String, String>());
+    LOG.info("+++++++++++++++++++++++++++++++++++++++++++++++");
     LOG.info("User: " + aukUser);
+    LOG.info("+++++++++++++++++++++++++++++++++++++++++++++++");
+
   }
 }

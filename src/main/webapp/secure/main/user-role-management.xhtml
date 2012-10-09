@@ -15,8 +15,8 @@
 				rowsPerPageTemplate="5,10,15,30,50,100,200" selectionMode="single" onRowSelectUpdate="display">
 
 				<f:facet name="header">
-            #{auktion['ro.penteker.auktion.user.management.available.users']}
-       	</f:facet>
+            			#{auktion['ro.penteker.auktion.user.management.available.users']}
+       			</f:facet>
 
 				<p:column headerText="#{auktion['ro.penteker.auktion.user.management.headers.username']}" sortBy="#{user.username}"
 					filterBy="#{user.username}">
@@ -44,13 +44,13 @@
 
 
 				<p:column headerText="#{auktion['ro.penteker.auktion.user.management.headers.edit']}">
-					<h:commandLink action="#{organizationActions.editOrganization(organization)}"
+					<h:commandLink action="#{securityActions.editUser(user)}"
 						value="#{auktion['ro.penteker.auktion.user.management.headers.edit']}" />
 				</p:column>
 				<p:column headerText="#{auktion['ro.penteker.auktion.user.management.headers.delete']}">
-					<h:commandLink action="#{organizationActions.removeOrganization(organization)}"
+					<h:commandLink action="#{securityActions.deleteUser(user)}"
 						value="#{auktion['ro.penteker.auktion.user.management.headers.delete']}"
-						onclick="if (!confirm('#{org['organization.confirm.delete']}')) return false" />
+						onclick="if (!confirm('#{auktion['ro.penteker.auktion.user.validation.user.delete.confirmation']}')) return false" />
 				</p:column>
 			</p:dataTable>
 		</h:panelGrid>
