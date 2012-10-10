@@ -1,0 +1,43 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" template="/WEB-INF/templates/main.xhtml">
+	<ui:define name="center">
+		<h:form id="userForm">
+			<p:messages id="messages" showDetail="true" />
+			<h:panelGrid border="0" columns="1" style="width:100%">
+				<p:toolbar>
+					<p:toolbarGroup align="right">
+						<p:commandButton value="#{auktion['ro.penteker.auktion.category.save']}" action="#{categoryActions.saveCategory}"
+							ajax="false" />
+						<p:commandButton value="#{auktion['ro.penteker.auktion.category.close']}"
+							action="#{securityActions.closeEditCreate}" ajax="false" immediate="true" />
+					</p:toolbarGroup>
+				</p:toolbar>
+
+				<div style="height: 10px"></div>
+				<h:panelGrid border="0" columns="1" style="width:50%">
+					<p:fieldset legend="#{auktion['ro.penteker.auktion.category.headers.name']}">
+						<p:inputText id="name" value="#{categoryActions.currentCategory.name}" style="width:100%">
+							<f:validator binding="#{roleValidator}" />
+						</p:inputText>
+					</p:fieldset>
+
+					<p:fieldset legend="#{auktion['ro.penteker.auktion.category.headers.description']}">
+						<h:inputTextarea id="description" value="#{categoryActions.currentCategory.description}" style="width:100%; height: 200px" />
+					</p:fieldset>
+				</h:panelGrid>
+
+
+				<div style="height: 10px"></div>
+
+				<p:toolbar>
+					<p:toolbarGroup align="right">
+						<p:commandButton value="#{auktion['ro.penteker.auktion.category.save']}" action="#{categoryActions.saveCategory}"
+							ajax="false" />
+						<p:commandButton value="#{auktion['ro.penteker.auktion.category.close']}"
+							action="#{securityActions.closeEditCreate}" ajax="false" immediate="true" />
+					</p:toolbarGroup>
+				</p:toolbar>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
