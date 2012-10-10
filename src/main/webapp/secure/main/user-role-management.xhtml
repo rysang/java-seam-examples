@@ -53,6 +53,38 @@
 						onclick="if (!confirm('#{auktion['ro.penteker.auktion.user.validation.user.delete.confirmation']}')) return false" />
 				</p:column>
 			</p:dataTable>
+
+			<div style="height: 20px"></div>
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="#{auktion['ro.penteker.auktion.user.management.create.role']}"
+						action="#{securityActions.createRole}" ajax="false" />
+				</p:toolbarGroup>
+			</p:toolbar>
+			<div style="height: 10px"></div>
+			<p:dataTable var="role" id="rolesTable" value="#{roleDataModel}" paginator="true" rows="15" lazy="true"
+				paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+				rowsPerPageTemplate="5,10,15,30,50,100,200" selectionMode="single" onRowSelectUpdate="display">
+
+				<f:facet name="header">
+            			#{auktion['ro.penteker.auktion.user.management.available.roles']}
+       			</f:facet>
+
+				<p:column headerText="#{auktion['ro.penteker.auktion.user.management.headers.authority']}"
+					sortBy="#{role.authority}" filterBy="#{role.authority}">
+					<h:outputText value="#{role.authority}" />
+				</p:column>
+
+				<p:column headerText="#{auktion['ro.penteker.auktion.user.management.headers.private']}" sortBy="#{role.isPrivate}">
+					<h:outputText value="#{role.isPrivate}" />
+				</p:column>
+
+				<p:column headerText="#{auktion['ro.penteker.auktion.user.management.headers.delete']}">
+					<h:commandLink action="#{securityActions.deleteRole(role)}"
+						value="#{auktion['ro.penteker.auktion.user.management.headers.delete']}"
+						onclick="if (!confirm('#{auktion['ro.penteker.auktion.user.validation.role.delete.confirmation']}')) return false" />
+				</p:column>
+			</p:dataTable>
 		</h:panelGrid>
 	</h:form>
 </div>

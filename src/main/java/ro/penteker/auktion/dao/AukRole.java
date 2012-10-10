@@ -166,4 +166,8 @@ public class AukRole implements GrantedAuthority, Serializable {
     return isPrivate;
   }
 
+  public boolean getIsPrivate() {
+    return isPrivate;
+  }
+
 }

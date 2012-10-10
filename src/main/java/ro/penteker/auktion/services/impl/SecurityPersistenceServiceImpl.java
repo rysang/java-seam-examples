@@ -50,6 +50,13 @@ public class SecurityPersistenceServiceImpl implements SecurityPersistenceServic
     return (AukRole) q.uniqueResult();
   }
 
+  @Override
+  public void deleteRole(AukRole role) {
+    Query q = sessionFactory.getCurrentSession().createQuery("delete AukRole r where r.id = :id")
+        .setLong("id", role.getId());
+    q.executeUpdate();
+  }
+
   public Long saveUser(AukUser user) {
     return (Long) sessionFactory.getCurrentSession().save(user);
   }
@@ -91,6 +98,28 @@ public class SecurityPersistenceServiceImpl implements SecurityPersistenceServic
 
     if (sortField == null) {
       sortField = "username";
+    }
+
+    crit.addOrder(SortOrder.ASCENDING == sortOrder ? Order.asc(sortField) : Order.desc(sortField));
+    crit.setFirstResult(first);
+    crit.setMaxResults(pageSize);
+
+    return crit.list();
+  }
+
+  @Override
+  public List<AukRole> getRoles(int first, int pageSize, String sortField, SortOrder sortOrder,
+      Map<String, String> filters) {
+
+    Criteria crit = sessionFactory.getCurrentSession().createCriteria(AukRole.class);
+    if (filters.size() > 0) {
+      for (Entry<String, String> e : filters.entrySet()) {
+        crit.add(Restrictions.ilike(e.getKey(), '%' + e.getValue() + '%'));
+      }
+    }
+
+    if (sortField == null) {
+      sortField = "authority";
     }
 
     crit.addOrder(SortOrder.ASCENDING == sortOrder ? Order.asc(sortField) : Order.desc(sortField));

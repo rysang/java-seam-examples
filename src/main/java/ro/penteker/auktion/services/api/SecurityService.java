@@ -11,11 +11,17 @@ import ro.penteker.auktion.dao.AukUser;
 public interface SecurityService {
 
   public AukUser getUser(String username);
+
+  public AukRole getRole(String roleName);
   
+  public AukRole createRole(AukRole role);
+  
+  public void deleteRole(AukRole role);
+
   public List<AukRole> getPublicRoles();
 
   public List<AukRole> createDefaultRoles();
-  
+
   public void deleteUser(AukUser user);
 
   public void updateUser(AukUser user);
@@ -23,6 +29,9 @@ public interface SecurityService {
   public AukUser createUser(String createdBy, String username, String password, boolean enabled, List<AukRole> roles);
 
   public List<AukUser> getUsers(int first, int pageSize, String sortField, SortOrder sortOrder,
+      Map<String, String> filters);
+
+  public List<AukRole> getRoles(int first, int pageSize, String sortField, SortOrder sortOrder,
       Map<String, String> filters);
 
 }

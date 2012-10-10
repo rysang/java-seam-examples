@@ -24,6 +24,16 @@
   <navigation-rule>
     <from-view-id>/secure/home.xhtml</from-view-id>
     <navigation-case>
+      <from-outcome>create-role</from-outcome>
+      <to-view-id>/secure/create-role.xhtml</to-view-id>
+      <redirect include-view-params="true" />
+    </navigation-case>
+  </navigation-rule>
+
+
+  <navigation-rule>
+    <from-view-id>/secure/home.xhtml</from-view-id>
+    <navigation-case>
       <from-outcome>create-user</from-outcome>
       <to-view-id>/secure/create-user.xhtml</to-view-id>
       <redirect include-view-params="true" />

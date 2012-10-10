@@ -20,6 +20,8 @@ public interface SecurityPersistenceService {
   public Long saveUser(AukUser user);
   
   public void deleteUser(AukUser user);
+  
+  public void deleteRole(AukRole role);
 
   public Long saveRole(AukRole role);
 
@@ -28,5 +30,8 @@ public interface SecurityPersistenceService {
   public void updateRole(AukRole role);
 
   public List<AukUser> getUsers(int first, int pageSize, String sortField, SortOrder sortOrder,
+      Map<String, String> filters);
+  
+  public List<AukRole> getRoles(int first, int pageSize, String sortField, SortOrder sortOrder,
       Map<String, String> filters);
 }

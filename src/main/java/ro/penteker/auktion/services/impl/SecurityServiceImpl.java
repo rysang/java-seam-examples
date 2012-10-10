@@ -31,6 +31,24 @@ public class SecurityServiceImpl implements SecurityService {
   }
 
   @Override
+  public AukRole getRole(String roleName) {
+    return securityPersistenceService.getRole(roleName);
+  }
+
+  @Override
+  public AukRole createRole(AukRole role) {
+    Long id = securityPersistenceService.saveRole(role);
+    role.setId(id);
+
+    return role;
+  }
+
+  @Override
+  public void deleteRole(AukRole role) {
+    securityPersistenceService.deleteRole(role);
+  }
+
+  @Override
   public List<AukRole> getPublicRoles() {
     return securityPersistenceService.getPublicRoles();
   }
@@ -88,6 +106,12 @@ public class SecurityServiceImpl implements SecurityService {
   public List<AukUser> getUsers(int first, int pageSize, String sortField, SortOrder sortOrder,
       Map<String, String> filters) {
     return securityPersistenceService.getUsers(first, pageSize, sortField, sortOrder, filters);
+  }
+
+  @Override
+  public List<AukRole> getRoles(int first, int pageSize, String sortField, SortOrder sortOrder,
+      Map<String, String> filters) {
+    return securityPersistenceService.getRoles(first, pageSize, sortField, sortOrder, filters);
   }
 
   public static void main(String[] args) {

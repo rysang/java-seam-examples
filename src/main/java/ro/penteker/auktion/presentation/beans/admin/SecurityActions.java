@@ -2,6 +2,7 @@ package ro.penteker.auktion.presentation.beans.admin;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -28,6 +29,8 @@ public class SecurityActions implements Serializable {
   private int tabIndex;
 
   private AukUser currentUser;
+
+  private AukRole currentRole;
 
   @Autowired
   @Qualifier("securityService")
@@ -97,6 +100,24 @@ public class SecurityActions implements Serializable {
     return "create-user";
   }
 
+  public void deleteRole(AukRole role) {
+    securityService.deleteRole(role);
+  }
+
+  public String createRole() {
+    reset();
+
+    setCurrentRole(new AukRole());
+    return "create-role";
+  }
+
+  public String saveRole() {
+    currentRole.setCreatedBy(loggedInUser.getUsername());
+    currentRole.setCreatedDate(new Date());
+    securityService.createRole(currentRole);
+    return "home-secure";
+  }
+
   public String saveUser() {
     if (currentUser.getId() == null) {
       currentUser = securityService.createUser(loggedInUser.getUsername(), currentUser.getUsername(),
@@ -110,7 +131,7 @@ public class SecurityActions implements Serializable {
     return "home-secure";
   }
 
-  public String closeUserEditCreate() {
+  public String closeEditCreate() {
     return "home-secure";
   }
 
@@ -156,6 +177,14 @@ public class SecurityActions implements Serializable {
     }
 
     return roleDualListModel;
+  }
+
+  public void setCurrentRole(AukRole currentRole) {
+    this.currentRole = currentRole;
+  }
+
+  public AukRole getCurrentRole() {
+    return currentRole;
   }
 
 }
