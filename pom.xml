@@ -7,7 +7,7 @@
   <packaging>war</packaging>
   <version>1.0</version>
 
-  <name>auction</name>
+  <name>auktion</name>
   <url>http://maven.apache.org</url>
 
   <properties>

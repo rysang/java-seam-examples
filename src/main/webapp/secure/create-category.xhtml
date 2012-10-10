@@ -17,12 +17,36 @@
 				<h:panelGrid border="0" columns="1" style="width:50%">
 					<p:fieldset legend="#{auktion['ro.penteker.auktion.category.headers.name']}">
 						<p:inputText id="name" value="#{categoryActions.currentCategory.name}" style="width:100%">
-							<f:validator binding="#{roleValidator}" />
+							<f:validator binding="#{categoryValidator}" />
 						</p:inputText>
 					</p:fieldset>
 
 					<p:fieldset legend="#{auktion['ro.penteker.auktion.category.headers.description']}">
-						<h:inputTextarea id="description" value="#{categoryActions.currentCategory.description}" style="width:100%; height: 200px" />
+						<h:inputTextarea id="description" value="#{categoryActions.currentCategory.description}"
+							style="width:100%; height: 200px" />
+					</p:fieldset>
+
+					<p:fieldset legend="#{auktion['ro.penteker.auktion.category.headers.assoc.types']}">
+						<p:panelGrid style="width:100%">
+							<p:row>
+								<p:column colspan="3">
+									<p:dataList value="#{categoryActions.currentCategory.aukTypeList}" var="type" itemType="square" id="typeList"
+										style="width:100%">
+										<h:outputText value="#{type.name}" />
+									</p:dataList>
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column colspan="2" style="text-align: center; width:75%">
+									<p:inputText id="nameType" value="#{categoryActions.newType}" style="width:100%" />
+								</p:column>
+								<p:column colspan="1" style="text-align: center; width:25%">
+									<p:commandButton value="#{auktion['ro.penteker.auktion.category.btn.type.add']}"
+										action="#{categoryActions.addType}" update="userForm:typeList userForm:messages" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
 					</p:fieldset>
 				</h:panelGrid>
 

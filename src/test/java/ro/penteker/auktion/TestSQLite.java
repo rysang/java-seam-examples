@@ -41,7 +41,7 @@ public class TestSQLite extends AbstractJUnit38SpringContextTests {
 
     LOG.info(categories);
 
-    categoryService.deleteCategory(category);
+    //categoryService.deleteCategory(category);
 
     LOG.info(category);
   }

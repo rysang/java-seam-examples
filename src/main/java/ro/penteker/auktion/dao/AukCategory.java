@@ -5,6 +5,7 @@
 package ro.penteker.auktion.dao;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -58,8 +59,8 @@ public class AukCategory implements Serializable {
   @Lob
   @Column(name = "description", length = 2147483647)
   private String description;
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryId")
-  private List<AukType> aukTypeList;
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+  private List<AukType> aukTypeList = new ArrayList<AukType>();
 
   public AukCategory() {
   }

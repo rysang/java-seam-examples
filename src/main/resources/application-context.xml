@@ -31,7 +31,7 @@
       </bean>
     </property>
   </bean>
-  
+
   <bean id="categoryService" parent="baseTransactionProxy">
     <property name="target">
       <bean class="ro.penteker.auktion.services.impl.CategoryServiceImpl">
@@ -51,6 +51,14 @@
   <!-- Validators and converters -->
   <bean id="userValidator" class="ro.penteker.auktion.presentation.beans.validators.UserValidator">
     <property name="securityService" ref="securityService" />
+  </bean>
+
+  <bean id="categTypeValidator" class="ro.penteker.auktion.presentation.beans.validators.CategTypeValidator">
+    <property name="categoryService" ref="categoryService" />
+  </bean>
+
+  <bean id="categoryValidator" class="ro.penteker.auktion.presentation.beans.validators.CategoryValidator">
+    <property name="categoryService" ref="categoryService" />
   </bean>
 
   <bean id="roleValidator" class="ro.penteker.auktion.presentation.beans.validators.RoleValidator">

@@ -12,6 +12,7 @@ import org.hibernate.criterion.Restrictions;
 import org.primefaces.model.SortOrder;
 
 import ro.penteker.auktion.dao.AukCategory;
+import ro.penteker.auktion.dao.AukType;
 import ro.penteker.auktion.services.api.CategoryPersistenceService;
 
 public class CategoryPersistenceServiceImpl implements CategoryPersistenceService {
@@ -68,5 +69,13 @@ public class CategoryPersistenceServiceImpl implements CategoryPersistenceServic
     crit.setMaxResults(pageSize);
 
     return crit.list();
+  }
+
+  @Override
+  public AukType getType(AukCategory category, String name) {
+    Query query = sessionFactory.getCurrentSession()
+        .createQuery("select c from AukType t where t.name = :name and t.category.id = :id").setString("name", name)
+        .setLong("id", category.getId());
+    return (AukType) query.uniqueResult();
   }
 }

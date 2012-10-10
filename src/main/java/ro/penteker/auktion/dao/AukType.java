@@ -62,7 +62,7 @@ public class AukType implements Serializable {
   private List<AukProduct> aukProductList;
   @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
   @ManyToOne(optional = false)
-  private AukCategory categoryId;
+  private AukCategory category;
 
   public AukType() {
   }
@@ -127,12 +127,12 @@ public class AukType implements Serializable {
     this.aukProductList = aukProductList;
   }
 
-  public AukCategory getCategoryId() {
-    return categoryId;
+  public void setCategory(AukCategory category) {
+    this.category = category;
   }
 
-  public void setCategoryId(AukCategory categoryId) {
-    this.categoryId = categoryId;
+  public AukCategory getCategory() {
+    return category;
   }
 
   @Override
