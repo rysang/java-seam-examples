@@ -30,4 +30,6 @@ public interface CategoryPersistenceService {
   public void updateCategory(AukCategory category);
 
   public void updateType(AukType type);
+
+  public List<AukCategory> getCategoriesAndTypes();
 }

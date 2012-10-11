@@ -34,6 +34,11 @@ public class CategoryServiceImpl implements CategoryService {
   }
 
   @Override
+  public List<AukCategory> getCategoriesAndTypes() {
+    return categoryPersistenceService.getCategoriesAndTypes();
+  }
+
+  @Override
   public AukCategory createCategory(AukCategory category) {
 
     List<AukType> types = new ArrayList<AukType>(category.getAukTypeList());

@@ -5,6 +5,7 @@
 package ro.penteker.auktion.dao;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -72,7 +73,7 @@ public class AukProduct implements Serializable {
 
   @JoinTable(name = "auk_product_2_type", joinColumns = { @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false) }, inverseJoinColumns = { @JoinColumn(name = "type_id", referencedColumnName = "id", nullable = false) })
   @ManyToMany
-  private List<AukType> aukTypeList;
+  private List<AukType> aukTypeList = new ArrayList<AukType>();
 
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
   private List<AukRight> aukRightList;

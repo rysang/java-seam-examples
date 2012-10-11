@@ -16,10 +16,12 @@ public interface CategoryService {
 
   public AukCategory createCategory(AukCategory category);
 
-  public AukCategory updateCategory(AukCategory category,List<AukType> removalList);
+  public AukCategory updateCategory(AukCategory category, List<AukType> removalList);
 
   public void deleteCategory(AukCategory category);
 
   public List<AukCategory> getCategories(int first, int pageSize, String sortField, SortOrder sortOrder,
       Map<String, String> filters);
+
+  public List<AukCategory> getCategoriesAndTypes();
 }

@@ -65,6 +65,8 @@ public class AukType implements Serializable {
   @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
   @ManyToOne(optional = false)
   private AukCategory category;
+  
+  private transient boolean selected = false;
 
   public AukType() {
   }
@@ -160,6 +162,14 @@ public class AukType implements Serializable {
   @Override
   public String toString() {
     return "ro.penteker.auktion.dao.AukType[ id=" + id + " ]";
+  }
+
+  public void setSelected(boolean selected) {
+    this.selected = selected;
+  }
+
+  public boolean isSelected() {
+    return selected;
   }
 
 }

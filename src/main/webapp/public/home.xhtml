@@ -1,9 +1,29 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" template="/WEB-INF/templates/main.xhtml">
 	<ui:define name="left">
-
+		<h:form id="categForm">
+			<h:dataTable value="#{categoryActions.categories}" var="category" id="categoryList" style="width:100%">
+				<h:column>
+					<div style="padding-left: 10px; padding-right: 10px; padding-bottom: 10px">
+						<p:panel header="#{category.name}">
+							<h:dataTable value="#{category.aukTypeList}" var="type" id="typeList" style="width:100%">
+								<h:column>
+									<h:outputText value="#{type.name}" style="padding-right: 20px" />
+								</h:column>
+								<h:column>
+									<p:selectBooleanCheckbox value="#{type.selected}">
+										<p:ajax listener="#{categoryActions.typeSelect}"/>
+										<f:attribute name="type" value="#{type}" />
+									</p:selectBooleanCheckbox>
+								</h:column>
+							</h:dataTable>
+						</p:panel>
+					</div>
+				</h:column>
+			</h:dataTable>
+		</h:form>
 	</ui:define>
 	<ui:define name="right">
-		
+
 	</ui:define>
 </ui:composition>

@@ -1,7 +1,6 @@
 package ro.penteker.auktion;
 
 import java.util.Date;
-import java.util.Hashtable;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -11,7 +10,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit38.AbstractJUnit38SpringContextTests;
 
 import ro.penteker.auktion.dao.AukCategory;
+import ro.penteker.auktion.dao.AukProduct;
 import ro.penteker.auktion.services.api.CategoryService;
+import ro.penteker.auktion.services.api.ProductService;
 import ro.penteker.auktion.services.api.SecurityService;
 
 @ContextConfiguration(locations = { "classpath:application-context.xml", "classpath:db-context.xml" })
@@ -25,6 +26,9 @@ public class TestSQLite extends AbstractJUnit38SpringContextTests {
   @Autowired
   private CategoryService categoryService;
 
+  @Autowired
+  private ProductService productService;
+
   @Override
   protected void setUp() throws Exception {
     super.setUp();
@@ -32,17 +36,15 @@ public class TestSQLite extends AbstractJUnit38SpringContextTests {
 
   public void testEntities() throws Exception {
 
-    AukCategory category = new AukCategory(null, "Brands", new Date(), "system");
-    category.setDescription("The car brands.");
-    category = categoryService.createCategory(category);
+    List<AukCategory> categories = categoryService.getCategoriesAndTypes();
 
-    List<AukCategory> categories = categoryService.getCategories(0, 15, null, SortOrder.ASCENDING,
-        new Hashtable<String, String>());
+    AukProduct product = new AukProduct(null, "Some Cool Car", "Some Cool Car", new Date(), "system", 2323, "EUR");
+    product.getAukTypeList().addAll(categories.get(1).getAukTypeList());
 
-    LOG.info(categories);
+    productService.saveProduct(product);
 
-    //categoryService.deleteCategory(category);
-
-    LOG.info(category);
+    List<AukProduct> products = productService.getProducts(0, 15, null, SortOrder.DESCENDING, categories.get(1)
+        .getAukTypeList());
+    LOG.info(products);
   }
 }

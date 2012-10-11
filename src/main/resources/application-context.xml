@@ -40,11 +40,23 @@
     </property>
   </bean>
 
+  <bean id="productService" parent="baseTransactionProxy">
+    <property name="target">
+      <bean class="ro.penteker.auktion.services.impl.ProductServiceImpl">
+        <property name="productPersistenceService" ref="productPersistenceService" />
+      </bean>
+    </property>
+  </bean>
+
   <bean id="securityPersistenceService" class="ro.penteker.auktion.services.impl.SecurityPersistenceServiceImpl">
     <property name="sessionFactory" ref="sessionFactory" />
   </bean>
 
   <bean id="categoryPersistenceService" class="ro.penteker.auktion.services.impl.CategoryPersistenceServiceImpl">
+    <property name="sessionFactory" ref="sessionFactory" />
+  </bean>
+
+  <bean id="productPersistenceService" class="ro.penteker.auktion.services.impl.ProductPersistenceServiceImpl">
     <property name="sessionFactory" ref="sessionFactory" />
   </bean>
 

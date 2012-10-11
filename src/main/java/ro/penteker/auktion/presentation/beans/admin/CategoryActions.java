@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.event.AjaxBehaviorEvent;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -37,8 +39,23 @@ public class CategoryActions implements Serializable {
 
   private List<AukType> removalList = null;
 
+  private List<AukCategory> categories = null;
+
+  private List<AukType> selectedTypes = new ArrayList<AukType>();
+
   public CategoryActions() {
 
+  }
+
+  public void typeSelect(AjaxBehaviorEvent ev) {
+    AukType type = (AukType) ev.getComponent().getAttributes().get("type");
+    LOG.info("Select type: " + type + " name=" + type.getName() + " selected=" + type.isSelected());
+
+    if (type.isSelected()) {
+      selectedTypes.add(type);
+    } else {
+      selectedTypes.remove(type);
+    }
   }
 
   public void addType() {
@@ -125,6 +142,26 @@ public class CategoryActions implements Serializable {
     }
 
     return removalList;
+  }
+
+  public void setCategories(List<AukCategory> categories) {
+    this.categories = categories;
+  }
+
+  public List<AukCategory> getCategories() {
+    if (categories == null) {
+      categories = categoryService.getCategoriesAndTypes();
+    }
+
+    return categories;
+  }
+
+  public void setSelectedTypes(List<AukType> selectedTypes) {
+    this.selectedTypes = selectedTypes;
+  }
+
+  public List<AukType> getSelectedTypes() {
+    return selectedTypes;
   }
 
 }

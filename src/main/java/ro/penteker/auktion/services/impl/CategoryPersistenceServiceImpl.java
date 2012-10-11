@@ -28,6 +28,13 @@ public class CategoryPersistenceServiceImpl implements CategoryPersistenceServic
   }
 
   @Override
+  public List<AukCategory> getCategoriesAndTypes() {
+    Query query = sessionFactory.getCurrentSession().createQuery(
+        "select distinct c from AukCategory c join fetch c.aukTypeList t");
+    return query.list();
+  }
+
+  @Override
   public AukCategory getCategory(String name) {
     Query query = sessionFactory.getCurrentSession().createQuery("select c from AukCategory c where c.name = :name")
         .setString("name", name);
