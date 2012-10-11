@@ -1,7 +1,9 @@
 package ro.penteker.auktion.presentation.beans.admin;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,8 @@ public class CategoryActions implements Serializable {
   @Qualifier("currentUser")
   private UserDetails loggedInUser;
 
+  private List<AukType> removalList = null;
+
   public CategoryActions() {
 
   }
@@ -41,6 +45,31 @@ public class CategoryActions implements Serializable {
     LOG.info("Type Added: " + newType);
 
     currentCategory.getAukTypeList().add(new AukType(null, newType, new Date(), loggedInUser.getUsername()));
+    newType = null;
+  }
+
+  public void deleteType(AukType type) {
+    LOG.info("Removing type: " + type);
+
+    getRemovalList().add(type);
+    currentCategory.getAukTypeList().remove(type);
+  }
+
+  public String editCategory(AukCategory category) {
+    LOG.info("Edit category: " + category);
+    reset();
+
+    currentCategory = categoryService.getCategoryAndTypes(category.getName());
+
+    return "edit-category";
+  }
+
+  public String deleteCategory(AukCategory category) {
+    LOG.info("Delete category: " + category);
+
+    categoryService.deleteCategory(category);
+
+    return "home-secure";
   }
 
   public void setCurrentCategory(AukCategory currentCategory) {
@@ -59,6 +88,18 @@ public class CategoryActions implements Serializable {
   }
 
   public String saveCategory() {
+    if (currentCategory.getId() == null) {
+      LOG.info("Creating new category.");
+
+      currentCategory.setCreatedBy(loggedInUser.getUsername());
+      currentCategory.setCreatedDate(new Date());
+      categoryService.createCategory(currentCategory);
+    }
+
+    else {
+      categoryService.updateCategory(currentCategory, removalList);
+    }
+
     return "home-secure";
   }
 
@@ -68,6 +109,22 @@ public class CategoryActions implements Serializable {
 
   public String getNewType() {
     return newType;
+  }
+
+  public void setRemovalList(List<AukType> removalList) {
+    this.removalList = removalList;
+  }
+
+  public void reset() {
+    removalList = null;
+  }
+
+  public List<AukType> getRemovalList() {
+    if (removalList == null) {
+      removalList = new ArrayList<AukType>();
+    }
+
+    return removalList;
   }
 
 }

@@ -1,0 +1,78 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" template="/WEB-INF/templates/main.xhtml">
+	<ui:define name="center">
+		<h:form id="userForm">
+			<p:messages id="messages" showDetail="true" />
+			<h:panelGrid border="0" columns="1" style="width:100%">
+				<p:toolbar>
+					<p:toolbarGroup align="right">
+						<p:commandButton value="#{auktion['ro.penteker.auktion.category.save']}" action="#{categoryActions.saveCategory}"
+							ajax="false" />
+						<p:commandButton value="#{auktion['ro.penteker.auktion.category.close']}"
+							action="#{securityActions.closeEditCreate}" ajax="false" immediate="true" />
+					</p:toolbarGroup>
+				</p:toolbar>
+
+				<div style="height: 10px"></div>
+				<h:panelGrid border="0" columns="1" style="width:50%">
+					<p:fieldset legend="#{auktion['ro.penteker.auktion.category.headers.name']}">
+						<p:inputText id="name" value="#{categoryActions.currentCategory.name}" style="width:100%" required="true" disabled="#{nameDisabled}">
+							<f:validator binding="#{categoryValidator}" disabled="#{categoryValidatorDisabled}" />
+						</p:inputText>
+						<p:message id="nameMgs" for="name" />
+					</p:fieldset>
+
+					<p:fieldset legend="#{auktion['ro.penteker.auktion.category.headers.description']}">
+						<h:inputTextarea id="description" value="#{categoryActions.currentCategory.description}"
+							style="width:100%; height: 200px" />
+					</p:fieldset>
+
+					<p:fieldset legend="#{auktion['ro.penteker.auktion.category.headers.assoc.types']}">
+						<p:panelGrid style="width:100%">
+							<p:row>
+								<p:column colspan="3">
+									<p:dataList value="#{categoryActions.currentCategory.aukTypeList}" var="type" itemType="square" id="typeList"
+										style="width:100%">
+										<p:column>
+											<h:outputText value="#{type.name}" />
+											<p:commandLink update="@form" action="#{categoryActions.deleteType(type)}" style="margin-left:20px;"
+												value="#{auktion['ro.penteker.auktion.category.delete.category']}" ajax="false"
+												onclick="if (!confirm('#{auktion['ro.penteker.auktion.category.type.confirmation']}')) return false" />
+										</p:column>
+									</p:dataList>
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column colspan="2" style="text-align: center; width:75%">
+									<p:inputText id="nameType" value="#{categoryActions.newType}" style="width:100%">
+										<f:validator binding="#{categTypeValidator}" />
+									</p:inputText>
+									<p:message id="nameTypeMgs" for="nameType" />
+								</p:column>
+								<p:column colspan="1" style="text-align: center; width:25%">
+									<p:commandButton value="#{auktion['ro.penteker.auktion.category.btn.type.add']}"
+										action="#{categoryActions.addType}"
+										update="userForm:typeList userForm:messages userForm:nameMgs userForm:nameTypeMgs userForm:nameType" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</p:fieldset>
+				</h:panelGrid>
+
+
+				<div style="height: 10px"></div>
+
+				<p:toolbar>
+					<p:toolbarGroup align="right">
+						<p:commandButton value="#{auktion['ro.penteker.auktion.category.save']}" action="#{categoryActions.saveCategory}"
+							ajax="false" />
+						<p:commandButton value="#{auktion['ro.penteker.auktion.category.close']}"
+							action="#{securityActions.closeEditCreate}" onclick="$('userForm:nameType').val('')" ajax="false"
+							immediate="true" />
+					</p:toolbarGroup>
+				</p:toolbar>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

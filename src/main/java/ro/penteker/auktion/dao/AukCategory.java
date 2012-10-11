@@ -59,6 +59,7 @@ public class AukCategory implements Serializable {
   @Lob
   @Column(name = "description", length = 2147483647)
   private String description;
+  
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
   private List<AukType> aukTypeList = new ArrayList<AukType>();
 

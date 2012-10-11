@@ -38,11 +38,11 @@
 				</p:column>
 
 				<p:column headerText="#{auktion['ro.penteker.auktion.category.headers.edit']}">
-					<h:commandLink action="#{securityActions.editUser(user)}"
+					<h:commandLink action="#{categoryActions.editCategory(category)}"
 						value="#{auktion['ro.penteker.auktion.user.management.headers.edit']}" />
 				</p:column>
 				<p:column headerText="#{auktion['ro.penteker.auktion.category.headers.delete']}">
-					<h:commandLink action="#{securityActions.deleteUser(user)}"
+					<h:commandLink action="#{categoryActions.deleteCategory(category)}"
 						value="#{auktion['ro.penteker.auktion.user.management.headers.delete']}"
 						onclick="if (!confirm('#{auktion['ro.penteker.auktion.user.validation.user.delete.confirmation']}')) return false" />
 				</p:column>

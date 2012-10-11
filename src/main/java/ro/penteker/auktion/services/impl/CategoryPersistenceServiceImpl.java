@@ -35,10 +35,42 @@ public class CategoryPersistenceServiceImpl implements CategoryPersistenceServic
   }
 
   @Override
+  public AukCategory getCategoryAndTypes(String name) {
+    Query query = sessionFactory.getCurrentSession()
+        .createQuery("select c from AukCategory c left join fetch c.aukTypeList where c.name = :name")
+        .setString("name", name);
+    return (AukCategory) query.uniqueResult();
+  }
+
+  @Override
   public AukCategory saveCategory(AukCategory category) {
     Long id = (Long) sessionFactory.getCurrentSession().save(category);
     category.setId(id);
     return category;
+  }
+
+  @Override
+  public AukType saveType(AukType type) {
+    Long id = (Long) sessionFactory.getCurrentSession().save(type);
+    type.setId(id);
+    return type;
+  }
+
+  @Override
+  public void deleteType(AukType type) {
+    Query q = sessionFactory.getCurrentSession().createQuery("delete AukType t where t.id = :id")
+        .setLong("id", type.getId());
+    q.executeUpdate();
+  }
+
+  @Override
+  public void updateCategory(AukCategory category) {
+    sessionFactory.getCurrentSession().update(category);
+  }
+
+  @Override
+  public void updateType(AukType type) {
+    sessionFactory.getCurrentSession().update(type);
   }
 
   @Override

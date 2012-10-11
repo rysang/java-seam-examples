@@ -21,7 +21,7 @@
     <property name="transactionManager" ref="transactionManager" />
     <property name="transactionAttributes">
       <props>
-        <prop key="insert*">PROPAGATION_REQUIRED,ISOLATION_READ_COMMITTED, -Exception</prop>
+        <prop key="insert*">PROPAGATION_REQUIRES_NEW,ISOLATION_READ_COMMITTED, -Exception</prop>
         <prop key="create*">PROPAGATION_REQUIRED,ISOLATION_READ_COMMITTED, -Exception</prop>
         <prop key="update*">PROPAGATION_REQUIRED,ISOLATION_READ_COMMITTED, -Exception</prop>
         <prop key="save*">PROPAGATION_REQUIRED,ISOLATION_READ_COMMITTED, -Exception</prop>
@@ -55,13 +55,15 @@
         <prop key="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</prop>
         <prop key="hibernate.hbm2ddl.auto">validate</prop>
         <prop key="hibernate.generate_statistics">true</prop>
-       
+
         <prop key="hibernate.cache.use_second_level_cache">true</prop>
         <prop key="hibernate.cache.use_query_cache">true</prop>
         <prop key="hibernate.max_fetch_depth">4</prop>
         <prop key="hibernate.cache.use_query_cache">true</prop>
         <prop key="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.EhCacheRegionFactory</prop>
         <prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+        <prop key="hibernate.connection.autocommit">false</prop>
+
       </props>
     </property>
     <property name="eventListeners">
@@ -73,9 +75,13 @@
     </property>
   </bean>
 
-  <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-    <property name="dataSource" ref="dataSource" />
-    <property name="defaultTimeout" value="100" />
+  <!-- <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> -->
+  <!-- <property name="dataSource" ref="dataSource" /> -->
+  <!-- <property name="defaultTimeout" value="100" /> -->
+  <!-- </bean> -->
+
+  <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+    <property name="sessionFactory" ref="sessionFactory" />
   </bean>
 
   <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">

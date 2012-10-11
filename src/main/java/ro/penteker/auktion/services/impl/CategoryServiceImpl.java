@@ -1,11 +1,13 @@
 package ro.penteker.auktion.services.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.primefaces.model.SortOrder;
 
 import ro.penteker.auktion.dao.AukCategory;
+import ro.penteker.auktion.dao.AukType;
 import ro.penteker.auktion.services.api.CategoryPersistenceService;
 import ro.penteker.auktion.services.api.CategoryService;
 
@@ -27,8 +29,41 @@ public class CategoryServiceImpl implements CategoryService {
   }
 
   @Override
+  public AukCategory getCategoryAndTypes(String name) {
+    return categoryPersistenceService.getCategoryAndTypes(name);
+  }
+
+  @Override
   public AukCategory createCategory(AukCategory category) {
-    return categoryPersistenceService.saveCategory(category);
+
+    List<AukType> types = new ArrayList<AukType>(category.getAukTypeList());
+    category.getAukTypeList().clear();
+    AukCategory c = categoryPersistenceService.saveCategory(category);
+
+    for (AukType t : types) {
+      t.setCategory(category);
+      categoryPersistenceService.saveType(t);
+    }
+
+    return c;
+  }
+
+  @Override
+  public AukCategory updateCategory(AukCategory category, List<AukType> removalList) {
+    for (AukType t : removalList) {
+      categoryPersistenceService.deleteType(t);
+    }
+
+    List<AukType> types = new ArrayList<AukType>(category.getAukTypeList());
+    category.getAukTypeList().clear();
+    categoryPersistenceService.updateCategory(category);
+
+    for (AukType t : types) {
+      t.setCategory(category);
+      categoryPersistenceService.updateType(t);
+    }
+
+    return category;
   }
 
   @Override

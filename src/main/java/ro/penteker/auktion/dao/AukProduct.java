@@ -69,9 +69,11 @@ public class AukProduct implements Serializable {
   @Basic(optional = false)
   @Column(name = "currency", nullable = false, length = 10)
   private String currency;
+
   @JoinTable(name = "auk_product_2_type", joinColumns = { @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false) }, inverseJoinColumns = { @JoinColumn(name = "type_id", referencedColumnName = "id", nullable = false) })
   @ManyToMany
   private List<AukType> aukTypeList;
+
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
   private List<AukRight> aukRightList;
 
