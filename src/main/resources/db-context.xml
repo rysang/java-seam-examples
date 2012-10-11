@@ -26,6 +26,7 @@
         <prop key="update*">PROPAGATION_REQUIRED,ISOLATION_READ_COMMITTED, -Exception</prop>
         <prop key="save*">PROPAGATION_REQUIRED,ISOLATION_READ_COMMITTED, -Exception</prop>
         <prop key="remove*">PROPAGATION_REQUIRED,ISOLATION_READ_COMMITTED, -Exception</prop>
+        <prop key="delete*">PROPAGATION_REQUIRED,ISOLATION_READ_COMMITTED, -Exception</prop>
         <prop key="import*">PROPAGATION_REQUIRED,ISOLATION_READ_COMMITTED, -Exception</prop>
         <prop key="*">PROPAGATION_REQUIRED, -Exception, readOnly</prop>
       </props>

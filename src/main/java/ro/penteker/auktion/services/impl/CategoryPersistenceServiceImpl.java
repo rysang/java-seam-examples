@@ -75,8 +75,11 @@ public class CategoryPersistenceServiceImpl implements CategoryPersistenceServic
 
   @Override
   public void deleteCategory(AukCategory category) {
+    Query q = sessionFactory.getCurrentSession().createQuery("delete AukType t where t.category.id = :id")
+        .setLong("id", category.getId());
+    q.executeUpdate();
 
-    Query q = sessionFactory.getCurrentSession().createQuery("delete AukCategory c where c.id = :id")
+    q = sessionFactory.getCurrentSession().createQuery("delete AukCategory c where c.id = :id")
         .setLong("id", category.getId());
     q.executeUpdate();
   }
