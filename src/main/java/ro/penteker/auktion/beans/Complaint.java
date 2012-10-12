@@ -2,7 +2,7 @@ package ro.penteker.auktion.beans;
 
 import java.io.Serializable;
 
-public class Complaint implements Serializable{
+public class Complaint implements Serializable {
   private String level_1;
   private String level_2;
   private String transaction_value;

@@ -2,9 +2,7 @@ package ro.penteker.auktion.beans;
 
 import java.util.List;
 
-
-
-public class RetrieveSubmissionResult  {
+public class RetrieveSubmissionResult {
   private String code;
   private List<RetrieveSubmission> submission;
 

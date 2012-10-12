@@ -24,7 +24,7 @@ public interface CategoryPersistenceService {
   public AukType getType(AukCategory category, String name);
 
   public AukType saveType(AukType type);
-  
+
   public void deleteType(AukType type);
 
   public void updateCategory(AukCategory category);

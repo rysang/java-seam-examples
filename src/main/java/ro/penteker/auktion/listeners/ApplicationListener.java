@@ -15,7 +15,6 @@ public class ApplicationListener implements ServletContextListener, Runnable {
 
   public void contextDestroyed(ServletContextEvent arg0) {
 
-    
   }
 
   public void contextInitialized(ServletContextEvent arg0) {

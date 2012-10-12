@@ -19,17 +19,17 @@ public class TypeConverter implements Converter {
 
   @Override
   public Object getAsObject(FacesContext context, UIComponent component, String value) {
-//    for (AukType r : productActions.getSourceRoles()) {
-//      if (value.equals(r.getAuthority())) {
-//        return r;
-//      }
-//    }
-//
-//    for (AukRole r : securityActions.getTargetRoles()) {
-//      if (value.equals(r.getAuthority())) {
-//        return r;
-//      }
-//    }
+    // for (AukType r : productActions.getSourceRoles()) {
+    // if (value.equals(r.getAuthority())) {
+    // return r;
+    // }
+    // }
+    //
+    // for (AukRole r : securityActions.getTargetRoles()) {
+    // if (value.equals(r.getAuthority())) {
+    // return r;
+    // }
+    // }
 
     return null;
   }

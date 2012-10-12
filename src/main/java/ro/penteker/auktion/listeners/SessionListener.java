@@ -9,8 +9,6 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import ro.penteker.auktion.utils.api.Utils;
 
-
-
 public class SessionListener implements HttpSessionListener {
   private static final transient Logger LOG = Logger.getLogger(SessionListener.class);
 

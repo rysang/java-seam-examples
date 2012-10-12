@@ -36,13 +36,11 @@ public interface Utils {
 
   public List<SelectItem> getYears();
 
-
-
   public void reset();
 
   public void setTheme(String theme);
 
   public String getTheme();
-  
+
   public long getNextCid();
 }

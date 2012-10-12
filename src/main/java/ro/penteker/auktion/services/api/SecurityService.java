@@ -13,9 +13,9 @@ public interface SecurityService {
   public AukUser getUser(String username);
 
   public AukRole getRole(String roleName);
-  
+
   public AukRole createRole(AukRole role);
-  
+
   public void deleteRole(AukRole role);
 
   public List<AukRole> getPublicRoles();

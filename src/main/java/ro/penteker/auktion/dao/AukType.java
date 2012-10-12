@@ -58,14 +58,14 @@ public class AukType implements Serializable {
   @Lob
   @Column(name = "description", length = 2147483647)
   private String description;
-  
+
   @ManyToMany(mappedBy = "aukTypeList")
   private List<AukProduct> aukProductList;
-  
+
   @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
   @ManyToOne(optional = false)
   private AukCategory category;
-  
+
   private transient boolean selected = false;
 
   public AukType() {
