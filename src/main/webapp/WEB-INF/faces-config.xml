@@ -22,6 +22,24 @@
   </application>
 
   <navigation-rule>
+    <navigation-case>
+      <from-outcome>home-public</from-outcome>
+      <to-view-id>/public/home.xhtml</to-view-id>
+      <redirect include-view-params="true" />
+    </navigation-case>
+  </navigation-rule>
+
+
+  <navigation-rule>
+    <from-view-id>/public/home.xhtml</from-view-id>
+    <navigation-case>
+      <from-outcome>create-product</from-outcome>
+      <to-view-id>/secureuser/create-product.xhtml</to-view-id>
+      <redirect include-view-params="true" />
+    </navigation-case>
+  </navigation-rule>
+
+  <navigation-rule>
     <from-view-id>/secure/home.xhtml</from-view-id>
     <navigation-case>
       <from-outcome>edit-category</from-outcome>

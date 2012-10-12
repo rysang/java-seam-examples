@@ -16,6 +16,8 @@ import org.springframework.stereotype.Component;
 
 import ro.penteker.auktion.dao.AukCategory;
 import ro.penteker.auktion.dao.AukType;
+import ro.penteker.auktion.presentation.beans.admin.models.ProductDataModel;
+import ro.penteker.auktion.security.SecurityContext;
 import ro.penteker.auktion.services.api.CategoryService;
 
 @Scope("session")
@@ -34,14 +36,18 @@ public class CategoryActions implements Serializable {
   private transient CategoryService categoryService;
 
   @Autowired
-  @Qualifier("currentUser")
-  private UserDetails loggedInUser;
+  @Qualifier("securityContext")
+  private SecurityContext securityContext;
+
+  @Autowired
+  @Qualifier("productDataModel")
+  private transient ProductDataModel productDataModel;
 
   private List<AukType> removalList = null;
 
   private List<AukCategory> categories = null;
 
-  private List<AukType> selectedTypes = new ArrayList<AukType>();
+  // private List<AukType> selectedTypes = new ArrayList<AukType>();
 
   public CategoryActions() {
 
@@ -52,16 +58,17 @@ public class CategoryActions implements Serializable {
     LOG.info("Select type: " + type + " name=" + type.getName() + " selected=" + type.isSelected());
 
     if (type.isSelected()) {
-      selectedTypes.add(type);
+      productDataModel.getTypes().add(type);
     } else {
-      selectedTypes.remove(type);
+      productDataModel.getTypes().remove(type);
     }
   }
 
   public void addType() {
     LOG.info("Type Added: " + newType);
 
-    currentCategory.getAukTypeList().add(new AukType(null, newType, new Date(), loggedInUser.getUsername()));
+    currentCategory.getAukTypeList().add(
+        new AukType(null, newType, new Date(), securityContext.getCurrentUser().getUsername()));
     newType = null;
   }
 
@@ -108,7 +115,7 @@ public class CategoryActions implements Serializable {
     if (currentCategory.getId() == null) {
       LOG.info("Creating new category.");
 
-      currentCategory.setCreatedBy(loggedInUser.getUsername());
+      currentCategory.setCreatedBy(securityContext.getCurrentUser().getUsername());
       currentCategory.setCreatedDate(new Date());
       categoryService.createCategory(currentCategory);
     }
@@ -154,14 +161,6 @@ public class CategoryActions implements Serializable {
     }
 
     return categories;
-  }
-
-  public void setSelectedTypes(List<AukType> selectedTypes) {
-    this.selectedTypes = selectedTypes;
-  }
-
-  public List<AukType> getSelectedTypes() {
-    return selectedTypes;
   }
 
 }

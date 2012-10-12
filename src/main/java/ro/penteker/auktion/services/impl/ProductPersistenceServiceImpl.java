@@ -3,6 +3,7 @@ package ro.penteker.auktion.services.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.primefaces.model.SortOrder;
@@ -14,6 +15,8 @@ import ro.penteker.auktion.services.api.ProductPersistenceService;
 public class ProductPersistenceServiceImpl implements ProductPersistenceService {
 
   private SessionFactory sessionFactory;
+
+  private static transient final Logger LOG = Logger.getLogger(ProductPersistenceServiceImpl.class);
 
   public ProductPersistenceServiceImpl() {
   }
@@ -60,4 +63,5 @@ public class ProductPersistenceServiceImpl implements ProductPersistenceService 
 
     return query.list();
   }
+
 }

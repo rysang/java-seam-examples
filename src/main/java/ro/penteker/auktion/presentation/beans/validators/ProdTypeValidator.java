@@ -9,18 +9,18 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 import ro.penteker.auktion.dao.AukType;
-import ro.penteker.auktion.presentation.beans.admin.CategoryActions;
+import ro.penteker.auktion.presentation.beans.admin.ProductActions;
 
-public class CategTypeValidator implements Validator {
+public class ProdTypeValidator implements Validator {
 
-  private transient CategoryActions categoryActions;
+  private transient ProductActions productActions;
 
   @Override
   public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
     ResourceBundle bundle = context.getApplication().getResourceBundle(context, "auktion");
 
-    for (AukType t : categoryActions.getCurrentCategory().getAukTypeList()) {
-      if (t.getName().equals(value)) {
+    for (AukType t : productActions.getCurrentProduct().getAukTypeList()) {
+      if (t.getId().equals(value)) {
         FacesMessage msg = new FacesMessage(bundle.getString("ro.penteker.auktion.category.type.verif.failed"),
             bundle.getString("ro.penteker.auktion.category.type.exists"));
         msg.setSeverity(FacesMessage.SEVERITY_ERROR);
@@ -30,12 +30,12 @@ public class CategTypeValidator implements Validator {
 
   }
 
-  public void setCategoryActions(CategoryActions categoryActions) {
-    this.categoryActions = categoryActions;
+  public void setProductActions(ProductActions productActions) {
+    this.productActions = productActions;
   }
 
-  public CategoryActions getCategoryActions() {
-    return categoryActions;
+  public ProductActions getProductActions() {
+    return productActions;
   }
 
 }

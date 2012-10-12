@@ -67,8 +67,12 @@
 
   <bean id="categTypeValidator" scope="session" class="ro.penteker.auktion.presentation.beans.validators.CategTypeValidator"
     lazy-init="true">
-    <property name="categoryService" ref="categoryService" />
     <property name="categoryActions" ref="categoryActions" />
+  </bean>
+
+  <bean id="prodTypeValidator" scope="session" class="ro.penteker.auktion.presentation.beans.validators.ProdTypeValidator"
+    lazy-init="true">
+    <property name="productActions" ref="productActions" />
   </bean>
 
   <bean id="categoryValidator" class="ro.penteker.auktion.presentation.beans.validators.CategoryValidator">

@@ -12,7 +12,7 @@
 								</h:column>
 								<h:column>
 									<p:selectBooleanCheckbox value="#{type.selected}">
-										<p:ajax listener="#{categoryActions.typeSelect}"/>
+										<p:ajax listener="#{categoryActions.typeSelect}" update=":productListForm" />
 										<f:attribute name="type" value="#{type}" />
 									</p:selectBooleanCheckbox>
 								</h:column>
@@ -24,6 +24,55 @@
 		</h:form>
 	</ui:define>
 	<ui:define name="right">
+		<h:form id="productListForm" style="width: 100%">
+			<p:dataTable var="product" id="productTable" value="#{productDataModel}" paginator="true" rows="15" lazy="true"
+				paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+				rowsPerPageTemplate="5,10,15,30,50,100,200" selectionMode="single" onRowSelectUpdate="display" style="width: 100%"
+				styleClass="noBorder">
 
+				<f:facet name="header">
+            			#{auktion['ro.penteker.auktion.product.products.selected']}
+       			</f:facet>
+
+				<p:column headerText="#{auktion['ro.penteker.auktion.product.name']}" sortBy="#{product.name}">
+					<p:panel header="#{product.name}" style="text-align:center; width:100%">
+						<h:panelGrid border="0" columns="1" style="width:100%">
+							<h:outputText value="#{product.name}" />
+							<div style="padding-top: 10px"></div>
+							<h:outputText value="#{product.description}" />
+
+							<div style="padding-top: 10px"></div>
+							<h:dataTable value="#{product.aukTypeList}" var="type" style="width:100%">
+								<h:column>
+									<h:outputText value="#{type.name}" style="padding-right: 20px" />
+								</h:column>
+							</h:dataTable>
+						</h:panelGrid>
+					</p:panel>
+				</p:column>
+
+				<p:column headerText="#{auktion['ro.penteker.auktion.product.created.date']}" sortBy="#{product.createdDate}">
+					<h:outputText value="#{product.createdDate}" />
+				</p:column>
+
+				<p:column headerText="#{auktion['ro.penteker.auktion.product.created.by']}" sortBy="#{product.createdBy}">
+					<div style="min-width: 100px">
+						<h:outputText value="#{product.createdBy}" />
+					</div>
+				</p:column>
+
+				<p:column headerText="#{auktion['ro.penteker.auktion.product.price']}" sortBy="#{product.price}">
+					<div style="min-width: 100px">
+						<h:outputText value="#{product.price}" />
+					</div>
+				</p:column>
+
+				<p:column headerText="#{auktion['ro.penteker.auktion.product.currency']}" sortBy="#{product.currency}">
+					<div style="min-width: 100px">
+						<h:outputText value="#{product.currency}" />
+					</div>
+				</p:column>
+			</p:dataTable>
+		</h:form>
 	</ui:define>
 </ui:composition>

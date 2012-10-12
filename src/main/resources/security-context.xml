@@ -17,8 +17,7 @@
 
   <bean id="loggerListener" class="org.springframework.security.authentication.event.LoggerListener" />
 
-  <bean id="currentUser" scope="session" class="ro.penteker.auktion.security.SecurityContext" lazy-init="true"
-    factory-method="getCurrentUser" />
+  <bean id="securityContext" scope="session" class="ro.penteker.auktion.security.SecurityContext" lazy-init="true" />
 
   <security:http auto-config="true">
     <security:access-denied-handler error-page="/access_denied.xhtml" />
@@ -36,9 +35,7 @@
 
   <security:global-method-security secured-annotations="enabled" jsr250-annotations="disabled" />
 
-  <bean id="userDetailsService" class="ro.penteker.auktion.security.UserAuthenticationService">
-    
-  </bean>
+  <bean id="userDetailsService" class="ro.penteker.auktion.security.UserAuthenticationService" />
 
   <security:authentication-manager alias="authenticationManager">
     <security:authentication-provider user-service-ref="userDetailsService" />

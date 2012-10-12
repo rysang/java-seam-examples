@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 
 import ro.penteker.auktion.dao.AukRole;
 import ro.penteker.auktion.dao.AukUser;
+import ro.penteker.auktion.security.SecurityContext;
 import ro.penteker.auktion.services.api.SecurityService;
 
 @Scope("session")
@@ -37,8 +38,8 @@ public class SecurityActions implements Serializable {
   private transient SecurityService securityService;
 
   @Autowired
-  @Qualifier("currentUser")
-  private UserDetails loggedInUser;
+  @Qualifier("securityContext")
+  private SecurityContext securityContext;
 
   private List<AukRole> sourceRoles = null;
   private List<AukRole> targetRoles = null;
@@ -112,7 +113,7 @@ public class SecurityActions implements Serializable {
   }
 
   public String saveRole() {
-    currentRole.setCreatedBy(loggedInUser.getUsername());
+    currentRole.setCreatedBy(securityContext.getCurrentUser().getUsername());
     currentRole.setCreatedDate(new Date());
     securityService.createRole(currentRole);
     return "home-secure";
@@ -120,8 +121,8 @@ public class SecurityActions implements Serializable {
 
   public String saveUser() {
     if (currentUser.getId() == null) {
-      currentUser = securityService.createUser(loggedInUser.getUsername(), currentUser.getUsername(),
-          currentUser.getPassword(), currentUser.getEnabled(), getTargetRoles());
+      currentUser = securityService.createUser(securityContext.getCurrentUser().getUsername(),
+          currentUser.getUsername(), currentUser.getPassword(), currentUser.getEnabled(), getTargetRoles());
     } else {
       currentUser.getAukRoleList().clear();
       currentUser.getAukRoleList().addAll(getTargetRoles());

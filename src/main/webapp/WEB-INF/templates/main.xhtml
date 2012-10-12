@@ -16,6 +16,9 @@
 						<h:outputLink value="#{request.contextPath}/public/home.xhtml">
 							<h:outputText style="font-size: 12px" value="#{auktion['ro.penteker.auktion.home.page']}" />
 						</h:outputLink>
+						<h:commandLink action="#{productActions.createProduct}">
+							<h:outputText style="font-size: 12px" value="#{auktion['ro.penteker.auktion.product.create']}" />
+						</h:commandLink>
 					</h:panelGrid>
 				</p:toolbarGroup>
 

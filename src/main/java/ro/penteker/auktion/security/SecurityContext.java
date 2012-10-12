@@ -11,7 +11,7 @@ public class SecurityContext {
 
   private static final Logger LOG = Logger.getLogger(SecurityContext.class);
 
-  public static final UserDetails getCurrentUser() {
+  public final UserDetails getCurrentUser() {
     Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     if (!(principal instanceof UserDetails)) {
 

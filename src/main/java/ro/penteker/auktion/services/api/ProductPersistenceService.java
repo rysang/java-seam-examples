@@ -13,4 +13,5 @@ public interface ProductPersistenceService {
 
   public List<AukProduct> getProducts(int first, int pageSize, String sortField, SortOrder sortOrder,
       List<AukType> types);
+
 }
