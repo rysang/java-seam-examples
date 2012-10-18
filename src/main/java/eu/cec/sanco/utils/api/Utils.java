@@ -42,9 +42,10 @@ public interface Utils {
 
   public void reset();
 
+  public void resetSelects();
+
   public void setTheme(String theme);
 
   public String getTheme();
-  
-  public long getNextCid();
+
 }

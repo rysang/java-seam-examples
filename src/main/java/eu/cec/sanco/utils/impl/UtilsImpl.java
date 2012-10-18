@@ -38,16 +38,14 @@ public class UtilsImpl implements Utils {
 
   private static char[] ALL_CHARS = null;
 
-  private static final Random RANDOM = new Random(System.currentTimeMillis());
+  private final Random RANDOM = new Random(System.currentTimeMillis());
 
-  private static long cidCounter = 0;
+  static {
+    getALL_CHARS();
+  }
 
   public UtilsImpl() {
 
-  }
-
-  public long getNextCid() {
-    return Math.abs(++cidCounter);
   }
 
   public String rebuildString(String str) {
@@ -78,6 +76,11 @@ public class UtilsImpl implements Utils {
   @TriggersRemove(cacheName = "eu.cec.sanco.eccrs.persistence", when = When.AFTER_METHOD_INVOCATION, removeAll = true)
   public void reset() {
     LOG.info("Resetting caches.");
+  }
+
+  @TriggersRemove(cacheName = "eu.cec.sanco.eccrs.selects", when = When.AFTER_METHOD_INVOCATION, removeAll = true)
+  public void resetSelects() {
+    LOG.info("Resetting select caches.");
   }
 
   @Cacheable(cacheName = "eu.cec.sanco.eccrs.selects")
@@ -877,6 +880,7 @@ public class UtilsImpl implements Utils {
     List<Character> chars = new ArrayList<Character>(40);
 
     if (ALL_CHARS == null) {
+
       for (char c = 'a'; c <= 'z'; ++c) {
         chars.add(c);
       }
