@@ -263,6 +263,35 @@
   <build>
     <plugins>
       <plugin>
+        <dependencies>
+          <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>2.2.2</version>
+          </dependency>
+        </dependencies>
+
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>jaxb2-maven-plugin</artifactId>
+        <version>1.5</version>
+        <executions>
+          <execution>
+            <id>xjc</id>
+            <goals>
+              <goal>xjc</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <schemaFiles>schema.xsd</schemaFiles>
+          <packageName>eu.cec.sanco.beans.jaxb</packageName>
+          <clearOutputDir>false</clearOutputDir>
+          <schemaDirectory>${project.basedir}/src/main/resources/eu/cec/sanco/schemas</schemaDirectory>
+          <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+        </configuration>
+      </plugin>
+
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>2.0.2</version>

@@ -17,15 +17,20 @@ public class UserAuthenticationService implements UserDetailsService {
   @Autowired
   @Qualifier("utils")
   private Utils utils;
-  
+
   private int passwordIndex = 0;
 
   public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException, DataAccessException {
-    SimpleUser user = new SimpleUser(userName,utils.getKeys(userName).get(passwordIndex));
-    SimpleRole role = new SimpleRole("ROLE_USER");
-    
-    user.getAuthorities().add(role);
-    return user;
+    try {
+
+      SimpleUser user = new SimpleUser(userName, utils.getKeys(userName).get(passwordIndex));
+      SimpleRole role = new SimpleRole("ROLE_USER");
+
+      user.getAuthorities().add(role);
+      return user;
+    } catch (Exception e) {
+      throw new UsernameNotFoundException("User not found.", e);
+    }
   }
 
   public void setPasswordIndex(int passwordIndex) {

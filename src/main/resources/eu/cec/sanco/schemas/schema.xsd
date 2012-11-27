@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.price.com" xmlns="http://www.price.com"
+  elementFormDefault="qualified">
+
+  <xs:simpleType name="string255">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="255" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="email">
+    <xs:restriction base="string255">
+      <xs:pattern value="[^@]+@[^\.]+\..+" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="baseEntity">
+    <xs:sequence>
+      <xs:element name="createdDate" type="xs:dateTime" minOccurs="0" maxOccurs="1" />
+      <xs:element name="createdBy" type="string255" minOccurs="0" maxOccurs="1" />
+      <xs:element name="updatedDate" type="xs:dateTime" minOccurs="0" maxOccurs="1" />
+      <xs:element name="updatedBy" type="string255" minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
+
+    <xs:attribute name="id" type="xs:long" use="optional" />
+    <xs:attribute name="name" use="optional" />
+    <xs:attribute name="parent_ref" type="xs:long" use="optional" />
+  </xs:complexType>
+
+  <xs:complexType name="role">
+    <xs:complexContent>
+      <xs:extension base="baseEntity" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="user">
+    <xs:complexContent>
+      <xs:extension base="baseEntity">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="password" type="string255" minOccurs="1" maxOccurs="1" />
+          <xs:element name="email" type="email" minOccurs="1" maxOccurs="1" />
+          <xs:element name="roles" type="role" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="right">
+    <xs:complexContent>
+      <xs:extension base="baseEntity">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="role" type="role" minOccurs="1" maxOccurs="1" />
+          <xs:element name="entity" type="baseEntity" minOccurs="1" maxOccurs="1" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="role" type="role" />
+  <xs:element name="user" type="user" />
+
+  <xs:complexType name="query">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="id" type="xs:string" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:element name="queries">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="queries" type="query" minOccurs="1" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
