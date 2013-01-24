@@ -9,7 +9,6 @@ import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.log4j.Logger;
-import org.primefaces.event.SelectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
@@ -50,16 +49,25 @@ public class SubmissionActions implements Serializable {
 
   public List<Submission> getSubmissions() throws TemplateException, IOException, SAXException,
       ParserConfigurationException {
-    if (searchResult == null) {
-      SearchResult result = xmlGateService.searchSubmissions(getCurrentYear(), userDetails.getUsername(), userDetails
-          .getUsername().substring(0, 2));
 
-      searchResult = new ArrayList<Submission>(100);
-      if (result != null) {
-        for (SubmissionElement se : result.getSubmissions()) {
-          searchResult.add(se.getSubmission());
+    try
+
+    {
+      if (searchResult == null) {
+        SearchResult result = xmlGateService.searchSubmissions(getCurrentYear(), userDetails.getUsername(), userDetails
+            .getUsername().substring(0, 2));
+
+        searchResult = new ArrayList<Submission>(100);
+        if (result != null) {
+          for (SubmissionElement se : result.getSubmissions()) {
+            searchResult.add(se.getSubmission());
+          }
         }
       }
+
+    } catch (Exception e) {
+      LOG.error("Could not contact xml gate", e);
+      searchResult = new ArrayList<Submission>();
     }
 
     return searchResult;

@@ -15,7 +15,6 @@ public class ApplicationListener implements ServletContextListener, Runnable {
 
   public void contextDestroyed(ServletContextEvent arg0) {
 
-    
   }
 
   public void contextInitialized(ServletContextEvent arg0) {
@@ -43,7 +42,7 @@ public class ApplicationListener implements ServletContextListener, Runnable {
     }
 
     try {
-      URI uri = new URI("http://localhost:8080");
+      URI uri = new URI("http://localhost:8080/eccrs-ext-1.0");
       desktop.browse(uri);
     } catch (Exception e) {
       LOG.fatal("Error", e);
