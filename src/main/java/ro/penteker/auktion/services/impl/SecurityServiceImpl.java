@@ -2,19 +2,13 @@ package ro.penteker.auktion.services.impl;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.primefaces.model.SortOrder;
 
 import ro.penteker.auktion.dao.AukRole;
 import ro.penteker.auktion.dao.AukUser;
 import ro.penteker.auktion.services.api.SecurityPersistenceService;
 import ro.penteker.auktion.services.api.SecurityService;
-
-import com.googlecode.ehcache.annotations.Cacheable;
-import com.googlecode.ehcache.annotations.TriggersRemove;
-import com.googlecode.ehcache.annotations.When;
 
 public class SecurityServiceImpl implements SecurityService {
   private static final Logger LOG = Logger.getLogger(SecurityService.class);
@@ -26,6 +20,7 @@ public class SecurityServiceImpl implements SecurityService {
   }
 
   // @Cacheable(cacheName = "ro.penteker.auktion.security.cache")
+  @Override
   public AukUser getUser(String username) {
     return securityPersistenceService.getUser(username);
   }
@@ -58,6 +53,7 @@ public class SecurityServiceImpl implements SecurityService {
     securityPersistenceService.deleteUser(user);
   }
 
+  @Override
   public List<AukRole> createDefaultRoles() {
     LOG.info("Creating default roles.");
 
@@ -75,12 +71,14 @@ public class SecurityServiceImpl implements SecurityService {
 
   // @TriggersRemove(cacheName = "ro.penteker.auktion.security.cache", when = When.AFTER_METHOD_INVOCATION, removeAll =
   // true)
+  @Override
   public void updateUser(AukUser user) {
     securityPersistenceService.updateUser(user);
   }
 
   // @TriggersRemove(cacheName = "ro.penteker.auktion.security.cache", when = When.AFTER_METHOD_INVOCATION, removeAll =
   // true)
+  @Override
   public AukUser createUser(String createdBy, String username, String password, boolean enabled, List<AukRole> roles) {
     AukUser user = new AukUser();
     user.setCreatedBy(createdBy);
@@ -99,19 +97,6 @@ public class SecurityServiceImpl implements SecurityService {
 
   public void setSecurityPersistenceService(SecurityPersistenceService securityPersistenceService) {
     this.securityPersistenceService = securityPersistenceService;
-  }
-
-  @Override
-  // @Cacheable(cacheName = "ro.penteker.auktion.security.cache")
-  public List<AukUser> getUsers(int first, int pageSize, String sortField, SortOrder sortOrder,
-      Map<String, String> filters) {
-    return securityPersistenceService.getUsers(first, pageSize, sortField, sortOrder, filters);
-  }
-
-  @Override
-  public List<AukRole> getRoles(int first, int pageSize, String sortField, SortOrder sortOrder,
-      Map<String, String> filters) {
-    return securityPersistenceService.getRoles(first, pageSize, sortField, sortOrder, filters);
   }
 
   public static void main(String[] args) {

@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.primefaces.model.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit38.AbstractJUnit38SpringContextTests;
@@ -43,8 +42,5 @@ public class TestSQLite extends AbstractJUnit38SpringContextTests {
 
     productService.saveProduct(product);
 
-    List<AukProduct> products = productService.getProducts(0, 15, null, SortOrder.DESCENDING, categories.get(1)
-        .getAukTypeList());
-    LOG.info(products);
   }
 }

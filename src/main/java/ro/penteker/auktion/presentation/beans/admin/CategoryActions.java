@@ -11,12 +11,10 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import ro.penteker.auktion.dao.AukCategory;
 import ro.penteker.auktion.dao.AukType;
-import ro.penteker.auktion.presentation.beans.admin.models.ProductDataModel;
 import ro.penteker.auktion.security.SecurityContext;
 import ro.penteker.auktion.services.api.CategoryService;
 
@@ -39,10 +37,6 @@ public class CategoryActions implements Serializable {
   @Qualifier("securityContext")
   private SecurityContext securityContext;
 
-  @Autowired
-  @Qualifier("productDataModel")
-  private transient ProductDataModel productDataModel;
-
   private List<AukType> removalList = null;
 
   private List<AukCategory> categories = null;
@@ -57,11 +51,6 @@ public class CategoryActions implements Serializable {
     AukType type = (AukType) ev.getComponent().getAttributes().get("type");
     LOG.info("Select type: " + type + " name=" + type.getName() + " selected=" + type.isSelected());
 
-    if (type.isSelected()) {
-      productDataModel.getTypes().add(type);
-    } else {
-      productDataModel.getTypes().remove(type);
-    }
   }
 
   public void addType() {

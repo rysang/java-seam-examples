@@ -1,16 +1,10 @@
 package ro.penteker.auktion.services.impl;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import org.apache.log4j.Logger;
-import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
-import org.primefaces.model.SortOrder;
 
 import ro.penteker.auktion.dao.AukRole;
 import ro.penteker.auktion.dao.AukUser;
@@ -25,18 +19,21 @@ public class SecurityPersistenceServiceImpl implements SecurityPersistenceServic
     LOG.info("Init: " + this.getClass());
   }
 
+  @Override
   @SuppressWarnings("unchecked")
   public List<AukRole> getRoles() {
     Query q = sessionFactory.getCurrentSession().createQuery("select r from AukRole r");
     return q.list();
   }
 
+  @Override
   @SuppressWarnings("unchecked")
   public List<AukRole> getPublicRoles() {
     Query q = sessionFactory.getCurrentSession().createQuery("select r from AukRole r where r.isPrivate = false");
     return q.list();
   }
 
+  @Override
   public AukUser getUser(String username) {
     Query q = sessionFactory.getCurrentSession()
         .createQuery("select u from AukUser u left join fetch u.aukRoleList r where u.username = :username")
@@ -44,6 +41,7 @@ public class SecurityPersistenceServiceImpl implements SecurityPersistenceServic
     return (AukUser) q.uniqueResult();
   }
 
+  @Override
   public AukRole getRole(String roleName) {
     Query q = sessionFactory.getCurrentSession().createQuery("select r from AukRole r where r.authority = :authority")
         .setString("authority", roleName);
@@ -57,18 +55,22 @@ public class SecurityPersistenceServiceImpl implements SecurityPersistenceServic
     q.executeUpdate();
   }
 
+  @Override
   public Long saveUser(AukUser user) {
     return (Long) sessionFactory.getCurrentSession().save(user);
   }
 
+  @Override
   public Long saveRole(AukRole role) {
     return (Long) sessionFactory.getCurrentSession().save(role);
   }
 
+  @Override
   public void updateUser(AukUser user) {
     sessionFactory.getCurrentSession().update(user);
   }
 
+  @Override
   public void updateRole(AukRole role) {
     sessionFactory.getCurrentSession().update(role);
   }
@@ -85,47 +87,4 @@ public class SecurityPersistenceServiceImpl implements SecurityPersistenceServic
     this.sessionFactory = sessionFactory;
   }
 
-  @Override
-  public List<AukUser> getUsers(int first, int pageSize, String sortField, SortOrder sortOrder,
-      Map<String, String> filters) {
-
-    Criteria crit = sessionFactory.getCurrentSession().createCriteria(AukUser.class);
-    if (filters.size() > 0) {
-      for (Entry<String, String> e : filters.entrySet()) {
-        crit.add(Restrictions.ilike(e.getKey(), '%' + e.getValue() + '%'));
-      }
-    }
-
-    if (sortField == null) {
-      sortField = "username";
-    }
-
-    crit.addOrder(SortOrder.ASCENDING == sortOrder ? Order.asc(sortField) : Order.desc(sortField));
-    crit.setFirstResult(first);
-    crit.setMaxResults(pageSize);
-
-    return crit.list();
-  }
-
-  @Override
-  public List<AukRole> getRoles(int first, int pageSize, String sortField, SortOrder sortOrder,
-      Map<String, String> filters) {
-
-    Criteria crit = sessionFactory.getCurrentSession().createCriteria(AukRole.class);
-    if (filters.size() > 0) {
-      for (Entry<String, String> e : filters.entrySet()) {
-        crit.add(Restrictions.ilike(e.getKey(), '%' + e.getValue() + '%'));
-      }
-    }
-
-    if (sortField == null) {
-      sortField = "authority";
-    }
-
-    crit.addOrder(SortOrder.ASCENDING == sortOrder ? Order.asc(sortField) : Order.desc(sortField));
-    crit.setFirstResult(first);
-    crit.setMaxResults(pageSize);
-
-    return crit.list();
-  }
 }

@@ -1,14 +1,27 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+<f:view xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:pm="http://primefaces.org/mobile" contentType="text/html"
+	locale="#{localeService.currentLocale}">
 
-<head>
-<meta http-equiv="refresh" content="0;url=public/home.xhtml" />
-</head>
-<body>
+	<pm:page title="Mobile">
+		<pm:view id="navbar">
+			<pm:header title="NavBar">
+				<pm:navBar>
+					<p:button value="Home" icon="home" href="#main?reverse=true" styleClass="ui-btn-active" />
+					<p:button value="Info" icon="info" href="#main?reverse=true" />
+					<p:button value="Search" icon="search" href="#main?reverse=true" />
+				</pm:navBar>
+			</pm:header>
+			<pm:content>
+				<pm:navBar>
+					<p:button value="Home" icon="home" href="#main?reverse=true" styleClass="ui-btn-active" />
+					<p:button value="Info" icon="info" href="#main?reverse=true" />
+					<p:button value="Search" icon="search" href="#main?reverse=true" />
+					<p:button value="Favs" icon="star" href="#main?reverse=true" />
+					<p:button value="Setup" icon="gear" href="#main?reverse=true" />
+				</pm:navBar>
+				<pm:switch value="" onLabel="Yes" offLabel="No"/>
+			</pm:content>
+		</pm:view>
+	</pm:page>
 
-</body>
-</html>
+</f:view>

@@ -1,15 +1,9 @@
 package ro.penteker.auktion.services.impl;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
-import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
-import org.primefaces.model.SortOrder;
 
 import ro.penteker.auktion.dao.AukCategory;
 import ro.penteker.auktion.dao.AukType;
@@ -89,28 +83,6 @@ public class CategoryPersistenceServiceImpl implements CategoryPersistenceServic
     q = sessionFactory.getCurrentSession().createQuery("delete AukCategory c where c.id = :id")
         .setLong("id", category.getId());
     q.executeUpdate();
-  }
-
-  @Override
-  public List<AukCategory> getCategories(int first, int pageSize, String sortField, SortOrder sortOrder,
-      Map<String, String> filters) {
-
-    Criteria crit = sessionFactory.getCurrentSession().createCriteria(AukCategory.class);
-    if (filters.size() > 0) {
-      for (Entry<String, String> e : filters.entrySet()) {
-        crit.add(Restrictions.ilike(e.getKey(), '%' + e.getValue() + '%'));
-      }
-    }
-
-    if (sortField == null) {
-      sortField = "name";
-    }
-
-    crit.addOrder(SortOrder.ASCENDING == sortOrder ? Order.asc(sortField) : Order.desc(sortField));
-    crit.setFirstResult(first);
-    crit.setMaxResults(pageSize);
-
-    return crit.list();
   }
 
   @Override

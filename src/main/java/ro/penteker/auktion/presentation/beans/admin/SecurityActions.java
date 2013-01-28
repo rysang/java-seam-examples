@@ -3,17 +3,12 @@ package ro.penteker.auktion.presentation.beans.admin;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.primefaces.event.TabChangeEvent;
-import org.primefaces.event.TransferEvent;
-import org.primefaces.model.DualListModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import ro.penteker.auktion.dao.AukRole;
@@ -44,15 +39,10 @@ public class SecurityActions implements Serializable {
   private List<AukRole> sourceRoles = null;
   private List<AukRole> targetRoles = null;
 
-  private DualListModel<AukRole> roleDualListModel;
+  // private DualListModel<AukRole> roleDualListModel;
 
   public SecurityActions() {
 
-  }
-
-  public void onTabChange(TabChangeEvent event) {
-    tabIndex = new Integer(event.getTab().getId().substring(3));
-    LOG.info("Tab changed to: " + tabIndex);
   }
 
   public void setTabIndex(int tabIndex) {
@@ -64,23 +54,9 @@ public class SecurityActions implements Serializable {
   }
 
   protected void reset() {
-    roleDualListModel = null;
+    // roleDualListModel = null;
     sourceRoles = null;
     targetRoles = null;
-  }
-
-  public void onTransfer(TransferEvent event) {
-    for (AukRole item : (List<AukRole>) event.getItems()) {
-      if (event.isAdd()) {
-        LOG.info("Adding roles: " + event.getItems());
-        getTargetRoles().add(item);
-        getSourceRoles().remove(item);
-      } else if (event.isRemove()) {
-        LOG.info("Removing roles: " + event.getItems());
-        getSourceRoles().add(item);
-        getTargetRoles().remove(item);
-      }
-    }
   }
 
   public void deleteUser(AukUser user) {
@@ -158,26 +134,6 @@ public class SecurityActions implements Serializable {
     }
 
     return targetRoles;
-  }
-
-  public void setRoleDualListModel(DualListModel<AukRole> roleDualListModel) {
-    this.roleDualListModel = roleDualListModel;
-  }
-
-  public DualListModel<AukRole> getRoleDualListModel() {
-    if (roleDualListModel == null) {
-      Iterator<AukRole> srcRolesIt = getSourceRoles().iterator();
-      while (srcRolesIt.hasNext()) {
-        AukRole r = srcRolesIt.next();
-        if (getTargetRoles().contains(r)) {
-          srcRolesIt.remove();
-        }
-      }
-
-      roleDualListModel = new DualListModel<AukRole>(getSourceRoles(), getTargetRoles());
-    }
-
-    return roleDualListModel;
   }
 
   public void setCurrentRole(AukRole currentRole) {

@@ -143,6 +143,11 @@
     </dependency>
     <dependency>
       <groupId>org.primefaces</groupId>
+      <artifactId>primefaces-mobile</artifactId>
+      <version>0.9.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.primefaces</groupId>
       <artifactId>primefaces</artifactId>
       <version>3.4.1</version>
     </dependency>
@@ -355,9 +360,25 @@
         <groupId>org.mortbay.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
         <version>8.1.2.v20120308</version>
+
         <configuration>
           <scanIntervalSeconds>1000</scanIntervalSeconds>
+
+          <systemProperties>
+            <systemProperty>
+              <name>log4j.configurationFile</name>
+              <value>file:${project.basedir}/src/main/resources/log4j.properties</value>
+            </systemProperty>
+          </systemProperties>
         </configuration>
+
+        <!-- <dependencies> -->
+        <!-- <dependency> -->
+        <!-- <groupId>ch.qos.logback</groupId> -->
+        <!-- <artifactId>logback-classic</artifactId> -->
+        <!-- <version>0.9.29</version> -->
+        <!-- </dependency> -->
+        <!-- </dependencies> -->
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>

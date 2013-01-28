@@ -1,9 +1,6 @@
 package ro.penteker.auktion.services.api;
 
 import java.util.List;
-import java.util.Map;
-
-import org.primefaces.model.SortOrder;
 
 import ro.penteker.auktion.dao.AukRole;
 import ro.penteker.auktion.dao.AukUser;
@@ -29,9 +26,4 @@ public interface SecurityPersistenceService {
 
   public void updateRole(AukRole role);
 
-  public List<AukUser> getUsers(int first, int pageSize, String sortField, SortOrder sortOrder,
-      Map<String, String> filters);
-
-  public List<AukRole> getRoles(int first, int pageSize, String sortField, SortOrder sortOrder,
-      Map<String, String> filters);
 }
