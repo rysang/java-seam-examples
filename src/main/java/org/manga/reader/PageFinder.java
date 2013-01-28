@@ -23,9 +23,13 @@ public class PageFinder {
   private static final Logger LOG = Logger.getLogger(PageFinder.class);
   private final DefaultHttpClient httpclient = new DefaultHttpClient();
   private static final ExecutorService EXECUTOR_SERVICE = Executors.newFixedThreadPool(20);
-  private static final File dir = new File("D:\\solr-tests\\test-files");
+  private static final File dir = new File("D:\\discoveries");
 
-  public static final String MANGA_LIST = "http://www.mangapanda.com/alphabetical";
+  public static final String PAGE = "http://www.rexresearch.com";
+
+  static {
+    dir.mkdirs();
+  }
 
   public PageFinder() {
     httpclient.getCredentialsProvider().setCredentials(new AuthScope("158.169.9.13", 8012),
@@ -36,7 +40,7 @@ public class PageFinder {
 
   public void find() throws Exception {
 
-    HttpGet httpget = new HttpGet(MANGA_LIST);
+    HttpGet httpget = new HttpGet(PAGE);
     HttpResponse response = httpclient.execute(httpget);
     HttpEntity entity = response.getEntity();
 
@@ -44,11 +48,18 @@ public class PageFinder {
     entity.writeTo(bos);
 
     Document document = Jsoup.parse(bos.toString("UTF-8"));
-    Elements links = document.select(".series_alpha a");
+    Elements links = document.select("a");
     int counter = 0;
 
     for (Element link : links) {
-      EXECUTOR_SERVICE.execute(new PageReader("http://www.mangapanda.com" + link.attr("href"), dir));
+
+      String page = "http://www.rexresearch.com/" + link.attr("href");
+      if (!page.toLowerCase().endsWith(".pdf")) {
+        LOG.warn("Not a zip file. Exiting thread.");
+        continue;
+      }
+
+      EXECUTOR_SERVICE.execute(new PageReader(page, dir));
 
       if (counter > 0 && (counter % 20 == 0)) {
         Thread.sleep(2000);

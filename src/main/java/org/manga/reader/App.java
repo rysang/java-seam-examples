@@ -7,6 +7,6 @@ package org.manga.reader;
 public class App {
 
   public static void main(String[] args) throws Exception {
-    new PageFinder().find();
+    // new PageFinder().find();
   }
 }
