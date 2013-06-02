@@ -60,6 +60,12 @@ public class ContactController {
 		return "new_contact";
 	}
 
+	@RequestMapping(value = { "/secure/contact" })
+	public String testSecure(Map<String, Object> map) {
+		map.put("contact", new Contact());
+		return "secure/contact";
+	}
+
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String addContact(@ModelAttribute("contact") @Valid Contact contact,
 			BindingResult result) {
@@ -77,7 +83,7 @@ public class ContactController {
 
 		testService.txSaveBean(entity);
 
-		return "redirect:/index";
+		return "redirect:/secure/contact";
 	}
 
 	@RequestMapping("/delete")

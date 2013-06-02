@@ -28,6 +28,8 @@
 <body>
 
 	<a href="/new">New Contact</a>
+	<a href="/secure/contact">Test Secure</a>
+	
 	<div>
 		<div class="btn-group">
 			<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
