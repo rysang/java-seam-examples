@@ -17,8 +17,7 @@
 	<context:component-scan base-package="org.price.test" />
 
 	<!-- DB + TX -->
-	<bean id="dataStoreService" class="com.google.appengine.api.datastore.DatastoreServiceFactory" factory-method="getDatastoreService">
-	</bean>
+	<bean id="dataStoreService" class="com.google.appengine.api.datastore.DatastoreServiceFactory" factory-method="getDatastoreService" />
 
 	<bean id="txInterceptor" class="org.price.test.tx.interceptors.TransactionInterceptor">
 		<property name="dataStoreService" ref="dataStoreService" />
@@ -33,14 +32,32 @@
 		</property>
 	</bean>
 
-	<bean id="testService" parent="baseTxProxy">
+	<bean id="testServiceNoCache" parent="baseTxProxy">
 		<property name="target">
 			<bean class="org.price.test.dao.services.TestServiceDaoImpl">
 				<property name="dataStoreService" ref="dataStoreService" />
 			</bean>
 		</property>
 	</bean>
+
+	<bean id="testService" parent="baseCacheProxy">
+		<property name="target">
+			<ref bean="testServiceNoCache" />
+		</property>
+	</bean>
 	<!-- DB + TX -->
+
+	<!-- Caching -->
+	<bean id="cacheInterceptor" class="org.price.test.cache.interceptors.CacheInterceptor" />
+
+	<bean id="baseCacheProxy" class="org.springframework.aop.framework.ProxyFactoryBean" abstract="true">
+		<property name="interceptorNames">
+			<list>
+				<value>cacheInterceptor</value>
+			</list>
+		</property>
+	</bean>
+	<!-- Caching -->
 
 
 
