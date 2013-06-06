@@ -44,7 +44,7 @@ public class ContactController {
 
         contacts = new ArrayList<Contact>(entities.size());
         for (Entity e : entities) {
-            contacts.add(EntityConverter.contactFromEntity(e));
+            // contacts.add(EntityConverter.convertFromEntity(e, Contact.class));
             ep = e;
         }
 
@@ -66,13 +66,13 @@ public class ContactController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addContact(@ModelAttribute("contact") @Valid Contact contact, BindingResult result) {
+    public String addContact(@ModelAttribute("contact") @Valid Contact contact, BindingResult result) throws Exception {
 
         if (result.hasErrors()) {
             return "new_contact";
         }
 
-        Entity entity = EntityConverter.contactToEntity(contact);
+        Entity entity = new EntityConverter().convertToEntity(contact);
         testService.txSaveBean(entity);
 
         Entity address = new Entity("Address", entity.getKey());

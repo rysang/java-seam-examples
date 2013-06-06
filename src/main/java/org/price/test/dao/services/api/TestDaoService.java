@@ -8,6 +8,7 @@ import org.price.test.cache.annotations.RemoveCache;
 import com.google.appengine.api.datastore.Entity;
 
 public interface TestDaoService {
+
     @RemoveCache(key = "org.entities")
     public void txSaveBean(Entity entity);
 

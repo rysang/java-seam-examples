@@ -24,50 +24,56 @@ body {
 	background-color: #5C82FF;
 	color: white;
 }
+
+.tablePadding td {
+	padding-left: 5px;
+	padding-right: 10px;
+}
 </style>
 
 <jsp:include page="headers.jsp" />
 </head>
 <body>
+	<div class="well">
+		<form:form method="post" action="add" commandName="contact">
+			<form:errors path="*" cssClass="alert alert-error" element="div" />
+			<table class="tablePadding">
+				<tr>
+					<td><form:label path="firstname">
+							<spring:message code="label.firstname" />
+						</form:label></td>
+					<td><form:input path="firstname" /></td>
+					<td><form:errors path="firstname" cssClass="alert alert-error" /></td>
+				</tr>
+				<tr>
+					<td><form:label path="lastname">
+							<spring:message code="label.lastname" />
+						</form:label></td>
+					<td><form:input path="lastname" /></td>
+					<td><form:errors path="lastname" cssClass="alert alert-error" /></td>
+				</tr>
+				<tr>
+					<td><form:label path="email">
+							<spring:message code="label.email" />
+						</form:label></td>
+					<td><form:input path="email" /></td>
+					<td><form:errors path="email" cssClass="alert alert-error" /></td>
+				</tr>
+				<tr>
+					<td><form:label path="telephone">
+							<spring:message code="label.telephone" />
+						</form:label></td>
+					<td><form:input path="telephone" /></td>
+					<td><form:errors path="telephone" cssClass="alert alert-error" /></td>
+				</tr>
+				<tr>
+					<td colspan="3"><input type="submit" class="btn"
+						value="<spring:message code="label.addcontact"/>" /></td>
+				</tr>
+			</table>
 
-	<form:form method="post" action="add" commandName="contact">
-		<form:errors path="*" cssClass="alert alert-error" element="div" />
-		<table>
-			<tr>
-				<td><form:label path="firstname">
-						<spring:message code="label.firstname" />
-					</form:label></td>
-				<td><form:input path="firstname" /></td>
-				<td><form:errors path="firstname" cssClass="alert alert-error" /></td>
-			</tr>
-			<tr>
-				<td><form:label path="lastname">
-						<spring:message code="label.lastname" />
-					</form:label></td>
-				<td><form:input path="lastname" /></td>
-				<td><form:errors path="lastname" cssClass="alert alert-error" /></td>
-			</tr>
-			<tr>
-				<td><form:label path="email">
-						<spring:message code="label.email" />
-					</form:label></td>
-				<td><form:input path="email" /></td>
-				<td><form:errors path="email" cssClass="alert alert-error" /></td>
-			</tr>
-			<tr>
-				<td><form:label path="telephone">
-						<spring:message code="label.telephone" />
-					</form:label></td>
-				<td><form:input path="telephone" /></td>
-				<td><form:errors path="telephone" cssClass="alert alert-error" /></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="submit" class="btn"
-					value="<spring:message code="label.addcontact"/>" /></td>
-			</tr>
-		</table>
-
-	</form:form>
+		</form:form>
+	</div>
 
 </body>
 </html>
