@@ -3,6 +3,7 @@ package org.price.test.beans;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
+import org.price.test.conversion.annotations.Store;
 
 public class Contact {
 
@@ -12,26 +13,20 @@ public class Contact {
 
     @NotNull
     @Length(min = 2, max = 50)
+    @Store
     private String             firstname;
 
     @NotNull
+    @Store
     private String             lastname;
 
     @NotNull
+    @Store
     private String             email;
 
     @NotNull
+    @Store
     private String             telephone;
-
-    private Address            address;
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
 
     public String getEmail() {
         return email;

@@ -76,5 +76,9 @@
 		<property name="defaultEncoding" value="UTF-8" />
 		<property name="cacheSeconds" value="120" />
 	</bean>
+
+	<!-- misc -->
+
+	<bean id="entityConverter" class="org.price.test.beans.converters.EntityConverter" scope="prototype" />
 </beans>
 

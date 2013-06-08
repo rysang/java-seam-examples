@@ -8,15 +8,18 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.beanutils.PropertyUtils;
+import org.price.test.conversion.annotations.Id;
 import org.price.test.conversion.annotations.Store;
 
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 
 @SuppressWarnings("rawtypes")
 public class EntityConverter {
 
     private Map<Class, Set<Field>> convertClasses = new HashMap<>();
+    private Map<Class, Field>      ids            = new HashMap<>();
 
     public EntityConverter() {
 
@@ -34,10 +37,18 @@ public class EntityConverter {
             PropertyUtils.setProperty(oField, oField.getName(), e.getProperty(oField.getName()));
         }
 
+        Field id = ids.get(clazz);
+        if (id == null) {
+            throw new Exception("Each bean must define a key.");
+        }
+        else {
+            PropertyUtils.setProperty(id, id.getName(), KeyFactory.keyToString(e.getKey()));
+        }
+
         return o;
     }
 
-    protected void createFieldsForClass(Class clazz) {
+    protected void createFieldsForClass(Class clazz) throws Exception {
         if (clazz == null) {
             return;
         }
@@ -53,12 +64,24 @@ public class EntityConverter {
             if ((f.getAnnotation(Store.class) != null) && !Modifier.isStatic(f.getModifiers())) {
                 finalFields.add(f);
             }
+            else if (f.getAnnotation(Id.class) != null) {
+                if (!f.getType().equals(String.class)) {
+                    throw new Exception("Id can be only string");
+                }
+                ids.put(clazz, f);
+            }
         }
 
         fields = clazz.getFields();
         for (Field f : fields) {
             if ((f.getAnnotation(Store.class) != null) && !Modifier.isStatic(f.getModifiers())) {
                 finalFields.add(f);
+            }
+            else if (f.getAnnotation(Id.class) != null) {
+                if (!f.getType().equals(String.class)) {
+                    throw new Exception("Id can be only string");
+                }
+                ids.put(clazz, f);
             }
         }
 
@@ -72,6 +95,8 @@ public class EntityConverter {
             finalFields = new HashSet<>();
             convertClasses.put(o.getClass(), finalFields);
         }
+
+        Field id = ids.get(o.getClass());
 
         Entity entity = new Entity(o.getClass().getName());
 

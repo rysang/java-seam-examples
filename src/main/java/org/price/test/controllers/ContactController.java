@@ -23,28 +23,31 @@ import com.google.appengine.api.datastore.Entity;
 
 @Controller
 public class ContactController {
-    private List<Contact>  contacts = new ArrayList<Contact>();
+    private List<Contact>   contacts = new ArrayList<Contact>();
 
     @Autowired
     @Qualifier("testService")
-    private TestDaoService testService;
+    private TestDaoService  testService;
 
     @Autowired
-    private Validator      validator;
+    private EntityConverter entityConverter;
+
+    @Autowired
+    private Validator       validator;
 
     public ContactController() {
 
     }
 
     @RequestMapping(value = { "/index", "/" })
-    public String listContacts(Map<String, Object> map) {
+    public String listContacts(Map<String, Object> map) throws Exception {
         List<Entity> entities = testService.getAllBeans();
         Entity ep = new Entity(Contact.NAME);
         ep.setProperty("email", "price@fdsf.df");
 
         contacts = new ArrayList<Contact>(entities.size());
         for (Entity e : entities) {
-            // contacts.add(EntityConverter.convertFromEntity(e, Contact.class));
+            contacts.add((Contact) entityConverter.convertFromEntity(e, Contact.class));
             ep = e;
         }
 
@@ -72,14 +75,8 @@ public class ContactController {
             return "new_contact";
         }
 
-        Entity entity = new EntityConverter().convertToEntity(contact);
+        Entity entity = entityConverter.convertToEntity(contact);
         testService.txSaveBean(entity);
-
-        Entity address = new Entity("Address", entity.getKey());
-        address.setProperty("nr", 1);
-        address.setProperty("street", "Mihail Sebastian");
-
-        testService.txSaveBean(address);
 
         return "redirect:/secure/contact";
     }
