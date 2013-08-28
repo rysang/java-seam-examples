@@ -5,7 +5,7 @@ import org.test.spring.remoting.services.api.SchedulerService;
 public class Main {
 	public static void main(String[] args) {
 		SchedulerService schedulerService = (SchedulerService) getProxyFor("127.0.0.1");
-		System.out.println(schedulerService.isShutdown());
+		System.out.println(schedulerService.getMaximumRunningThreads());
 	}
 
 	public static Object getProxyFor(String hostName) {
