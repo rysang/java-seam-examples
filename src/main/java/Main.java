@@ -14,6 +14,8 @@ public class Main {
 				"rmi://%s:1199/SchedulerService", hostName));
 		rmiClientInterceptor.setServiceInterface(SchedulerService.class);
 		rmiClientInterceptor.afterPropertiesSet();
+		rmiClientInterceptor.setLookupStubOnStartup(false);
+		rmiClientInterceptor.setRefreshStubOnConnectFailure(true);
 
 		return new ProxyFactory(SchedulerService.class, rmiClientInterceptor)
 				.getProxy();
