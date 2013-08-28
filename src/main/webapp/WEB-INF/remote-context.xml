@@ -21,4 +21,9 @@
 		<property name="registryPort" value="1199" />
 	</bean>
 
+	<bean id="schedulerService1" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://127.0.0.1:1199/SchedulerService" />
+		<property name="serviceInterface"
+			value="org.test.spring.remoting.services.api.SchedulerService" />
+	</bean>
 </beans>

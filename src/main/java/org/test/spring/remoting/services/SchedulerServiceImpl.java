@@ -74,13 +74,11 @@ public class SchedulerServiceImpl implements SchedulerService {
 
 	@Override
 	public boolean isShutdown() {
-
 		return false;
 	}
 
 	@Override
 	public boolean isTerminated() {
-
 		return false;
 	}
 
