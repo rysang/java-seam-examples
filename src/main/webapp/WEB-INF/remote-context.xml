@@ -21,12 +21,4 @@
 		<property name="registryPort" value="1199" />
 	</bean>
 
-	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
-		<property name="serviceName" value="SchedulerService1" />
-		<property name="service" ref="schedulerService" />
-		<property name="serviceInterface"
-			value="org.test.spring.remoting.services.api.SchedulerService" />
-		<property name="registryPort" value="1199" />
-	</bean>
-
 </beans>

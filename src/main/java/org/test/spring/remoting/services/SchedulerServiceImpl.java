@@ -22,19 +22,16 @@ public class SchedulerServiceImpl implements SchedulerService {
 
 	@Override
 	public long getMaximumRunningThreads() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public long getRunningThreads() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public long getTotalThreads() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
