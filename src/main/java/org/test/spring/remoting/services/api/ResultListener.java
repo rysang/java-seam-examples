@@ -1,7 +1,10 @@
 package org.test.spring.remoting.services.api;
 
-public interface ResultListener {
-	public void onResult(Object result);
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 
-	public void onError(Throwable result);
+public interface ResultListener extends Remote {
+	public void onResult(Object result) throws RemoteException;
+
+	public void onError(Throwable result) throws RemoteException;
 }

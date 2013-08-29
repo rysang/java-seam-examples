@@ -1,10 +1,18 @@
+import java.rmi.RemoteException;
+
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.remoting.rmi.RmiClientInterceptor;
+import org.test.spring.remoting.services.DefaultRemoteListener;
+import org.test.spring.remoting.services.api.ResultListener;
 import org.test.spring.remoting.services.api.SchedulerService;
+import org.test.spring.remoting.services.api.TaskType;
 
 public class Main {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws RemoteException {
 		SchedulerService schedulerService = (SchedulerService) getProxyFor("127.0.0.1");
+		ResultListener listener = new DefaultRemoteListener();
+
+		schedulerService.runTask(TaskType.SYNC, listener, "Run");
 		System.out.println(schedulerService.getMaximumRunningThreads());
 	}
 

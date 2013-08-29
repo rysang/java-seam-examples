@@ -1,7 +1,8 @@
 package org.test.spring.remoting.services;
 
-import java.util.UUID;
+import java.rmi.RemoteException;
 
+import org.test.spring.remoting.services.api.ResultListener;
 import org.test.spring.remoting.services.api.SchedulerService;
 import org.test.spring.remoting.services.api.TaskType;
 
@@ -12,24 +13,28 @@ public class SchedulerServiceImpl implements SchedulerService {
 	}
 
 	@Override
-	public long getRunningThreads() {
+	public long getRunningThreads() throws RemoteException {
 		return 0;
 	}
 
 	@Override
-	public long getTotalThreads() {
-
-		return 0;
-	}
-
-	@Override
-	public long getMaximumRunningThreads() {
+	public long getTotalThreads() throws RemoteException {
 
 		return 0;
 	}
 
 	@Override
-	public void runTask(TaskType type, UUID taskId, Object... params) {
+	public long getMaximumRunningThreads() throws RemoteException {
 
+		return 0;
+	}
+
+	@Override
+	public void runTask(TaskType type, ResultListener listener,
+			Object... params) throws RemoteException {
+
+		if (listener != null) {
+			listener.onResult("Hey man !!!!");
+		}
 	}
 }
