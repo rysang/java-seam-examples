@@ -1,12 +1,12 @@
-package org.test.spring.remoting.services;
+package org.nuts.bolts.remoting.services;
 
 import java.rmi.RemoteException;
 
+import org.nuts.bolts.remoting.services.api.ResultListener;
+import org.nuts.bolts.remoting.services.api.SchedulerService;
+import org.nuts.bolts.remoting.services.api.TaskType;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
-import org.test.spring.remoting.services.api.ResultListener;
-import org.test.spring.remoting.services.api.SchedulerService;
-import org.test.spring.remoting.services.api.TaskType;
 
 public class SchedulerServiceImpl implements SchedulerService, ApplicationListener {
 

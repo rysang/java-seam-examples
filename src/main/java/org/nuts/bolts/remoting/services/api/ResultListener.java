@@ -1,4 +1,4 @@
-package org.test.spring.remoting.services.api;
+package org.nuts.bolts.remoting.services.api;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

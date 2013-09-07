@@ -1,9 +1,9 @@
-package org.test.spring.remoting.services;
+package org.nuts.bolts.remoting.services;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-import org.test.spring.remoting.services.api.ResultListener;
+import org.nuts.bolts.remoting.services.api.ResultListener;
 
 public class DefaultRemoteListener extends UnicastRemoteObject implements
 		ResultListener {

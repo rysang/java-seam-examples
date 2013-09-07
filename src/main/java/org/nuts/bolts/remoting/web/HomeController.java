@@ -1,4 +1,4 @@
-package org.test.spring.remoting.web;
+package org.nuts.bolts.remoting.web;
 
 import java.util.Map;
 
