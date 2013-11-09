@@ -20,70 +20,74 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.KeyFactory;
 
 @Controller
 public class ContactController {
-    private List<Contact>   contacts = new ArrayList<Contact>();
+	private List<Contact> contacts = new ArrayList<Contact>();
 
-    @Autowired
-    @Qualifier("testService")
-    private TestDaoService  testService;
+	@Autowired
+	@Qualifier("testService")
+	private TestDaoService testService;
 
-    @Autowired
-    private EntityConverter entityConverter;
+	@Autowired
+	private EntityConverter entityConverter;
 
-    @Autowired
-    private Validator       validator;
+	@Autowired
+	private Validator validator;
 
-    public ContactController() {
+	public ContactController() {
 
-    }
+	}
 
-    @RequestMapping(value = { "/index", "/" })
-    public String listContacts(Map<String, Object> map) throws Exception {
-        List<Entity> entities = testService.getAllBeans();
-        Entity ep = new Entity(Contact.NAME);
-        ep.setProperty("email", "price@fdsf.df");
+	@RequestMapping(value = { "/index", "/" })
+	public String listContacts(Map<String, Object> map) throws Exception {
+		List<Entity> entities = testService.getAllBeans();
+		Entity ep = new Entity(Contact.NAME);
+		ep.setProperty("email", "price@fdsf.df");
 
-        contacts = new ArrayList<Contact>(entities.size());
-        for (Entity e : entities) {
-            contacts.add((Contact) entityConverter.convertFromEntity(e, Contact.class));
-            ep = e;
-        }
+		contacts = new ArrayList<Contact>(entities.size());
+		for (Entity e : entities) {
+			Contact c = new Contact();
+			c.setId(KeyFactory.keyToString(e.getKey()));
+			c.setEmail(e.getProperty("email") == null ? null : e.getProperty(
+					"email").toString());
+		}
 
-        map.put("entity", ep);
-        map.put("contactList", contacts);
-        return "contact";
-    }
+		map.put("entity", ep);
+		map.put("contactList", contacts);
+		return "contact";
+	}
 
-    @RequestMapping(value = { "/new" })
-    public String newContact(Map<String, Object> map) {
-        map.put("contact", new Contact());
-        return "new_contact";
-    }
+	@RequestMapping(value = { "/new" })
+	public String newContact(Map<String, Object> map) {
+		map.put("contact", new Contact());
+		return "new_contact";
+	}
 
-    @RequestMapping(value = { "/secure/contact" })
-    public String testSecure(Map<String, Object> map) {
-        map.put("contact", new Contact());
-        return "secure/contact";
-    }
+	@RequestMapping(value = { "/secure/contact" })
+	public String testSecure(Map<String, Object> map) {
+		map.put("contact", new Contact());
+		return "secure/contact";
+	}
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addContact(@ModelAttribute("contact") @Valid Contact contact, BindingResult result) throws Exception {
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	public String addContact(@ModelAttribute("contact") @Valid Contact contact,
+			BindingResult result) throws Exception {
 
-        if (result.hasErrors()) {
-            return "new_contact";
-        }
+		if (result.hasErrors()) {
+			return "new_contact";
+		}
 
-        Entity entity = entityConverter.convertToEntity(contact);
-        testService.txSaveBean(entity);
+		Entity entity = entityConverter.convertToEntity(contact);
+		testService.txSaveBean(entity);
 
-        return "redirect:/secure/contact";
-    }
+		return "redirect:/secure/contact";
+	}
 
-    @RequestMapping("/delete")
-    public String deleteContact(@RequestParam("contactId") String contactId) {
-        testService.txDelete(contactId);
-        return "redirect:/index";
-    }
+	@RequestMapping("/delete")
+	public String deleteContact(@RequestParam("contactId") String contactId) {
+		testService.txDelete(contactId);
+		return "redirect:/index";
+	}
 }

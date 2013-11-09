@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.price.test.conversion.annotations.Id;
@@ -18,109 +19,117 @@ import com.google.appengine.api.datastore.KeyFactory;
 @SuppressWarnings("rawtypes")
 public class EntityConverter {
 
-    private Map<Class, Set<Field>> convertClasses = new HashMap<>();
-    private Map<Class, Field>      ids            = new HashMap<>();
+	private static final Logger LOG = Logger.getLogger(EntityConverter.class
+			.getName());
 
-    public EntityConverter() {
+	private Map<Class, Set<Field>> convertClasses = new HashMap<>();
+	private Map<Class, Field> ids = new HashMap<>();
 
-    }
+	public EntityConverter() {
 
-    public Object convertFromEntity(Entity e, Class clazz) throws Exception {
-        Set<Field> fields = convertClasses.get(clazz);
-        if (fields == null) {
-            createFieldsForClass(clazz);
-        }
+	}
 
-        Object o = clazz.newInstance();
-        for (Field f : fields) {
-            Field oField = o.getClass().getField(f.getName());
-            PropertyUtils.setProperty(oField, oField.getName(), e.getProperty(oField.getName()));
-        }
+	public Object convertFromEntity(Entity e, Class clazz) throws Exception {
+		Set<Field> fields = convertClasses.get(clazz);
+		if (fields == null) {
+			createFieldsForClass(clazz);
+		}
 
-        Field id = ids.get(clazz);
-        if (id == null) {
-            throw new Exception("Each bean must define a key.");
-        }
-        else {
-            PropertyUtils.setProperty(id, id.getName(), KeyFactory.keyToString(e.getKey()));
-        }
+		Object o = clazz.newInstance();
+		for (Field f : fields) {
+			Field oField = o.getClass().getField(f.getName());
+			try {
+				PropertyUtils.setProperty(oField, oField.getName(),
+						e.getProperty(oField.getName()));
+			} catch (Exception ex) {
+				LOG.warning(ex.toString());
+			}
+		}
 
-        return o;
-    }
+		Field id = ids.get(clazz);
+		if (id == null) {
+			throw new Exception("Each bean must define a key.");
+		} else {
+			PropertyUtils.setProperty(id, id.getName(),
+					KeyFactory.keyToString(e.getKey()));
+		}
 
-    protected void createFieldsForClass(Class clazz) throws Exception {
-        if (clazz == null) {
-            return;
-        }
+		return o;
+	}
 
-        Set<Field> finalFields = convertClasses.get(clazz);
-        if (finalFields == null) {
-            finalFields = new HashSet<>();
-            convertClasses.put(clazz, finalFields);
-        }
+	protected void createFieldsForClass(Class clazz) throws Exception {
+		if (clazz == null) {
+			return;
+		}
 
-        Field[] fields = clazz.getDeclaredFields();
-        for (Field f : fields) {
-            if ((f.getAnnotation(Store.class) != null) && !Modifier.isStatic(f.getModifiers())) {
-                finalFields.add(f);
-            }
-            else if (f.getAnnotation(Id.class) != null) {
-                if (!f.getType().equals(String.class)) {
-                    throw new Exception("Id can be only string");
-                }
-                ids.put(clazz, f);
-            }
-        }
+		Set<Field> finalFields = convertClasses.get(clazz);
+		if (finalFields == null) {
+			finalFields = new HashSet<>();
+			convertClasses.put(clazz, finalFields);
+		}
 
-        fields = clazz.getFields();
-        for (Field f : fields) {
-            if ((f.getAnnotation(Store.class) != null) && !Modifier.isStatic(f.getModifiers())) {
-                finalFields.add(f);
-            }
-            else if (f.getAnnotation(Id.class) != null) {
-                if (!f.getType().equals(String.class)) {
-                    throw new Exception("Id can be only string");
-                }
-                ids.put(clazz, f);
-            }
-        }
+		Field[] fields = clazz.getDeclaredFields();
+		for (Field f : fields) {
+			if ((f.getAnnotation(Store.class) != null)
+					&& !Modifier.isStatic(f.getModifiers())) {
+				finalFields.add(f);
+			} else if (f.getAnnotation(Id.class) != null) {
+				if (!f.getType().equals(String.class)) {
+					throw new Exception("Id can be only string");
+				}
+				ids.put(clazz, f);
+			}
+		}
 
-        createFieldsForClass(clazz.getSuperclass());
-    }
+		fields = clazz.getFields();
+		for (Field f : fields) {
+			if ((f.getAnnotation(Store.class) != null)
+					&& !Modifier.isStatic(f.getModifiers())) {
+				finalFields.add(f);
+			} else if (f.getAnnotation(Id.class) != null) {
+				if (!f.getType().equals(String.class)) {
+					throw new Exception("Id can be only string");
+				}
+				ids.put(clazz, f);
+			}
+		}
 
-    public Entity convertToEntity(Object o) throws Exception {
+		createFieldsForClass(clazz.getSuperclass());
+	}
 
-        Set<Field> finalFields = convertClasses.get(o.getClass());
-        if (finalFields == null) {
-            finalFields = new HashSet<>();
-            convertClasses.put(o.getClass(), finalFields);
-        }
+	public Entity convertToEntity(Object o) throws Exception {
 
-        Field id = ids.get(o.getClass());
+		Set<Field> finalFields = convertClasses.get(o.getClass());
+		if (finalFields == null) {
+			finalFields = new HashSet<>();
+			convertClasses.put(o.getClass(), finalFields);
+		}
 
-        Entity entity = new Entity(o.getClass().getName());
+		Field id = ids.get(o.getClass());
 
-        for (Field f : finalFields) {
-            entity.setProperty(f.getName(), f.get(o));
-        }
+		Entity entity = new Entity(o.getClass().getName());
 
-        return entity;
-    }
+		for (Field f : finalFields) {
+			entity.setProperty(f.getName(), f.get(o));
+		}
 
-    public Entity convertToEntity(Object o, Key parent) throws Exception {
+		return entity;
+	}
 
-        Set<Field> finalFields = convertClasses.get(o.getClass());
-        if (finalFields == null) {
-            finalFields = new HashSet<>();
-            convertClasses.put(o.getClass(), finalFields);
-        }
+	public Entity convertToEntity(Object o, Key parent) throws Exception {
 
-        Entity entity = new Entity(o.getClass().getName(), parent);
+		Set<Field> finalFields = convertClasses.get(o.getClass());
+		if (finalFields == null) {
+			finalFields = new HashSet<>();
+			convertClasses.put(o.getClass(), finalFields);
+		}
 
-        for (Field f : finalFields) {
-            entity.setProperty(f.getName(), f.get(o));
-        }
+		Entity entity = new Entity(o.getClass().getName(), parent);
 
-        return entity;
-    }
+		for (Field f : finalFields) {
+			entity.setProperty(f.getName(), f.get(o));
+		}
+
+		return entity;
+	}
 }

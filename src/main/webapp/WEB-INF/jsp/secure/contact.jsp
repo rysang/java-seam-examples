@@ -23,7 +23,7 @@
 }
 </style>
 
-<jsp:include page="headers.jsp" />
+<jsp:include page="../headers.jsp" />
 </head>
 <body>
 	<c:out value="We are here !!!" />

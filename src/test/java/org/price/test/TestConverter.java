@@ -10,7 +10,7 @@ public class TestConverter extends TestCase {
 
         Test1 t1 = new Test1("mine", "sd");
 
-        new EntityConverter().convertToEntity(t1);
+        //new EntityConverter().convertToEntity(t1);
     }
 }
 
