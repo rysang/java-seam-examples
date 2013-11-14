@@ -7,7 +7,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.price.test.beans.Contact;
-import org.price.test.beans.converters.EntityConverter;
+import org.price.test.beans.converters.Converter;
 import org.price.test.dao.services.api.TestDaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.KeyFactory;
 
 @Controller
 public class ContactController {
@@ -31,7 +30,8 @@ public class ContactController {
 	private TestDaoService testService;
 
 	@Autowired
-	private EntityConverter entityConverter;
+	@Qualifier("contactConverter")
+	private Converter<Contact> contactConverter;
 
 	@Autowired
 	private Validator validator;
@@ -48,10 +48,8 @@ public class ContactController {
 
 		contacts = new ArrayList<Contact>(entities.size());
 		for (Entity e : entities) {
-			Contact c = new Contact();
-			c.setId(KeyFactory.keyToString(e.getKey()));
-			c.setEmail(e.getProperty("email") == null ? null : e.getProperty(
-					"email").toString());
+			Contact c = contactConverter.convertEntity(e);
+			contacts.add(c);
 		}
 
 		map.put("entity", ep);
@@ -79,7 +77,7 @@ public class ContactController {
 			return "new_contact";
 		}
 
-		Entity entity = entityConverter.convertToEntity(contact);
+		Entity entity = contactConverter.convertType(contact);
 		testService.txSaveBean(entity);
 
 		return "redirect:/secure/contact";

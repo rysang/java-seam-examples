@@ -1,71 +1,83 @@
 package org.price.test.beans;
 
-import javax.validation.constraints.NotNull;
-
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.price.test.conversion.annotations.Store;
 
-public class Contact {
+public class Contact implements Identifiable {
 
-    public static final String NAME = "Contact";
+	public static final String NAME = "Contact";
 
-    private String             id;
+	private String id;
 
-    @NotEmpty
-    @Length(min = 2, max = 50)
-    @Store
-    private String             firstname;
+	@NotEmpty
+	@Length(min = 2, max = 50)
+	@Store
+	private String firstname;
 
-    @NotEmpty
-    @Store
-    private String             lastname;
+	@NotEmpty
+	@Store
+	private String lastname;
 
-    @NotEmpty
-    @Store
-    private String             email;
+	@NotEmpty
+	@Store
+	private String email;
 
-    @NotEmpty
-    @Store
-    private String             telephone;
+	@NotEmpty
+	@Store
+	private String telephone;
 
-    public String getEmail() {
-        return email;
-    }
+	public Contact() {
 
-    public String getTelephone() {
-        return telephone;
-    }
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
+	public String getTelephone() {
+		return telephone;
+	}
 
-    public String getFirstname() {
-        return firstname;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public String getLastname() {
-        return lastname;
-    }
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
+	public String getFirstname() {
+		return firstname;
+	}
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
+	public String getLastname() {
+		return lastname;
+	}
 
-    public String getId() {
-        return id;
-    }
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	@Override
+	public String getId() {
+		return id;
+	}
+
+	@Override
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "Contact [id=" + id + ", firstname=" + firstname + ", lastname="
+				+ lastname + ", email=" + email + ", telephone=" + telephone
+				+ "]";
+	}
+
 }

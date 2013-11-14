@@ -79,6 +79,6 @@
 
 	<!-- misc -->
 
-	<bean id="entityConverter" class="org.price.test.beans.converters.EntityConverter" scope="prototype" />
+	<bean id="contactConverter" class="org.price.test.beans.converters.BaseConverter" scope="prototype" />
 </beans>
 
