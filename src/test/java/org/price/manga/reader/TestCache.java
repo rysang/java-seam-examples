@@ -1,4 +1,4 @@
-package org.price.test;
+package org.price.manga.reader;
 
 import junit.framework.TestCase;
 

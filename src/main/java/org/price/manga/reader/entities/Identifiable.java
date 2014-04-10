@@ -1,4 +1,4 @@
-package org.price.test.beans;
+package org.price.manga.reader.entities;
 
 public interface Identifiable {
 	public String getId();

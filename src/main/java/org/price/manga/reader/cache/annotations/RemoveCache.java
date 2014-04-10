@@ -1,4 +1,4 @@
-package org.price.test.cache.annotations;
+package org.price.manga.reader.cache.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
