@@ -14,48 +14,16 @@
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-	<context:component-scan base-package="org.price.manga.reader.dao" />
+	<context:component-scan base-package="org.price.manga.reader.services" />
 
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="org.postgresql.Driver" />
-		<property name="url"
-			value="jdbc:postgresql://localhost:5432/manga_reader" />
-		<property name="username" value="manga_reader" />
-		<property name="password" value="manga_reader" />
+	<bean id="executorService" class="java.util.concurrent.Executors"
+		factory-method="newFixedThreadPool" destroy-method="shutdown">
+		<constructor-arg value="30" />
 	</bean>
 
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-
-		<property name="dataSource">
-			<ref bean="dataSource" />
-		</property>
-
-		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
-				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.format_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
-			</props>
-		</property>
-
-		<property name="annotatedClasses">
-			<list>
-				<value>org.price.manga.reader.entities.User</value>
-				<value>org.price.manga.reader.entities.Manga</value>
-				<value>org.price.manga.reader.entities.Genre</value>
-			</list>
-		</property>
-
+	<bean id="crawlerFactory" class="org.price.manga.reader.services.CrawlerFactory">
+		<lookup-method name="newMangaCrawler" bean="mangaCrawler" />
 	</bean>
-
-	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<tx:annotation-driven transaction-manager="transactionManager" />
 </beans>
 
 

@@ -10,6 +10,7 @@
 			<param-value>
 				/WEB-INF/application-context.xml
 				/WEB-INF/db-context.xml
+				/WEB-INF/service-context.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>

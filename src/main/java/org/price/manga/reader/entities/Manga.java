@@ -1,11 +1,18 @@
 package org.price.manga.reader.entities;
 
 import java.io.Serializable;
+import java.sql.Blob;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -33,8 +40,81 @@ public class Manga implements Serializable, Identifiable {
 	@Column(name = "artist", length = 100)
 	private String artist;
 
-	public Manga() {
+	@Column(name = "status", length = 100)
+	private String status;
 
+	@Column(name = "reading_direction", length = 100)
+	private String readingDirection;
+
+	@OneToMany(mappedBy = "manga", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<Genre> genres = new HashSet<>();
+
+	// Hibernate.createBlob(..)
+	@Lob
+	@Column(name = "image")
+	private Blob image;
+
+	public Manga() {
+	}
+
+	public Integer getYearReleased() {
+		return yearReleased;
+	}
+
+	public void setYearReleased(Integer yearReleased) {
+		this.yearReleased = yearReleased;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public String getArtist() {
+		return artist;
+	}
+
+	public void setArtist(String artist) {
+		this.artist = artist;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getReadingDirection() {
+		return readingDirection;
+	}
+
+	public void setReadingDirection(String readingDirection) {
+		this.readingDirection = readingDirection;
+	}
+
+	public Set<Genre> getGenres() {
+		return genres;
+	}
+
+	public void setGenres(Set<Genre> genres) {
+		this.genres = genres;
+	}
+
+	public Blob getImage() {
+		return image;
+	}
+
+	public void setImage(Blob image) {
+		this.image = image;
+	}
+
+	public Date getLastModified() {
+		return lastModified;
 	}
 
 	@Override
@@ -78,6 +158,15 @@ public class Manga implements Serializable, Identifiable {
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Manga [name=" + name + ", lastModified=" + lastModified
+				+ ", yearReleased=" + yearReleased + ", author=" + author
+				+ ", artist=" + artist + ", status=" + status
+				+ ", readingDirection=" + readingDirection + ", genres="
+				+ genres + "]";
 	}
 
 }
