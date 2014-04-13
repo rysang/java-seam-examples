@@ -1,16 +1,21 @@
 package org.price.manga.reader.services;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.concurrent.ExecutorService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.apache.commons.io.IOUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.price.manga.reader.dao.services.api.MangaOpsService;
 import org.price.manga.reader.entities.Manga;
 import org.price.manga.reader.services.api.Crawler;
+import org.price.manga.reader.services.api.MangaOpsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -54,12 +59,31 @@ public class MangaCrawler implements Crawler, Runnable {
 		}
 	}
 
-	protected Manga createManga(Document document) {
+	protected Manga createManga(Document document) throws IOException {
 		Manga manga = new Manga();
 
 		Element masthead = document.select("h2.aname").first();
 		manga.setName(masthead.html().trim());
 
+		Element img = document.select("#mangaimg img").first();
+		String imgLink = img.attr("src");
+		manga.setImage(createImage(imgLink));
+
 		return manga;
+	}
+
+	protected byte[] createImage(String link) throws IOException {
+		HttpURLConnection connection = (HttpURLConnection) new URL(link)
+				.openConnection();
+		connection.setDoInput(true);
+
+		try (InputStream is = connection.getInputStream()) {
+
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			IOUtils.copy(is, bos);
+
+			return bos.toByteArray();
+		}
+
 	}
 }

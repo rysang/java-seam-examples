@@ -1,7 +1,6 @@
 package org.price.manga.reader.entities;
 
 import java.io.Serializable;
-import java.sql.Blob;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -55,7 +54,7 @@ public class Manga implements Serializable, Identifiable {
 	// Hibernate.createBlob(..)
 	@Lob
 	@Column(name = "image")
-	private Blob image;
+	private byte[] image;
 
 	public Manga() {
 	}
@@ -108,11 +107,11 @@ public class Manga implements Serializable, Identifiable {
 		this.genres = genres;
 	}
 
-	public Blob getImage() {
+	public byte[] getImage() {
 		return image;
 	}
 
-	public void setImage(Blob image) {
+	public void setImage(byte[] image) {
 		this.image = image;
 	}
 

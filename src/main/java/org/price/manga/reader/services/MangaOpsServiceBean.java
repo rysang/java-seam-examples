@@ -1,8 +1,8 @@
-package org.price.manga.reader.dao.services;
+package org.price.manga.reader.services;
 
 import org.price.manga.reader.dao.services.api.MangaDao;
-import org.price.manga.reader.dao.services.api.MangaOpsService;
 import org.price.manga.reader.entities.Manga;
+import org.price.manga.reader.services.api.MangaOpsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;

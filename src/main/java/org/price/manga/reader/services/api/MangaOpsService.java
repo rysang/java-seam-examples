@@ -1,4 +1,4 @@
-package org.price.manga.reader.dao.services.api;
+package org.price.manga.reader.services.api;
 
 import org.price.manga.reader.entities.Manga;
 

@@ -21,7 +21,8 @@ public class TestThreading {
 
 	public static void main(String[] args) throws IOException {
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(
-				"file:src/main/webapp/WEB-INF/services-context.xml");
+				"file:src/main/webapp/WEB-INF/services-context.xml",
+				"file:src/main/webapp/WEB-INF/db-context.xml");
 		CrawlerFactory crawlerFactory = (CrawlerFactory) ctx
 				.getBean("crawlerFactory");
 		crawlerFactory.newMangaCrawler().crawl(
