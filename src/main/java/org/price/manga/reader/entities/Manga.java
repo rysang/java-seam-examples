@@ -24,8 +24,11 @@ public class Manga implements Serializable, Identifiable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "name", unique = true, nullable = false, length = 50)
+	@Column(name = "name", unique = true, nullable = false, length = 250)
 	private String name;
+
+	@Column(name = "alternate_name", unique = true, length = 250)
+	private String alternateName;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "last_modified", nullable = false)
@@ -135,6 +138,14 @@ public class Manga implements Serializable, Identifiable {
 		return name;
 	}
 
+	public String getAlternateName() {
+		return alternateName;
+	}
+
+	public void setAlternateName(String alternateName) {
+		this.alternateName = alternateName;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -162,11 +173,11 @@ public class Manga implements Serializable, Identifiable {
 
 	@Override
 	public String toString() {
-		return "Manga [name=" + name + ", lastModified=" + lastModified
-				+ ", yearReleased=" + yearReleased + ", author=" + author
-				+ ", artist=" + artist + ", status=" + status
-				+ ", readingDirection=" + readingDirection + ", genres="
-				+ genres + "]";
+		return "Manga [name=" + name + ", alternateName=" + alternateName
+				+ ", lastModified=" + lastModified + ", yearReleased="
+				+ yearReleased + ", author=" + author + ", artist=" + artist
+				+ ", status=" + status + ", readingDirection="
+				+ readingDirection + ", genres=" + genres + "]";
 	}
 
 }

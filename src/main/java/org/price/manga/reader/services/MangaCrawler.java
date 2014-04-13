@@ -8,6 +8,8 @@ import java.util.logging.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.price.manga.reader.dao.services.api.MangaOpsService;
+import org.price.manga.reader.entities.Manga;
 import org.price.manga.reader.services.api.Crawler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -22,6 +24,10 @@ public class MangaCrawler implements Crawler, Runnable {
 
 	@Autowired
 	private ExecutorService executorService;
+
+	@Autowired
+	private MangaOpsService mangaOpsService;
+
 	private String page;
 
 	public MangaCrawler() {
@@ -37,14 +43,23 @@ public class MangaCrawler implements Crawler, Runnable {
 	@Override
 	public void run() {
 		try {
-			Document doc = Jsoup.connect(page).get();
-			Element masthead = doc.select("h2.aname").first();
 
-			System.out.println(masthead.data().trim());
+			Document doc = Jsoup.connect(page).get();
+			Manga manga = createManga(doc);
+
+			manga = mangaOpsService.createManga(manga);
 
 		} catch (IOException e) {
 			LOG.log(Level.SEVERE, "Error", e);
 		}
 	}
 
+	protected Manga createManga(Document document) {
+		Manga manga = new Manga();
+
+		Element masthead = document.select("h2.aname").first();
+		manga.setName(masthead.html().trim());
+
+		return manga;
+	}
 }
