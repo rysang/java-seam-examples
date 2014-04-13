@@ -5,7 +5,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -23,8 +22,7 @@ public class MangaCrawler implements Crawler, Runnable {
 
 	@Autowired
 	private ExecutorService executorService;
-
-	private Connection connection;
+	private String page;
 
 	public MangaCrawler() {
 
@@ -32,14 +30,14 @@ public class MangaCrawler implements Crawler, Runnable {
 
 	@Override
 	public void crawl(String page) {
-		connection = Jsoup.connect(page);
+		this.page = page;
 		executorService.execute(this);
 	}
 
 	@Override
 	public void run() {
 		try {
-			Document doc = connection.get();
+			Document doc = Jsoup.connect(page).get();
 			Element masthead = doc.select("h2.aname").first();
 
 			System.out.println(masthead.data().trim());
