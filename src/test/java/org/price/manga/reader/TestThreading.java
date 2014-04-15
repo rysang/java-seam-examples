@@ -28,5 +28,6 @@ public class TestThreading {
 		crawlerFactory.newMangaCrawler().crawl(
 				"http://www.mangareader.net/the-breaker-new-waves");
 		System.in.read();
+		ctx.close();
 	}
 }

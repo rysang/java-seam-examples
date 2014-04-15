@@ -4,8 +4,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.UUID;
@@ -28,10 +26,10 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-@Component("mangaCrawler")
-public class MangaCrawler implements Crawler, Runnable {
+@Component("issueCrawler")
+public class IssueCrawler implements Crawler, Runnable {
 
-	private static final Logger LOG = Logger.getLogger("MangaCrawler");
+	private static final Logger LOG = Logger.getLogger("IssueCrawler");
 
 	@Autowired
 	private ExecutorService executorService;
@@ -39,12 +37,9 @@ public class MangaCrawler implements Crawler, Runnable {
 	@Autowired
 	private MangaOpsService mangaOpsService;
 
-	@Autowired
-	private CrawlerFactory crawlerFactory;
-
 	private String page;
 
-	public MangaCrawler() {
+	public IssueCrawler() {
 
 	}
 
@@ -62,26 +57,9 @@ public class MangaCrawler implements Crawler, Runnable {
 			Manga manga = createManga(doc);
 
 			manga = mangaOpsService.createManga(manga);
-			createIssueCrawlers(doc);
 
-		} catch (Exception e) {
+		} catch (IOException e) {
 			LOG.log(Level.SEVERE, "Error", e);
-		}
-	}
-
-	protected void createIssueCrawlers(Document document)
-			throws URISyntaxException {
-		Elements trs = document.select("#chapterlist #listing tr");
-
-		for (Element tr : trs) {
-			Iterator<Element> tdIt = tr.children().iterator();
-
-			String link = tdIt.next().select("a").attr("href");
-			URI uri = new URI(page);
-
-			link = uri.getScheme() + "://" + uri.getHost() + ':'
-					+ (uri.getPort() == -1 ? 80 : uri.getPort()) + link;
-			System.out.println("link: " + link);
 		}
 	}
 

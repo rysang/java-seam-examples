@@ -46,6 +46,8 @@
 				<value>org.price.manga.reader.entities.User</value>
 				<value>org.price.manga.reader.entities.Manga</value>
 				<value>org.price.manga.reader.entities.Genre</value>
+				<value>org.price.manga.reader.entities.Issue</value>
+				<value>org.price.manga.reader.entities.Page</value>
 			</list>
 		</property>
 

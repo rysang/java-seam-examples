@@ -23,6 +23,7 @@
 
 	<bean id="crawlerFactory" class="org.price.manga.reader.services.CrawlerFactory">
 		<lookup-method name="newMangaCrawler" bean="mangaCrawler" />
+		<lookup-method name="newIssueCrawler" bean="issueCrawler" />
 	</bean>
 </beans>
 

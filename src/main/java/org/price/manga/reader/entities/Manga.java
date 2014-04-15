@@ -34,7 +34,7 @@ public class Manga implements Serializable, Identifiable {
 	private final Date lastModified = new Date();
 
 	@Column(name = "year_released")
-	private Integer yearReleased;
+	private String yearReleased;
 
 	@Column(name = "author", length = 100)
 	private String author;
@@ -51,6 +51,9 @@ public class Manga implements Serializable, Identifiable {
 	@OneToMany(mappedBy = "manga", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Genre> genres = new HashSet<>();
 
+	@OneToMany(mappedBy = "manga", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<Issue> issues = new HashSet<>();
+
 	// Hibernate.createBlob(..)
 	@Lob
 	@Column(name = "image")
@@ -59,11 +62,11 @@ public class Manga implements Serializable, Identifiable {
 	public Manga() {
 	}
 
-	public Integer getYearReleased() {
+	public String getYearReleased() {
 		return yearReleased;
 	}
 
-	public void setYearReleased(Integer yearReleased) {
+	public void setYearReleased(String yearReleased) {
 		this.yearReleased = yearReleased;
 	}
 
@@ -105,6 +108,14 @@ public class Manga implements Serializable, Identifiable {
 
 	public void setGenres(Set<Genre> genres) {
 		this.genres = genres;
+	}
+
+	public Set<Issue> getIssues() {
+		return issues;
+	}
+
+	public void setIssues(Set<Issue> issues) {
+		this.issues = issues;
 	}
 
 	public byte[] getImage() {
