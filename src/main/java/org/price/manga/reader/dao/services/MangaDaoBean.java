@@ -6,6 +6,7 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.price.manga.reader.dao.services.api.MangaDao;
 import org.price.manga.reader.entities.Genre;
+import org.price.manga.reader.entities.Issue;
 import org.price.manga.reader.entities.Manga;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,12 @@ public class MangaDaoBean implements MangaDao {
 	public Genre createGenre(Genre genre) {
 		sessionFactory.getCurrentSession().save(genre);
 		return genre;
+	}
+
+	@Override
+	public Issue createIssue(Issue issue) {
+		sessionFactory.getCurrentSession().save(issue);
+		return issue;
 	}
 
 	@Override

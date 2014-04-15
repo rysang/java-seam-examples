@@ -1,6 +1,7 @@
 package org.price.manga.reader.dao.services.api;
 
 import org.price.manga.reader.entities.Genre;
+import org.price.manga.reader.entities.Issue;
 import org.price.manga.reader.entities.Manga;
 
 public interface MangaDao {
@@ -11,4 +12,6 @@ public interface MangaDao {
 	public void deleteManga(String id);
 
 	public Manga getManga(String id);
+
+	public Issue createIssue(Issue issue);
 }

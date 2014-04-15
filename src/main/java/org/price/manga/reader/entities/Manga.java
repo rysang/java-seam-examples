@@ -31,7 +31,7 @@ public class Manga implements Serializable, Identifiable {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "last_modified", nullable = false)
-	private final Date lastModified = new Date();
+	private Date lastModified = new Date();
 
 	@Column(name = "year_released")
 	private String yearReleased;
@@ -128,6 +128,10 @@ public class Manga implements Serializable, Identifiable {
 
 	public Date getLastModified() {
 		return lastModified;
+	}
+
+	public void setLastModified(Date lastModified) {
+		this.lastModified = lastModified;
 	}
 
 	@Override

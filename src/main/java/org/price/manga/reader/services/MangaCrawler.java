@@ -7,6 +7,8 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Iterator;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
@@ -19,6 +21,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.price.manga.reader.entities.Genre;
+import org.price.manga.reader.entities.Issue;
 import org.price.manga.reader.entities.Manga;
 import org.price.manga.reader.services.api.Crawler;
 import org.price.manga.reader.services.api.MangaOpsService;
@@ -62,27 +65,50 @@ public class MangaCrawler implements Crawler, Runnable {
 			Manga manga = createManga(doc);
 
 			manga = mangaOpsService.createManga(manga);
-			createIssueCrawlers(doc);
+			createIssueCrawlers(doc, manga);
 
 		} catch (Exception e) {
 			LOG.log(Level.SEVERE, "Error", e);
 		}
 	}
 
-	protected void createIssueCrawlers(Document document)
-			throws URISyntaxException {
+	protected void createIssueCrawlers(Document document, Manga manga)
+			throws URISyntaxException, ParseException {
 		Elements trs = document.select("#chapterlist #listing tr");
 
 		for (Element tr : trs) {
 			Iterator<Element> tdIt = tr.children().iterator();
+			Element td = tdIt.next();
 
-			String link = tdIt.next().select("a").attr("href");
-			URI uri = new URI(page);
+			String link = td.select("a").attr("href");
+			String name = td.select("a").html().trim();
 
-			link = uri.getScheme() + "://" + uri.getHost() + ':'
-					+ (uri.getPort() == -1 ? 80 : uri.getPort()) + link;
-			System.out.println("link: " + link);
+			String dateCreated = tdIt.next().html().trim();
+
+			if (!"".equals(link)) {
+				URI uri = new URI(page);
+
+				link = uri.getScheme() + "://" + uri.getHost() + ':'
+						+ (uri.getPort() == -1 ? 80 : uri.getPort()) + link;
+
+				Issue issue = createIssue(name, dateCreated, link, manga);
+			}
 		}
+	}
+
+	protected Issue createIssue(String name, String dateCreated, String link,
+			Manga manga) throws ParseException {
+
+		Issue issue = new Issue();
+		SimpleDateFormat dt = new SimpleDateFormat("mm/dd/yyyy");
+		issue.setDateAdded(dt.parse(dateCreated));
+		issue.setName(name);
+		issue.setManga(manga);
+		issue.setLink(link);
+
+		issue = mangaOpsService.createIssue(issue);
+
+		return issue;
 	}
 
 	protected Manga createManga(Document document) throws IOException {

@@ -29,7 +29,10 @@ public class Issue implements Serializable, Identifiable {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "date_added", nullable = false)
-	private final Date dateAdded = new Date();
+	private Date dateAdded = new Date();
+
+	@Column(name = "link", unique = true, nullable = false, length = 250)
+	private String link;
 
 	@OneToMany(mappedBy = "issue", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Page> pages = new HashSet<>();
@@ -73,6 +76,22 @@ public class Issue implements Serializable, Identifiable {
 
 	public Manga getManga() {
 		return manga;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
+	}
+
+	public void setDateAdded(Date dateAdded) {
+		this.dateAdded = dateAdded;
+	}
+
+	public Date getDateAdded() {
+		return dateAdded;
 	}
 
 	@Override
