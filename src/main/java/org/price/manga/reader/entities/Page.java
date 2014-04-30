@@ -24,11 +24,22 @@ public class Page implements Serializable, Identifiable {
 	@Column(name = "data")
 	private byte[] data;
 
+	@Column(name = "index")
+	private Integer index;
+
 	@ManyToOne
 	@JoinColumn(name = "issue_id")
 	private Issue issue;
 
 	public Page() {
+	}
+
+	public Integer getIndex() {
+		return index;
+	}
+
+	public void setIndex(Integer index) {
+		this.index = index;
 	}
 
 	@Override

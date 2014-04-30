@@ -1,5 +1,6 @@
 package org.price.manga.reader.dao.services;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import org.hibernate.Query;
@@ -8,6 +9,7 @@ import org.price.manga.reader.dao.services.api.MangaDao;
 import org.price.manga.reader.entities.Genre;
 import org.price.manga.reader.entities.Issue;
 import org.price.manga.reader.entities.Manga;
+import org.price.manga.reader.entities.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +43,12 @@ public class MangaDaoBean implements MangaDao {
 	}
 
 	@Override
+	public Page createPage(Page page) {
+		sessionFactory.getCurrentSession().save(page);
+		return page;
+	}
+
+	@Override
 	public void deleteManga(String id) {
 		Query query = sessionFactory.getCurrentSession().createQuery(
 				"DELETE FROM Manga WHERE name = :name");
@@ -53,4 +61,14 @@ public class MangaDaoBean implements MangaDao {
 		return (Manga) sessionFactory.getCurrentSession().get(Manga.class, id);
 	}
 
+	@Override
+	@SuppressWarnings("unchecked")
+	public Issue getIssueByLink(String link) {
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"SELECT i FROM Issue i WHERE i.link = :link");
+		query.setParameter("link", link);
+		List<Issue> ret = query.list();
+
+		return ret.size() == 0 ? null : ret.get(0);
+	}
 }

@@ -16,9 +16,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "issue")
+@Table(name = "issue", uniqueConstraints = @UniqueConstraint(columnNames = { "link" }, name = "link_idx"))
 public class Issue implements Serializable, Identifiable {
 
 	private static final long serialVersionUID = 1L;
@@ -34,6 +35,9 @@ public class Issue implements Serializable, Identifiable {
 	@Column(name = "link", unique = true, nullable = false, length = 250)
 	private String link;
 
+	@Column(name = "index")
+	private Integer index;
+
 	@OneToMany(mappedBy = "issue", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Page> pages = new HashSet<>();
 
@@ -42,6 +46,14 @@ public class Issue implements Serializable, Identifiable {
 	private Manga manga;
 
 	public Issue() {
+	}
+
+	public Integer getIndex() {
+		return index;
+	}
+
+	public void setIndex(Integer index) {
+		this.index = index;
 	}
 
 	@Override

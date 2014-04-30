@@ -1,23 +1,19 @@
 package org.price.manga.reader.services;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.Iterator;
-import java.util.UUID;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.apache.commons.io.IOUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.price.manga.reader.entities.Genre;
-import org.price.manga.reader.entities.Manga;
+import org.price.manga.reader.entities.Issue;
+import org.price.manga.reader.entities.Page;
 import org.price.manga.reader.services.api.Crawler;
 import org.price.manga.reader.services.api.MangaOpsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,79 +50,46 @@ public class IssueCrawler implements Crawler, Runnable {
 		try {
 
 			Document doc = Jsoup.connect(page).get();
-			Manga manga = createManga(doc);
+			String parentLink = Utils.getBaseUrl(page);
+			Issue issue = mangaOpsService.getIssueByLink(page);
+			if (issue == null) {
+				LOG.log(Level.SEVERE, "Failed to find issue. Exiting ...");
+				return;
+			}
 
-			manga = mangaOpsService.createManga(manga);
+			List<Page> links = getPages(doc, parentLink, issue);
+			for (Page p : links) {
+				mangaOpsService.createPage(p);
+			}
 
 		} catch (IOException e) {
+			LOG.log(Level.SEVERE, "Error", e);
+		} catch (URISyntaxException e) {
 			LOG.log(Level.SEVERE, "Error", e);
 		}
 	}
 
-	protected Manga createManga(Document document) throws IOException {
-		Manga manga = new Manga();
+	public List<Page> getPages(Document doc, String baseLink, Issue issue)
+			throws IOException {
 
-		Element masthead = document.select("h2.aname").first();
-		manga.setName(masthead.html().trim());
+		List<Page> pages = new ArrayList<>();
+		Elements options = doc.select("#pageMenu option");
 
-		Element img = document.select("#mangaimg img").first();
-		String imgLink = img.attr("src");
-		manga.setImage(createImage(imgLink));
+		for (Element opt : options) {
+			Page page = new Page();
+			page.setName(baseLink + opt.attr("value"));
+			page.setIssue(issue);
+			page.setIndex(new Integer(opt.html().trim()));
+			page.setData(Utils.createImage(getImgLink(page.getName(), baseLink)));
 
-		collectMangaData(manga, document);
-
-		return manga;
-	}
-
-	protected void collectMangaData(Manga manga, Document document) {
-		Elements trs = document.select("#mangaproperties tr");
-
-		for (Element e : trs) {
-			Elements tds = e.children();
-			Iterator<Element> it = tds.iterator();
-
-			Element td1 = it.next();
-			Element td2 = it.next();
-
-			if (td1.html().contains("Alternate Name:")) {
-				manga.setAlternateName(td2.html().trim());
-			} else if (td1.html().contains("Year of Release:")) {
-				manga.setYearReleased(td2.html().trim());
-			} else if (td1.html().contains("Status:")) {
-				manga.setStatus(td2.html().trim());
-			} else if (td1.html().contains("Author:")) {
-				manga.setAuthor(td2.html().trim());
-			} else if (td1.html().contains("Artist:")) {
-				manga.setArtist(td2.html().trim());
-			} else if (td1.html().contains("Reading Direction:")) {
-				manga.setReadingDirection(td2.html().trim());
-			} else if (td1.html().contains("Genre:")) {
-
-				Elements links = td2.children();
-				for (Element l : links) {
-					Genre g = new Genre();
-					g.setId(UUID.randomUUID().toString());
-					g.setName(l.children().iterator().next().html().trim());
-					g.setManga(manga);
-
-					manga.getGenres().add(g);
-				}
-			}
-		}
-	}
-
-	protected byte[] createImage(String link) throws IOException {
-		HttpURLConnection connection = (HttpURLConnection) new URL(link)
-				.openConnection();
-		connection.setDoInput(true);
-
-		try (InputStream is = connection.getInputStream()) {
-
-			ByteArrayOutputStream bos = new ByteArrayOutputStream();
-			IOUtils.copy(is, bos);
-
-			return bos.toByteArray();
+			pages.add(page);
 		}
 
+		return pages;
+	}
+
+	public String getImgLink(String page, String baseUrl) throws IOException {
+		Document doc = Jsoup.connect(page).get();
+		return doc.select("#img").get(0).attr("src");
 	}
 }

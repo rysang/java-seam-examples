@@ -7,6 +7,7 @@ import org.price.manga.reader.dao.services.api.MangaDao;
 import org.price.manga.reader.entities.Genre;
 import org.price.manga.reader.entities.Issue;
 import org.price.manga.reader.entities.Manga;
+import org.price.manga.reader.entities.Page;
 import org.price.manga.reader.services.api.MangaOpsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,5 +45,17 @@ public class MangaOpsServiceBean implements MangaOpsService {
 		}
 
 		return ret;
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Issue getIssueByLink(String link) {
+		return mangaDao.getIssueByLink(link);
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public Page createPage(Page page) {
+		return mangaDao.createPage(page);
 	}
 }

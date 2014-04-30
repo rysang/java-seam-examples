@@ -1,12 +1,7 @@
 package org.price.manga.reader.services;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Iterator;
@@ -15,7 +10,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.apache.commons.io.IOUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -86,12 +80,10 @@ public class MangaCrawler implements Crawler, Runnable {
 			String dateCreated = tdIt.next().html().trim();
 
 			if (!"".equals(link)) {
-				URI uri = new URI(page);
-
-				link = uri.getScheme() + "://" + uri.getHost() + ':'
-						+ (uri.getPort() == -1 ? 80 : uri.getPort()) + link;
+				link = Utils.getBaseUrl(page) + link;
 
 				Issue issue = createIssue(name, dateCreated, link, manga);
+				crawlerFactory.newIssueCrawler().crawl(issue.getLink());
 			}
 		}
 	}
@@ -119,7 +111,7 @@ public class MangaCrawler implements Crawler, Runnable {
 
 		Element img = document.select("#mangaimg img").first();
 		String imgLink = img.attr("src");
-		manga.setImage(createImage(imgLink));
+		manga.setImage(Utils.createImage(imgLink));
 
 		collectMangaData(manga, document);
 
@@ -163,18 +155,4 @@ public class MangaCrawler implements Crawler, Runnable {
 		}
 	}
 
-	protected byte[] createImage(String link) throws IOException {
-		HttpURLConnection connection = (HttpURLConnection) new URL(link)
-				.openConnection();
-		connection.setDoInput(true);
-
-		try (InputStream is = connection.getInputStream()) {
-
-			ByteArrayOutputStream bos = new ByteArrayOutputStream();
-			IOUtils.copy(is, bos);
-
-			return bos.toByteArray();
-		}
-
-	}
 }
